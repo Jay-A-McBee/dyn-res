@@ -3,7 +3,7 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: __dirname + '/app/index.html',
+  template: __dirname + '/App/index.html',
   filename: 'index.html',
   inject: 'body'
 })
@@ -11,7 +11,7 @@ var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 var BUILD_DIR = path.resolve(__dirname, 'App/dist');
 var APP_DIR = path.resolve(__dirname, 'App');
 
-var prodConfig = {
+module.exports = {
   entry: APP_DIR + '/root.js',
   output: {
     path: BUILD_DIR,
@@ -52,4 +52,3 @@ var prodConfig = {
     })]
 }
 
-module.exports = prodConfig;
