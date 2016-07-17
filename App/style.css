@@ -1,0 +1,191 @@
+body{
+	font-family: 'Special Elite', courier;
+	color: #001a33;
+	background: url('./Assets/pics/bckgr.jpg');
+  background-attachment: fixed;
+	background-repeat: no-repeat;
+}
+
+h1,h2,h3,h4,h5,h6{
+	font-family: 'Special Elite', courier;
+	color: #001a33;
+}
+
+a{
+	margin-right: 15px;
+	padding: 2px;
+	color: #3C39F8;
+	/*background-color: rgba(255, 255, 255, 0.45);*/
+}
+
+img{
+	border-radius: 5px;
+}
+
+.down{
+	margin-bottom: -5px;
+}
+
+.bot{
+	position: relative;
+	bottom: -25px;
+}
+
+.center{
+  margin: auto;
+  width: 85%;
+  padding: 2px;
+}
+
+.about{
+	margin: auto;
+	border-radius: 5px;
+	border: 1px solid black;
+	max-width: 50%;
+	padding: 5px;
+}
+
+.footer{
+	position: fixed;
+	clear: both;
+	background-color: rgba(255, 255, 255, 0.45);
+	bottom: 0;
+}
+
+.big{
+	font-size: larger;
+	font-weight: bolder;
+}
+
+.desc{
+	min-width: 100%;
+	min-height: 100%;
+	border-radius: 5px;
+	border: 1px solid black;
+}
+
+.proj{
+	max-width: 100%;
+	border: 1px solid black;
+	cursor: pointer;
+}
+
+.overlay{
+	color: #001a33;;
+	/*z-index: 1005;*/
+  background-color: rgba(255, 255, 255, 0.45);
+  padding: 5px;
+}
+
+.oneMargin{
+	margin: 2.5px;
+}
+
+.centerVert{
+ position: relative;
+ top: 5em;
+}
+
+.centerText{
+	text-align: center;	
+}
+
+.leftText{
+	text-align: left;
+}
+
+.rightText{
+	text-align: right;
+}
+
+.moveDown{
+	margin-bottom: -20px;
+}
+
+.farDown{
+	margin-bottom: -30px;
+}
+
+.right{
+	margin-right: 20px;
+}
+
+.left{
+	margin-left: 50px;
+}
+
+.resleft{
+	margin-left: 20px;
+}
+
+
+.resover{
+	background-color: rgba(10, 10, 10, 0.45);
+	color: white;
+}
+
+.pointer{
+  cursor:pointer;
+}
+
+.clear{
+	clear:both;
+}
+
+.paper{ 
+	width: 70%;
+	border: 1px solid black;
+	border-radius: 5px;
+	background-color:#FEFFF7;
+	margin-left: auto;
+	margin-right: auto;
+}
+.inline{
+	display: inline;
+}
+.inBlock{
+	display: inline-block;
+}
+.pull-left{
+	float: left;
+}
+.pull-right{
+	float: right;
+}
+
+.tooltip{
+}
+
+.tooltip .tooltiptext{
+	visibility: hidden;
+  width: 120px;
+  background-color: rgba(10, 10, 10, 0.70);
+  color: white;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.element-appear {
+  opacity: 0.01;
+}
+
+.element-appear.element-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.element-leave {
+  opacity: 1;
+}
+
+.element-leave.element-leave-active {
+  opacity: 0.01;
+  transition: opacity .5s ease-out;
+}
