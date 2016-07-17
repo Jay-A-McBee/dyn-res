@@ -2,9 +2,9 @@
   "name": "react-red",
   "version": "1.0.0",
   "description": "react-redux boiler",
-  "main": "Server/index",
+  "main": "Server/index.js",
   "scripts": {
-    "start": "node Server/index",
+    "start": "node Server/index.js",
     "postinstall": "node deploy"
   },
   "author": "j.a.m",
@@ -21,9 +21,7 @@
     "react-router": "^2.4.1",
     "redux": "^3.5.2",
     "webpack": "^1.13.1",
-    "html-webpack-plugin": "^2.22.0"
-  },
-  "devDependencies": {
+    "html-webpack-plugin": "^2.22.0",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-object-rest-spread": "^6.8.0",
     "babel-plugin-transform-runtime": "^6.9.0",
@@ -32,8 +30,10 @@
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "^0.23.1",
     "file-loader": "^0.9.0",
+    "style-loader": "^0.13.1"
+  },
+  "devDependencies": {
     "nodemon": "^1.9.2",
-    "style-loader": "^0.13.1",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.12.1"
