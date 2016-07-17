@@ -45,13 +45,6 @@ img{
 	padding: 5px;
 }
 
-.footer{
-	position: fixed;
-	clear: both;
-	background-color: rgba(255, 255, 255, 0.45);
-	bottom: 0;
-}
-
 .big{
 	font-size: larger;
 	font-weight: bolder;
