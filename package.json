@@ -21,7 +21,7 @@
     "react-router": "^2.4.1",
     "redux": "^3.5.2",
     "webpack": "^1.13.1",
-    "html-webpack-plugin": "^2.22.0",
+    "html-webpack-plugin": "^2.22.0"
   },
   "devDependencies": {
     "babel-loader": "^6.2.4",
