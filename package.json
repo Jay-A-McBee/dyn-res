@@ -4,7 +4,7 @@
   "description": "react-redux boiler",
   "main": "Server/index.js",
   "scripts": {
-    "start": "node Server/index.js",
+    "start": "nodemon Server/index.js",
     "postinstall": "node deploy"
   },
   "author": "j.a.m",
