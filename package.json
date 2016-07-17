@@ -2,7 +2,7 @@
   "name": "react-red",
   "version": "1.0.0",
   "description": "react-redux boiler",
-  "main": "Server/index.js",
+  "main": "server/index.js",
   "scripts": {
     "start": "node server/index",
     "postinstall": "node deploy"

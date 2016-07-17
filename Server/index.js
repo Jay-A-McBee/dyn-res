@@ -1,11 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var webpack = require('webpack');
-var config = require('../webpack.config');
-var prodConfig = require('../webpack.config.prod')
 
-var compiler = process.env.NODE_ENV === 'production' ?
- webpack(prodConfig) : webpack(config);
 
 var app = express();
 
