@@ -27,7 +27,7 @@ export function closeDesc(project){
 }
 
 
-export const FLIP_TRAD = 'FLIP_TRAD';
+export const CLOSE_WINDOW = 'FLIP_TRAD';
 
 export function flipTrad(){
 	console.log('in fetch');

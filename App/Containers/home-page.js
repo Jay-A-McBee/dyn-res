@@ -1,6 +1,7 @@
 import React, { Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { Intro } from '../Components/intro';
+import { Link } from 'react-router';
 
 
 export default class Home extends Component{
@@ -10,7 +11,7 @@ export default class Home extends Component{
   	return(
   		<div>
   		  <Intro />
-  		  <div>{ children }</div>
+		    <div>{ children }</div>
   		</div>
   	)
   }

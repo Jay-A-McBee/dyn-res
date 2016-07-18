@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { connect } from 'react-redux';
 import { ProjectDescription } from '../Components/description';
 import { ProjectImage, MakeImageObj } from '../Components/projectDesc';
@@ -21,33 +20,26 @@ class ProjectPage extends Component{
 		let [fairProj, jourProj, sentProj, catProj] = MakeImageObj(picTitleRef,openDesc);
 
 		return(
-			<ReactCSSTransitionGroup 
-        transitionName={'element'} 
-        transitionAppear={true}  
-        transitionAppearTimeout={500} 
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={300}>
-				<div>
-					<div className="mdl-grid center centerVert">
-					  <div className="mdl-cell mdl-cell--6-col oneMargin" >
-					    {!fShare ? <ProjectImage {...fairProj} />
-					     : <ProjectDescription {...fairShot} />}
-					  </div>
-					  <div className="mdl-cell mdl-cell--6-col oneMargin">
-					    {!jour ? <ProjectImage {...jourProj} />
-					     : <ProjectDescription {...jrn}/>}
-					  </div>
-					  <div className="mdl-cell mdl-cell--6-col oneMargin">
-		          {!sent ? <ProjectImage {...sentProj} />
-		           : <ProjectDescription {...sentim}/>}
-					  </div>
-					  <div className="mdl-cell mdl-cell--6-col oneMargin">
-					    {!kit ? <ProjectImage {...catProj} />
-					     : <ProjectDescription {...catty}/>}
-					  </div>
-					</div>
+			<div>
+				<div className="mdl-grid center centerVert">
+				  <div className="mdl-cell mdl-cell--6-col oneMargin" >
+				    {!fShare ? <ProjectImage {...fairProj} />
+				     : <ProjectDescription {...fairShot} />}
+				  </div>
+				  <div className="mdl-cell mdl-cell--6-col oneMargin">
+				    {!jour ? <ProjectImage {...jourProj} />
+				     : <ProjectDescription {...jrn}/>}
+				  </div>
+				  <div className="mdl-cell mdl-cell--6-col oneMargin">
+	          {!sent ? <ProjectImage {...sentProj} />
+	           : <ProjectDescription {...sentim}/>}
+				  </div>
+				  <div className="mdl-cell mdl-cell--6-col oneMargin">
+				    {!kit ? <ProjectImage {...catProj} />
+				     : <ProjectDescription {...catty}/>}
+				  </div>
 				</div>
-			</ReactCSSTransitionGroup>
+			</div>
 		)
 	}
 }
