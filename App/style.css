@@ -1,10 +1,13 @@
 body{
 	font-family: 'Special Elite', courier;
 	color: #001a33;
-	background: url('./Assets/pics/adrar.jpg');
+	background:
+	linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),
+	url('./Assets/pics/adrar.jpg');
 	background-size: 100% 100%;
   background-attachment: fixed;
 }
+
 
 h1,h2,h3,h4,h5,h6{
 	font-family: 'Special Elite', courier;
@@ -21,7 +24,6 @@ a{
 img{
 	border-radius: 5px;
 }
-
 
 .down{
 	margin-bottom: -5px;
@@ -114,7 +116,7 @@ img{
 
 
 .resover{
-	background-color: rgba(10, 10, 10, 0.45);
+	/*background-color: rgba(10, 10, 10, 0.45);*/
 	color: white;
 }
 
