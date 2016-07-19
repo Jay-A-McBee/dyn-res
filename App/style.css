@@ -1,9 +1,9 @@
 body{
 	font-family: 'Special Elite', courier;
 	color: #001a33;
-	background: url('./Assets/pics/bckgr.jpg');
+	background: url('./Assets/pics/adrar.jpg');
+	background-size: 100% 100%;
   background-attachment: fixed;
-	background-repeat: no-repeat;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -21,6 +21,7 @@ a{
 img{
 	border-radius: 5px;
 }
+
 
 .down{
 	margin-bottom: -5px;
