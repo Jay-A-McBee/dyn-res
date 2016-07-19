@@ -5,6 +5,8 @@ import { Link } from 'react-router';
 
 
 export default class Home extends Component{
+
+	
   
   render(){
   	let { children } = this.props;

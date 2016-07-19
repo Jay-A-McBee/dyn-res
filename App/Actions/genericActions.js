@@ -17,7 +17,6 @@ export function openDesc(project){
 export const CLOSE_DESC = 'CLOSE_DESC';
 
 export function closeDesc(project){
-	console.log('in fetch');
 	let id = uuid.v4();
 	return {
 	  id: id,

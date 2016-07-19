@@ -25,7 +25,6 @@ let callApi = (method,endpoint,id,action) => {
 	      .then( text => ({ text, response }))
 	  )
 	  .then(({ text, response }) => {
-	  	console.log(text,response)
 	  	if(!response.ok){
 	  		return Promise.reject(text);
 	  	}else{
@@ -38,7 +37,6 @@ export const CALL_API = Symbol('Call API');
 
 export default store => next => action => {
   
-  console.log('action in middleware', action)
 	if(!action[CALL_API]) return next(action);
 
 	let { method,endpoint,id,body,types } = action[CALL_API];
