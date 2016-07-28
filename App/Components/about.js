@@ -26,8 +26,8 @@ export class About extends Component{
 		return openUp ? (
 		  <div className ='modal-overlay'>
 					<div id = 'about_box' className = 'about slidein'>
-					    <i onClick = {this.closeWithAnim} className = 'material-icons md-48'>arrow_back</i>
-					    <div className = 'top'>
+					  <i onClick = {this.closeWithAnim} className = 'pointer material-icons md-48'>arrow_back</i>
+					  <div className = 'top'>
 					    <h1>About</h1>
 					    <img className = 'pull-left right' src = {Me} />
 					    {aboutSection}

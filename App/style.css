@@ -31,6 +31,10 @@ img{
   max-width: 100%;
 }
 
+li{
+  margin-bottom: 5px;
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
