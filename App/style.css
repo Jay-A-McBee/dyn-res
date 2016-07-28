@@ -84,6 +84,7 @@ li{
   position: relative;
   background-color: #fefefe;
   margin: auto;
+  overflow: scroll;
   padding: 0;
   border: 1px solid #888;
   max-width: 70%;

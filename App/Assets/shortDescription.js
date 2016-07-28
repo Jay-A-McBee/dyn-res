@@ -17,7 +17,8 @@ descriptions.jmen ={
 	desc:'A local musician directory built with Angular, Node, Express and PostgreSQL.',
 	tasks:['Architected a RESTful Node.js/Express server that handled GET/POST/PUT/DELETE client requests',
 		'Designed and implemented database schemas using PostgreSQL and knex.js',
-		'Integrated Passport OAuth 2.0 Soundcloud authentication strategy']
+		'Integrated Passport OAuth 2.0 Soundcloud authentication strategy'],
+	link: 'https://github.com/getJourneymen/Journeymen'
 };
 
 descriptions.sentiment = {
@@ -26,7 +27,8 @@ descriptions.sentiment = {
 	desc: 'A search engine/sentiment analysis built with Angular, Node, Express and PostgreSQL.',
 	tasks:['Created a  ‘My Favorites’ feature allowing users to add/remove articles to/from their profile', 
     'Established Node.js/Express endpoints and implemented database schemas using PostgreSQL and Knex.js',
-    'Built AngularJS partial-views to display elements based on logged-in state and ‘favorite status’']
+    'Built AngularJS partial-views to display elements based on logged-in state and ‘favorite status’'],
+  link: 'https://github.com/getJourneymen/all-american-regex'
 } ;
 
 descriptions.kitkat ={
@@ -42,8 +44,9 @@ descriptions.electric = {
 	title: 'Digital Range',
 	role: 'Front/Back-end',
 	desc: 'A livestock sale form app built with Angular, Node and Express.',
-	tasks:['Used formly-form directive to trim existing codebase by over 1000 lines',
-	  'Incorporated node-mailer to send completed form data to both seller and listing service']
+	tasks:['Using formly-form directive to trim existing codebase by over 1000 lines',
+	  'Incorporating node-mailer to send completed form data to both seller and listing service'],
+	current: '*current project'
 } ;
 
 descriptions.sandBox = {

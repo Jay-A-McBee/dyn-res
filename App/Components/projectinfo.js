@@ -7,7 +7,7 @@ import { MakeImageObj } from './projectDesc';
 
 
 
-export function ProjectInfo({title, role, desc, tasks, photo, func, prop, link}){
+export function ProjectInfo({title, role, desc, tasks, photo, func, prop, link, current}){
 	
 	let contrib = tasks.map( task => (<li className = 'leftText' key={uuid.v4()} style={{fontSize:'20px'}}>{task}</li>))
 	
@@ -22,7 +22,14 @@ export function ProjectInfo({title, role, desc, tasks, photo, func, prop, link})
           <ul>
            {[...contrib]}
           </ul>
-          {link && <div className = 'centerText'><a href = {link}>View Repo</a></div>}
+          {link && 
+            <div className = 'centerText'>
+              <a href = {link}>View Repo</a>
+            </div>}
+          {current && 
+            <div className = 'centerText' style={{color: 'red'}}>
+              <p>{current}</p>
+            </div>}
         </div>
         <div className = 'mdl-cell mdl-cell--6-col screenshot'>
           <img className = 'showFast' src = {photo} />
