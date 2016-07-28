@@ -8,8 +8,8 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export class About extends Component{
 
-	constructor(props){
-		super(props)
+	constructor(){
+		super()
 		this.closeWithAnim = this.closeWithAnim.bind(this)
 	}
 
