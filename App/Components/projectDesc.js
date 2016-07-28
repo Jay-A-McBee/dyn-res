@@ -14,9 +14,7 @@ export function ProjectImage({func,photo,prop}){
       transitionAppearTimeout={500} 
       transitionEnterTimeout={500}
       transitionLeaveTimeout={300}>
-      <div>
-	      <img onClick={()=>func(prop)} className = 'proj' src = {photo} /> 
-	    </div>
+	    <img onClick={()=>func(prop)} className = 'proj' src = {photo} /> 
 	  </ReactCSSTransitionGroup> 
 	)
 }

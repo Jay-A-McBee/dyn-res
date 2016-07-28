@@ -31,7 +31,7 @@ export class About extends Component{
 					    <h1>About</h1>
 					    <img className = 'pull-left right' src = {Me} />
 					    {aboutSection}
-					    <div className = 'centerText'>
+					    <div className = 'centerText contact'>
 						    <a href='mailto:jmcbee1@gmail.com'>jmcbee1@gmail.com</a>
 						    <a href='https://github.com/Jay-A-McBee'>Github</a>
 						  </div>

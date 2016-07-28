@@ -42,6 +42,10 @@ p{
 	margin-bottom: -5px;
 }
 
+.contact{
+  margin-top: 2.5em;
+}
+
 .fullscreen{
 	height: 100vh;
 }
@@ -65,6 +69,7 @@ p{
 	width: 35%;
 	background-color: #fefefe;
 	padding: 5px;
+  overflow: scroll;
 }
 
 .description{
@@ -319,6 +324,22 @@ p{
 
 }
 
+.showFast{
+  opacity: 0;
+  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+  -moz-animation-fill-mode:forwards; /*FF 5+*/
+  -o-animation-fill-mode:forwards; /*Not implemented yet*/
+  -ms-animation-fill-mode:forwards; /*IE 10+*/
+  animation-fill-mode:forwards;
+  -webkit-animation-name: appear .25s; /* Safari */
+  -webkit-animation-duration: .25s;
+  -moz-animation-name: appear .25s; /* Safari */
+  -moz-animation-duration: .25s;
+  animation-name: appear;
+  animation-duration: .25s;
+  animation-timing-function: ease-in
+}
+
 .show{
 	opacity: 0;
 	-webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
@@ -335,7 +356,6 @@ p{
   animation-name: appear;
   animation-duration: 1s;
   animation-timing-function: ease-in
-
 }
 
 .underline{
