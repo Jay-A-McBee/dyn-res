@@ -4,7 +4,7 @@ import { close, open, openDesc, closeDesc, openDescMod, closeDescMod } from '../
 import { Intro } from '../Components/intro';
 import  ProjectPage  from './project-page';
 import ProjectDescription from './projdesc-page';
-
+import '../style.css';
 
 class AboutMe extends Component{
 	

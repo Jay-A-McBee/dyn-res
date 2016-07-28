@@ -6,7 +6,6 @@ body{
   background-attachment: fixed;
 }
 
-
 h2,h3,h4,h5,h6{
 	font-family: 'Pathway Gothic One', courier;
 	color: #001a33;
@@ -28,6 +27,17 @@ p{
 	margin-bottom: 0px;
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1005;
+  background-color: rgba(10, 10, 10, 0.6);
+  overflow-y: scroll;
+}
+
 .down{
 	margin-bottom: -5px;
 }
@@ -35,7 +45,6 @@ p{
 .fullscreen{
 	height: 100vh;
 }
-
 
 .bot{
 	position: relative;
@@ -103,8 +112,10 @@ p{
 }
 
 .menu{
+  position: relative;
+  top: .6em;
+  right: 1.5em;
 	font-size: 40px;
-	margin: 15px 5px;
 }
 
 .desc{
@@ -180,7 +191,6 @@ p{
 	margin-left: 20px;
 }
 
-
 .resover{
 	/*background-color: rgba(10, 10, 10, 0.45);*/
 	color: white;
@@ -234,12 +244,12 @@ p{
 }
 
 @-webkit-keyframes floater {
-  from { top:0em; opacity: 0;}
+  from { top:1em; opacity: 0;}
   to { top:5em; opacity: 1; }
 }
 
 @keyframes floater {
-  from { top:0em; opacity: 0;}
+  from { top:1em; opacity: 0;}
   to { top:5em; opacity: 1; }
 }
 
@@ -328,7 +338,6 @@ p{
 
 }
 
-
 .underline{
   background-color: #000033;
   left: 10px;
@@ -351,7 +360,6 @@ p{
   animation-iteration-count: 1;
 }
 
-
 .slowrise{
   max-width: 90%;
   margin: auto;
@@ -359,54 +367,13 @@ p{
   -webkit-animation-name: floater; /* Chrome, Safari, Opera */
   -webkit-animation-iteration-count: 1;
   -webkit-animation-name: floater; /* Chrome, Safari, Opera */
-  -webkit-animation-duration: .25s; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: .5s; /* Chrome, Safari, Opera */
   animation-name: floater;
-  animation-duration: .25s;
+  animation-duration: .5s;
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
 }
 
-.modal-anim-enter {
-  opacity: 0.00;
-  transform: scale(0.7);
-  transition: all 1s;
-}
 
-.modal-anim-enter.modal-anim-enter-active {
-  opacity: 1;
-  transform: scale(1);
-}
 
-.modal-anim-leave {
-  opacity: 1;
-  transform: scale(1);
-  transition: all 0.55s;
-}
 
-.modal-anim-leave.modal-anim-leave-active {
-  opacity: 0.00;
-  transform: scale(0.7);
-}
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1005;
-  background-color: rgba(10, 10, 10, 0.6);
-  overflow-y: scroll;
-}
-
-.modal{
-  z-index: 1006;
-/*  padding: 1rem;
-  border: 1px solid #cacaca;
-  background-color: #fefefe;
-  border-radius: 0;
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  overflow-y: auto;*/
-}
