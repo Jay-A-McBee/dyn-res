@@ -27,6 +27,10 @@ p{
 	margin-bottom: 0px;
 }
 
+img{
+  max-width: 100%;
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -148,10 +152,8 @@ p{
 }
 
 .screenshot{
-  max-width: 90%;
-  position: relative;
-  top: 7em;
-  left: 7em;
+  margin:auto;
+  max-width: 100%;
 }
 
 .oneMargin{

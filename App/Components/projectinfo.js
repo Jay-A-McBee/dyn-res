@@ -24,8 +24,8 @@ export function ProjectInfo({title, role, desc, tasks, photo, func, prop, link})
           </ul>
          {link && <a href = {link}>View Repo</a>}
         </div>
-        <div className = 'mdl-cell mdl-cell--6-col'>
-          <img className = 'screenshot showFast' src = {photo} />
+        <div className = 'mdl-cell mdl-cell--6-col screenshot'>
+          <img className = 'showFast' src = {photo} />
         </div>
       </div>
     </div>
