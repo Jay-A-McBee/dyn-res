@@ -1,20 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
 
 
-export function ProjectImage({func,photo,title}){
+export function ProjectImage({func,photo,prop}){
+
 	return(
 	  <ReactCSSTransitionGroup 
       transitionName={'element'} 
       transitionAppear={true}  
       transitionAppearTimeout={500} 
       transitionEnterTimeout={500}
-      transitionLeaveTimeout={300}>	
-			<div className = 'tooltip' onClick = { () => func(title)}>
-	      <span className = 'tooltiptext'>Click for description</span>
-	      <img className = 'proj' src = {photo} /> 
+      transitionLeaveTimeout={300}>
+      <div>
+	      <img onClick={()=>func(prop)} className = 'proj' src = {photo} /> 
 	    </div>
 	  </ReactCSSTransitionGroup> 
 	)
@@ -25,7 +26,7 @@ export function MakeImageObj(arrOfRefs,fn){
   	return {
 			func: fn, 
 			photo: refPair[0], 
-			title: refPair[1]
+			prop: refPair[1]
 		}
   })
 }

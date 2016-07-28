@@ -1,14 +1,23 @@
 'use strict'
 import * as ActionTypes from '../Actions/genericActions';
+import { combineReducers } from 'redux'
 
 const initialState = {
   fairshare: false,
   journeymen: false,
   sentimentalist: false,
-  cats: false
+  cats: false,
+  range: false,
+  lab: false
 }
 
-export function main(state = initialState, action){
+const modalState = {
+  isOpen: false,
+  descOpen: false
+}
+
+function main(state = initialState, action){
+  console.log(action)
   switch (action.type){
     case ActionTypes.SHOW_DESC:
       let openProj = {};
@@ -24,3 +33,20 @@ export function main(state = initialState, action){
 	   return state;
 	}
 }
+
+function modals(state = modalState, action){
+  switch (action.type){
+    case ActionTypes.OPEN_MODAL:
+      return Object.assign({},state,action.payload);
+    case ActionTypes.CLOSE_MODAL:
+      return Object.assign({},state,action.payload);
+    case ActionTypes.OPEN_DESC_MODAL:
+      return Object.assign({},state,action.payload);
+    case ActionTypes.CLOSE_DESC_MODAL:
+      return Object.assign({},state,action.payload);
+    default:
+      return state;
+  }
+}
+
+export default combineReducers({main,modals});

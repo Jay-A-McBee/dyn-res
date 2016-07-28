@@ -1,48 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router';
+import bio from '../Assets/bio'
 import Me from '../Assets/pics/me.jpg'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
 
-export function About(){
-	return(
-		<ReactCSSTransitionGroup 
-        transitionName={'element'} 
-        transitionAppear={true}  
-        transitionAppearTimeout={500} 
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={300}>
-		  <div className = 'centerVert'>
-			  <div className = 'mdl-grid about overlay'>
-				    <div className = 'inline'>
-				      <img src = {Me}/>
-				    </div>
-				    <div className = 'inline left bot'>
-				      <div className = 'farDown'>
-				        <h2>Yo!</h2>
-				      </div>
-				      <div>
-						    <p>
-						    Full stack JS developer.<br />
-						    React and Redux are my jam.<br />
-						    Finished cutting my teeth.<br />
-						    Ready for the 'big show'.
-						    </p>
-				      </div>
+export class About extends Component{
+
+	constructor(props){
+		super(props)
+		this.closeWithAnim = this.closeWithAnim.bind(this)
+	}
+
+
+	closeWithAnim(){
+		var desc = document.getElementById('about_box')
+		desc.className = 'about slideout';
+    setTimeout(()=>this.props.close(),500);
+	}
+  
+  render(){
+  	let { openUp, close } = this.props;
+  	let aboutSection  = (<p className='top' style={{fontSize:'20px'}}>{bio}</p>)
+		return openUp ? (
+		  <div className ='modal-overlay'>
+					<div id = 'about_box' className = 'about slidein'>
+					    <i onClick = {this.closeWithAnim} className = 'material-icons md-48'>arrow_back</i>
+					    <div className = 'top'>
+					    <h1>About</h1>
+					    <img className = 'pull-left right' src = {Me} />
+					    {aboutSection}
+					    <div className = 'centerText'>
+						    <a href='mailto:jmcbee1@gmail.com'>jmcbee1@gmail.com</a>
+						    <a href='https://github.com/Jay-A-McBee'>Github</a>
+						  </div>
 					  </div>
-				    <div className = 'inBlock left bot farDown'>
-				      <div>
-					      <h6 className = 'big down'>Get in Touch</h6>
-					      <a  href='mailto:jmcbee1@gmail.com'>jmcbee1@gmail.com</a>
-					    </div>
-					    <div>
-					      <h6 className = 'big down'>Code</h6>
-					      <a  href = 'https://www.github.com/Jay-A-McBee'>Github</a>
-					      <a  href = 'https://bitbucket.org/jay_mcbee/'>Bitbucket</a>
-					    </div>
-					  </div>
-				</div>
-		  </div>
-	  </ReactCSSTransitionGroup>
-	)
+					</div>
+			</div>
+		):null
+	}
 }
