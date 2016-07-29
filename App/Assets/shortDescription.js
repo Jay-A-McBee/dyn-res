@@ -28,7 +28,6 @@ descriptions.sentiment = {
 	tasks:['Created a  ‘My Favorites’ feature allowing users to add/remove articles to/from their profile', 
     'Established Node.js/Express endpoints and implemented database schemas using PostgreSQL and Knex.js',
     'Built AngularJS partial-views to display elements based on logged-in state and ‘favorite status’'],
-  link: 'https://github.com/getJourneymen/all-american-regex'
 } ;
 
 descriptions.kitkat ={
