@@ -1,31 +1,18 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import v4 from 'node-uuid';
 
 
-
-
-export function ProjectImage({func,photo,title}){
+export const ProjectImage = ( {func,photo,prop,id} ) => {
 	return(
-	  <ReactCSSTransitionGroup 
-      transitionName={'element'} 
-      transitionAppear={true}  
-      transitionAppearTimeout={500} 
-      transitionEnterTimeout={500}
-      transitionLeaveTimeout={300}>	
-			<div className = 'tooltip' onClick = { () => func(title)}>
-	      <span className = 'tooltiptext'>Click for description</span>
-	      <img className = 'proj' src = {photo} /> 
-	    </div>
-	  </ReactCSSTransitionGroup> 
+    <img onClick={ () => func(prop) } className = 'proj' src = {photo} /> 
 	)
 }
 
-export function MakeImageObj(arrOfRefs,fn){
-  return arrOfRefs.map( refPair => {
-  	return {
+export const MakeImageObj = (arrOfRefs,fn) => {
+  return arrOfRefs.map( refPair => ({
+  	  id: v4(),
 			func: fn, 
 			photo: refPair[0], 
-			title: refPair[1]
-		}
-  })
+			prop: refPair[1]
+  }))
 }

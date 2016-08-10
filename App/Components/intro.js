@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { About } from './about';
+import { ProjectPage } from '../Containers/project-page'
 
 
-export function Intro(){
-	return(
-		<div>
-	    <div className = 'center leftText centerVert'>
-	      <h1 className = 'farDown'>J. Austin McBee</h1>
-	      <h2>Full-Stack Developer</h2>
-			  <Link to = '/about'>About</Link>
-		    <Link to = '/projects'>Projects</Link>
-		    <Link to = '/resume'>Resume</Link>
+export class Intro extends Component{
+
+	render(){
+		let { open, close, openUp } = this.props;
+		return(
+	    <div className = 'left centerVert leftText slowrise'>
+	      <div>
+	        <i onClick = {() => open() } className="show menu pull-right pointer material-icons">menu</i>
+	        {openUp && 
+	        	<About close = {close}/>}
+	        <h1>jmcbee.net</h1>
+	        <div className = 'centerVert underline'></div>
+	      </div>
 	    </div>
-	  </div>
-	)
+	  )
+	}
 }

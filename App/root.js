@@ -1,12 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Root from './Containers/index';
-import { main } from './Reducers/main'
+import reducer from './Reducers/main'
 import configureStore from './Store/store.config';
 
-const store = configureStore(main);
+const store = configureStore(reducer);
+
 render(
-  <Root store={store} />,
+  <Root store = { store } />,
   document.getElementById('app')
 )
 
