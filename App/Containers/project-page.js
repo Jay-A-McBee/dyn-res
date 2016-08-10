@@ -30,8 +30,6 @@ export default class ProjectPage extends Component{
 				  <div className="mdl-cell mdl-cell--4-col ">
 	          <ProjectImage {...sentProj} />
 				  </div>
-				</div>
-				<div className="mdl-grid ">
 				  <div className="mdl-cell mdl-cell--4-col ">
 				    <ProjectImage {...catProj} />
 				  </div>

@@ -5,7 +5,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
 
-export function ProjectImage({func,photo,prop}){
+export const ProjectImage = ({func,photo,prop}) => {
 
 	return(
 	  <ReactCSSTransitionGroup 

@@ -8,7 +8,6 @@ export class Intro extends Component{
 
 	render(){
 		let { open, close, openUp } = this.props;
-		console.log(this.props)
 		return(
 	    <div className = 'left centerVert leftText slowrise'>
 	      <div>
