@@ -7,7 +7,7 @@ import configureStore from './Store/store.config';
 const store = configureStore(reducer);
 
 render(
-  <Root store={store} />,
+  <Root store = { store } />,
   document.getElementById('app')
 )
 

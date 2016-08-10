@@ -38,7 +38,7 @@ export const close = () => ({
 export const OPEN_DESC_MODAL = 'OPEN_DESC_MODAL';
 export const CLOSE_DESC_MODAL = 'CLOSE_DESC_MODAL';
 
-export const openDescMod = () =>({
+export const openDescMod = () => ({
   payload: {
   	descOpen: true
   },

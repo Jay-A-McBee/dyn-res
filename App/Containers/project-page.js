@@ -16,29 +16,16 @@ export default class ProjectPage extends Component{
 		const picTitleRef = [[fair,'fairshare'],[journey,'journeymen'],[senti,'sentimentalist'],[cat,'cats'], [elec, 'range'], [bleed, 'lab']];
 		let{ openDesc } = this.props;
 		let{ fairshare, jmen, sentiment, kitkat, electric, sandbox } = descriptions;
-		let [fairProj, jourProj, sentProj, catProj, elecProj, labProj] = MakeImageObj(picTitleRef,openDesc);
+		let screenShots = MakeImageObj(picTitleRef,openDesc);
 
 		return(
 			<div className = 'show center centerText centerVert'>
 				<div className="mdl-grid">
+				{screenShots.map( imgObj => 
 				  <div className="mdl-cell mdl-cell--4-col" >
-				    <ProjectImage {...fairProj} />
+				    <ProjectImage {...imgObj} />
 				  </div>
-				  <div className="mdl-cell mdl-cell--4-col  ">
-				    <ProjectImage {...jourProj} />
-				  </div>
-				  <div className="mdl-cell mdl-cell--4-col ">
-	          <ProjectImage {...sentProj} />
-				  </div>
-				  <div className="mdl-cell mdl-cell--4-col ">
-				    <ProjectImage {...catProj} />
-				  </div>
-				  <div className="mdl-cell mdl-cell--4-col ">
-				    <ProjectImage {...elecProj} />
-				  </div>
-				  <div className="mdl-cell mdl-cell--4-col ">
-				    <ProjectImage {...labProj} />
-				  </div>
+				)}
 				</div>
 			</div>
 		)
