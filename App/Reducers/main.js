@@ -26,8 +26,6 @@ function main(state = initialState, action){
       let closeProj = {};
       closeProj[action.title] = false;
       return Object.assign({}, state, closeProj);
-    case ActionTypes.FLIP_TRAD: 
-      return Object.assign({}, state, {traditional: true});
 	  default:
 	   return state;
 	}

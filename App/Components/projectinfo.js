@@ -1,7 +1,7 @@
 'use strict'
 
 import React from 'react';
-import uuid from 'node-uuid';
+import v4 from 'node-uuid';
 import { Link } from 'react-router';
 import { MakeImageObj } from './projectDesc';
 
@@ -12,7 +12,7 @@ export const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, 
 	let contrib = tasks.map( task => (
     <li 
     className = 'leftText' 
-    key={uuid.v4()} 
+    key={v4()} 
     style={{fontSize:'20px'}}>
     {task}
   </li>))
@@ -26,7 +26,7 @@ export const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, 
 	return(
     <div className = 'modal-overlay'>
       <div  id='descMod' className = 'mdl-grid description-in'>
-        <i className = 'pointer material-icons md-48'onClick = {()=>leaveWithAnim()}>arrow_back</i>
+        <i className = 'pointer material-icons md-48'onClick = { () => leaveWithAnim() }>arrow_back</i>
         <div className = 'mdl-cell mdl-cell--4-col'>
           <h2>{title}</h2>
           <h4>{desc}</h4>
@@ -36,11 +36,11 @@ export const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, 
           </ul>
           {link && 
             <div className = 'centerText'>
-              <a href = {link}>View Repo</a>
+              <a href = { link }>View Repo</a>
             </div>}
           {current && 
             <div className = 'centerText' style={{color: 'red'}}>
-              <p>{current}</p>
+              <p>{ current }</p>
             </div>}
         </div>
         <div className = 'mdl-cell mdl-cell--6-col screenshot'>
@@ -51,7 +51,7 @@ export const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, 
 	)
 }
 
-export function MakeDescObj(arrOfRefs, fn, arrOfDesc){
+export const MakeDescObj = (arrOfRefs, fn, arrOfDesc) => {
   let imageObjects = MakeImageObj(arrOfRefs, fn);
   return arrOfDesc.map( (descObj, idx) => Object.assign({}, descObj, imageObjects[idx]))
 }

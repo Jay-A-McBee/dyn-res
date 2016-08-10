@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { ProjectImage, MakeImageObj } from '../Components/projectDesc';
 import { openDesc, closeDesc } from '../Actions/genericActions';
-import  descriptions  from '../Assets/shortDescription';
 import cat from '../Assets/pics/cat.jpg';
 import fair from '../Assets/pics/fair.jpg';
 import journey from '../Assets/pics/journey.jpg';
@@ -13,7 +12,6 @@ import elec from '../Assets/pics/electric.png'
 export const ProjectPage = ( {openDesc} ) => {
 
 	const picTitleRef = [[fair,'fairshare'],[journey,'journeymen'],[senti,'sentimentalist'],[cat,'cats'], [elec, 'range'], [bleed, 'lab']];
-	// let{ fairshare, jmen, sentiment, kitkat, electric, sandbox } = descriptions;
 	let screenShots = MakeImageObj(picTitleRef,openDesc);
 
 	return(
@@ -27,10 +25,6 @@ export const ProjectPage = ( {openDesc} ) => {
 			</div>
 		</div>
 	)
-}
-
-ProjectPage.propTypes = {
-  openDesc: PropTypes.func.isRequired,
 }
 
 
