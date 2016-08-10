@@ -10,26 +10,23 @@ import senti from '../Assets/pics/senti.jpg';
 import bleed from '../Assets/pics/bleeding.png';
 import elec from '../Assets/pics/electric.png'
 
-export default class ProjectPage extends Component{
+export const ProjectPage = ( {openDesc} ) => {
 
-	render(){
-		const picTitleRef = [[fair,'fairshare'],[journey,'journeymen'],[senti,'sentimentalist'],[cat,'cats'], [elec, 'range'], [bleed, 'lab']];
-		let{ openDesc } = this.props;
-		let{ fairshare, jmen, sentiment, kitkat, electric, sandbox } = descriptions;
-		let screenShots = MakeImageObj(picTitleRef,openDesc);
+	const picTitleRef = [[fair,'fairshare'],[journey,'journeymen'],[senti,'sentimentalist'],[cat,'cats'], [elec, 'range'], [bleed, 'lab']];
+	// let{ fairshare, jmen, sentiment, kitkat, electric, sandbox } = descriptions;
+	let screenShots = MakeImageObj(picTitleRef,openDesc);
 
-		return(
-			<div className = 'show center centerText centerVert'>
-				<div className="mdl-grid">
-				{screenShots.map( imgObj => 
-				  <div className="mdl-cell mdl-cell--4-col" >
-				    <ProjectImage {...imgObj} />
-				  </div>
-				)}
-				</div>
+	return(
+		<div className = 'show center centerText centerVert'>
+			<div className="mdl-grid">
+			{screenShots.map( imgObj => 
+			  <div key = {imgObj.id} className="mdl-cell mdl-cell--4-col" >
+			    <ProjectImage {...imgObj} />
+			  </div>
+			)}
 			</div>
-		)
-	}
+		</div>
+	)
 }
 
 ProjectPage.propTypes = {

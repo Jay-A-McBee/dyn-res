@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { close, open, openDesc, closeDesc, openDescMod, closeDescMod } from '../Actions/genericActions';
 import { Intro } from '../Components/intro';
-import  ProjectPage  from './project-page';
+import { ProjectPage }  from './project-page';
 import ProjectDescription from './projdesc-page';
 import '../style.css';
 
@@ -29,7 +29,6 @@ class AboutMe extends Component{
 			   />
 			  <ProjectPage 
 			    openDesc = {openDesc}
-			    openDescMod = {openDesc}
 			  />
 			  <ProjectDescription 
 			    projects = {projects}
