@@ -17,7 +17,6 @@ const modalState = {
 }
 
 function main(state = initialState, action){
-  console.log(action)
   switch (action.type){
     case ActionTypes.SHOW_DESC:
       let openProj = {};

@@ -7,14 +7,26 @@ import { MakeImageObj } from './projectDesc';
 
 
 
-export function ProjectInfo({title, role, desc, tasks, photo, func, prop, link, current}){
+export const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current}) => {
 	
-	let contrib = tasks.map( task => (<li className = 'leftText' key={uuid.v4()} style={{fontSize:'20px'}}>{task}</li>))
+	let contrib = tasks.map( task => (
+    <li 
+    className = 'leftText' 
+    key={uuid.v4()} 
+    style={{fontSize:'20px'}}>
+    {task}
+  </li>))
 	
+  const leaveWithAnim = () => {
+    let modal = document.getElementById('descMod');
+    modal.className = 'mdl-grid description-out';
+    setTimeout( () => func(prop), 250)
+  }
+
 	return(
     <div className = 'modal-overlay'>
-      <div className = 'mdl-grid description'>
-        <i className = 'pointer material-icons md-48'onClick = {() => func(prop)}>arrow_back</i>
+      <div  id='descMod' className = 'mdl-grid description-in'>
+        <i className = 'pointer material-icons md-48'onClick = {()=>leaveWithAnim()}>arrow_back</i>
         <div className = 'mdl-cell mdl-cell--4-col'>
           <h2>{title}</h2>
           <h4>{desc}</h4>

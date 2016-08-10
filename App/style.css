@@ -81,7 +81,7 @@ li{
   overflow: scroll;
 }
 
-.description{
+.description-in{
   position: relative;
   background-color: #fefefe;
   margin: auto;
@@ -101,7 +101,36 @@ li{
   animation-duration: 0.4s
 }
 
-/* Add Animation */
+.description-out{
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  overflow: scroll;
+  padding: 0;
+  border: 1px solid #888;
+  max-width: 70%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+  -moz-animation-fill-mode:forwards; /*FF 5+*/
+  -o-animation-fill-mode:forwards; /*Not implemented yet*/
+  -ms-animation-fill-mode:forwards; /*IE 10+*/
+  animation-fill-mode:forwards;
+  -webkit-animation-name: animateUp;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animateUp;
+  animation-duration: 0.4s
+}
+
+@-webkit-keyframes animateUp {
+    from {top: 5em; opacity: 1} 
+    to {top: -300px; opacity: 0}
+}
+
+@keyframes animateUp {
+    from {top: 5em; opacity: 1}
+    to {top: -300px; opacity: 0}
+}
+
 @-webkit-keyframes animatetop {
     from {top: -300px; opacity: 0} 
     to {top: 5em; opacity: 1}
@@ -344,12 +373,12 @@ li{
   -o-animation-fill-mode:forwards; /*Not implemented yet*/
   -ms-animation-fill-mode:forwards; /*IE 10+*/
   animation-fill-mode:forwards;
-  -webkit-animation-name: appear .25s; /* Safari */
-  -webkit-animation-duration: .25s;
-  -moz-animation-name: appear .25s; /* Safari */
-  -moz-animation-duration: .25s;
+  -webkit-animation-name: appear .5s; /* Safari */
+  -webkit-animation-duration: .5s;
+  -moz-animation-name: appear .5s; /* Safari */
+  -moz-animation-duration: .5s;
   animation-name: appear;
-  animation-duration: .25s;
+  animation-duration: .5s;
   animation-timing-function: ease-in
 }
 

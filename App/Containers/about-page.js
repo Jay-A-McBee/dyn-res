@@ -9,7 +9,16 @@ import '../style.css';
 class AboutMe extends Component{
 	
 	render(){
-		let { isOpen, descOpen, close, open, openDesc, closeDesc, openDescMod, closeDescMod, projects} = this.props;
+		let { 
+			isOpen, 
+			descOpen, 
+			close, 
+			open, 
+			openDesc, 
+			closeDesc, 
+			openDescMod, 
+			closeDescMod, 
+			projects} = this.props;
 		
 		return(
 			<div>

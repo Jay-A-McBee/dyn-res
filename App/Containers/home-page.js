@@ -1,7 +1,4 @@
-import React, { Component, PropTypes} from 'react';
-import { connect } from 'react-redux';
-import { ProjectPage } from './project-page'
-import { Link } from 'react-router';
+import React, { Component } from 'react';
 
 
 export default class Home extends Component{
