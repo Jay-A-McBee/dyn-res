@@ -36,7 +36,7 @@ export const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, 
           </ul>
           {link && 
             <div className = 'centerText'>
-              <a href = { link }>View Repo</a>
+              <a target='_blank' href = { link }>View Repo</a>
             </div>}
           {current && 
             <div className = 'centerText' style={{color: 'red'}}>

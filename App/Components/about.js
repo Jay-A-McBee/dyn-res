@@ -26,7 +26,7 @@ export const About = ({close}) => {
 				  {aboutSection}
 				  <div className = 'centerText contact'>
 					  <a href='mailto:jmcbee1@gmail.com'>jmcbee1@gmail.com</a>
-					  <a href='https://github.com/Jay-A-McBee'>Github</a>
+					  <a target='_blank' href='https://github.com/Jay-A-McBee'>Github</a>
 					</div>
 				</div>
 		  </div>
