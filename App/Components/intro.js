@@ -1,23 +1,22 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import React, {useState} from 'react';
 import { About } from './about';
-import { ProjectPage } from '../Containers/project-page'
+import {Modal} from './modal';
 
-
-export class Intro extends Component{
-
-	render(){
-		let { open, close, openUp } = this.props;
-		return(
-	    <div className = 'left centerVert leftText slowrise'>
-	      <div>
-	        <i onClick = {() => open() } className="show menu pull-right pointer material-icons">menu</i>
-	        {openUp && 
-	        	<About close = {close}/>}
-	        <h1>jmcbee.info</h1>
-	        <div className = 'centerVert underline'></div>
-	      </div>
-	    </div>
-	  )
-	}
+export const Intro = ({toggleBio, open}) => {
+    return  (
+        <div className = 'left centerVert leftText slowrise'>
+            <div>
+                <i onClick={toggleBio} className="show menu pull-right pointer material-icons">menu</i>
+                <h1>jmcbee.info</h1>
+                <div className = 'centerVert underline'></div>
+            </div>
+            <Modal 
+                open={open}
+                toggle={toggleBio}
+                child={[<About key={'desc'} />]}
+                dialogAnimation={'side'}
+                id={'about'}
+            />
+        </div>
+    )
 }

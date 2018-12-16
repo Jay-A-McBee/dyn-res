@@ -69,16 +69,15 @@ li{
 }
 
 .about{
-	z-index: 1;
 	position: fixed;
 	right: 0;
 	border: 1px solid black;
 	height: 100vh;
 	width: 35%;
 	background-color: #fefefe;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 	padding: 5px;
-  overflow: scroll;
+    overflow: scroll;
 }
 
 .description-in{
@@ -339,8 +338,18 @@ li{
   to {opacity: 1;}
 }
 
+@-webkit-keyframes hide{
+	from {opacity: 1;}
+	to {opacity: 0;}
+}
+
+@keyframes hide{
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
+
 .slidein{
-	-webkit-animation-name: aboutEnter .5s; /* Safari */
+   -webkit-animation-name: aboutEnter .5s; /* Safari */
   -webkit-animation-duration: .5s;
   -moz-animation-name: aboutEnter .5s; /* Safari */
   -moz-animation-duration: .5s;
@@ -366,25 +375,28 @@ li{
 
 }
 
-.showFast{
+.modal-enter{
   opacity: 0;
-  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
-  -moz-animation-fill-mode:forwards; /*FF 5+*/
-  -o-animation-fill-mode:forwards; /*Not implemented yet*/
-  -ms-animation-fill-mode:forwards; /*IE 10+*/
-  animation-fill-mode:forwards;
-  -webkit-animation-name: appear .5s; /* Safari */
-  -webkit-animation-duration: .5s;
-  -moz-animation-name: appear .5s; /* Safari */
-  -moz-animation-duration: .5s;
-  animation-name: appear;
-  animation-duration: .5s;
-  animation-timing-function: ease-in
+}
+
+.modal-enter.modal-enter-active{
+    -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+    -moz-animation-fill-mode:forwards; /*FF 5+*/
+    -o-animation-fill-mode:forwards; /*Not implemented yet*/
+    -ms-animation-fill-mode:forwards; /*IE 10+*/
+    animation-fill-mode:forwards;
+    -webkit-animation-name: appear .5s; /* Safari */
+    -webkit-animation-duration: .5s;
+    -moz-animation-name: appear .5s; /* Safari */
+    -moz-animation-duration: .5s;
+    animation-name: appear;
+    animation-duration: .5s;
+    animation-timing-function: ease-in
 }
 
 .show{
-	opacity: 0;
-	-webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+  opacity: 0;
+  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
   -moz-animation-fill-mode:forwards; /*FF 5+*/
   -o-animation-fill-mode:forwards; /*Not implemented yet*/
   -ms-animation-fill-mode:forwards; /*IE 10+*/
@@ -397,6 +409,44 @@ li{
   -moz-animation-duration: 1s;
   animation-name: appear;
   animation-duration: 1s;
+  animation-timing-function: ease-in
+}
+
+.modal-leave{
+    opacity: 1;
+}
+
+.modal-leave.modal-leave-active{
+    opacity: 0;
+    visibility: hidden;
+    -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+    -moz-animation-fill-mode:forwards; /*FF 5+*/
+    -o-animation-fill-mode:forwards; /*Not implemented yet*/
+    -ms-animation-fill-mode:forwards; /*IE 10+*/
+    animation-fill-mode:forwards;
+    -webkit-animation-name: hide .5s; /* Safari */
+    -webkit-animation-duration: .5s;
+    -moz-animation-name: hide .5s; /* Safari */
+    -moz-animation-duration: .5s;
+    animation-name: hide;
+    animation-duration: .5s;
+    animation-timing-function: ease-in
+}
+
+.hide{
+  opacity: 1;
+  visibility: hidden;
+  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+  -moz-animation-fill-mode:forwards; /*FF 5+*/
+  -o-animation-fill-mode:forwards; /*Not implemented yet*/
+  -ms-animation-fill-mode:forwards; /*IE 10+*/
+  animation-fill-mode:forwards;
+  -webkit-animation-name: hide .5s; /* Safari */
+  -webkit-animation-duration: .5s;
+  -moz-animation-name: hide .5s; /* Safari */
+  -moz-animation-duration: .5s;
+  animation-name: hide;
+  animation-duration: .5s;
   animation-timing-function: ease-in
 }
 

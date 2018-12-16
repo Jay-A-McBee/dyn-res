@@ -1,44 +1,53 @@
-var webpack = require('webpack');
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: __dirname + '/app/index.html',
-  filename: 'index.html',
-  inject: 'body'
-})
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+ template: __dirname + '/app/index.html',
+ filename: 'index.html',
+ inject: 'body'
+});
 
-var BUILD_DIR = path.resolve(__dirname, 'App/dist');
-var APP_DIR = path.resolve(__dirname, 'App');
+const nodeEnvPluginConfig = new webpack.DefinePlugin({
+ "process.env": {
+    "NODE_ENV": JSON.stringify("developement")
+  }
+});
 
-var config = {
-  entry: APP_DIR + '/root.js',
-  output: {
-    path: BUILD_DIR,
-    filename: 'bundle.js'
-  },
-	module : {
-	loaders : [
-	  {
-      test: /\.js?$/,
-      loader: 'babel',
-      exclude: /node_modules/,
-      query: {
-        presets: ['react', 'es2015', 'stage-2'],
-        plugins: ["transform-object-rest-spread"]
-      }
-    },
-    { 
-    test: /\.css$/, 
-    loader: "style-loader!css-loader" 
-    },
-    {
-        // images
-    test: /\.(ico|jpe?g|png|gif)$/,
-    loader: "file"
-    }]
-  },
-  plugins: [HtmlWebpackPluginConfig]
+const BUILD_DIR = path.resolve(__dirname, 'App/dist');
+const APP_DIR = path.resolve(__dirname, 'App');
+
+const config = {
+ entry: APP_DIR + '/root.js',
+ mode: 'development',
+ output: {
+   path: BUILD_DIR,
+   filename: 'bundle.js'
+ },
+    module : {
+    rules : [
+   {
+     test: /\.js?$/,
+     loader: 'babel-loader',
+     exclude: /node_modules/,
+     query: {
+       presets: ["@babel/preset-env", "@babel/preset-react"]
+     }
+   },
+   {
+   test: /\.css$/,
+   loader: "style-loader!css-loader"
+   },
+   {
+       // images
+   test: /\.(ico|jpe?g|png|gif)$/,
+   loader: "file-loader"
+   }]
+ },
+  plugins: [
+    HtmlWebpackPluginConfig,
+    nodeEnvPluginConfig
+  ]
 }
 
 module.exports = config;
