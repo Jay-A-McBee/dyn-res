@@ -2,7 +2,6 @@
 
 import React from 'react';
 import v4 from 'node-uuid';
-import { Link } from 'react-router';
 import { MakeImageObj } from './projectDesc';
 
 
@@ -24,9 +23,7 @@ export const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, 
   }
 
 	return(
-    <div className = 'modal-overlay'>
-      <div  id='descMod' className = 'mdl-grid description-in'>
-        <i className = 'pointer material-icons md-48'onClick = { () => leaveWithAnim() }>arrow_back</i>
+      <div className = 'mdl-grid'>
         <div className = 'mdl-cell mdl-cell--4-col'>
           <h2>{title}</h2>
           <h4>{desc}</h4>
@@ -47,11 +44,13 @@ export const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, 
           <img className = 'showFast' src = {photo} />
         </div>
       </div>
-    </div>
 	)
 }
 
 export const MakeDescObj = (arrOfRefs, fn, arrOfDesc) => {
   let imageObjects = MakeImageObj(arrOfRefs, fn);
-  return arrOfDesc.map( (descObj, idx) => Object.assign({}, descObj, imageObjects[idx]))
+  return arrOfDesc.reduce( (acc,descObj, idx) => {
+      acc[imageObjects[idx].prop] = Object.assign({}, descObj, imageObjects[idx]);
+      return acc;
+  },{});
 }

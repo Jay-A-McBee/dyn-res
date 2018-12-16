@@ -3,8 +3,9 @@ import v4 from 'node-uuid';
 
 
 export const ProjectImage = ( {func,photo,prop,id} ) => {
+    console.log([func])
 	return(
-    <img onClick={ () => func(prop) } className = 'proj' src = {photo} /> 
+        <img src={photo} onClick={func} name={prop} className = 'proj'/> 
 	)
 }
 

@@ -1,61 +1,43 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { close, open, openDesc, closeDesc, openDescMod, closeDescMod } from '../Actions/genericActions';
-import { Intro } from '../Components/intro';
+import React, {useState} from 'react';
+import {Intro} from '../Components/intro';
 import { ProjectPage }  from './project-page';
 import { ProjectDescription } from './projdesc-page';
 import '../style.css';
 
-class AboutMe extends Component{
-	
-	render(){
-		let { 
-			isOpen, 
-			descOpen, 
-			close, 
-			open, 
-			openDesc, 
-			closeDesc, 
-			projects} = this.props;
-		
-		return(
-			<div>
-			  <Intro 
-			    openUp = {isOpen}
-			    close = {close}
-			    open = {open}
-			   />
-			  <ProjectPage 
-			    openDesc = {openDesc}
-			  />
-			  <ProjectDescription 
-			    projects = {projects}
-			    descOpen = {descOpen}
-			    closeDesc = {closeDesc}
-			  />
-			</div>
-		)
-	}
+export default function AboutMe(){
+
+
+    let [open, toggleBio] = useState(false);
+
+    const toggle = () => {
+        toggleBio(!open);
+    }
+
+    
+    let [active, select] = useState(null);
+    
+    const selectProject = (event) => {
+        const {name} = event.nativeEvent.target;
+        select(name);
+    };
+
+    const clearProject = () => {
+        select(null);
+    }
+
+    return(
+        <div>
+            <Intro 
+                open={open}
+                toggleBio={toggle}
+            />
+            <ProjectPage
+                openProject={selectProject}
+            />
+            <ProjectDescription
+                active={active}
+                closeDesc={clearProject}
+            />
+        </div>
+    )
 }
-
-
-const mapStateToProps = (state) => ({
-  isOpen: state.modals.isOpen,
-  descOpen: state.modals.descOpen,
-  projects: {
-	  fshare: state.main.fairshare,
-	  jour: state.main.journeymen,
-	  senti: state.main.sentimentalist,
-	  kit: state.main.cats,
-	  range: state.main.range,
-	  lab: state.main.lab
-  }
-})
-
-
-export default connect(mapStateToProps,{
-	close,
-	open,
-	openDesc,
-	closeDesc,
-})(AboutMe)
