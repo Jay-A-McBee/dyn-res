@@ -6,7 +6,7 @@ import Me from '../Assets/pics/me.jpg'
 export const About = () => {
   
 	return (
-        <div className = 'top'>
+        <div className = 'about'>
             <h1>About</h1>
             <img className = 'pull-left right' src = {Me} />
             <p className='top' style={{fontSize:'20px'}}>{bio}</p>

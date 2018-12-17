@@ -18,8 +18,6 @@ export const ProjectDescription = ({closeDesc, active}) => {
     
     const allDescriptions = MakeDescObj(picTitleRef, closeDesc, [fairshare, jmen, sentiment, kitkat, electric, sandBox]);
 
-    console.log(allDescriptions)
-
     const selectProject = () => allDescriptions[active] ? (<ProjectInfo key={'img'} {...allDescriptions[active]} />) : null;        
 
     return(
