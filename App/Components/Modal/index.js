@@ -30,7 +30,6 @@ export const Modal = ({child, dialogAnimation, open, toggle, id}) => {
         setTimeout( () => toggle(), 500);
     }
 
-    console.log('open', open);
     return id ? (
         <div key='modal' className={`modal-overlay ${open ? 'showFast' : 'hide'}`} onClick={closeWithAnim}>
             <div id={`modal_body_${id}`} className={open ? enter : ''}>

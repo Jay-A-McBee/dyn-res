@@ -15,7 +15,7 @@ export const ProjectPage = ( {openProject} ) => {
 
 	const picTitleRef = [[fair,'fairshare'],[journey,'journeymen'],[senti,'sentimentalist'],[cat,'cats'], [elec, 'range'], [bleed, 'lab']];
 	let screenShots = MakeImageObj(picTitleRef, openProject);
-    console.log('screenshots', JSON.stringify(screenShots));    
+	
 	return(
 		<div className = 'show center centerText centerVert'>
 			<div className="mdl-grid">
