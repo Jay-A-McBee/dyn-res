@@ -1,8 +1,5 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var webpack = require('webpack');
-var config = require('../webpack.config');
-var prodConfig = require('../webpack.config.prod');
 var path = require('path');
 
 //TODO - set this back to actual env check
@@ -13,8 +10,9 @@ var app = express();
 let compiler
 
 if(!isProduction){
-console.log('isProduction', isProduction);
  //allows webpack rebuilds on server restarts
+  var webpack = require('webpack');
+  var config = require('../webpack.config');
   var webpackDevMiddleware = require('webpack-dev-middleware');
   var webpackHotMiddleware = require('webpack-hot-middleware');
   compiler = webpack(config);
