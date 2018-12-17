@@ -5,8 +5,7 @@
   "main": "Server/index.js",
   "scripts": {
     "test": "mocha ./Tests/testSetup.js \"./Tests/*.spec.js\"",
-    "start": "nodemon Server/index.js",
-    "postinstall": "webpack --config webpack.config.prod.js"
+    "start": "nodemon Server/index.js"
   },
   "author": "j.a.m",
   "license": "ISC",
