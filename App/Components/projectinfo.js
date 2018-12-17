@@ -10,21 +10,15 @@ export const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, 
 	
 	let contrib = tasks.map( task => (
     <li 
-    className = 'leftText' 
-    key={v4()} 
-    style={{fontSize:'20px'}}>
-    {task}
-  </li>))
+      className = 'leftText' 
+      key={v4()} 
+      style={{fontSize:'20px'}}
+    >{task}</li>
+  ))
 	
-  const leaveWithAnim = () => {
-    let modal = document.getElementById('descMod');
-    modal.className = 'mdl-grid description-out';
-    setTimeout( () => func(prop), 250)
-  }
-
 	return(
       <div className = 'mdl-grid'>
-        <div className = 'mdl-cell mdl-cell--4-col'>
+        <div className = 'mdl-cell--4-col'>
           <h2>{title}</h2>
           <h4>{desc}</h4>
           <h4>Role: {role}</h4>
@@ -35,12 +29,8 @@ export const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, 
             <div className = 'centerText'>
               <a href = { link }>View Repo</a>
             </div>}
-          {current && 
-            <div className = 'centerText' style={{color: 'red'}}>
-              <p>{ current }</p>
-            </div>}
         </div>
-        <div className = 'mdl-cell mdl-cell--6-col screenshot'>
+        <div className = 'mdl-cell--6-col screenshot'>
           <img className = 'showFast' src = {photo} />
         </div>
       </div>

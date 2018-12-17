@@ -1,7 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { ProjectImage, MakeImageObj } from '../Components/projectDesc';
-import {Modal} from '../Components/modal';
+import React from 'react';
+import { 
+	ProjectImage, 
+	MakeImageObj 
+} from '../Components/projectDesc';
+import {Modal} from '../Components/Modal';
 import cat from '../Assets/pics/cat.jpg';
 import fair from '../Assets/pics/fair.jpg';
 import journey from '../Assets/pics/journey.jpg';
