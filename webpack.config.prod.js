@@ -20,7 +20,10 @@ const nodeEnv = new webpack.DefinePlugin({
   }
 })
 
-const compress = new compressionPlugin();
+const compress = new compressionPlugin({
+  filename: '[path].gz[query]',
+  algorithm: 'gzip'
+});
 
 const minify = new MinifyPlugin();
 const analyze = new BundleAnalyzerPlugin();
