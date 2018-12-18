@@ -20,9 +20,10 @@ const nodeEnv = new webpack.DefinePlugin({
   }
 })
 
+const compress = new compressionPlugin();
+
 const minify = new MinifyPlugin();
 const analyze = new BundleAnalyzerPlugin();
-const compress = new compressionPlugin();
 
 const BUILD_DIR = path.resolve(__dirname, 'App/dist');
 const APP_DIR = path.resolve(__dirname, 'App');
