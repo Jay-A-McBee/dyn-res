@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const compressionPlugin = require('compression-webpack-plugin');
 
 
 
@@ -21,6 +22,7 @@ const nodeEnv = new webpack.DefinePlugin({
 
 const minify = new MinifyPlugin();
 const analyze = new BundleAnalyzerPlugin();
+const compress = new compressionPlugin();
 
 const BUILD_DIR = path.resolve(__dirname, 'App/dist');
 const APP_DIR = path.resolve(__dirname, 'App');
@@ -54,6 +56,7 @@ module.exports = {
     HtmlWebpackPluginConfig,
     nodeEnv,
     minify,
+    compress,
     analyze
  ]
 }
