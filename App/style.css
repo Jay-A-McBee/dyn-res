@@ -76,15 +76,18 @@ li{
   overflow-y: scroll;
 }
 
-.description-in{
+.modal-body{
   position: relative;
   background-color: #fefefe;
   margin: auto;
   overflow: scroll;
   padding: 0;
   border: 1px solid #888;
-  max-width: 70%;
+  max-width: 60%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.modal-body.in{
   -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
   -moz-animation-fill-mode:forwards; /*FF 5+*/
   -o-animation-fill-mode:forwards; /*Not implemented yet*/
@@ -96,15 +99,7 @@ li{
   animation-duration: 0.4s
 }
 
-.description-out{
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  overflow: scroll;
-  padding: 0;
-  border: 1px solid #888;
-  max-width: 70%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+.modal-body.out{
   -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
   -moz-animation-fill-mode:forwards; /*FF 5+*/
   -o-animation-fill-mode:forwards; /*Not implemented yet*/
@@ -117,23 +112,23 @@ li{
 }
 
 @-webkit-keyframes animateUp {
-    from {top: 5em; opacity: 1} 
-    to {top: -300px; opacity: 0}
+    from {transform: translateY(10%); opacity: 1;} 
+    to {transform: translateY(-100%); opacity: 0;}
 }
 
 @keyframes animateUp {
-    from {top: 5em; opacity: 1}
-    to {top: -300px; opacity: 0}
+    from {transform: translateY(10%); opacity: 1;}
+    to {transform: translateY(-100%); opacity: 0;}
 }
 
 @-webkit-keyframes animatetop {
-    from {top: -300px; opacity: 0} 
-    to {top: 5em; opacity: 1}
+    from {transform: translateY(-100%); opacity: 0;} 
+    to {transform: translateY(10%); opacity: 1;}
 }
 
 @keyframes animatetop {
-    from {top: -300px; opacity: 0}
-    to {top: 5em; opacity: 1}
+    from {transform: translateY(-100%); opacity: 0;}
+    to {transform:translateY(10%); opacity: 1;}
 }
 
 .top{
@@ -296,23 +291,23 @@ li{
 }
 
 @-webkit-keyframes aboutEnter{
-	from { transform: translate(100%); }
-	to {transform: translate(0%);}
+	from { transform: translateX(100%); }
+	to {transform: translateX(0%);}
 }
 
 @keyframes aboutEnter{
-  from { transform: translate(100%); }
-  to {transform: translate(0%);}
+  from { transform: translateX(100%); }
+  to {transform: translateX(0%);}
 }
 
 @-webkit-keyframes aboutleave{
-	from {transform: translate(0%);}
-	to {transform: translate(100%);}
+	from {transform: translateX(0%);}
+	to {transform: translateX(100%);}
 }
 
 @keyframes aboutleave{
-  from {transform: translate(0%);}
-  to {transform: translate(100%);}
+  from {transform: translateX(0%);}
+  to {transform: translateX(100%);}
 }
 
 @-webkit-keyframes grow {
@@ -353,12 +348,12 @@ li{
   padding: 0;
   border: 1px solid #888;
   max-width: 35%;
-  -webkit-animation-name: aboutEnter .5s; /* Safari */
-  -webkit-animation-duration: .5s;
-  -moz-animation-name: aboutEnter .5s; /* Safari */
-  -moz-animation-duration: .5s;
+  -webkit-animation-name: aboutEnter .4s; /* Safari */
+  -webkit-animation-duration: .4s;
+  -moz-animation-name: aboutEnter .4s; /* Safari */
+  -moz-animation-duration: .4s;
   animation-name: aboutEnter;
-  animation-duration: .5s;
+  animation-duration: .4s;
   animation-timing-function: ease-in
 }
 
@@ -376,12 +371,12 @@ li{
   -o-animation-fill-mode:forwards; /*Not implemented yet*/
   -ms-animation-fill-mode:forwards; /*IE 10+*/
   animation-fill-mode:forwards;
-	-webkit-animation-name: aboutleave .5s; /* Safari */
-  -webkit-animation-duration: .5s;
-  -moz-animation-name: aboutleave .5s; /* Safari */
-  -moz-animation-duration: .5s;
+	-webkit-animation-name: aboutleave .4s; /* Safari */
+  -webkit-animation-duration: .4s;
+  -moz-animation-name: aboutleave .4s; /* Safari */
+  -moz-animation-duration: .4s;
   animation-name: aboutleave;
-  animation-duration: .5s;
+  animation-duration: .4s;
   animation-timing-function: ease-out
 
 }
