@@ -1,6 +1,6 @@
 body{
 	font-family: 'Roboto', courier;
-	color: rgba(175, 47, 47, 0.15);
+	color: rgba(168, 194, 174, 1);
 	background-color: rgba(232, 246, 234,.5);
 	background-size: 100% 100%;
   background-attachment: fixed;
@@ -36,6 +36,90 @@ li{
   padding-left: 10%;
   padding-right: 10%;
   padding-top: 2.5%;
+}
+
+.carouselBody {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 30em;
+  background-color: rgba(10, 10, 10, 0.4);
+  align-items: center;
+}
+
+.carouselCard {
+  height: 75px;
+  border: .5px solid black;
+  width: 200px;
+  background-color: white;
+  color: rgba(168, 194, 174, 1);
+  transition: transform 2s;
+}
+
+.carouselCard.current{
+  z-index: 1005;
+  box-shadow: 0px 8px 10px gray, 
+  -10px 8px 10px gray, 10px 8px 10px gray;
+}
+
+.carouselCard.previous {
+  position: relative;
+  left: 15%;
+}
+
+.carouselCard.next {
+  position: relative;
+  right: 15%;
+}
+
+.carouselCard.transitionLeft{
+  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+  -moz-animation-fill-mode:forwards; /*FF 5+*/
+  -o-animation-fill-mode:forwards; /*Not implemented yet*/
+  -ms-animation-fill-mode:forwards; /*IE 10+*/
+  animation-fill-mode:forwards;
+  -webkit-animation-name: moveLeft;
+  -webkit-animation-duration: 0.5s;
+  animation-name: moveLeft;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in
+}
+
+.carouselCard.transitionRight{
+  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+  -moz-animation-fill-mode:forwards; /*FF 5+*/
+  -o-animation-fill-mode:forwards; /*Not implemented yet*/
+  -ms-animation-fill-mode:forwards; /*IE 10+*/
+  animation-fill-mode:forwards;
+  -webkit-animation-name: moveRight;
+  -webkit-animation-duration: 0.5s;
+  animation-name: moveRight;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in
+}
+
+.carouselCard.transitionLeftForward{
+  transition: transform .5s ease-in;
+}
+
+@-webkit-keyframes moveLeft {
+  from {transform: translateX(0%);} 
+  to {transform: translateX(-50%);}
+}
+
+@keyframes moveLeft {
+  from {transform: translateX(0%);}
+  to {transform: translateX(-50%);}
+}
+
+@-webkit-keyframes moveRight {
+  from {transform: translateX(100%);} 
+  to {transform: translateX(150%);}
+}
+
+@keyframes moveRight {
+  from {transform: translateX(100%);}
+  to {transform: translateX(150%);}
 }
 
 .modal-overlay {
@@ -191,11 +275,6 @@ li{
 
 .oneMargin{
 	margin: 2.5px;
-}
-
-.centerVert{
- position: relative;
- top: 5em;
 }
 
 .centerText{

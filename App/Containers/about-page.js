@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Intro} from '../Components/intro';
 import {ProjectPage}  from './project-page';
 import {ProjectDescription} from './projdesc-page';
+import Carousel from '../Components/carousel';
 import '../style.css';
 
 export default function AboutMe(){
@@ -31,9 +32,7 @@ export default function AboutMe(){
                 open={open}
                 toggleBio={toggle}
             />
-            <ProjectPage
-                openProject={selectProject}
-            />
+            <Carousel />
             <ProjectDescription
                 active={active}
                 closeDesc={clearProject}

@@ -7,7 +7,7 @@ export const Intro = ({toggleBio, open}) => {
         <div>
             <div className = 'topBar'>
                 <h1>jmcbee.info</h1>
-                <i onClick={toggleBio} className="pointer material-icons">menu</i>
+                <i onClick={toggleBio} style={{fontSize: '3em'}} className="material-icons pointer">menu</i>
             </div>
             <Modal 
                 open={open}
