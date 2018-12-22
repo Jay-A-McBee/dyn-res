@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1],{191:function(n,e,o){"use strict";o.r(e);var a=o(0),c=o.n(a);e.default=function(n){var e=n.func,o=n.photo,a=n.prop;n.id;return c.a.createElement("img",{src:o,onClick:e,name:a,className:"proj"})}}}]);
