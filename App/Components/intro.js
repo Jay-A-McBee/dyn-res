@@ -4,11 +4,10 @@ import {Modal} from './modal';
 
 export const Intro = ({toggleBio, open}) => {
     return  (
-        <div className = 'left centerVert leftText slowrise'>
-            <div>
-                <i onClick={toggleBio} className="show menu pull-right pointer material-icons">menu</i>
+        <div>
+            <div className = 'topBar'>
                 <h1>jmcbee.info</h1>
-                <div className = 'centerVert underline'></div>
+                <i onClick={toggleBio} className="pointer material-icons">menu</i>
             </div>
             <Modal 
                 open={open}

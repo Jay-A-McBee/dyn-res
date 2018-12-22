@@ -1,19 +1,13 @@
 body{
-	font-family: 'Pathway Gothic One', courier;
-	color: #001a33;
+	font-family: 'Roboto', courier;
+	color: rgba(175, 47, 47, 0.15);
 	background-color: rgba(232, 246, 234,.5);
 	background-size: 100% 100%;
   background-attachment: fixed;
 }
 
-h2,h3,h4,h5,h6{
-	font-family: 'Pathway Gothic One', courier;
-	color: #001a33;
-}
-
-h1{
-	font-family: 'Pathway Gothic One', courier;
-	color: #000033;
+h1,h2,h3,h4,h5,h6{
+  font-weight: 100;
 }
 
 a{
@@ -33,6 +27,15 @@ img{
 
 li{
   margin-bottom: 5px;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 2.5%;
 }
 
 .modal-overlay {

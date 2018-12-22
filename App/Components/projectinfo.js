@@ -25,7 +25,7 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
             </div>}
         </div>
         <div className = 'mdl-cell mdl-cell--6-col screenshot'>
-          <img className = 'showFast' src = {photo} />
+          <img src = {photo} />
         </div>
       </div>
 	)
