@@ -25,24 +25,21 @@ const config = {
    filename: 'bundle.js'
  },
     module : {
-    rules : [
-   {
-     test: /\.js?$/,
-     loader: 'babel-loader',
-     exclude: /node_modules/,
-     query: {
-       presets: ["@babel/preset-env", "@babel/preset-react"]
-     }
-   },
-   {
-   test: /\.css$/,
-   loader: "style-loader!css-loader"
-   },
-   {
-       // images
-   test: /\.(ico|jpe?g|png|gif)$/,
-   loader: "file-loader"
-   }]
+      rules : [{
+        test: /\.js?$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        query: {
+          presets: ["@babel/preset-env", "@babel/preset-react"]
+        }
+      },{
+        test: /\.css$/,
+        loader: "style-loader!css-loader"
+      },{
+         // images
+        test: /\.(ico|jpe?g|png|gif)$/,
+        loader: "file-loader"
+     }]
  },
   plugins: [
     HtmlWebpackPluginConfig,

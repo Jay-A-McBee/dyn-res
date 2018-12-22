@@ -11,6 +11,7 @@
   "author": "j.a.m",
   "license": "ISC",
   "dependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "body-parser": "1.18.3",
     "express": "4.16.4",
     "isomorphic-fetch": "^2.2.1",

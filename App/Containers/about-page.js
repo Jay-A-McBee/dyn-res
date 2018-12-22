@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Intro} from '../Components/intro';
-import { ProjectPage }  from './project-page';
-import { ProjectDescription } from './projdesc-page';
+import {ProjectPage}  from './project-page';
+import {ProjectDescription} from './projdesc-page';
 import '../style.css';
 
 export default function AboutMe(){

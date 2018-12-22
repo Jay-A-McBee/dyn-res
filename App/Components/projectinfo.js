@@ -1,17 +1,11 @@
-'use strict'
-
 import React from 'react';
-import v4 from 'node-uuid';
-import { MakeImageObj } from './projectDesc';
 
-
-
-export const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current}) => {
+const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current}) => {
 	
-	let contrib = tasks.map( task => (
+	let contrib = tasks.map( (task, idx) => (
     <li 
       className = 'leftText' 
-      key={v4()} 
+      key={idx} 
       style={{fontSize:'20px'}}
     >{task}</li>
   ))
@@ -37,10 +31,4 @@ export const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, 
 	)
 }
 
-export const MakeDescObj = (arrOfRefs, fn, arrOfDesc) => {
-  let imageObjects = MakeImageObj(arrOfRefs, fn);
-  return arrOfDesc.reduce( (acc,descObj, idx) => {
-      acc[imageObjects[idx].prop] = Object.assign({}, descObj, imageObjects[idx]);
-      return acc;
-  },{});
-}
+export default ProjectInfo
