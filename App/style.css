@@ -53,11 +53,11 @@ li{
   width: 200px;
   background-color: white;
   color: rgba(168, 194, 174, 1);
-  transition: transform 2s;
+  transition: transform 2s, box-shadow .5s ease-in-out;
+  transform-style: preserve-3d;
 }
 
 .carouselCard.current{
-  z-index: 1005;
   box-shadow: 0px 8px 10px gray, 
   -10px 8px 10px gray, 10px 8px 10px gray;
 }
@@ -69,6 +69,7 @@ li{
 
 .carouselCard.next {
   position: relative;
+  text-align: right;
   right: 15%;
 }
 
@@ -128,7 +129,7 @@ li{
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1005;
+  z-index: 2000;
   background-color: rgba(10, 10, 10, 0.6);
   overflow-y: scroll;
 }
@@ -471,10 +472,8 @@ li{
   -ms-animation-fill-mode:forwards; /*IE 10+*/
   animation-fill-mode:forwards;
   -webkit-animation-name: appear 1s; /* Safari */
-  -webkit-animation-delay: 2s;
   -webkit-animation-duration: 1s;
   -moz-animation-name: appear 1s; /* Safari */
-  -moz-animation-delay: 2s;
   -moz-animation-duration: 1s;
   animation-name: appear;
   animation-duration: 1s;
