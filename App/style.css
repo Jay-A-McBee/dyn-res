@@ -38,12 +38,18 @@ li{
   padding-top: 2.5%;
 }
 
-.carouselBody {
+.carousel {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   height: 30em;
   background-color: rgba(10, 10, 10, 0.4);
+  align-items: center;
+}
+
+.carouselBody{
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -53,7 +59,7 @@ li{
   width: 200px;
   background-color: white;
   color: rgba(168, 194, 174, 1);
-  transition: transform 2s, box-shadow .5s ease-in-out;
+  transition: transform 2s, box-shadow .5s ease-in-out, z-index 1s ease-in-out;
   transform-style: preserve-3d;
 }
 
