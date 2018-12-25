@@ -1,9 +1,16 @@
 import React from 'react';
 
-const ProjectImage = ( {func,photo,prop,id} ) => {
-	return (
-    <img src={photo} onClick={func} name={prop} className = 'proj'/> 
-	)
+const ProjectImage = ({photo, prop, handleClick, index, styles}) => {
+  return (
+    <img 
+      style={{...styles}} 
+      key={index} 
+      data-index={index} 
+      src={photo} 
+      onClick={handleClick} 
+      name={prop}
+    /> 
+  )
 };
 
 export default ProjectImage;

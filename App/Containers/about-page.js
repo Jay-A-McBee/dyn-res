@@ -32,11 +32,7 @@ export default function AboutMe(){
                 open={open}
                 toggleBio={toggle}
             />
-            <Carousel />
-            <ProjectDescription
-                active={active}
-                closeDesc={clearProject}
-            />
+            <ProjectPage />
         </div>
     )
 }

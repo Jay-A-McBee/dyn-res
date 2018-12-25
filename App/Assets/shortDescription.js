@@ -1,7 +1,7 @@
 
-let descriptions = module.exports;
+const projectDescriptions = module.exports;
 
-descriptions.fairshare = {
+projectDescriptions.fairshare = {
 	title:'Fairshare',
 	role:'Full-stack',
 	desc: 'A bill-splitting app built with React, Redux, Node, Express and PostgreSQL.',
@@ -11,7 +11,7 @@ descriptions.fairshare = {
 	link: 'https://github.com/AngryPulpGophers/fairshare'
 } ;
 
-descriptions.jmen ={
+projectDescriptions.jmen ={
 	title:'Journeymen',
 	role:'Back-end',
 	desc:'A local musician directory built with Angular, Node, Express and PostgreSQL.',
@@ -21,7 +21,7 @@ descriptions.jmen ={
 	link: 'https://github.com/getJourneymen/Journeymen'
 };
 
-descriptions.sentiment = {
+projectDescriptions.sentiment = {
 	title:'Sentimentalist',
 	role: 'Full-stack',
 	desc: 'A search engine/sentiment analysis built with Angular, Node, Express and PostgreSQL.',
@@ -30,7 +30,7 @@ descriptions.sentiment = {
     'Built AngularJS partial-views to display elements based on logged-in state and ‘favorite status’'],
 } ;
 
-descriptions.kitkat ={
+projectDescriptions.kitkat ={
 	title:'About Cats',
 	role:'Front/Back end',
 	desc: 'An education app built with Angular, Node and Express.',
@@ -39,7 +39,7 @@ descriptions.kitkat ={
 		'Utilized an external API that provided topic facts and allowed client contributions to affect database']
 } ;
 
-descriptions.electric = {
+projectDescriptions.electric = {
 	title: 'Digital Range',
 	role: 'Front/Back-end',
 	desc: 'A livestock sale form app built with Angular, Node and Express.',
@@ -48,7 +48,7 @@ descriptions.electric = {
 	current: '*current project'
 } ;
 
-descriptions.sandBox = {
+projectDescriptions.sandBox = {
 	title: 'Bleeding Edge',
 	role: 'Full-stack',
 	desc: 'A repo where I experiment--currently a contacts manager built with React, Redux, Node, Express and Cassandra',

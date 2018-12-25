@@ -1,37 +1,41 @@
 import React, {useState} from 'react';
-
-const reelStyles = {
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  height: '200px',
-  width: '60%',
-}
-
-const reelCard = {
-  alignSelf: 'stretch',
-  marginLeft: '1px',
-  marginRight: '1px',
-  backgroundColor: 'white',
-  width: '100px',
-  transition: 'border 1s ease-in-out'
-}
-
-const border = {
-  border: '.5px solid black'
-}
+import ProjectImage from '../projectDesc';
 
 
+const carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages}) => {
 
+  const reelStyles = {
+    display: 'flex',
+    flexDirection: 'row',
+    alignContent: 'center',
+    width: '60%'
+  }
 
+  const reelCard = {
+    maxWidth: '20%',
+    maxHeight: '3em',
+    transition: 'filter 1s'
+  }
 
+  const inactive = {
+    filter: `brightness(0.25)`,
+    opacity: '0.98' 
+  }
 
-const carousel = ({children = ['0', '1', '2', '3', '4', '5']}) => {
+  const chevronContainer = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  }
+
+  const activeProject = {
+    width: '60%'
+  }
 
   let [active, updateActive] = useState(0);
 
   const selectNext = () => {
-    debugger
     updateActive(active+1);
   }
   const selectPrevious = () => updateActive(active-1);
@@ -40,18 +44,37 @@ const carousel = ({children = ['0', '1', '2', '3', '4', '5']}) => {
     updateActive(parseInt(nativeEvent.target.getAttribute('data-index'),10));
   }
 
+  const projectImages = slideImages.map( (imgObj, index) => ({
+    index,
+    handleClick: selectSpecific,
+    styles: reelCard,
+    ...imgObj
+  }));
+
   return (
     <div className='carousel'>
       <div className='carouselBody'>
-        <i className='material-icons' style={{"fontSize": "40px"}} onClick={selectNext}>chevron_left</i>
-          
-        <i className='material-icons' style={{"fontSize": "40px"}} onClick={selectPrevious}>chevron_right</i>
+        <div style={{...chevronContainer}}>
+          <i className='material-icons' style={{"fontSize": "40px"}} onClick={selectNext}>chevron_left</i>
+        </div>
+        <div style={{...activeProject}}>{children[active]}</div>
+        <div style={{...chevronContainer}}>
+          <i className='material-icons' style={{"fontSize": "40px"}} onClick={selectPrevious}>chevron_right</i>
+        </div>
       </div>
-      <div style={{...reelStyles}}>
-        {children.map( (child, idx) => idx === active ?  
-          (<div key={idx} data-index={idx} style={{...reelCard, ...border}}>{child}</div>) : 
-          (<div key={idx} data-index={idx} onClick={selectSpecific} style={{...reelCard}}>{child}</div>)
-        )}
+      <div onClick={selectSpecific} style={{...reelStyles}}>
+        {projectImages.map( (props, idx) => {
+          if(idx === active){
+            return (  
+              <ProjectImage {...props}  />
+            )
+          }else{
+            props.styles = {...props.styles, ...inactive};
+            return (
+              <ProjectImage {...props} />
+            )
+          }
+        })}
       </div>
     </div>
   )
