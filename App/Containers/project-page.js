@@ -6,6 +6,12 @@ import journey from '../Assets/pics/journey.jpg';
 import senti from '../Assets/pics/senti.jpg';
 import bleed from '../Assets/pics/bleeding.png';
 import elec from '../Assets/pics/electric.png';
+// import cat from '../Assets/pics/catsh.png';
+// import fair from '../Assets/pics/fairsh.png';
+// import journey from '../Assets/pics/journeysh.png';
+// import senti from '../Assets/pics/sentish.png';
+// import elec from '../Assets/pics/elecsh.png';
+// import bleed from '../Assets/pics/labsh.png';
 import projectDescriptions  from '../Assets/shortDescription';
 import ProjectInfo from '../Components/projectinfo';
 import {
@@ -47,11 +53,9 @@ export const ProjectPage = () => {
 	
 
 	return(
-		<div>
-			<Carousel
-				slideImages={images}
-				children={projectDescComponents}
-			/>
-		</div>
+		<Carousel
+			slideImages={images}
+			children={projectDescComponents}
+		/>
 	)
 }

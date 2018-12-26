@@ -7,7 +7,8 @@ const carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages}) => {
   const reelStyles = {
     display: 'flex',
     flexDirection: 'row',
-    alignContent: 'center',
+    justifyContent: 'center',
+    marginTop: '2%',
     width: '60%'
   }
 
@@ -26,21 +27,30 @@ const carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages}) => {
     display: 'flex',
     flexDirection: 'column',
     alignSelf: 'stretch',
-    justifyContent: 'center'
-  }
-
-  const activeProject = {
-    width: '60%'
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 
   let [active, updateActive] = useState(0);
 
   const selectNext = () => {
-    updateActive(active+1);
+    const next = ++active;
+    if(next < children.length){
+      updateActive(next);
+    }else{
+      updateActive(0);
+    }
   }
-  const selectPrevious = () => updateActive(active-1);
+  const selectPrevious = () => {
+    const previous = --active;
+    if(previous > 0){
+      updateActive(previous);
+    }else{
+      updateActive(children.length - 1);
+    }
+  }
+  
   const selectSpecific = ({nativeEvent}) => {
-    debugger
     updateActive(parseInt(nativeEvent.target.getAttribute('data-index'),10));
   }
 
@@ -51,16 +61,30 @@ const carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages}) => {
     ...imgObj
   }));
 
+  const RotateIcon = ({handleClick, size, iconName}) => (
+    <i 
+      className='material-icons' 
+      style={{"fontSize": size}} 
+      onClick={handleClick}>{iconName}
+    </i>
+  )
+
   return (
-    <div className='carousel'>
-      <div className='carouselBody'>
-        <div style={{...chevronContainer}}>
-          <i className='material-icons' style={{"fontSize": "40px"}} onClick={selectNext}>chevron_left</i>
-        </div>
-        <div style={{...activeProject}}>{children[active]}</div>
-        <div style={{...chevronContainer}}>
-          <i className='material-icons' style={{"fontSize": "40px"}} onClick={selectPrevious}>chevron_right</i>
-        </div>
+    <div style={{"justifyContent": 'center'}} className='carousel mdl-grid'>
+      <div className='mdl-cell mdl-cell--3-col' style={{...chevronContainer}}>
+        <RotateIcon
+          handleClick={selectNext}
+          size={'40px'}
+          iconName={'chevron_left'}
+        />
+      </div>
+      <div className='mdl-cell mdl-cell--6-col'>{children[active]}</div>
+      <div className='mdl-cell mdl-cell--3-col' style={{...chevronContainer}}>
+        <RotateIcon
+          handleClick={selectPrevious}
+          size={'40px'}
+          iconName={'chevron_right'}
+        />
       </div>
       <div onClick={selectSpecific} style={{...reelStyles}}>
         {projectImages.map( (props, idx) => {

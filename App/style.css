@@ -22,7 +22,7 @@ p{
 }
 
 img{
-  max-width: 100%;
+  max-width: 90%;
 }
 
 li{
@@ -39,18 +39,13 @@ li{
 }
 
 .carousel {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 30em;
   background-color: rgba(10, 10, 10, 0.4);
-  align-items: center;
 }
 
 .carouselBody{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-self: stretch;
 }
 
