@@ -25,19 +25,18 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
   }
 	
 	let contrib = tasks.map( (task, idx) => (
-    <small key={idx} >{task}</small>
+    <strong key={idx} >{task}</strong>
   ))
 	
 	return(
       <div style={{...container}}>
         <img style={{...image}} src = {photo} />
         <div style={{...rightColumn}}>
-          <h4>{title}</h4>
+          <h3>{title}</h3>
           {[...contrib]}
           {link && 
-            <div className = 'centerText'>
-              <a target='_blank' href = { link }>View Repo</a>
-            </div>}
+            <a target='_blank' href = { link }>Repo</a>
+          }
         </div>
       </div>
 	)

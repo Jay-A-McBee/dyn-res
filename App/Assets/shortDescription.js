@@ -1,6 +1,16 @@
 
 const projectDescriptions = module.exports;
 
+projectDescriptions.slide = {
+	title:'Slide Calculator',
+	role:'A bill-splitting app',
+	tasks:[
+		'React Native',
+		'Styled Components'
+   ],
+	link: 'https://github.com/Jay-A-McBee/rn_slide_calc'
+};
+
 projectDescriptions.fairshare = {
 	title:'Fairshare',
 	role:'A bill-splitting app',
@@ -10,7 +20,7 @@ projectDescriptions.fairshare = {
 	  'Passport OAuth 2.0'
    ],
 	link: 'https://github.com/AngryPulpGophers/fairshare'
-} ;
+};
 
 projectDescriptions.jmen ={
 	title:'Journeymen',

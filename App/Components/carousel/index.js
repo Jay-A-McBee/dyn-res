@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useLayoutEffect} from 'react';
 import ProjectImage from '../projectDesc';
 
 
@@ -53,6 +53,13 @@ const carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages}) => {
   const selectSpecific = ({nativeEvent}) => {
     updateActive(parseInt(nativeEvent.target.getAttribute('data-index'),10));
   }
+
+  // let [width, resize] = useState(window.innerWidth);
+
+  // useLayoutEffect(() => {
+  //   window.addEventListener('resize', () => resize(window.innerWidth));
+  //   return () => window.removeEventListener('resize', () => resize(window.innerWidth));
+  // })
 
   const projectImages = slideImages.map( (imgObj, index) => ({
     index,

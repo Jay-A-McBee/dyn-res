@@ -6,6 +6,7 @@ import journey from '../Assets/pics/journey.jpg';
 import senti from '../Assets/pics/senti.jpg';
 import bleed from '../Assets/pics/bleeding.png';
 import elec from '../Assets/pics/electric.png';
+import slide from '../Assets/pics/slide.png';
 // import cat from '../Assets/pics/catsh.png';
 // import fair from '../Assets/pics/fairsh.png';
 // import journey from '../Assets/pics/journeysh.png';
@@ -27,7 +28,8 @@ export const ProjectPage = () => {
 		[senti,'sentimentalist'],
 		[cat,'cats'], 
 		[elec, 'range'], 
-		[bleed, 'lab']
+		[bleed, 'lab'],
+        [slide, 'slide']
 	];
 	
 
@@ -37,7 +39,8 @@ export const ProjectPage = () => {
     sentiment, 
     kitkat, 
     electric, 
-    sandBox 
+    sandBox,
+    slide
   } = projectDescriptions;
 
   const {
@@ -45,8 +48,9 @@ export const ProjectPage = () => {
   	descriptions
   } = MakeDescObj(
     picTitleRef, 
-    [fairshare, jmen, sentiment, kitkat, electric, sandBox]
+    [fairshare, jmen, sentiment, kitkat, electric, sandBox, slide]
   );
+  debugger
 
 
   const projectDescComponents = Object.keys(descriptions).map( description => <ProjectInfo key={'img'} {...descriptions[description]}/>);
