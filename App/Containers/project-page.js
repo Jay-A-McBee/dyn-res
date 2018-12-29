@@ -6,7 +6,7 @@ import journey from '../Assets/pics/journey.jpg';
 import senti from '../Assets/pics/senti.jpg';
 import bleed from '../Assets/pics/bleeding.png';
 import elec from '../Assets/pics/electric.png';
-import slide from '../Assets/pics/slide.png';
+import slideScreen from '../Assets/pics/slideScreen.png';
 // import cat from '../Assets/pics/catsh.png';
 // import fair from '../Assets/pics/fairsh.png';
 // import journey from '../Assets/pics/journeysh.png';
@@ -29,7 +29,7 @@ export const ProjectPage = () => {
 		[cat,'cats'], 
 		[elec, 'range'], 
 		[bleed, 'lab'],
-        [slide, 'slide']
+        [slideScreen, 'slide']
 	];
 	
 
