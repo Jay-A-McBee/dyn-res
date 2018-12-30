@@ -7,6 +7,7 @@ import senti from '../Assets/pics/senti.jpg';
 import bleed from '../Assets/pics/bleeding.png';
 import elec from '../Assets/pics/electric.png';
 import slideScreen from '../Assets/pics/slideScreen.png';
+import spltAdmin from '../Assets/pics/splt_admin.png';
 // import cat from '../Assets/pics/catsh.png';
 // import fair from '../Assets/pics/fairsh.png';
 // import journey from '../Assets/pics/journeysh.png';
@@ -29,7 +30,8 @@ export const ProjectPage = () => {
 		[cat,'cats'], 
 		[elec, 'range'], 
 		[bleed, 'lab'],
-        [slideScreen, 'slide']
+        [slideScreen, 'slide'],
+        [spltAdmin, 'admin']
 	];
 	
 
@@ -40,7 +42,8 @@ export const ProjectPage = () => {
     kitkat, 
     electric, 
     sandBox,
-    slide
+    slide,
+    admin
   } = projectDescriptions;
 
   const {
@@ -48,7 +51,7 @@ export const ProjectPage = () => {
   	descriptions
   } = MakeDescObj(
     picTitleRef, 
-    [fairshare, jmen, sentiment, kitkat, electric, sandBox, slide]
+    [fairshare, jmen, sentiment, kitkat, electric, sandBox, slide, admin]
   );
   debugger
 
