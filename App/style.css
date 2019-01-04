@@ -60,11 +60,6 @@ li{
   transform-style: preserve-3d;
 }
 
-.carouselCard.current{
-  box-shadow: 0px 8px 10px gray, 
-  -10px 8px 10px gray, 10px 8px 10px gray;
-}
-
 .carouselCard.previous {
   position: relative;
   left: 15%;

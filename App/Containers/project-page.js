@@ -7,7 +7,7 @@ import senti from '../Assets/pics/senti.jpg';
 import bleed from '../Assets/pics/bleeding.png';
 import elec from '../Assets/pics/electric.png';
 import slideScreen from '../Assets/pics/slideScreen.png';
-import spltAdmin from '../Assets/pics/splt_admin.png';
+import spltAdmin from '../Assets/pics/adminScreen.png';
 // import cat from '../Assets/pics/catsh.png';
 // import fair from '../Assets/pics/fairsh.png';
 // import journey from '../Assets/pics/journeysh.png';

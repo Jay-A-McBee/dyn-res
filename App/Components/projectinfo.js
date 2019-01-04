@@ -13,8 +13,7 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
 
   const image = {
     borderRadius: '.25em',
-    boxShadow: '0px 8px 10px gray, -10px 8px 10px gray, 10px 8px 10px gray',
-    maxWidth: '70%',
+    maxWidth: '100%',
     maxHeight: `${heightBlock * 5}px`
   }
 
