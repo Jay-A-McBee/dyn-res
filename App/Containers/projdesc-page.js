@@ -2,12 +2,9 @@ import React from 'react';
 import {Modal} from '../Components/Modal';
 import {MakeDescObj} from '../helpers';
 import descriptions  from '../Assets/shortDescription';
-import catsh from '../Assets/pics/catsh.png';
-import fairsh from '../Assets/pics/fairsh.png';
-import journeysh from '../Assets/pics/journeysh.png';
-import sentish from '../Assets/pics/sentish.png';
-import elecsh from '../Assets/pics/elecsh.png';
-import bleedsh from '../Assets/pics/labsh.png';
+import fairsh from '../Assets/pics/fairshareShell.png';
+import journeysh from '../Assets/pics/journeymenShell.png';
+import sentish from '../Assets/pics/sentimentalistShell.png';
 import ProjectInfo from '../Components/projectinfo';
 
 export const ProjectDescription = ({closeDesc, active}) => {
@@ -16,9 +13,6 @@ export const ProjectDescription = ({closeDesc, active}) => {
     [fairsh,'fairshare'],
     [journeysh,'journeymen'],
     [sentish,'sentimentalist'],
-    [catsh,'cats'],
-    [elecsh,'range'], 
-    [bleedsh,'lab']
   ];
     
   const { 

@@ -5,33 +5,32 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
   const rightColumn = {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
   }
 
   const heightBlock = window.innerHeight / 10;
 
-
   const image = {
     borderRadius: '.25em',
     maxWidth: '100%',
-    maxHeight: `${heightBlock * 5}px`
+    maxHeight: `${heightBlock * 6.5}px`
   }
 
   const container = {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-evenly'
   }
 	
 	let contrib = tasks.map( (task, idx) => (
-    <strong key={idx} >{task}</strong>
+    <strong key={idx} style={{"fontSize": '1.1em'}} >{task}</strong>
   ))
 	
 	return(
       <div style={{...container}}>
         <img style={{...image}} src = {photo} />
         <div style={{...rightColumn}}>
-          <h3>{title}</h3>
+          <h2>{title}</h2>
           {[...contrib]}
           {link && 
             <a target='_blank' href = { link }>Repo</a>

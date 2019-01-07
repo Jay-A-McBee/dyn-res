@@ -1,12 +1,12 @@
 import React from 'react';
 
-const ProjectImage = ({photo, prop, handleClick, index, styles}) => {
+const ProjectImage = ({photo, prop, handleClick, index, styles, thumbnail}) => {
   return (
     <img 
       style={{...styles}} 
       key={index} 
       data-index={index} 
-      src={photo} 
+      src={thumbnail || photo} 
       onClick={handleClick} 
       name={prop}
     /> 

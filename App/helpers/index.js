@@ -1,10 +1,11 @@
 import v4 from 'node-uuid';
 
 export const MakeImageObj = (arrOfRefs) => {
-  return arrOfRefs.map( refPair => ({
+  return arrOfRefs.map( ([descriptionImage, descriptionTitle, thumbnailImage]) => ({
       id: v4(),
-      photo: refPair[0], 
-      prop: refPair[1]
+      photo: descriptionImage, 
+      prop: descriptionTitle,
+      thumbnail: thumbnailImage || descriptionImage 
   }))
 };
 

@@ -2,10 +2,11 @@
 const projectDescriptions = module.exports;
 
 projectDescriptions.admin = {
-	title:'SPLT Admin Dashboard',
+	title:'SPLT Dashboard',
 	role:'A bill-splitting app',
 	tasks:[
 		'React/Redux, Redux Saga',
+		'd3, React-Bootstrap',
 		'Google Geolocate API'
    ],
 };

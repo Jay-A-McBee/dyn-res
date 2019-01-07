@@ -8,7 +8,7 @@ const carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages}) => {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: '2%',
+    marginTop: '.5%',
     width: '60%'
   }
 
@@ -41,9 +41,10 @@ const carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages}) => {
       updateActive(0);
     }
   }
+
   const selectPrevious = () => {
     const previous = --active;
-    if(previous > 0){
+    if(previous >= 0){
       updateActive(previous);
     }else{
       updateActive(children.length - 1);
@@ -78,15 +79,15 @@ const carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages}) => {
 
   return (
     <div style={{"justifyContent": 'center'}} className='carousel mdl-grid'>
-      <div className='mdl-cell mdl-cell--3-col' style={{...chevronContainer}}>
+      <div className='mdl-cell mdl-cell--2-col' style={{...chevronContainer}}>
         <RotateIcon
           handleClick={selectNext}
           size={'40px'}
           iconName={'chevron_left'}
         />
       </div>
-      <div className='mdl-cell mdl-cell--6-col'>{children[active]}</div>
-      <div className='mdl-cell mdl-cell--3-col' style={{...chevronContainer}}>
+      <div className='mdl-cell mdl-cell--8-col'>{children[active]}</div>
+      <div className='mdl-cell mdl-cell--2-col' style={{...chevronContainer}}>
         <RotateIcon
           handleClick={selectPrevious}
           size={'40px'}

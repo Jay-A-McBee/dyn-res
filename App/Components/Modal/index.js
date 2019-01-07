@@ -34,7 +34,8 @@ export const Modal = ({child, dialogAnimation, open, toggle, id}) => {
         <div key='modal' className={`modal-overlay ${open ? 'showFast' : 'hide'}`} onClick={closeWithAnim}>
             <div id={`modal_body_${id}`} className={`modal-body ${open ? enter : ''}`}>
                 <i 
-                    onClick={closeWithAnim} 
+                    onClick={closeWithAnim}
+                    style={{color: 'rgba(122, 203, 168, 0.9)'}}
                     className='pointer material-icons md-48'
                 >
                 arrow_back
