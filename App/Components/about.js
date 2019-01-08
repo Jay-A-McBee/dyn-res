@@ -23,7 +23,7 @@ export const About = () => {
           >
           </i>
         </a>
-        <a target='_blank' href='https://github.com/Austin-ClickTripz'>
+        <a target='_blank' href='https://github.com/Jay-A-McBee'>
           <i
             className='zmdi zmdi-github-box zmdi-hc-2x'
           >
