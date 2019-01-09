@@ -33,7 +33,10 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
           <h2>{title}</h2>
           {[...contrib]}
           {link && 
-            <a target='_blank' href = { link }>Repo</a>
+            <a target='_blank' href = { link }>
+              <i className='zmdi zmdi-github-box zmdi-hc-2x'>
+              </i>
+            </a>
           }
         </div>
       </div>
