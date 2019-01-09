@@ -1,1 +1,7 @@
-module.exports = 'Hi! I\'m Austin--a full stack JavaScript developer living in Seattle, Washington. I spent most of my twenties as a Peace Corps volunteer and teacher in North, West and East Africa. I met a lot of interesting folks, ate a ton of good food and studied a number of languages. On a whim, started to teach myself another language--JavaScript. Got hooked on programming and haven\'t looked back since.\n I have experience with modern JS front and backend frameworks and comfortable navigating the full stack. I am also open to relocation opportunities.\nOutside of development, I love my pets, am an occassional runner and a connoisseur of all things fried. Get in touch and let\'s build something!'
+const textBlock = {};
+
+textBlock.bio = 'I\'m a software developer in Seattle, Washington. I spent most of my twenties as a Peace Corps volunteer and teacher in North, West and East Africa. I met a lot of interesting folks and studied a number of languages. Eventually got hooked on a quirky one--JavaScript. '
+
+textBlock.aside = 'Got serious about it in 2015 and joined my first team as a JS engineer. I\'m familiar with the auto-magic of modern frontend frameworks and can also appreciate a little node.js workflow script.'
+
+module.exports = textBlock;

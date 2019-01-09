@@ -1,38 +1,134 @@
+html{
+  scroll-behavior: smooth
+}
+
+
 body{
-	font-family: 'Pathway Gothic One', courier;
-	color: #001a33;
-	background-color: rgba(232, 246, 234,.5);
-	background-size: 100% 100%;
+  font-family: 'Roboto', courier;
+  color: rgba(179, 248, 218, 0.82);
+  background-color: rgba(10, 10, 10, 0.6);
+  background-size: 100% 100%;
   background-attachment: fixed;
 }
 
-h2,h3,h4,h5,h6{
-	font-family: 'Pathway Gothic One', courier;
-	color: #001a33;
-}
-
-h1{
-	font-family: 'Pathway Gothic One', courier;
-	color: #000033;
+h1,h2,h3,h4,h5,h6{
+  font-weight: 100;
 }
 
 a{
-	margin-right: 15px;
-	padding: 2px;
-	color: #3C39F8;
-	/*background-color: rgba(255, 255, 255, 0.45);*/
+  margin-right: 15px;
+  padding: 2px;
+  color: rgb(122, 239, 188);
+  text-decoration: none;
 }
 
 p{
-	margin-bottom: 0px;
+  margin-bottom: 0px;
 }
 
-img{
-  max-width: 100%;
+img:hover{
+  filter: none;
 }
 
-li{
-  margin-bottom: 5px;
+i{
+  color: rgba(28, 23, 22, 0.3);
+  transition: color .25s;
+}
+
+i:hover{
+  color: rgba(179, 248, 218, 0.82);
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 2.5%;
+}
+
+.carousel {
+  background-color: rgba(10, 10, 10, 0.75);
+  padding: 1%;
+}
+
+.carouselBody{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: stretch;
+}
+
+.carouselCard {
+  height: 75px;
+  border: .5px solid black;
+  width: 200px;
+  background-color: white;
+  color: rgba(168, 194, 174, 1);
+  transition: transform 2s, box-shadow .5s ease-in-out, z-index 1s ease-in-out;
+  transform-style: preserve-3d;
+}
+
+.carouselCard.previous {
+  position: relative;
+  left: 15%;
+}
+
+.carouselCard.next {
+  position: relative;
+  text-align: right;
+  right: 15%;
+}
+
+.carouselCard.transitionLeft{
+  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+  -moz-animation-fill-mode:forwards; /*FF 5+*/
+  -o-animation-fill-mode:forwards; /*Not implemented yet*/
+  -ms-animation-fill-mode:forwards; /*IE 10+*/
+  animation-fill-mode:forwards;
+  -webkit-animation-name: moveLeft;
+  -webkit-animation-duration: 0.5s;
+  animation-name: moveLeft;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in
+}
+
+.carouselCard.transitionRight{
+  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+  -moz-animation-fill-mode:forwards; /*FF 5+*/
+  -o-animation-fill-mode:forwards; /*Not implemented yet*/
+  -ms-animation-fill-mode:forwards; /*IE 10+*/
+  animation-fill-mode:forwards;
+  -webkit-animation-name: moveRight;
+  -webkit-animation-duration: 0.5s;
+  animation-name: moveRight;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in
+}
+
+.carouselCard.transitionLeftForward{
+  transition: transform .5s ease-in;
+}
+
+@-webkit-keyframes moveLeft {
+  from {transform: translateX(0%);} 
+  to {transform: translateX(-50%);}
+}
+
+@keyframes moveLeft {
+  from {transform: translateX(0%);}
+  to {transform: translateX(-50%);}
+}
+
+@-webkit-keyframes moveRight {
+  from {transform: translateX(100%);} 
+  to {transform: translateX(150%);}
+}
+
+@keyframes moveRight {
+  from {transform: translateX(100%);}
+  to {transform: translateX(150%);}
 }
 
 .modal-overlay {
@@ -41,7 +137,7 @@ li{
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1005;
+  z-index: 2000;
   background-color: rgba(10, 10, 10, 0.6);
   overflow-y: scroll;
 }
@@ -71,7 +167,7 @@ li{
 .about{
   max-width: 100%;
   height: 100vh;
-	background-color: #fefefe;
+	background-color: rgba(10, 10, 10, 0.4);
 	padding: 5px;
   overflow-y: scroll;
 }
@@ -188,11 +284,6 @@ li{
 
 .oneMargin{
 	margin: 2.5px;
-}
-
-.centerVert{
- position: relative;
- top: 5em;
 }
 
 .centerText{
@@ -389,10 +480,8 @@ li{
   -ms-animation-fill-mode:forwards; /*IE 10+*/
   animation-fill-mode:forwards;
   -webkit-animation-name: appear 1s; /* Safari */
-  -webkit-animation-delay: 2s;
   -webkit-animation-duration: 1s;
   -moz-animation-name: appear 1s; /* Safari */
-  -moz-animation-delay: 2s;
   -moz-animation-duration: 1s;
   animation-name: appear;
   animation-duration: 1s;

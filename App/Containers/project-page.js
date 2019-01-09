@@ -1,32 +1,63 @@
-import React, {Suspense} from 'react';
-import {Modal} from '../Components/Modal';
-import cat from '../Assets/pics/cat.jpg';
-import fair from '../Assets/pics/fair.jpg';
-import journey from '../Assets/pics/journey.jpg';
-import senti from '../Assets/pics/senti.jpg';
+import React from 'react';
+import Carousel from '../Components/carousel';
+import fair from '../Assets/pics/fairshareThumbnail.jpg';
+import fairScreen from '../Assets/pics/fairshareShell.png';
+import journey from '../Assets/pics/journeyThumbnail.jpg';
+import journeyScreen from '../Assets/pics/journeymenShell.png';
+import senti from '../Assets/pics/sentimentThumbnail.jpg';
+import sentiScreen from '../Assets/pics/sentimentalistShell.png';
+import spltAdmin from '../Assets/pics/adminThumbnail.jpg';
+import spltAdminScreen from '../Assets/pics/adminScreen.png';
 import bleed from '../Assets/pics/bleeding.png';
-import elec from '../Assets/pics/electric.png'
-import {MakeImageObj} from '../helpers';
-const ProjectImage = React.lazy(() => import ('../Components/projectDesc'));
+import elec from '../Assets/pics/electric.png';
+import slideScreen from '../Assets/pics/slideScreen.png';
+// import bleed from '../Assets/pics/labsh.png';
+import projectDescriptions  from '../Assets/shortDescription';
+import ProjectInfo from '../Components/projectinfo';
+import {
+	MakeImageObj,
+	MakeDescObj
+} from '../helpers';
 
-export const ProjectPage = ( {openProject} ) => {
+export const ProjectPage = () => {
 
-	const picTitleRef = [[fair,'fairshare'],[journey,'journeymen'],[senti,'sentimentalist'],[cat,'cats'], [elec, 'range'], [bleed, 'lab']];
-	let screenShots = MakeImageObj(picTitleRef, openProject);
+	const picTitleRef = [
+		[fairScreen, 'fairshare', fair],
+		[journeyScreen, 'journeymen', journey],
+		[sentiScreen, 'sentimentalist', senti],
+		// [cat,'cats'], 
+		[elec, 'range'], 
+		[bleed, 'lab'],
+    [slideScreen, 'slide'],
+    [spltAdminScreen, 'admin', spltAdmin]
+	];
+	
+
+	const { 
+    fairshare, 
+    jmen, 
+    sentiment, 
+    // kitkat, 
+    electric, 
+    sandBox,
+    slide,
+    admin
+  } = projectDescriptions;
+
+  const {
+  	images,
+  	descriptions
+  } = MakeDescObj(
+    picTitleRef, 
+    [fairshare, jmen, sentiment, electric, sandBox, slide, admin]
+  );
+
+  const projectDescComponents = Object.keys(descriptions).map( description => <ProjectInfo key={'img'} {...descriptions[description]}/>);
 	
 	return(
-		<div className = 'show center centerText centerVert'>
-			<div className="mdl-grid">
-			{screenShots.map( imgObj => 
-			  <div key = {imgObj.id} className="mdl-cell mdl-cell--4-col" >
-				  <Suspense fallback={<div>Loading...</div>}>
-				    <ProjectImage {...imgObj} />
-				  </Suspense>
-			  </div>
-			)}
-			</div>
-		</div>
+		<Carousel
+			slideImages={images}
+			children={projectDescComponents}
+		/>
 	)
 }
-
-

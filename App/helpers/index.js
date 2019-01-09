@@ -1,19 +1,24 @@
 import v4 from 'node-uuid';
 
-export const MakeImageObj = (arrOfRefs,fn) => {
-  return arrOfRefs.map( refPair => ({
+export const MakeImageObj = (arrOfRefs) => {
+  return arrOfRefs.map( ([descriptionImage, descriptionTitle, thumbnailImage]) => ({
       id: v4(),
-      func: fn, 
-      photo: refPair[0], 
-      prop: refPair[1]
+      photo: descriptionImage, 
+      prop: descriptionTitle,
+      thumbnail: thumbnailImage || descriptionImage 
   }))
 };
 
-export const MakeDescObj = (arrOfRefs, fn, arrOfDesc) => {
-  let imageObjects = MakeImageObj(arrOfRefs, fn);
+export const MakeDescObj = (arrOfRefs, arrOfDesc) => {
+  let images = MakeImageObj(arrOfRefs);
   
-  return arrOfDesc.reduce( (acc,descObj, idx) => {
-      acc[imageObjects[idx].prop] = Object.assign({}, descObj, imageObjects[idx]);
+  const descriptions = arrOfDesc.reduce( (acc,descObj, idx) => {
+      acc[images[idx].prop] = Object.assign({}, descObj, images[idx]);
       return acc;
   },{});
+
+  return {
+    images,
+    descriptions
+  };
 }
