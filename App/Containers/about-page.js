@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Intro} from '../Components/intro';
 import {About} from '../Components/About';
+import {Work} from '../Components/experience';
 import {ProjectPage}  from './project-page';
 import {ProjectDescription} from './projdesc-page';
 import Carousel from '../Components/carousel';
@@ -27,6 +28,21 @@ export default function AboutMe(){
         select(null);
     }
 
+    const work = {
+        ClickTripz: {
+            title: 'Software Engineer @ Clicktripz',
+            description: 'CT Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+        },
+        SPLT: {
+            title: 'Software Engineer @ Splt',
+            description: 'SPLT Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+        },
+        HackReactor: {
+            title: 'Software Engineer in training',
+            description: 'HackReactor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+        }
+    }
+
     return(
         <div>
             <Intro 
@@ -37,10 +53,9 @@ export default function AboutMe(){
                 <About />
             </div>
             <div id="Experience">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-            <div id="Projects">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <Work
+                    workDescriptions={work}
+                />
             </div>
         </div>
     )
