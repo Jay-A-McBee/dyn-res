@@ -2,7 +2,7 @@ import React, {useState, useLayoutEffect} from 'react';
 import ProjectImage from '../projectDesc';
 
 
-const carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages}) => {
+const carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideComponents}) => {
 
   const reelStyles = {
     display: 'flex',
