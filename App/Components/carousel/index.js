@@ -2,7 +2,7 @@ import React, {useState, useLayoutEffect} from 'react';
 import ProjectImage from '../projectDesc';
 
 
-const carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideComponents}) => {
+export const Carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages}) => {
 
   const reelStyles = {
     display: 'flex',
@@ -62,12 +62,12 @@ const carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideComponents}) 
   //   return () => window.removeEventListener('resize', () => resize(window.innerWidth));
   // })
 
-  const projectImages = slideImages.map( (imgObj, index) => ({
+  const projectImages = slideImages ? slideImages.map( (imgObj, index) => ({
     index,
     handleClick: selectSpecific,
     styles: reelCard,
     ...imgObj
-  }));
+  })) : null;
 
   const RotateIcon = ({handleClick, size, iconName}) => (
     <i 
@@ -95,7 +95,7 @@ const carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideComponents}) 
         />
       </div>
       <div onClick={selectSpecific} style={{...reelStyles}}>
-        {projectImages.map( (props, idx) => {
+        {projectImages ? projectImages.map( (props, idx) => {
           if(idx === active){
             return (  
               <ProjectImage {...props}  />
@@ -106,10 +106,8 @@ const carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideComponents}) 
               <ProjectImage {...props} />
             )
           }
-        })}
+        }) : ['1', '2', '3'].map( val => <p>{val}</p>)}
       </div>
     </div>
   )
 }
-
-export default carousel

@@ -3,7 +3,7 @@ import { About } from './about';
 import {Modal} from './modal';
 
 export const Intro = ({toggleBio, open}) => {
-    const navLinks = ['About', 'Experiences', 'Projects'];
+    const navLinks = ['About', 'Experience', 'Projects'];
     
     const navStyle = {
         display: 'flex',

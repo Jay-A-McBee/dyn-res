@@ -31,14 +31,17 @@ export default function AboutMe(){
     const work = {
         ClickTripz: {
             title: 'Software Engineer @ Clicktripz',
+            dates: 'March 2017 - Present',
             description: 'CT Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
         },
         SPLT: {
             title: 'Software Engineer @ Splt',
+            dates: 'Sept 2016 - April 2017',
             description: 'SPLT Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
         },
         HackReactor: {
             title: 'Software Engineer in training',
+            dates: 'March 2016 - June 2016',
             description: 'HackReactor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
         }
     }
