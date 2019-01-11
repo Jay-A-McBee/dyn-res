@@ -1,21 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { About } from './about';
-import {Modal} from './modal';
 
 export const Intro = ({toggleBio, open}) => {
-    const navLinks = ['About', 'Experience', 'Projects'];
-    
-    let navStyle = {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        alignSelf: 'stretch',
-        marginTop: '7.5%',
-        paddingRight: '10%',
-        transition: 'transform .5s ease-in-out'
-    };
-
     const container = {
         display: 'flex',
         flexDirection: 'column',
@@ -30,12 +16,6 @@ export const Intro = ({toggleBio, open}) => {
         paddingLeft: '5em',
     }
 
-    let [navStyles, updateNav] = useState(navStyle);
-
-    const toggleNav = (styles) => {
-        updateNav({...navStyles, ...styles});
-    }
-
     /*<Modal 
         open={open}
         toggle={toggleBio}
@@ -46,30 +26,9 @@ export const Intro = ({toggleBio, open}) => {
 
     /*<i onClick={toggleBio} style={{fontSize: '3em'}} className="material-icons pointer">menu</i>*/
 
-    const checkScrollPos = (e) => {
-       if(document.documentElement.scrollTop > 10){
-            toggleNav({transform: `translateY(${document.documentElement.scrollTop}px)`, boxShadow: '0 2.5px 1px rgba(10, 10, 10, .2)'})
-        } 
-
-        if(document.documentElement.scrollTop > 80){
-            toggleNav({visibility: 'hidden'});
-        }
-    }
-
-    useEffect(
-        () => {
-
-            window.addEventListener('scroll', checkScrollPos)
-
-            return () => window.removeEventListener('scroll', checkScrollPos);
-        }
-    )
 
     return  (
         <div style={{...container}}>
-            <div style={{...navStyles}}>
-                {navLinks.map( title => <a href={`#${title}`} style={{fontWeight: '400', fontSize: '1em'}}>{`<${title} />`}</a>)}
-            </div>
             <div style={{...intro}}>
                 <h1 style={{fontWeight: '700', fontSize: '5em'}}>Hi - I'm Austin McBee.</h1>
                 <div style={{maxWidth: '50%', marginLeft: '2em'}}>

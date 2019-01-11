@@ -5,6 +5,7 @@ import {Work} from '../Components/experience';
 import {ProjectPage}  from './project-page';
 import {ProjectDescription} from './projdesc-page';
 import Carousel from '../Components/carousel';
+import {Navigation} from '../Components/Nav';
 import '../style.css';
 
 export default function AboutMe(){
@@ -48,6 +49,7 @@ export default function AboutMe(){
 
     return(
         <div>
+            <Navigation />
             <Intro 
                 open={open}
                 toggleBio={toggle}
