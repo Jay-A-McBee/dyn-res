@@ -8,27 +8,29 @@ const workContainer = {
   justifyContent: 'space-between',
   width: '80%',
   margin: 'auto',
-  border: '2px solid black'
 }
 
 const listContainer = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  padding: '10px'
+  borderLeft: '1.5px solid rgba(10, 10, 10, 0.3)',
+  padding: '0, 10px, 10px, 10px'
 }
 
 const workTitle = {
   display: 'flex',
   justifyContent: 'center',
   padding: '10px',
-  transition: 'background-color .25s ease-in-out, border-left .25s ease-in-out'
+  transition: 'background-color .25s ease-in-out, border-left .25s ease-in-out',
+  position: 'relative',
+  left: '-1.5px'
 }
 
 
 const selectedWorkTitle = {
-  backgroundColor: 'rgb(59, 61, 72)',
-  borderLeft: '5px solid rgba(179, 248, 218, 0.82)',
+  backgroundColor: 'rgba(209, 209, 214, .2)',
+  borderLeft: '1.5px solid rgba(179, 248, 218)',
   ...workTitle
 }
 
@@ -84,14 +86,18 @@ export const Experience = ({workDesc}) => {
         handleClick={updateSelected} 
       />
       <WorkDescription {...workDesc[selected]}/>
-      {selected === 'SPLT' ? (<button onClick={toggleModal}>View Work</button>) : null}
-      <Modal
-        open={isOpen}
-        toggle={toggleModal}
-        child={<Carousel />}
-        dialogAnimation={'top'}
-        id={selected}
-      />
+      {selected === 'SPLT' ? (
+        <>
+          <button onClick={toggleModal}>View Work</button>
+          <Modal
+            open={isOpen}
+            toggle={toggleModal}
+            child={<Carousel />}
+            dialogAnimation={'top'}
+            id={selected}
+          />
+        </>
+      ) : null}
     </div>
   )
 }
