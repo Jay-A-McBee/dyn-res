@@ -59,11 +59,11 @@ export const Navigation = () => {
     useEffect(
         () => {
 
-            // let checkScroll = debounce(respondToScroll, 100);
+            let checkScroll = debounce(respondToScroll, 100);
 
-            window.addEventListener('scroll', respondToScroll);
+            window.addEventListener('scroll', checkScroll);
 
-            return () => window.removeEventListener('scroll', respondToScroll);
+            return () => window.removeEventListener('scroll', checkScroll);
         }
     )
 
