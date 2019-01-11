@@ -47,9 +47,13 @@ export const Intro = ({toggleBio, open}) => {
     /*<i onClick={toggleBio} style={{fontSize: '3em'}} className="material-icons pointer">menu</i>*/
 
     const checkScrollPos = (e) => {
-       if(document.documentElement.scrollTop > 40){
-            toggleNav({transform: `translateY(-${document.documentElement.scrollTop * 10})`, boxShadow: '0 2.5px 1px rgba(10, 10, 10, .2)'})
+       if(document.documentElement.scrollTop > 10){
+            toggleNav({transform: `translateY(${document.documentElement.scrollTop}px)`, boxShadow: '0 2.5px 1px rgba(10, 10, 10, .2)'})
         } 
+
+        if(document.documentElement.scrollTop > 80){
+            toggleNav({visibility: 'hidden'});
+        }
     }
 
     useEffect(
