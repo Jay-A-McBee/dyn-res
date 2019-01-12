@@ -3,53 +3,72 @@ import debounce from 'lodash.debounce';
 
 
 export const Navigation = () => {
-    const navLinks = ['About', 'Experience', 'Projects'];
+    const navLinks = ['About', 'Experience', 'Projects'].reverse();
+
+    const heightBlock = window.innerHeight/10;
     
     let baseNavStyle = {
-        display: 'flex',
         opacity: '1',
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        alignSelf: 'stretch',
-        marginTop: '7.5%',
         paddingRight: '10%',
-        transition: 'transform .5s ease-in-out, opacity .25s'
+        height: '75px',
+        width: '100%',
+        transition: 'all .5s ease-in-out'
     };
 
     let hideNav = {
-        opacity: '0'
-    };
+        opacity: '0',
+    }
 
-    let slideNav = (pos) => ({
-        transform: `translateY(${pos}px)`,
+    let fixNav = {
+        position: 'fixed',
+        top: '0',
         backgroundColor: 'rgb(41, 61, 90)',
         boxShadow: '0 2.5px 5px rgba(10, 10, 10, .4)',
-        zIndex: 1005
-    });
+        zIndex: '10'
+    };
+
+    const navLink = {
+        fontWeight: '400', 
+        fontSize: '1em', 
+        float: 'right', 
+        textAlign: 'center',
+        position: 'relative',
+        right: '5%',
+        padding: '2.5% .5%'
+    }
 
     let[scrollTop, updateScrollTop] = useState(0);
     let[navStyles, updateNavStyle] = useState(baseNavStyle);
 
-    const respondToScroll = (e) => {
-        
+    const  calcScroll = (update) => {
         const currentPos = [
             document.body.scrollTop, 
             document.documentElement.scrollTop
         ].reduce( (total,pos) => total += pos, 0);
 
-        const movedEnough = currentPos > 0 && currentPos < 200;
+        if(update){
+            updateScrollTop(currentPos);
+        }
+
+        return currentPos;
+    }
+
+    const respondToScroll = (e, navClick) => {
+        
+        const currentPos = calcScroll();
+
+        const movedEnough = currentPos > 0 && currentPos < 150;
         const movingDown = currentPos > scrollTop;
 
         if(movedEnough){
             updateScrollTop(currentPos);
-            updateNavStyle({...baseNavStyle, ...slideNav(50)});
-        }else if(movingDown){
+            updateNavStyle({...baseNavStyle, ...fixNav});
+        }else if(movingDown || navClick){
             updateScrollTop(currentPos);
-            updateNavStyle({...navStyles, ...hideNav, ...slideNav(currentPos - 250)});
+            updateNavStyle({...navStyles, ...hideNav});
         }else if(currentPos !== 0){
             updateScrollTop(currentPos);
-            updateNavStyle({...baseNavStyle, ...slideNav(currentPos - 10)})
+            updateNavStyle({...baseNavStyle, ...fixNav})
         }else{
             updateScrollTop(currentPos);
             updateNavStyle(baseNavStyle);
@@ -59,7 +78,7 @@ export const Navigation = () => {
     useEffect(
         () => {
 
-            let checkScroll = debounce(respondToScroll, 100);
+            let checkScroll = debounce(respondToScroll, 100, {leading: true});
 
             window.addEventListener('scroll', checkScroll);
 
@@ -69,7 +88,7 @@ export const Navigation = () => {
 
     return(
         <nav style={{...navStyles}}>
-            {navLinks.map( title => <a href={`#${title}`} style={{fontWeight: '400', fontSize: '1em'}}>{`<${title} />`}</a>)}
+            {navLinks.map( title => <a key={title} href={`#${title}`} style={{...navLink}}>{`<${title} />`}</a>)}
         </nav>
     )
 }

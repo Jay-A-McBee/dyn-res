@@ -48,19 +48,21 @@ export default function AboutMe(){
     }
 
     return(
-        <div>
+        <div style={{display: 'flex', flexDirection: 'column'}}>
             <Navigation />
-            <Intro 
-                open={open}
-                toggleBio={toggle}
-            />
-            <div id="About">
-                <About />
-            </div>
-            <div id="Experience">
-                <Work
-                    workDescriptions={work}
+            <div style={{flexGrow: '1', overflow: 'auto'}}>
+                <Intro 
+                    open={open}
+                    toggleBio={toggle}
                 />
+                <div id="About">
+                    <About />
+                </div>
+                <div id="Experience">
+                    <Work
+                        workDescriptions={work}
+                    />
+                </div>
             </div>
         </div>
     )
