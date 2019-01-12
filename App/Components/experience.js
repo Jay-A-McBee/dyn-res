@@ -21,8 +21,6 @@ export const Work = ({workDescriptions}) => {
   return(
     <ContentWrapper
       justify={'center'}
-      width={'65%'}
-      marginAuton
     >
       <SectionHeader>Work Stuff</SectionHeader>
       <Experience

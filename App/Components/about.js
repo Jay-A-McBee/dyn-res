@@ -5,7 +5,8 @@ import {
 } from '../Assets/bio'
 import Me from '../Assets/pics/me.jpg'
 import {
-  ContentWrapper
+  ContentWrapper,
+  InnerContent
 } from './styleLayout';
 import {
   SectionHeader
@@ -50,12 +51,6 @@ export const About = () => {
     'Enzyme'
   ];
 
-  const section = {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-  }
-
   const libSection = {
     display: 'flex',
     flexDirection: 'column',
@@ -75,13 +70,12 @@ export const About = () => {
   
 	return (
     <ContentWrapper
-      width={'65%'}
-      marginAuto
+      id='About'
     >
       <SectionHeader>
         {title}
       </SectionHeader>
-      <div id='#About' style={{...section}}>
+      <InnerContent>
         <div style={{...libSection}}>
           <p>{bio}</p>
           <br />
@@ -98,7 +92,7 @@ export const About = () => {
           </div>
         </div>
         <img id='me' style={{filter: 'grayscale(80%)', maxHeight: '220px'}} src = {Me} />
-      </div>
+      </InnerContent>
     </ContentWrapper>
 	)
 }
