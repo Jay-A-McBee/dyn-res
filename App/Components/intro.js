@@ -1,19 +1,7 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { About } from './about';
-import {Modal} from './modal';
 
 export const Intro = ({toggleBio, open}) => {
-    const navLinks = ['About', 'Experiences', 'Projects'];
-    
-    const navStyle = {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        marginTop: '7.5%',
-        marginRight: '10%'
-    };
-
     const container = {
         display: 'flex',
         flexDirection: 'column',
@@ -38,11 +26,9 @@ export const Intro = ({toggleBio, open}) => {
 
     /*<i onClick={toggleBio} style={{fontSize: '3em'}} className="material-icons pointer">menu</i>*/
 
+
     return  (
         <div style={{...container}}>
-            <div style={{...navStyle}}>
-                {navLinks.map( title => <a href={`#${title}`} style={{fontWeight: '400', fontSize: '1em'}}>{`<${title} />`}</a>)}
-            </div>
             <div style={{...intro}}>
                 <h1 style={{fontWeight: '700', fontSize: '5em'}}>Hi - I'm Austin McBee.</h1>
                 <div style={{maxWidth: '50%', marginLeft: '2em'}}>

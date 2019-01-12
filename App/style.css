@@ -1,18 +1,15 @@
 html{
-  scroll-behavior: smooth
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
 }
 
 
 body{
   font-family: 'Roboto', courier;
-  color: rgba(179, 248, 218, 0.82);
-  background-color: rgba(10, 10, 10, 0.6);
+  color: rgba(179, 248, 218);
+  background-color: rgba(41, 61, 90, 0.99);
   background-size: 100% 100%;
   background-attachment: fixed;
-}
-
-h1,h2,h3,h4,h5,h6{
-  font-weight: 100;
 }
 
 a{

@@ -24,10 +24,12 @@ export const Modal = ({child, dialogAnimation, open, toggle, id}) => {
     } = animDirections[dialogAnimation] || animDirections.top;
 
     
-    const closeWithAnim = () => {
-        const modalBody = document.getElementById(`modal_body_${id}`);
-		modalBody.className = `modal-body ${leave}`;
-        setTimeout( () => toggle(), 500);
+    const closeWithAnim = ({nativeEvent}) => {
+        if(/modal-overlay|closeIcon/.test(nativeEvent.target.className)){
+            const modalBody = document.getElementById(`modal_body_${id}`);
+    		modalBody.className = `modal-body ${leave}`;
+            setTimeout( () => toggle(), 500);
+        }
     }
 
     return (
@@ -36,7 +38,7 @@ export const Modal = ({child, dialogAnimation, open, toggle, id}) => {
                 <i 
                     onClick={closeWithAnim}
                     style={{color: 'rgba(122, 203, 168, 0.9)'}}
-                    className='pointer material-icons md-48'
+                    className='pointer material-icons md-48 closeIcon'
                 >
                 arrow_back
                 </i>
