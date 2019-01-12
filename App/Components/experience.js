@@ -1,5 +1,12 @@
 import React from 'react';
 import {Experience} from './shufflePanel';
+import {
+  ContentWrapper
+} from './styleLayout';
+
+import {
+  SectionHeader
+} from './styledText'
 
 const workContainer = {
   display: 'flex',
@@ -12,11 +19,15 @@ const workContainer = {
 
 export const Work = ({workDescriptions}) => {
   return(
-    <div style={{...workContainer}}>
-      <h1 style={{fontWeight: '700', fontSize: '4em', color: 'white'}}>Work Stuff</h1>
+    <ContentWrapper
+      justify={'center'}
+      width={'65%'}
+      marginAuton
+    >
+      <SectionHeader>Work Stuff</SectionHeader>
       <Experience
         workDesc={workDescriptions}
       />
-    </div>  
+    </ContentWrapper>  
   )
 }

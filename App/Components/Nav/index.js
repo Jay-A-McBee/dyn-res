@@ -53,7 +53,7 @@ export const Navigation = () => {
         return currentPos;
     }
 
-    const respondToScroll = (e, navClick) => {
+    const respondToScroll = (e) => {
         
         const currentPos = calcScroll();
 
@@ -63,7 +63,7 @@ export const Navigation = () => {
         if(movedEnough){
             updateScrollTop(currentPos);
             updateNavStyle({...baseNavStyle, ...fixNav});
-        }else if(movingDown || navClick){
+        }else if(movingDown){
             updateScrollTop(currentPos);
             updateNavStyle({...navStyles, ...hideNav});
         }else if(currentPos !== 0){

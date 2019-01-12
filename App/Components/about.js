@@ -4,6 +4,12 @@ import {
   aside
 } from '../Assets/bio'
 import Me from '../Assets/pics/me.jpg'
+import {
+  ContentWrapper
+} from './styleLayout';
+import {
+  SectionHeader
+} from './styledText';
 
 export const About = () => {
 
@@ -68,9 +74,14 @@ export const About = () => {
   const title = 'About';
   
 	return (
-    <div style={{...aboutContainer}}>
-      <h1 style={{fontWeight: '700', fontSize: '4em', color: 'white'}}>{title}</h1>
-      <div style={{...section}}>
+    <ContentWrapper
+      width={'65%'}
+      marginAuto
+    >
+      <SectionHeader>
+        {title}
+      </SectionHeader>
+      <div id='#About' style={{...section}}>
         <div style={{...libSection}}>
           <p>{bio}</p>
           <br />
@@ -88,6 +99,6 @@ export const About = () => {
         </div>
         <img id='me' style={{filter: 'grayscale(80%)', maxHeight: '220px'}} src = {Me} />
       </div>
-    </div>
+    </ContentWrapper>
 	)
 }
