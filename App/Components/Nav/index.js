@@ -15,9 +15,11 @@ export const Navigation = () => {
         right: 5%;
         padding: 2.5% .5% 2.5% 0;
         color: white;
+        transition: all .25s ease-in-out;
 
         :hover{
             color: rgba(179, 248, 218);
+            text-decoration: underline;
         }
 
         ${props => props.withBorder && css`
@@ -32,6 +34,7 @@ export const Navigation = () => {
         paddingRight: '10%',
         height: '75px',
         width: '100%',
+        zIndex: '10',
         transition: 'all .5s ease-in-out'
     };
 
@@ -44,7 +47,6 @@ export const Navigation = () => {
         top: '0',
         backgroundColor: 'rgba(41, 61, 90, 1)',
         boxShadow: '0 2.5px 5px rgba(10, 10, 10, .4)',
-        zIndex: '10'
     };
 
     let[scrollTop, updateScrollTop] = useState(0);

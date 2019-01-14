@@ -14,7 +14,8 @@ export const InnerHeader = styled.h5`
 
 export const TextBlock = styled.p`
     font-size: 1.25em;
+    text-align: justify;
     ${props => props.padding && css`
-        padding: 1.25em;
+        padding: 1.25em 1.25em 1.25em 0;
     `}
 `;

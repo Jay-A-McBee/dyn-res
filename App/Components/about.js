@@ -93,8 +93,9 @@ export const About = () => {
     `}
   `
 
-  const List = styled.ul`
-    list-style: none;
+  const LibBlock = styled.div`
+    padding: .3em;
+    justify-content: flex-start;
   `
   
 	return (
@@ -108,12 +109,12 @@ export const About = () => {
           <TextBlock padding>{aside}</TextBlock>
           <InnerHeader underline>Stuff I work with:</InnerHeader>
           <Row>
-            <List>
-              {jsLibs.slice(0,4).map( lib => <li>{lib}</li>)}
-            </List>
-            <List>
-              {jsLibs.slice(4,jsLibs.length).map( lib => <li>{lib}</li>)}
-            </List>
+            <Column>
+              {jsLibs.slice(0,4).map( lib => <LibBlock>{lib}</LibBlock>)}
+            </Column>
+            <Column>
+              {jsLibs.slice(4,jsLibs.length).map( lib => <LibBlock>{lib}</LibBlock>)}
+            </Column>
           </Row>
         </Column>
         <FluidColumn justify={'center'}>

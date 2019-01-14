@@ -41,7 +41,7 @@ export const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: ${props => props.justify || 'flex-start'};
-  padding: 1.25em;
+  padding: 1.25em 1.25em 1.25em 0;
 `;
 
 export const FluidColumn = styled.div`
