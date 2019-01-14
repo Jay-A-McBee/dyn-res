@@ -1,33 +1,5 @@
 import styled, {css} from 'styled-components';
-
-const sizes = {
-  desktop: {
-    size: 770,
-    width: 'min-width'
-  },
-  tablet: {
-    size: 768,
-    width: 'max-width'
-  },
-  phone: {
-    size: 576,
-    width: 'max-width'
-  }
-};
-
-const media = Object.keys(sizes).reduce( (acc, label) => {
-    let {
-      size,
-      width
-    } = sizes[label];
-
-    acc[label] = (...args) => css`
-      @media only screen and (${width}: ${size/16}em) {
-          ${css(...args)}
-      }`
-
-    return acc;
-},{});
+import {Media} from '../Media';
 
 export const SectionWrapper = styled.section`
     display: flex;
@@ -40,11 +12,11 @@ export const ContentWrapper = styled.section`
   flex-direction: ${props => props.flexDirection || 'column'};
   justify-content: ${props => props.justify || 'space-between'};
   align-self: ${props => props.alignSelf || 'center'};
-  marginTop: 2em;
+  padding: ${props => props.padding || 'none'};
 
-  ${media.desktop`width: 65%`}
-  ${media.tablet`width: 75%`}
-  ${media.phone`width: 95%`}
+  ${Media.desktop`width: 65%`}
+  ${Media.tablet`width: 75%`}
+  ${Media.phone`width: 95%`}
 `;
 
 
@@ -53,8 +25,32 @@ export const InnerContent = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   
-  ${media.phone`
+  ${Media.phone`
     flex-direction: column;
+    justify-content: center;
+  `}
+`;
+
+export const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: ${props => props.justify || 'flex-start'};
+`;
+
+export const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: ${props => props.justify || 'flex-start'};
+  padding: 1.25em;
+`;
+
+export const FluidColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: ${props => props.justify || 'flex-start'};
+
+  ${Media.phone`
+    flex-direction: row;
     justify-content: center;
   `}
 `;

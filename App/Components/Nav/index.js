@@ -1,9 +1,29 @@
 import React, {useState, useEffect} from 'react';
+import styled, {css} from 'styled-components';
 import debounce from 'lodash.debounce';
 
 
 export const Navigation = () => {
     const navLinks = ['About', 'Experience', 'Projects'].reverse();
+
+    const NavButton = styled.a`
+        font-weight: 400; 
+        font-size: 1.25em; 
+        float: right; 
+        text-align: center;
+        position: relative;
+        right: 5%;
+        padding: 2.5% .5% 2.5% 0;
+        color: white;
+
+        :hover{
+            color: rgba(179, 248, 218);
+        }
+
+        ${props => props.withBorder && css`
+            border: .5px solid rgba(179, 248, 218)
+        `}
+    `;
 
     const heightBlock = window.innerHeight/10;
     
@@ -22,23 +42,14 @@ export const Navigation = () => {
     let fixNav = {
         position: 'fixed',
         top: '0',
-        backgroundColor: 'rgb(41, 61, 90)',
+        backgroundColor: 'rgba(41, 61, 90, 1)',
         boxShadow: '0 2.5px 5px rgba(10, 10, 10, .4)',
         zIndex: '10'
     };
 
-    const navLink = {
-        fontWeight: '400', 
-        fontSize: '1em', 
-        float: 'right', 
-        textAlign: 'center',
-        position: 'relative',
-        right: '5%',
-        padding: '2.5% .5%'
-    }
-
     let[scrollTop, updateScrollTop] = useState(0);
     let[navStyles, updateNavStyle] = useState(baseNavStyle);
+    let[scrollDirection, updateScrollDirection] = useState(null);
 
     const  calcScroll = (update) => {
         const currentPos = [
@@ -57,19 +68,26 @@ export const Navigation = () => {
         
         const currentPos = calcScroll();
 
-        const movedEnough = currentPos > 0 && currentPos < 150;
+        const movedEnough = currentPos > 0 && currentPos < 75;
         const movingDown = currentPos > scrollTop;
 
         if(movedEnough){
             updateScrollTop(currentPos);
-            updateNavStyle({...baseNavStyle, ...fixNav});
+            updateNavStyle({...navStyles, ...fixNav});
         }else if(movingDown){
             updateScrollTop(currentPos);
-            updateNavStyle({...navStyles, ...hideNav});
+            if(scrollDirection !== 'down'){
+                updateScrollDirection('down');
+                updateNavStyle({...navStyles, ...hideNav});
+            }
         }else if(currentPos !== 0){
             updateScrollTop(currentPos);
-            updateNavStyle({...baseNavStyle, ...fixNav})
+            if(scrollDirection !== 'up'){
+                updateScrollDirection('up');
+                updateNavStyle({...baseNavStyle, ...fixNav});
+            }
         }else{
+            updateScrollDirection(null);
             updateScrollTop(currentPos);
             updateNavStyle(baseNavStyle);
         }
@@ -78,7 +96,7 @@ export const Navigation = () => {
     useEffect(
         () => {
 
-            let checkScroll = debounce(respondToScroll, 100, {leading: true});
+            let checkScroll = debounce(respondToScroll, 150, {leading: true});
 
             window.addEventListener('scroll', checkScroll);
 
@@ -88,7 +106,7 @@ export const Navigation = () => {
 
     return(
         <nav style={{...navStyles}}>
-            {navLinks.map( title => <a key={title} href={`#${title}`} style={{...navLink}}>{`<${title} />`}</a>)}
+            {navLinks.map( title => <NavButton key={title} href={`#${title}`}>{`<${title} />`}</NavButton>)}
         </nav>
     )
 }
