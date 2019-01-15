@@ -20,9 +20,9 @@ const workContainer = {
 export const Work = ({workDescriptions}) => {
   return(
     <ContentWrapper
+      id='About' 
+      padding={'7.5em 0 7.5em 0'}
       justify={'center'}
-      width={'65%'}
-      marginAuton
     >
       <SectionHeader>Work Stuff</SectionHeader>
       <Experience

@@ -53,16 +53,15 @@ export default function AboutMe(){
   return(
     <div style={{display: 'flex', flexDirection: 'column'}}>
       <Navigation />
-        <Intro 
-          open={open}
-          toggleBio={toggle}
-        />
+        <Intro />
         <About />
-        <SectionWrapper id="work">
-          <Work
-            workDescriptions={work}
-          />
-        </SectionWrapper>
+        <div id='Experience'>
+          <SectionWrapper>
+            <Work
+              workDescriptions={work}
+            />
+          </SectionWrapper>
+        </div>
     </div>
   )
 }
