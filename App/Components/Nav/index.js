@@ -35,6 +35,8 @@ export const Navigation = () => {
         height: '75px',
         width: '100%',
         zIndex: '10',
+        position: 'fixed',
+        top: '0',
         transition: 'all .5s ease-in-out'
     };
 
@@ -43,8 +45,6 @@ export const Navigation = () => {
     }
 
     let fixNav = {
-        position: 'fixed',
-        top: '0',
         backgroundColor: 'rgba(41, 61, 90, 1)',
         boxShadow: '0 2.5px 5px rgba(10, 10, 10, .4)',
     };

@@ -14,9 +14,20 @@ export const ContentWrapper = styled.section`
   align-self: ${props => props.alignSelf || 'center'};
   padding: ${props => props.padding || 'none'};
 
+  ${props => props.offset && css`
+    position: relative;
+    ${props.offset}
+  `}
+
   ${Media.desktop`width: 65%`}
   ${Media.tablet`width: 75%`}
-  ${Media.phone`width: 95%`}
+  ${Media.phone`
+    width: 90%;
+    align-self: center;
+    ${props => props.offset && css`
+      position: static;
+    `}
+  `}
 `;
 
 
