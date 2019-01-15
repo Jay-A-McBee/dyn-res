@@ -14,7 +14,7 @@ export const Navigation = () => {
         position: relative;
         right: 5%;
         padding: 2.5% .5% 2.5% 0;
-        color: white;
+        color: rgba(226, 229, 232, 0.64);
         transition: all .25s ease-in-out;
 
         :hover{

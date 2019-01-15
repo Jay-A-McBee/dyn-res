@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {SocialLinks} from '../Components/SocialLinks';
 import {Intro} from '../Components/intro';
 import {About} from '../Components/About';
 import {Work} from '../Components/experience';
@@ -7,7 +8,9 @@ import {ProjectDescription} from './projdesc-page';
 import Carousel from '../Components/carousel';
 import {Navigation} from '../Components/Nav';
 import {
-    SectionWrapper
+    SectionWrapper,
+    Row,
+    Column
 } from '../Components/styleLayout';
 import '../style.css';
 
@@ -53,15 +56,20 @@ export default function AboutMe(){
   return(
     <div style={{display: 'flex', flexDirection: 'column'}}>
       <Navigation />
-        <Intro />
-        <About />
-        <div id='Experience'>
-          <SectionWrapper>
-            <Work
-              workDescriptions={work}
-            />
-          </SectionWrapper>
-        </div>
+      <Row>
+        <SocialLinks />
+        <Column>
+          <Intro />
+          <About />
+          <div id='Experience'>
+            <SectionWrapper>
+              <Work
+                workDescriptions={work}
+              />
+            </SectionWrapper>
+          </div>
+        </Column>
+      </Row>
     </div>
   )
 }

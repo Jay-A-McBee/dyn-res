@@ -27,15 +27,6 @@ img:hover{
   filter: none;
 }
 
-i{
-  color: rgba(28, 23, 22, 0.3);
-  transition: color .25s;
-}
-
-i:hover{
-  color: rgba(179, 248, 218, 0.82);
-}
-
 .topBar {
   display: flex;
   justify-content: space-between;

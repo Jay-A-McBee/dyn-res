@@ -61,7 +61,7 @@ export const Intro = ({toggleBio, open}) => {
             offset={'left: 7.5em;'}
         >
             <SectionHeader>Hi - I'm Austin McBee.</SectionHeader>
-            <InnerHeader>I write code for the web.</InnerHeader>
+            <InnerHeader color={'rgba(226, 229, 232, 0.64)'}>I write code for the web.</InnerHeader>
             <TextBlock padding>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</TextBlock>
             <Link target="_blank" href='mailto:jmcbee1@gmail.com'>Get in touch</Link>
         </ContentWrapper>

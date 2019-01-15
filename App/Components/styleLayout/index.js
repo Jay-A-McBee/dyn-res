@@ -42,6 +42,17 @@ export const InnerContent = styled.div`
   `}
 `;
 
+export const CollapsableColumn = styled.div`
+  width: 5em;
+  position: fixed;
+  bottom: 0;
+  padding: 0 2.5em;
+
+  ${Media.phone`
+    width: 0em;
+  `}
+`;
+
 export const Column = styled.div`
   display: flex;
   flex-direction: column;

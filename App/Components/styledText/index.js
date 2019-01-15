@@ -6,9 +6,9 @@ export const SectionHeader = styled.h1`
     text-decoration: ${props => props.underline ? 'underline' : 'none'};
 `;
 
-export const InnerHeader = styled.h5`
+export const InnerHeader = styled.h3`
     font-weight: 400;
-    color: white;
+    color: ${props => props.color || 'white'};
     text-decoration: ${props => props.underline ? 'underline' : 'none'};
 `;
 
