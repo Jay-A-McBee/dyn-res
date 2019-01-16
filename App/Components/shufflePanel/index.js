@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Modal} from '../modal';
 import {Carousel} from '../carousel';
+import styled, {css} from 'styled-components';
 
 const workContainer = {
   display: 'flex',
@@ -18,22 +19,20 @@ const listContainer = {
   padding: '0, 10px, 10px, 10px'
 }
 
-const workTitle = {
-  display: 'flex',
-  justifyContent: 'center',
-  padding: '10px',
-  transition: 'background-color .25s ease-in-out, border-left .25s ease-in-out',
-  position: 'relative',
-  left: '-1.5px'
-}
-
-
-const selectedWorkTitle = {
-  backgroundColor: 'rgba(209, 209, 214, .2)',
-  borderLeft: '1.5px solid rgba(179, 248, 218)',
-  ...workTitle
-}
-
+const WorkPlace = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  border: none;
+  background-color: inherit;
+  transition: all 0.5s cubic-bezier(1.000, -0.530, 0.405, 1.425);
+  position: relative;
+  left: -1.5px;
+  ${props => props.selected  && css`
+    background-color: rgba(209, 209, 214, .2);
+    border-left: 1.5px solid rgba(179, 248, 218);
+  `}
+`
 export const Experience = ({workDesc}) => {
   const employers = Object.keys(workDesc);
   
@@ -48,17 +47,16 @@ export const Experience = ({workDesc}) => {
 
   const toggleModal = () => toggleState(!isOpen);
 
-  const WorkTitle = ({title, handleClick, idx}) => title === selected ? (
-    <div name={title} onClick={handleClick} style={{...selectedWorkTitle}}>{title}</div>
-  ) : (
-    <div name={title} onClick={handleClick} style={{...workTitle}}>{title}</div>
-  );
-
 
   const WorkList = ({titles, handleClick}) => {
     return (
       <div style={{...listContainer}}>
-        {titles.map( (title, idx) => <WorkTitle key={idx} handleClick={handleClick} title={title} />)}
+        {titles.map( (title, idx) => title === selected ? (
+            <WorkPlace name={title} onClick={handleClick} selected>{title}</WorkPlace>
+          ) : (
+            <WorkPlace name={title} onClick={handleClick}>{title}</WorkPlace>
+          )
+        )}
       </div>
     )
   };
@@ -97,7 +95,11 @@ export const Experience = ({workDesc}) => {
             id={selected}
           />
         </>
-      ) : null}
+      ) : (
+        <>
+          <button style={{visibility: 'hidden'}}></button>
+        </>
+      )}
     </div>
   )
 }

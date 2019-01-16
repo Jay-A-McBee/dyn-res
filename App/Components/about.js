@@ -99,7 +99,7 @@ export const About = () => {
   `
   
 	return (
-    <ContentWrapper id='About' padding={'7.5em 0 7.5em 0'}>
+    <ContentWrapper id='About' padding={'3.5em 0'}>
       <SectionHeader>
         {title}
       </SectionHeader>

@@ -61,13 +61,9 @@ export default function AboutMe(){
         <Column>
           <Intro />
           <About />
-          <div id='Experience'>
-            <SectionWrapper>
-              <Work
-                workDescriptions={work}
-              />
-            </SectionWrapper>
-          </div>
+          <Work
+            workDescriptions={work}
+          />
         </Column>
       </Row>
     </div>

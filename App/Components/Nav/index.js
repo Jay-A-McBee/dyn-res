@@ -4,7 +4,7 @@ import debounce from 'lodash.debounce';
 
 
 export const Navigation = () => {
-    const navLinks = ['About', 'Experience', 'Projects'].reverse();
+    const navLinks = ['About', 'Work', 'Projects'].reverse();
 
     const NavButton = styled.a`
         font-weight: 400; 
