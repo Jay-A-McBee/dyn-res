@@ -100,7 +100,7 @@ export const About = () => {
   
 	return (
     <ContentWrapper id='About' padding={'3.5em 0'}>
-      <SectionHeader>
+      <SectionHeader highlight>
         {title}
       </SectionHeader>
       <InnerContent justify={'space-around'}>

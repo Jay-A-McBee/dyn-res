@@ -19,8 +19,12 @@ export const SocialLinks = () => {
 
     const VerticalLine = styled.div`
         width: .5em;
-        height: 10em;
+        height: ${props => props.height || '10em'};
         border-right: ${.75/16}em solid rgba(226, 229, 232, 0.64);
+        ${props => props.offset && css`
+            position: relative;
+            ${props.offset};
+        `}
     `;
 
     const marginBottom = {
@@ -32,11 +36,11 @@ export const SocialLinks = () => {
         color: rgba(226, 229, 232, 0.64);
     
         ${props => props.marginBottom && css`
-            margin-bottom: 1.15em;
+            margin-bottom: .15em;
         `}
 
         :hover {
-            color: rgba(179, 248, 218);
+            color: rgb(125, 224, 112);
         }
     `;
 
@@ -47,15 +51,17 @@ export const SocialLinks = () => {
                   <i className='zmdi zmdi-google'>
                   </i>
                 </Link>
+                <VerticalLine height={'2.5em'} offset={'right: .25em'}/>
                 <Link marginBottom target='_blank' href='https://github.com/Jay-A-McBee'>
                   <i className='zmdi zmdi-github-box'>
                   </i>
                 </Link>
+                <VerticalLine height={'2.5em'} offset={'left: .25em'} />
                 <Link marginBottom target='_blank' href='https://www.linkedin.com/in/jayaustinmcbee/'>
                     <i className='zmdi zmdi-linkedin-box'>
                     </i>
                 </Link>
-                <VerticalLine />
+                <VerticalLine height={'2.5em'} offset= {'right: .25em'}/>
             </CollapsableColumn>
         ) : null;
     }

@@ -24,7 +24,7 @@ export const Work = ({workDescriptions}) => {
       padding={'7.5em 0 7.5em 0'}
       justify={'center'}
     >
-      <SectionHeader>Work Stuff</SectionHeader>
+      <SectionHeader highlight>Work Stuff</SectionHeader>
       <Experience
         workDesc={workDescriptions}
       />

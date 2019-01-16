@@ -18,8 +18,7 @@ export const Navigation = () => {
         transition: all .25s ease-in-out;
 
         :hover{
-            color: rgba(179, 248, 218);
-            text-decoration: underline;
+            color: rgb(159, 234, 150);
         }
 
         ${props => props.withBorder && css`
@@ -108,7 +107,7 @@ export const Navigation = () => {
 
     return(
         <nav style={{...navStyles}}>
-            {navLinks.map( title => <NavButton key={title} href={`#${title}`}>{`<${title} />`}</NavButton>)}
+            {navLinks.map( title => <NavButton key={title} href={`#${title}`}>{title}</NavButton>)}
         </nav>
     )
 }
