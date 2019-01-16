@@ -5,7 +5,7 @@ export const SectionHeader = styled.h1`
     color: ${props => props.highlight ? 'rgba(255, 241, 239, .99)' : 'rgb(237, 157, 85)'};
     text-decoration: ${props => props.underline ? 'underline' : 'none'};
     font-size: 5em;
-    margin-bottom: -.25em;
+    margin-bottom: ${props => props.spread ? '-.07em': '-.25em'};
 `;
 
 export const InnerHeader = styled.h3`
