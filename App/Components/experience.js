@@ -20,11 +20,11 @@ const workContainer = {
 export const Work = ({workDescriptions}) => {
   return(
     <ContentWrapper
-      id='About' 
+      id='Work' 
       padding={'7.5em 0 7.5em 0'}
       justify={'center'}
     >
-      <SectionHeader>Work Stuff</SectionHeader>
+      <SectionHeader highlight>Work Stuff</SectionHeader>
       <Experience
         workDesc={workDescriptions}
       />

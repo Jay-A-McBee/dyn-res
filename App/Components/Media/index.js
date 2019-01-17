@@ -1,4 +1,6 @@
+import React, {useState, useEffect} from 'react';
 import styled, {css} from 'styled-components';
+import debounce from 'lodash.debounce';
 
 const sizes = {
   desktop: {
@@ -28,3 +30,34 @@ export const Media = Object.keys(sizes).reduce( (acc, label) => {
 
     return acc;
 },{});
+
+export const MediaWrap = ({children}) => {
+  let[device, setDevice] = useState('desktop');
+
+  const updateWidth = () => {
+    const width = window.innerWidth;
+
+    if(width > 770){
+      setDevice('desktop');
+    }else if(width > 768){
+      setDevice('tablet');
+    }else if(width > 576){
+      setDevice('phone');
+    }else{
+      setDevice('phone');
+    }
+  };
+
+  useEffect( () => {
+
+    const checkWidth = debounce(updateWidth, 500);
+
+    window.addEventListener('resize', checkWidth);
+
+    () => window.removeEventListener('resize', checkWidth);
+  })
+
+  return (
+    children(device)
+  )
+}

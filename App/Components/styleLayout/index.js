@@ -5,7 +5,7 @@ export const SectionWrapper = styled.section`
     display: flex;
     flex-direction: ${props => props.flexDirection || 'column'};
     justify-content:${props => props.justify || 'space-between'};
-    margin-top: 2em;
+    margin-top: 5em;
 `;
 
 export const ContentWrapper = styled.section`
@@ -13,6 +13,7 @@ export const ContentWrapper = styled.section`
   justify-content: ${props => props.justify || 'space-between'};
   align-self: ${props => props.alignSelf || 'center'};
   padding: ${props => props.padding || 'none'};
+  margin-top: 5em;
 
   ${props => props.offset && css`
     position: relative;
@@ -39,6 +40,17 @@ export const InnerContent = styled.div`
   ${Media.phone`
     flex-direction: column;
     justify-content: center;
+  `}
+`;
+
+export const CollapsableColumn = styled.div`
+  width: 5em;
+  position: fixed;
+  bottom: 0;
+  padding: 0 2.5em;
+
+  ${Media.phone`
+    width: 0em;
   `}
 `;
 

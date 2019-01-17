@@ -6,8 +6,8 @@ html{
 
 body{
   font-family: 'Roboto', courier;
-  color: rgba(179, 248, 218);
-  background-color: rgba(41, 61, 90, 0.99);
+  color: rgb(252, 219, 148);
+  background-color: rgba(114, 98, 99, 0.99);
   background-size: 100% 100%;
   background-attachment: fixed;
 }
@@ -25,15 +25,6 @@ p{
 
 img:hover{
   filter: none;
-}
-
-i{
-  color: rgba(28, 23, 22, 0.3);
-  transition: color .25s;
-}
-
-i:hover{
-  color: rgba(179, 248, 218, 0.82);
 }
 
 .topBar {
