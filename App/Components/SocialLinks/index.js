@@ -14,7 +14,7 @@ export const SocialLinks = () => {
         width: '5em',
         position: 'fixed',
         bottom: '0',
-        padding: '0 2.5em',
+        padding: '0 3.5em',
     }
 
     const VerticalLine = styled.div`

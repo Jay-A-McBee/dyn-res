@@ -80,8 +80,8 @@ export const About = () => {
 
   const Image = styled.img`
     height: 22.5em;
-    filter: grayscale(80%);
     transition: all .25s ease-in-out;
+    filter: sepia(100%);
 
     :hover{
       filter: none;

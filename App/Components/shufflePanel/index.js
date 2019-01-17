@@ -14,33 +14,56 @@ const workContainer = {
 const listContainer = {
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
+  justifyContent: 'flex-start',
   borderLeft: '1.5px solid rgba(10, 10, 10, 0.3)',
-  padding: '0, 10px, 10px, 10px'
+  position: 'relative',
 }
 
 const WorkPlace = styled.div`
   display: flex;
-  justify-content: center;
-  padding: 10px;
+  align-items: center;
   border: none;
   background-color: inherit;
-  transition: all 0.5s cubic-bezier(1.000, -0.530, 0.405, 1.425);
   position: relative;
   left: -1.5px;
-  ${props => props.selected  && css`
+  height: ${40/16}em;
+  transition: all 0.5s ease-in-out;
+  padding: 0 1.5em;
+
+  :hover{
     background-color: rgba(209, 209, 214, .2);
-    border-left: 1.5px solid rgba(179, 248, 218);
-  `}
+  }
 `
+
+const VerticalLine = styled.span`
+    width: .12em;
+    height: ${40/16}em;
+    background: rgb(252, 219, 148);
+    transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.1s;
+    display: block;
+    position: absolute;
+    transform: translateY(0);
+    top: 0px;
+    left: -.1em;
+    ${props => props.offset && css`
+        transform: translateY(${(40/16) * props.offset}em)
+    `}
+`;
+
 export const Experience = ({workDesc}) => {
   const employers = Object.keys(workDesc);
   
   let[selected, selectWorkExperience] = useState(employers[0]);
+  let[offset, updateOffset] = useState(0);
 
   const updateSelected = (e) => {
     e.preventDefault();
-    selected = selectWorkExperience(e.nativeEvent.target.getAttribute('name'));
+    const title = e.nativeEvent.target.getAttribute('name');
+    const allTabs = Object.keys(workDesc);
+    const next = allTabs.indexOf(title);
+debugger
+    offset = updateOffset(next);
+    selected = selectWorkExperience(title);
   }
 
   let[isOpen, toggleState] = useState(false);
@@ -48,15 +71,18 @@ export const Experience = ({workDesc}) => {
   const toggleModal = () => toggleState(!isOpen);
 
 
-  const WorkList = ({titles, handleClick}) => {
+  const WorkList = ({titles, handleClick, offset}) => {
     return (
       <div style={{...listContainer}}>
-        {titles.map( (title, idx) => title === selected ? (
-            <WorkPlace name={title} onClick={handleClick} selected>{title}</WorkPlace>
-          ) : (
-            <WorkPlace name={title} onClick={handleClick}>{title}</WorkPlace>
-          )
-        )}
+        {titles.map( (title, idx) => (
+          <WorkPlace 
+            name={title} 
+            onClick={handleClick} 
+            selected={selected === title}
+          >{title}
+          </WorkPlace>
+        ))}
+        <VerticalLine offset={offset} />
       </div>
     )
   };
@@ -79,10 +105,17 @@ export const Experience = ({workDesc}) => {
 
   return (
     <div style={{...workContainer}}>
-      <WorkList 
-        titles={employers}
-        handleClick={updateSelected} 
-      />
+      <div style={{...listContainer}}>
+        {employers.map( (title, idx) => (
+          <WorkPlace 
+            name={title} 
+            onClick={updateSelected} 
+            selected={selected === title}
+          >{title}
+          </WorkPlace>
+        ))}
+        <VerticalLine offset={offset} />
+      </div>
       <WorkDescription {...workDesc[selected]}/>
       {selected === 'SPLT' ? (
         <>

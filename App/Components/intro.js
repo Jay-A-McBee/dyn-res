@@ -65,7 +65,7 @@ export const Intro = ({toggleBio, open}) => {
         <ContentWrapper 
             alignSelf={'flex-start'} 
             padding={'7.5em 0'}
-            offset={'left: 7.5em;'}
+            offset={'left: 10em;'}
             justify={'space-around'}
         >
             <SectionHeader spread><span style={{...greetStyles}}>Hi - my name is</span> Austin McBee.</SectionHeader>
