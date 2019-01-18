@@ -1,4 +1,6 @@
 import React from 'react';
+import styled, {css} from 'styled-components';
+import {Media} from '../Media';
 
 export const Modal = ({child, dialogAnimation, open, toggle, id}) => {
     
@@ -32,9 +34,24 @@ export const Modal = ({child, dialogAnimation, open, toggle, id}) => {
         }
     }
 
+
+    const ModalBody = styled.div`
+      position: relative;
+      background-color: #fefefe;
+      margin: auto;
+      overflow: scroll;
+      padding: 0;
+      border: 1px solid #888;
+      max-width: 60%;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      ${Media.phone`
+        max-width: 90%;
+      `}
+    `
+
     return (
         <div key='modal' className={`modal-overlay ${open ? 'showFast' : 'hide'}`} onClick={closeWithAnim}>
-            <div id={`modal_body_${id}`} className={`modal-body ${open ? enter : ''}`}>
+            <ModalBody id={`modal_body_${id}`} className={`${open ? enter : ''}`}>
                 <i 
                     onClick={closeWithAnim}
                     style={{color: 'rgba(122, 203, 168, 0.9)'}}
@@ -43,7 +60,7 @@ export const Modal = ({child, dialogAnimation, open, toggle, id}) => {
                 arrow_back
                 </i>
                 {Array.isArray(child) ? [...child] : child}
-            </div>
+            </ModalBody>
         </div>
     );
 }

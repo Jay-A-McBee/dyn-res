@@ -44,7 +44,7 @@ export const SocialLinks = () => {
         }
     `;
 
-    const SocialLinks = (device) => {
+    const SocialLinks = ({device}) => {
         return device !== 'phone' ? (
             <CollapsableColumn>
                 <Link marginBottom href='mailto:jmcbee1@gmail.com'>
@@ -68,6 +68,6 @@ export const SocialLinks = () => {
 
 
     return (
-        <MediaWrap children={SocialLinks} />
+        <MediaWrap component={SocialLinks} />
     )
 }

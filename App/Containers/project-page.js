@@ -16,7 +16,7 @@ import projectDescriptions  from '../Assets/shortDescription';
 import ProjectInfo from '../Components/projectinfo';
 import {
 	MakeImageObj,
-	MakeDescObj
+	makeDescObj
 } from '../helpers';
 
 export const ProjectPage = () => {
@@ -47,7 +47,7 @@ export const ProjectPage = () => {
   const {
   	images,
   	descriptions
-  } = MakeDescObj(
+  } = makeDescObj(
     picTitleRef, 
     [fairshare, jmen, sentiment, electric, sandBox, slide, admin]
   );

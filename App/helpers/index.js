@@ -9,9 +9,9 @@ export const MakeImageObj = (arrOfRefs) => {
   }))
 };
 
-export const MakeDescObj = (arrOfRefs, arrOfDesc) => {
+export const makeDescObj = (arrOfRefs, arrOfDesc) => {
   let images = MakeImageObj(arrOfRefs);
-  
+  debugger
   const descriptions = arrOfDesc.reduce( (acc,descObj, idx) => {
       acc[images[idx].prop] = Object.assign({}, descObj, images[idx]);
       return acc;

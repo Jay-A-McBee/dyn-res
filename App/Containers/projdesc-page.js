@@ -1,6 +1,6 @@
 import React from 'react';
 import {Modal} from '../Components/Modal';
-import {MakeDescObj} from '../helpers';
+import {makeDescObj} from '../helpers';
 import descriptions  from '../Assets/shortDescription';
 import fairsh from '../Assets/pics/fairshareShell.png';
 import journeysh from '../Assets/pics/journeymenShell.png';
@@ -24,7 +24,7 @@ export const ProjectDescription = ({closeDesc, active}) => {
     sandBox 
   } = descriptions;
 
-  const allDescriptions = MakeDescObj(
+  const allDescriptions = makeDescObj(
     picTitleRef, 
     closeDesc, 
     [fairshare, jmen, sentiment, kitkat, electric, sandBox]

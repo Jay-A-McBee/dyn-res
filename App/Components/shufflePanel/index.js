@@ -2,6 +2,13 @@ import React, {useState} from 'react';
 import {Modal} from '../modal';
 import {Carousel} from '../carousel';
 import styled, {css} from 'styled-components';
+import adminScreen from '../../Assets/pics/adminScreen.png';
+import {admin} from '../../Assets/shortDescription';
+import {makeDescObj} from '../../helpers';
+import ProjectInfo from '../projectinfo';
+import {MediaWrap} from '../Media';
+
+
 
 const workContainer = {
   display: 'flex',
@@ -59,9 +66,8 @@ export const Experience = ({workDesc}) => {
   const updateSelected = (e) => {
     e.preventDefault();
     const title = e.nativeEvent.target.getAttribute('name');
-    const allTabs = Object.keys(workDesc);
-    const next = allTabs.indexOf(title);
-debugger
+    const next = employers.indexOf(title);
+
     offset = updateOffset(next);
     selected = selectWorkExperience(title);
   }
@@ -70,22 +76,14 @@ debugger
 
   const toggleModal = () => toggleState(!isOpen);
 
+  const picTitleRef = [[adminScreen, 'admin']];
 
-  const WorkList = ({titles, handleClick, offset}) => {
-    return (
-      <div style={{...listContainer}}>
-        {titles.map( (title, idx) => (
-          <WorkPlace 
-            name={title} 
-            onClick={handleClick} 
-            selected={selected === title}
-          >{title}
-          </WorkPlace>
-        ))}
-        <VerticalLine offset={offset} />
-      </div>
-    )
-  };
+  const {
+    images,
+    descriptions
+  } = makeDescObj(picTitleRef, [admin]);
+debugger
+  const projectDescComponents = Object.keys(descriptions).map( description => <ProjectInfo key={'img'} {...descriptions[description]}/>); 
 
   const WorkDescription = ({title, description, dates}) => {
     return (
@@ -123,14 +121,20 @@ debugger
           <Modal
             open={isOpen}
             toggle={toggleModal}
-            child={<Carousel />}
+            child={
+              <MediaWrap
+                component={Carousel}
+                slideImages={images} 
+                children={projectDescComponents} 
+              />
+            }
             dialogAnimation={'top'}
             id={selected}
           />
         </>
       ) : (
         <>
-          <button style={{visibility: 'hidden'}}></button>
+          <button style={{visibility: 'hidden'}}>View Work</button>
         </>
       )}
     </div>
