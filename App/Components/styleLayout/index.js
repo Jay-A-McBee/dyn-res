@@ -64,7 +64,11 @@ export const FixedWidthColumn = styled(Column)`
   width: ${props => props.width}
 `;
 
-export const FluidColumn = styled(Column)`
+export const FluidColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: ${props => props.justify || 'flex-start'};
+
   ${Media.phone`
     flex-direction: row;
     justify-content: center;

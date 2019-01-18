@@ -6,7 +6,8 @@ import adminScreen from '../../Assets/pics/adminScreen.png';
 import {admin} from '../../Assets/shortDescription';
 import {makeDescObj} from '../../helpers';
 import ProjectInfo from '../projectinfo';
-import {MediaWrap} from '../Media';
+import {MediaWrap, Media} from '../Media';
+import {FluidColumn} from '../styleLayout';
 
 
 
@@ -18,13 +19,14 @@ const workContainer = {
   margin: 'auto',
 }
 
-const listContainer = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'flex-start',
-  borderLeft: '1.5px solid rgba(10, 10, 10, 0.3)',
-  position: 'relative',
-}
+const ListContainer = styled(FluidColumn)`
+  border-left: 1.5px solid rgba(10, 10, 10, 0.3);
+  position: relative;
+
+  ${Media.phone`
+    border-bottom: 1.5px solid rgba(10, 10, 10, 0.3);
+  `}
+`;
 
 const WorkPlace = styled.div`
   display: flex;
@@ -34,6 +36,7 @@ const WorkPlace = styled.div`
   position: relative;
   left: -1.5px;
   height: ${40/16}em;
+  width: ${60/16}em;
   transition: all 0.5s ease-in-out;
   padding: 0 1.5em;
 
@@ -42,7 +45,7 @@ const WorkPlace = styled.div`
   }
 `
 
-const VerticalLine = styled.span`
+const Highlight = styled.span`
     width: .12em;
     height: ${40/16}em;
     background: rgb(252, 219, 148);
@@ -103,7 +106,7 @@ debugger
 
   return (
     <div style={{...workContainer}}>
-      <div style={{...listContainer}}>
+      <ListContainer>
         {employers.map( (title, idx) => (
           <WorkPlace 
             name={title} 
@@ -112,8 +115,8 @@ debugger
           >{title}
           </WorkPlace>
         ))}
-        <VerticalLine offset={offset} />
-      </div>
+        <Highlight offset={offset} />
+      </ListContainer>
       <WorkDescription {...workDesc[selected]}/>
       {selected === 'SPLT' ? (
         <>
