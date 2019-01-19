@@ -8,7 +8,7 @@ import {
 } from '../Media';
 
 
-export const SocialLinks = ({device}) => {
+export const SocialLinks = ({width}) => {
 
     const fixedWidthColumn = {
         width: '5em',
@@ -44,9 +44,8 @@ export const SocialLinks = ({device}) => {
         }
     `;
 
-    const Links = ({device}) => {
-        debugger
-        return device !== "phone" ? (
+    const Links = ({width}) => {
+        return width > 500 ? (
             <CollapsableColumn>
                 <Link marginBottom href='mailto:jmcbee1@gmail.com'>
                   <i className='zmdi zmdi-google'>
@@ -71,8 +70,8 @@ export const SocialLinks = ({device}) => {
 
     return (
         <MediaWrap
-            render={({device}) => (
-                <Links device={device} />
+            render={({width}) => (
+                <Links width={width} />
             )}
         />
     )

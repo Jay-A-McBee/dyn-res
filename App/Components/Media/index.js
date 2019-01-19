@@ -32,20 +32,10 @@ export const Media = Object.keys(sizes).reduce( (acc, label) => {
 },{});
 
 export const MediaWrap = ({render}) => {
-  let[device, setDevice] = useState('desktop');
+  let[width, setWidth] = useState(window.innerWidth);
 
-  const updateWidth = () => {
-    const width = window.innerWidth;
-
-    if(width > 770){
-      setDevice('desktop');
-    }else if(width > 768){
-      setDevice('tablet');
-    }else if(width > 576){
-      setDevice('phone');
-    }else{
-      setDevice('phone');
-    }
+  function updateWidth(){
+    setWidth(window.innerWidth);
   };
 
   useEffect( () => {
@@ -58,6 +48,6 @@ export const MediaWrap = ({render}) => {
   })
 
   return (
-    render({device})
+    render({width})
   )
 }

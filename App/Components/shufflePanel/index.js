@@ -34,64 +34,81 @@ const WorkContainer = styled(Row)`
   `}
 `
 
-const ListContainer = styled(Column)`
+const ListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   border-left: 1.5px solid rgba(10, 10, 10, 0.3);
   position: relative;
 
   ${Media.phone`
+    display: flex;
     flex-direction: row;
     justify-content: space-around;
-    border: 1.5px solid rgba(10, 10, 10, 0.3);
+    align-self: stretch;
+    border-bottom: 1.5px solid rgba(10, 10, 10, 0.3);
+    border-left: none;
     position: relative;
   `}
 `;
 
 const WorkPlace = styled.div`
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  border: none;
-  background-color: inherit;
-  position: relative;
-  left: -1.5px;
   height: ${40/16}em;
-  width: ${60/16}em;
+  width: ${90/16}em;
   transition: all 0.5s ease-in-out;
-  padding: 0 1.5em;
+  padding: 2.5px;
 
   :hover{
     background-color: rgba(209, 209, 214, .2);
   }
 `
 
-const Highlight = styled.div`
+const Vertical = styled.div`
+    position: absolute;
+    display: block;
     width: .12em;
     height: ${40/16}em;
     background: rgb(252, 219, 148);
     transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.1s;
-    display: block;
-    position: absolute;
     transform: translateY(0);
     top: 0px;
-    left: -.1em;
+    left: 0px;
+    z-index: 10;
     ${props => props.offset && css`
         transform: translateY(${(40/16) * props.offset}em);
     `}
+`;
 
-    ${Media.phone`
-      width: ${60/16}em;
-      height: .12em;
-      top: ${40/16}em;
-      transform: translateX(0);
-      background: rgb(252, 219, 148);
-      transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.1s;
-      display: block;
-      position: absolute;
+const Horizontal = styled.div`
+    position: absolute;
+    display: block;
+    width: ${90/16}em;
+    height: .12em;
+    background: rgb(252, 219, 148);
+    transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.1s;
+    top: auto;
+    bottom: 0px;
+    left: 0px;
+    transform: translateX(0);
 
-      ${props => props.offset && css`
-        transform: translateX(${(60/16) * props.offset}em);
-      `}
+    ${props => props.offset && css`
+      transform: translateX(${(120/16) * props.offset}em);
     `}
 `;
+
+const Highlight = (props) => (
+  <MediaWrap
+    render={({width}) => width > 500 ? (
+      <Vertical {...props} />
+    ) : (
+      <Horizontal {...props} />
+    )}
+  />
+)
 
 const picTitleRef = [[adminScreen, 'admin']];
 
@@ -161,11 +178,11 @@ export const Experience = ({workDesc}) => {
           toggle={toggleModal}
           child={
             <MediaWrap
-              render={({device}) => (
+              render={({width}) => (
                 <Carousel
                   slideImages={images} 
                   children={projectDescComponents} 
-                  device={device}
+                  width={width}
                 />
               )}
             />

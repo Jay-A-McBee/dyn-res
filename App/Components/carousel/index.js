@@ -7,7 +7,7 @@ import {
   Row
 } from '../styleLayout';
 
-export const Carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages, device}) => {
+export const Carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages, width}) => {
 
   const reelStyles = {
     display: 'flex',
@@ -84,7 +84,7 @@ export const Carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages
 
   return (
       <>
-      {device !== 'phone' && 
+      {width > 500 && 
         <div style={{"justifyContent": 'center'}} className='carousel mdl-grid'>
           <div className='mdl-cell mdl-cell--2-col' style={{...chevronContainer}}>
             <RotateIcon
@@ -117,7 +117,7 @@ export const Carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages
           </div>
         </div>
     }
-    {device === 'phone' && 
+    {width < 500 && 
       <Column>
         <div>{children[active]}</div>
         <Row justify={'center'}>
