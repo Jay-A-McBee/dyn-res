@@ -8,7 +8,7 @@ import {
 } from '../Media';
 
 
-export const SocialLinks = () => {
+export const SocialLinks = ({device}) => {
 
     const fixedWidthColumn = {
         width: '5em',
@@ -44,8 +44,9 @@ export const SocialLinks = () => {
         }
     `;
 
-    const SocialLinks = ({device}) => {
-        return device !== 'phone' ? (
+    const Links = ({device}) => {
+        debugger
+        return device !== "phone" ? (
             <CollapsableColumn>
                 <Link marginBottom href='mailto:jmcbee1@gmail.com'>
                   <i className='zmdi zmdi-google'>
@@ -64,10 +65,15 @@ export const SocialLinks = () => {
                 <VerticalLine height={'2.5em'} offset= {'right: .25em'}/>
             </CollapsableColumn>
         ) : null;
-    }
+    };
+
 
 
     return (
-        <MediaWrap component={SocialLinks} />
+        <MediaWrap
+            render={({device}) => (
+                <Links device={device} />
+            )}
+        />
     )
 }

@@ -82,56 +82,59 @@ export const Carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages
     </i>
   )
 
-  debugger
-
-  return device !== 'phone' ? (
-    <div style={{"justifyContent": 'center'}} className='carousel mdl-grid'>
-      <div className='mdl-cell mdl-cell--2-col' style={{...chevronContainer}}>
-        <RotateIcon
-          handleClick={selectNext}
-          size={'40px'}
-          iconName={'chevron_left'}
-        />
-      </div>
-      <div className='mdl-cell mdl-cell--8-col'>{children[active]}</div>
-      <div className='mdl-cell mdl-cell--2-col' style={{...chevronContainer}}>
-        <RotateIcon
-          handleClick={selectPrevious}
-          size={'40px'}
-          iconName={'chevron_right'}
-        />
-      </div>
-      <div onClick={selectSpecific} style={{...reelStyles}}>
-        {projectImages ? projectImages.map( (props, idx) => {
-          if(idx === active){
-            return (  
-              <ProjectImage {...props}  />
-            )
-          }else{
-            props.styles = {...props.styles, ...inactive};
-            return (
-              <ProjectImage {...props} />
-            )
-          }
-        }) : ['1', '2', '3'].map( val => <p>{val}</p>)}
-      </div>
-    </div>
-  ) : (
-    <Column>
-      <div>{children[active]}</div>
-      <Row justify={'center'}>
-        <RotateIcon
-          handleClick={selectNext}
-          size={'20px'}
-          iconName={'chevron_left'}
-        />
-        {slideImages && slideImages.map( image => <Circle />)}
-        <RotateIcon
-          handleClick={selectPrevious}
-          size={'20px'}
-          iconName={'chevron_right'}
-        />
-      </Row>
-    </Column>
+  return (
+      <>
+      {device !== 'phone' && 
+        <div style={{"justifyContent": 'center'}} className='carousel mdl-grid'>
+          <div className='mdl-cell mdl-cell--2-col' style={{...chevronContainer}}>
+            <RotateIcon
+              handleClick={selectNext}
+              size={'40px'}
+              iconName={'chevron_left'}
+            />
+          </div>
+          <div className='mdl-cell mdl-cell--8-col'>{children[active]}</div>
+          <div className='mdl-cell mdl-cell--2-col' style={{...chevronContainer}}>
+            <RotateIcon
+              handleClick={selectPrevious}
+              size={'40px'}
+              iconName={'chevron_right'}
+            />
+          </div>
+          <div onClick={selectSpecific} style={{...reelStyles}}>
+            {projectImages ? projectImages.map( (props, idx) => {
+              if(idx === active){
+                return (  
+                  <ProjectImage {...props}  />
+                )
+              }else{
+                props.styles = {...props.styles, ...inactive};
+                return (
+                  <ProjectImage {...props} />
+                )
+              }
+            }) : ['1', '2', '3'].map( val => <p>{val}</p>)}
+          </div>
+        </div>
+    }
+    {device === 'phone' && 
+      <Column>
+        <div>{children[active]}</div>
+        <Row justify={'center'}>
+          <RotateIcon
+            handleClick={selectNext}
+            size={'20px'}
+            iconName={'chevron_left'}
+          />
+          {slideImages && slideImages.map( image => <Circle />)}
+          <RotateIcon
+            handleClick={selectPrevious}
+            size={'20px'}
+            iconName={'chevron_right'}
+          />
+        </Row>
+      </Column>
+    }
+    </>
   )
 };

@@ -7,7 +7,11 @@ import {admin} from '../../Assets/shortDescription';
 import {makeDescObj} from '../../helpers';
 import ProjectInfo from '../projectinfo';
 import {MediaWrap, Media} from '../Media';
-import {FluidColumn} from '../styleLayout';
+import {
+  FluidColumn, 
+  Row, 
+  Column
+} from '../styleLayout';
 
 
 
@@ -19,12 +23,26 @@ const workContainer = {
   margin: 'auto',
 }
 
-const ListContainer = styled(FluidColumn)`
+const WorkContainer = styled(Row)`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+  margin: auto;
+  ${Media.phone`
+    flex-direction: column;
+  `}
+`
+
+const ListContainer = styled(Column)`
   border-left: 1.5px solid rgba(10, 10, 10, 0.3);
   position: relative;
 
   ${Media.phone`
-    border-bottom: 1.5px solid rgba(10, 10, 10, 0.3);
+    flex-direction: row;
+    justify-content: space-around;
+    border: 1.5px solid rgba(10, 10, 10, 0.3);
+    position: relative;
   `}
 `;
 
@@ -45,7 +63,7 @@ const WorkPlace = styled.div`
   }
 `
 
-const Highlight = styled.span`
+const Highlight = styled.div`
     width: .12em;
     height: ${40/16}em;
     background: rgb(252, 219, 148);
@@ -56,10 +74,34 @@ const Highlight = styled.span`
     top: 0px;
     left: -.1em;
     ${props => props.offset && css`
-        transform: translateY(${(40/16) * props.offset}em)
+        transform: translateY(${(40/16) * props.offset}em);
+    `}
+
+    ${Media.phone`
+      width: ${60/16}em;
+      height: .12em;
+      top: ${40/16}em;
+      transform: translateX(0);
+      background: rgb(252, 219, 148);
+      transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.1s;
+      display: block;
+      position: absolute;
+
+      ${props => props.offset && css`
+        transform: translateX(${(60/16) * props.offset}em);
+      `}
     `}
 `;
 
+const picTitleRef = [[adminScreen, 'admin']];
+
+const {
+  images,
+  descriptions
+} = makeDescObj(picTitleRef, [admin]);
+
+const projectDescComponents = Object.keys(descriptions).map( description => <ProjectInfo key={'img'} {...descriptions[description]}/>); 
+  
 export const Experience = ({workDesc}) => {
   const employers = Object.keys(workDesc);
   
@@ -79,14 +121,6 @@ export const Experience = ({workDesc}) => {
 
   const toggleModal = () => toggleState(!isOpen);
 
-  const picTitleRef = [[adminScreen, 'admin']];
-
-  const {
-    images,
-    descriptions
-  } = makeDescObj(picTitleRef, [admin]);
-debugger
-  const projectDescComponents = Object.keys(descriptions).map( description => <ProjectInfo key={'img'} {...descriptions[description]}/>); 
 
   const WorkDescription = ({title, description, dates}) => {
     return (
@@ -99,13 +133,16 @@ debugger
   }
 
 
+
+
   let {
     title,
     description
   } = workDesc[selected];
 
+
   return (
-    <div style={{...workContainer}}>
+    <WorkContainer>
       <ListContainer>
         {employers.map( (title, idx) => (
           <WorkPlace 
@@ -118,28 +155,24 @@ debugger
         <Highlight offset={offset} />
       </ListContainer>
       <WorkDescription {...workDesc[selected]}/>
-      {selected === 'SPLT' ? (
-        <>
-          <button onClick={toggleModal}>View Work</button>
-          <Modal
-            open={isOpen}
-            toggle={toggleModal}
-            child={
-              <MediaWrap
-                component={Carousel}
-                slideImages={images} 
-                children={projectDescComponents} 
-              />
-            }
-            dialogAnimation={'top'}
-            id={selected}
-          />
-        </>
-      ) : (
-        <>
-          <button style={{visibility: 'hidden'}}>View Work</button>
-        </>
-      )}
-    </div>
+        <button onClick={toggleModal}>View Work</button>
+        <Modal
+          open={isOpen}
+          toggle={toggleModal}
+          child={
+            <MediaWrap
+              render={({device}) => (
+                <Carousel
+                  slideImages={images} 
+                  children={projectDescComponents} 
+                  device={device}
+                />
+              )}
+            />
+          }
+          dialogAnimation={'top'}
+          id={selected}
+        />
+    </WorkContainer>
   )
 }

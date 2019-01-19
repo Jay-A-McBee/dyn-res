@@ -31,7 +31,7 @@ export const Media = Object.keys(sizes).reduce( (acc, label) => {
     return acc;
 },{});
 
-export const MediaWrap = ({component, ...rest}) => {
+export const MediaWrap = ({render}) => {
   let[device, setDevice] = useState('desktop');
 
   const updateWidth = () => {
@@ -58,6 +58,6 @@ export const MediaWrap = ({component, ...rest}) => {
   })
 
   return (
-    component({device, ...rest})
+    render({device})
   )
 }
