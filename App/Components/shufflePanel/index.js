@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import ModalComponent from '../Modal';
-import CarouselComponent from '../Carousel';
+import CarouselComponent from '../Carousel/index';
 import styled, {css} from 'styled-components';
 import adminScreen from '../../Assets/pics/adminScreen.png';
 import {admin} from '../../Assets/shortDescription';
