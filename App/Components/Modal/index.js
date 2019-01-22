@@ -44,7 +44,7 @@ const ModalOverlay = styled.div`
     `}
 `;
 
-export const Modal = ({child, id}) => {
+export const ModalComponent = ({child, id}) => {
     
     let[isOpen, toggle] = useState(null);
 

@@ -7,7 +7,7 @@ import {
   Row
 } from '../styleLayout';
 
-export const Carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages, width}) => {
+export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], slideImages, width}) => {
 
   const reelStyles = {
     display: 'flex',

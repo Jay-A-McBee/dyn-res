@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {Modal} from '../modal';
-import {Carousel} from '../carousel';
+import {ModalComponent} from '../Modal';
+import {CarouselComponent} from '../Carousel';
 import styled, {css} from 'styled-components';
 import adminScreen from '../../Assets/pics/adminScreen.png';
 import {admin} from '../../Assets/shortDescription';
@@ -171,11 +171,11 @@ export const Experience = ({workDesc}) => {
         <Highlight offset={offset} />
       </ListContainer>
       <WorkDescription {...workDesc[selected]}/>
-      <Modal
+      <ModalComponent
         child={
           <MediaWrap
             render={({width}) => (
-              <Carousel
+              <CarouselComponent
                 slideImages={images} 
                 children={projectDescComponents} 
                 width={width}
