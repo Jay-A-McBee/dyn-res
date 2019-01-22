@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import ModalComponent from '../Modal';
-import CarouselComponent from '../Carousel/index';
+import ModalComponent from '../modal';
+import {CarouselComponent} from '../carousel';
 import styled, {css} from 'styled-components';
 import adminScreen from '../../Assets/pics/adminScreen.png';
 import {admin} from '../../Assets/shortDescription';
@@ -15,6 +15,7 @@ import {
 
 
 const WorkContainer = styled(Row)`
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
