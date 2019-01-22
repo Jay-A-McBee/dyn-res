@@ -5,10 +5,20 @@ projectDescriptions.admin = {
 	title:'SPLT Dashboard',
 	role:'A bill-splitting app',
 	tasks:[
-		'React/Redux, Redux Saga',
-		'd3, React-Bootstrap',
-		'Google Geolocate API'
-   ],
+		'React, Redux',
+		'Redux-Saga',
+		'd3'
+   	]
+};
+
+projectDescriptions.splt = {
+	title:'SPLT Carpooling',
+	role:'A bill-splitting app',
+	tasks:[
+		'React Native', 
+		'Redux',
+		'Redux-Saga'
+   	]
 };
 
 projectDescriptions.slide = {
@@ -17,7 +27,7 @@ projectDescriptions.slide = {
 	tasks:[
 		'React Native',
 		'Styled Components'
-   ],
+   	],
 	link: 'https://github.com/Jay-A-McBee/rn_slide_calc'
 };
 
@@ -25,10 +35,11 @@ projectDescriptions.fairshare = {
 	title:'Fairshare',
 	role:'A bill-splitting app',
 	tasks:[
-		'React/Redux',
+		'React',
+		'Redux',
 		'Node.js/Express',
-	  'Passport OAuth 2.0'
-   ],
+	  	'Passport OAuth 2.0'
+   	],
 	link: 'https://github.com/AngryPulpGophers/fairshare'
 };
 
@@ -37,7 +48,7 @@ projectDescriptions.jmen ={
 	role:'A local musician directory',
 	tasks:[
 		'Node.js/Express',
-		'PostgreSQL, knex.js',
+		'PostgreSQL',
 		'Passport OAuth 2.0'
 	],
 	link: 'https://github.com/getJourneymen/Journeymen'
@@ -48,10 +59,10 @@ projectDescriptions.sentiment = {
 	role: 'A search engine/sentiment analyser',
 	tasks:[
 		'Angular', 
-    'Node.js/Express',
-    'PostgreSQL, knex.js',
+    	'Node.js/Express',
+    	'PostgreSQL'
   ]
-} ;
+};
 
 projectDescriptions.kitkat ={
 	title:'About Cats',
@@ -60,7 +71,7 @@ projectDescriptions.kitkat ={
 		'Node.js/Express',
 		'AngularJS and jQueryUI'
 	]
-} ;
+};
 
 projectDescriptions.electric = {
 	title: 'Digital Range',
@@ -69,10 +80,10 @@ projectDescriptions.electric = {
 		'Angular and formly-form directive',
 	  'Node.js/Express'
 	]
-} ;
+};
 
 projectDescriptions.sandBox = {
-	title: 'Bleeding Edge',
+	title: 'Sandbox',
 	role: 'contacts manager',
 	tasks:[
 		'React/Redux, Redux Saga',
@@ -80,4 +91,4 @@ projectDescriptions.sandBox = {
 	  'Node Cassandra driver'
 	],
 	link: 'https://bitbucket.org/jay_mcbee/contact-react-redux-lib'
-}
+};

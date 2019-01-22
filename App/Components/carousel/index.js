@@ -1,8 +1,13 @@
 import React, {useState, useEffect} from 'react';
+import styled, {css} from 'styled-components';
 import ProjectImage from '../projectDesc';
+import {MediaWrap} from '../Media';
+import {
+  Column, 
+  Row
+} from '../styleLayout';
 
-
-export const Carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages}) => {
+export const Carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages, width}) => {
 
   const reelStyles = {
     display: 'flex',
@@ -31,6 +36,26 @@ export const Carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages
     alignItems: 'center'
   }
 
+  const Circle = styled.div`
+    border-radius: 50%;
+    height: ${10/16}em;
+    width: ${10/16}em;
+    background: rgba(114, 98, 99, 0.99);
+  `;
+
+  const DarkColumn = styled(Column)`
+    background-color: rgba(10, 10, 10, 0.75);
+    padding: 1%;
+  `;
+
+  const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(10, 10, 10, 0.95);
+    padding: 1%;
+  `;
+
   let [active, updateActive] = useState(0);
 
   const selectNext = () => {
@@ -55,13 +80,6 @@ export const Carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages
     updateActive(parseInt(nativeEvent.target.getAttribute('data-index'),10));
   }
 
-  // let [width, resize] = useState(window.innerWidth);
-
-  // useLayoutEffect(() => {
-  //   window.addEventListener('resize', () => resize(window.innerWidth));
-  //   return () => window.removeEventListener('resize', () => resize(window.innerWidth));
-  // })
-
   const projectImages = slideImages ? slideImages.map( (imgObj, index) => ({
     index,
     handleClick: selectSpecific,
@@ -78,36 +96,60 @@ export const Carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages
   )
 
   return (
-    <div style={{"justifyContent": 'center'}} className='carousel mdl-grid'>
-      <div className='mdl-cell mdl-cell--2-col' style={{...chevronContainer}}>
-        <RotateIcon
-          handleClick={selectNext}
-          size={'40px'}
-          iconName={'chevron_left'}
-        />
-      </div>
-      <div className='mdl-cell mdl-cell--8-col'>{children[active]}</div>
-      <div className='mdl-cell mdl-cell--2-col' style={{...chevronContainer}}>
-        <RotateIcon
-          handleClick={selectPrevious}
-          size={'40px'}
-          iconName={'chevron_right'}
-        />
-      </div>
-      <div onClick={selectSpecific} style={{...reelStyles}}>
-        {projectImages ? projectImages.map( (props, idx) => {
-          if(idx === active){
-            return (  
-              <ProjectImage {...props}  />
-            )
-          }else{
-            props.styles = {...props.styles, ...inactive};
-            return (
-              <ProjectImage {...props} />
-            )
-          }
-        }) : ['1', '2', '3'].map( val => <p>{val}</p>)}
-      </div>
-    </div>
+      <>
+      {width > 500 && 
+        <Container>
+          <Row justify={'space-around '}>
+            <Column justify={'center'}>
+              <RotateIcon
+                handleClick={selectNext}
+                size={'40px'}
+                iconName={'chevron_left'}
+              />
+            </Column>
+            <Row>{children[active]}</Row>
+            <Column justify={'center'}>
+              <RotateIcon
+                handleClick={selectPrevious}
+                size={'40px'}
+                iconName={'chevron_right'}
+              />
+            </Column>
+        </Row>
+          <div onClick={selectSpecific} style={{...reelStyles}}>
+            {projectImages ? projectImages.map( (props, idx) => {
+              if(idx === active){
+                return (  
+                  <ProjectImage {...props}  />
+                )
+              }else{
+                props.styles = {...props.styles, ...inactive};
+                return (
+                  <ProjectImage {...props} />
+                )
+              }
+            }) : ['1', '2', '3'].map( val => <p>{val}</p>)}
+          </div>
+        </Container>
+    }
+    {width < 500 && 
+      <DarkColumn>
+        <div>{children[active]}</div>
+        <Row justify={'center'}>
+          <RotateIcon
+            handleClick={selectNext}
+            size={'20px'}
+            iconName={'chevron_left'}
+          />
+          {slideImages && slideImages.map( image => <Circle />)}
+          <RotateIcon
+            handleClick={selectPrevious}
+            size={'20px'}
+            iconName={'chevron_right'}
+          />
+        </Row>
+      </DarkColumn>
+    }
+    </>
   )
-}
+};

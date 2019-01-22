@@ -69,7 +69,7 @@ export const Intro = ({toggleBio, open}) => {
             justify={'space-around'}
         >
             <SectionHeader spread><span style={{...greetStyles}}>Hi - my name is</span> Austin McBee.</SectionHeader>
-            <SectionHeader heavy>I write code for the web.</SectionHeader>
+            <SectionHeader heavy>I flip web bits.</SectionHeader>
             <TextBlock padding>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</TextBlock>
             <Link target="_blank" href='mailto:jmcbee1@gmail.com'>Get in touch</Link>
         </ContentWrapper>

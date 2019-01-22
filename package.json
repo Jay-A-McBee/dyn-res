@@ -6,6 +6,7 @@
   "scripts": {
     "test": "mocha ./Tests/testSetup.js \"./Tests/*.spec.js\"",
     "start": "nodemon Server/index.js",
+    "start:dev": "webpack-dev-server",
     "build": "webpack --config webpack.config.prod.js"
   },
   "author": "j.a.m",
@@ -49,7 +50,7 @@
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.2",
     "webpack-dev-middleware": "3.4.0",
-    "webpack-dev-server": "3.1.10",
+    "webpack-dev-server": "^3.1.10",
     "webpack-hot-middleware": "2.24.3"
   }
 }
