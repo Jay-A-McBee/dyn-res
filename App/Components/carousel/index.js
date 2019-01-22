@@ -43,6 +43,19 @@ export const Carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages
     background: rgba(114, 98, 99, 0.99);
   `;
 
+  const DarkColumn = styled(Column)`
+    background-color: rgba(10, 10, 10, 0.75);
+    padding: 1%;
+  `;
+
+  const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(10, 10, 10, 0.95);
+    padding: 1%;
+  `;
+
   let [active, updateActive] = useState(0);
 
   const selectNext = () => {
@@ -85,22 +98,24 @@ export const Carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages
   return (
       <>
       {width > 500 && 
-        <div style={{"justifyContent": 'center'}} className='carousel mdl-grid'>
-          <div className='mdl-cell mdl-cell--2-col' style={{...chevronContainer}}>
-            <RotateIcon
-              handleClick={selectNext}
-              size={'40px'}
-              iconName={'chevron_left'}
-            />
-          </div>
-          <div className='mdl-cell mdl-cell--8-col'>{children[active]}</div>
-          <div className='mdl-cell mdl-cell--2-col' style={{...chevronContainer}}>
-            <RotateIcon
-              handleClick={selectPrevious}
-              size={'40px'}
-              iconName={'chevron_right'}
-            />
-          </div>
+        <Container>
+          <Row justify={'space-around '}>
+            <Column justify={'center'}>
+              <RotateIcon
+                handleClick={selectNext}
+                size={'40px'}
+                iconName={'chevron_left'}
+              />
+            </Column>
+            <Row>{children[active]}</Row>
+            <Column justify={'center'}>
+              <RotateIcon
+                handleClick={selectPrevious}
+                size={'40px'}
+                iconName={'chevron_right'}
+              />
+            </Column>
+        </Row>
           <div onClick={selectSpecific} style={{...reelStyles}}>
             {projectImages ? projectImages.map( (props, idx) => {
               if(idx === active){
@@ -115,10 +130,10 @@ export const Carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages
               }
             }) : ['1', '2', '3'].map( val => <p>{val}</p>)}
           </div>
-        </div>
+        </Container>
     }
     {width < 500 && 
-      <Column>
+      <DarkColumn>
         <div>{children[active]}</div>
         <Row justify={'center'}>
           <RotateIcon
@@ -133,7 +148,7 @@ export const Carousel = ({children = ['0', '1', '2', '3', '4', '5'], slideImages
             iconName={'chevron_right'}
           />
         </Row>
-      </Column>
+      </DarkColumn>
     }
     </>
   )

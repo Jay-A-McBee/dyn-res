@@ -14,15 +14,6 @@ import {
 } from '../styleLayout';
 
 
-
-const workContainer = {
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  width: '80%',
-  margin: 'auto',
-}
-
 const WorkContainer = styled(Row)`
   display: flex;
   flex-direction: row;
@@ -31,84 +22,97 @@ const WorkContainer = styled(Row)`
   margin: auto;
   ${Media.phone`
     flex-direction: column;
+    width: 95%;
   `}
 `
 
 const ListContainer = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: flex-start;
   border-left: 1.5px solid rgba(10, 10, 10, 0.3);
-  position: relative;
 
   ${Media.phone`
-    display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-self: stretch;
     border-bottom: 1.5px solid rgba(10, 10, 10, 0.3);
     border-left: none;
-    position: relative;
   `}
 `;
 
 const WorkPlace = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: ${40/16}em;
-  width: ${90/16}em;
+  text-align: center;
+  line-height: 1.5; 
+  width: 7.75em;
   transition: all 0.5s ease-in-out;
-  padding: 2.5px;
+  padding: .5em;
 
   :hover{
     background-color: rgba(209, 209, 214, .2);
   }
 `
 
-const Vertical = styled.div`
+const Highlight = styled.div`
+    ${Media.phone`
+      width: 7.85em;
+      height: .12em;
+      transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+      top: auto;
+      bottom: -.1em;
+      left: 0px;
+      transform: translateX(0);
+
+      ${props => props.offset && css`
+        transform: translateX(${7.85 * props.offset}em);
+      `}
+    `}
+
     position: absolute;
     display: block;
     width: .12em;
     height: ${40/16}em;
     background: rgb(252, 219, 148);
-    transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.1s;
+    transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.1s;
     transform: translateY(0);
     top: 0px;
-    left: 0px;
-    z-index: 10;
+    left: -.1em;
     ${props => props.offset && css`
         transform: translateY(${(40/16) * props.offset}em);
     `}
+
 `;
 
-const Horizontal = styled.div`
-    position: absolute;
-    display: block;
-    width: ${90/16}em;
-    height: .12em;
-    background: rgb(252, 219, 148);
-    transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.1s;
-    top: auto;
-    bottom: 0px;
-    left: 0px;
-    transform: translateX(0);
+const Title = styled.p`
+  font-size: 2em;
+  font-weight: 700;
+  margin: .5em 0;
 
-    ${props => props.offset && css`
-      transform: translateX(${(120/16) * props.offset}em);
+  ${Media.phone`
+    font-size: 1.25em;
     `}
 `;
 
-const Highlight = (props) => (
-  <MediaWrap
-    render={({width}) => width > 500 ? (
-      <Vertical {...props} />
-    ) : (
-      <Horizontal {...props} />
-    )}
-  />
-)
+const Dates = styled.p`
+  font-size: 1.5em;
+  font-weight: 400;
+  margin: 0 0 0.5em 0;
+
+  ${Media.phone`
+    font-size: 1.25em;
+    `}
+`;
+
+const WorkLink = styled.a`
+  text-decoration: none;
+  transition: all .25s ease-in-out;
+  color: rgb(237, 157, 85);
+  font-weight: 700
+
+  :hover{
+    text-decoration: underline;
+  }
+`;
 
 const picTitleRef = [[adminScreen, 'admin']];
 
@@ -134,29 +138,24 @@ export const Experience = ({workDesc}) => {
     selected = selectWorkExperience(title);
   }
 
-  let[isOpen, toggleState] = useState(false);
-
-  const toggleModal = () => toggleState(!isOpen);
-
-
-  const WorkDescription = ({title, description, dates}) => {
+  const WorkDescription = ({title, description, dates, href}) => {
+    const workplace = title.split(' ').pop();
     return (
-      <div style={{padding: '10px'}}>
-        <h5>{title}</h5>
-        <h3>{dates}</h3>
+      <Column justify={'space-between'}>
+        {!href ? 
+          <Title>{title}</Title> :
+          <Title>{title+' '}<WorkLink target='_blank' href={href}>{selected}</WorkLink></Title>
+        }
+        <Dates>{dates}</Dates>
         <p>{description}</p>
-      </div>
+      </Column>
     )
   }
-
-
-
 
   let {
     title,
     description
   } = workDesc[selected];
-
 
   return (
     <WorkContainer>
@@ -172,24 +171,20 @@ export const Experience = ({workDesc}) => {
         <Highlight offset={offset} />
       </ListContainer>
       <WorkDescription {...workDesc[selected]}/>
-        <button onClick={toggleModal}>View Work</button>
-        <Modal
-          open={isOpen}
-          toggle={toggleModal}
-          child={
-            <MediaWrap
-              render={({width}) => (
-                <Carousel
-                  slideImages={images} 
-                  children={projectDescComponents} 
-                  width={width}
-                />
-              )}
-            />
-          }
-          dialogAnimation={'top'}
-          id={selected}
-        />
+      <Modal
+        child={
+          <MediaWrap
+            render={({width}) => (
+              <Carousel
+                slideImages={images} 
+                children={projectDescComponents} 
+                width={width}
+              />
+            )}
+          />
+        }
+        id={selected}
+      />
     </WorkContainer>
   )
 }
