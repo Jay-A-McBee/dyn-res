@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import ModalComponent from '../Modal';
+import ModalComponent from '../ModalIndex';
 import {CarouselComponent} from '../CarouselIndex';
 import styled, {css} from 'styled-components';
 import adminScreen from '../../Assets/pics/adminScreen.png';
