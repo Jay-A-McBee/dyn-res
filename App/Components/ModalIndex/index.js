@@ -15,9 +15,11 @@ const ModalBody = styled.div`
     transform: translateY(-100%);
     opacity: 0;
     transition: all .5s ease-in-out;
+    height: 50em;
   
     ${Media.phone`
         max-width: 90%;
+        height: 32.5em;
     `}
 
     ${props => props.open && css`

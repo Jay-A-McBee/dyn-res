@@ -54,37 +54,52 @@ import {
     padding: 1%;
   `;
 
+  // ${props => props.next && css`
+  //     transition: all .35s ease-in-out;
+  //     transform: translateX(-120%);
+  //   `}
+  //   ${props => props.current && css`
+  //     transition: opacity .35s ease-in-out .5s;
+  //     opacity: 1;
+  //   `}
+  //   ${props => props.previous && css`
+  //     transition: all .35s ease-in-out;
+  //     transform: translateX(120%);
+  //   `}
+
   const ChildContainer = styled.div`
     transition: all .35s ease-in-out;
-    ${props => props.transition && css`
-      ${props.transition}
+    visibility: hidden;
+    ${props => props.current && css`
+      visibility: visible;      
     `}
+  `;
+
+  const StretchRow = styled(Row)`
+    align-self: stretch;
   `;
 
 export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], slideImages, width}) => {
 
 
   let [active, updateActive] = useState(0);
-  let [transition, setTransition] = useState(null);
 
-  const selectNext = () => {
+  const selectNext = (e) => {
+    e.preventDefault();
     const next = ++active;
     if(next < children.length){
-      setTransition('left');
-      setTimeout( () => updateActive(next), 500);
+      updateActive(next);
     }else{
-      setTransition('right');
       updateActive(0);
     }
   }
 
-  const selectPrevious = () => {
+  const selectPrevious = (e) => {
+    e.preventDefault();
     const previous = --active;
     if(previous >= 0){
-      setTransition('right');
       updateActive(previous);
     }else{
-      setTransition('left');
       updateActive(children.length - 1);
     }
   }
@@ -109,34 +124,30 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
   )
 
   return (
-      <>
-      {width > 500 && 
-        <Container>
-          <Row justify={'space-around '}>
-            <Column justify={'center'}>
-              <RotateIcon
-                handleClick={selectNext}
-                size={'40px'}
-                iconName={'chevron_left'}
-              />
-            </Column>
-            <Row>
-              <ChildContainer transition={transition === 'left' && 'transform:translateX(-120%)'}>
-                {children[active]}
-              </ChildContainer>
-            </Row>
-            <Column justify={'center'}>
-              <RotateIcon
-                handleClick={selectPrevious}
-                size={'40px'}
-                iconName={'chevron_right'}
-              />
-            </Column>
-        </Row>
-          <div onClick={selectSpecific} style={{...reelStyles}}>
-            {children.map( (props, idx) => <Circle />)}
-          </div>
-        </Container>
+    <>
+    {width > 500 && 
+      <Container>
+        <StretchRow justify={'space-between'}>
+          <Column justify={'center'}>
+            <RotateIcon
+              handleClick={selectNext}
+              size={'40px'}
+              iconName={'chevron_left'}
+            />
+          </Column>
+          {children[active]}
+          <Column justify={'center'}>
+            <RotateIcon
+              handleClick={selectPrevious}
+              size={'40px'}
+              iconName={'chevron_right'}
+            />
+          </Column>
+        </StretchRow>
+        <div onClick={selectSpecific} style={{...reelStyles}}>
+          {children.map( (props, idx) => <Circle />)}
+        </div>
+      </Container>
     }
     {width < 500 && 
       <DarkColumn>

@@ -9,12 +9,12 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    align-self: stretch;
 
     ${Media.phone`
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      align-self: stretch;
     `}
 `;
 
@@ -37,7 +37,7 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
 
     ${Media.phone`
       position: relative;
-      top: -1.5em;
+      top: -.5em;
       left: .75em;
     `}
   `;
@@ -48,7 +48,7 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
 
     ${Media.phone`
       position: relative;
-      top: -2em;
+      top: -.5em;
       left: 1.5em;
       line-height: 1.25;
     `}
