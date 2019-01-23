@@ -59,21 +59,21 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
   ))
 	
 	return(
-        <Container>
-          <DeviceImage src = {photo} />
-          <Column justify={'center'}>
-            <ProjectName>{title}</ProjectName>
-            {tasks.map( (task, idx) => (
-              <TechDescription key={idx}>{task}</TechDescription>
-            ))}
-            {link && 
-              <a target='_blank' href = { link }>
-                <i className='zmdi zmdi-github-box zmdi-hc-2x'>
-                </i>
-              </a>
-            }
-          </Column>
-        </Container>
+    <Container>
+      <DeviceImage src={photo} />
+      <Column justify={'center'}>
+        <ProjectName>{title}</ProjectName>
+        {tasks.map( (task, idx) => (
+          <TechDescription key={idx}>{task}</TechDescription>
+        ))}
+        {link && 
+          <a target='_blank' href = {link}>
+            <i className='zmdi zmdi-github-box zmdi-hc-2x'>
+            </i>
+          </a>
+        }
+      </Column>
+    </Container>
 	)
 }
 

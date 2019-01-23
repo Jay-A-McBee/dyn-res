@@ -21,15 +21,15 @@ projectDescriptions.splt = {
    	]
 };
 
-projectDescriptions.slide = {
-	title:'Slide Calculator',
-	role:'A bill-splitting app',
-	tasks:[
-		'React Native',
-		'Styled Components'
-   	],
-	link: 'https://github.com/Jay-A-McBee/rn_slide_calc'
-};
+// projectDescriptions.slide = {
+// 	title:'Slide Calculator',
+// 	role:'A bill-splitting app',
+// 	tasks:[
+// 		'React Native',
+// 		'Styled Components'
+//    	],
+// 	link: 'https://github.com/Jay-A-McBee/rn_slide_calc'
+// };
 
 projectDescriptions.fairshare = {
 	title:'Fairshare',
@@ -43,7 +43,7 @@ projectDescriptions.fairshare = {
 	link: 'https://github.com/AngryPulpGophers/fairshare'
 };
 
-projectDescriptions.jmen ={
+projectDescriptions.journeymen ={
 	title:'Journeymen',
 	role:'A local musician directory',
 	tasks:[
@@ -54,7 +54,7 @@ projectDescriptions.jmen ={
 	link: 'https://github.com/getJourneymen/Journeymen'
 };
 
-projectDescriptions.sentiment = {
+projectDescriptions.sentimentalist = {
 	title:'Sentimentalist',
 	role: 'A search engine/sentiment analyser',
 	tasks:[
@@ -64,31 +64,31 @@ projectDescriptions.sentiment = {
   ]
 };
 
-projectDescriptions.kitkat ={
-	title:'About Cats',
-	role: 'An education app built with Angular, Node and Express.',
-	tasks:[
-		'Node.js/Express',
-		'AngularJS and jQueryUI'
-	]
-};
+// projectDescriptions.kitkat ={
+// 	title:'About Cats',
+// 	role: 'An education app built with Angular, Node and Express.',
+// 	tasks:[
+// 		'Node.js/Express',
+// 		'AngularJS and jQueryUI'
+// 	]
+// };
 
-projectDescriptions.electric = {
-	title: 'Digital Range',
-	role: 'A livestock sale form app',
-	tasks:[
-		'Angular and formly-form directive',
-	  'Node.js/Express'
-	]
-};
+// projectDescriptions.electric = {
+// 	title: 'Digital Range',
+// 	role: 'A livestock sale form app',
+// 	tasks:[
+// 		'Angular and formly-form directive',
+// 	  'Node.js/Express'
+// 	]
+// };
 
-projectDescriptions.sandBox = {
-	title: 'Sandbox',
-	role: 'contacts manager',
-	tasks:[
-		'React/Redux, Redux Saga',
-	  'Node.js/Express bluebird coroutine',
-	  'Node Cassandra driver'
-	],
-	link: 'https://bitbucket.org/jay_mcbee/contact-react-redux-lib'
-};
+// projectDescriptions.sandBox = {
+// 	title: 'Sandbox',
+// 	role: 'contacts manager',
+// 	tasks:[
+// 		'React/Redux, Redux Saga',
+// 	  'Node.js/Express bluebird coroutine',
+// 	  'Node Cassandra driver'
+// 	],
+// 	link: 'https://bitbucket.org/jay_mcbee/contact-react-redux-lib'
+// };

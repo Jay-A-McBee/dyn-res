@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import {SocialLinks} from '../Components/SocialLinks';
 import {Intro} from '../Components/intro';
-import {About} from '../Components/About';
+import {About} from '../Components/about';
 import {Work} from '../Components/experience';
 // import {ProjectPage}  from './project-page';
 import {ProjectDescription} from './projdesc-page';
-import Carousel from '../Components/carousel';
 import {Navigation} from '../Components/Nav';
 import {
     SectionWrapper,

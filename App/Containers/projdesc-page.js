@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal} from '../Components/Modal';
+import ModalComponent from '../Components/ModalIndex';
 import {makeDescObj} from '../helpers';
 import descriptions  from '../Assets/shortDescription';
 import fairsh from '../Assets/pics/fairshareShell.png';

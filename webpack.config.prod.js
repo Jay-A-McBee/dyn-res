@@ -60,7 +60,6 @@ module.exports = {
     HtmlWebpackPluginConfig,
     nodeEnv,
     minify,
-    compress,
-    analyze
- ]
+    compress
+  ]
 }
