@@ -7,8 +7,6 @@ import {
   Row
 } from '../styleLayout';
 
-export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], slideImages, width}) => {
-
   const reelStyles = {
     display: 'flex',
     flexDirection: 'row',
@@ -56,13 +54,26 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
     padding: 1%;
   `;
 
+  const ChildContainer = styled.div`
+    transition: all .35s ease-in-out;
+    ${props => props.transition && css`
+      ${props.transition}
+    `}
+  `;
+
+export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], slideImages, width}) => {
+
+
   let [active, updateActive] = useState(0);
+  let [transition, setTransition] = useState(null);
 
   const selectNext = () => {
     const next = ++active;
     if(next < children.length){
-      updateActive(next);
+      setTransition('left');
+      setTimeout( () => updateActive(next), 500);
     }else{
+      setTransition('right');
       updateActive(0);
     }
   }
@@ -70,8 +81,10 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
   const selectPrevious = () => {
     const previous = --active;
     if(previous >= 0){
+      setTransition('right');
       updateActive(previous);
     }else{
+      setTransition('left');
       updateActive(children.length - 1);
     }
   }
@@ -107,7 +120,11 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
                 iconName={'chevron_left'}
               />
             </Column>
-            <Row>{children[active]}</Row>
+            <Row>
+              <ChildContainer transition={transition === 'left' && 'transform:translateX(-120%)'}>
+                {children[active]}
+              </ChildContainer>
+            </Row>
             <Column justify={'center'}>
               <RotateIcon
                 handleClick={selectPrevious}
@@ -117,18 +134,7 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
             </Column>
         </Row>
           <div onClick={selectSpecific} style={{...reelStyles}}>
-            {projectImages ? projectImages.map( (props, idx) => {
-              if(idx === active){
-                return (  
-                  <ProjectImage {...props}  />
-                )
-              }else{
-                props.styles = {...props.styles, ...inactive};
-                return (
-                  <ProjectImage {...props} />
-                )
-              }
-            }) : ['1', '2', '3'].map( val => <p>{val}</p>)}
+            {children.map( (props, idx) => <Circle />)}
           </div>
         </Container>
     }

@@ -3,7 +3,11 @@ import ModalComponent from '../ModalIndex';
 import {CarouselComponent} from '../CarouselIndex';
 import styled, {css} from 'styled-components';
 import adminScreen from '../../Assets/pics/adminScreen.png';
-import {admin} from '../../Assets/shortDescription';
+import spltScreen from '../../Assets/pics/spltscreen.png';
+import fairshareScreen from '../../Assets/pics/fairshareShell.png';
+import journeymenScreen from '../../Assets/pics/journeymenShell.png';
+import sentimentalistScreen from '../../Assets/pics/sentimentalistShell.png';
+import projectDescriptions from '../../Assets/shortDescription';
 import {makeDescObj} from '../../helpers';
 import ProjectInfo from '../projectinfo';
 import {MediaWrap, Media} from '../Media';
@@ -115,14 +119,34 @@ const WorkLink = styled.a`
   }
 `;
 
-const picTitleRef = [[adminScreen, 'admin']];
+const pictureMap = [
+  ['admin', adminScreen],
+  ['splt', spltScreen],
+  ['fairshare', fairshareScreen],
+  ['journeymen', journeymenScreen],
+  ['sentimentalist', sentimentalistScreen]
+].reduce( (acc, [title, picture]) => {
+  acc[title] = picture;
+  return acc;
+},{});
 
 const {
   images,
   descriptions
-} = makeDescObj(picTitleRef, [admin]);
+} = makeDescObj(pictureMap, projectDescriptions);
 
-const projectDescComponents = Object.keys(descriptions).map( description => <ProjectInfo key={'img'} {...descriptions[description]}/>); 
+const carouselChildren = Object.keys(projectDescriptions).reduce( (acc, description) => {
+  
+  const descriptionComponent = <ProjectInfo key={'img'} {...descriptions[description]}/>;
+  
+  if(/admin|splt/.test(description)){
+    acc.SPLT.push(descriptionComponent);
+  }else{
+    acc.HackReactor.push(descriptionComponent);
+  };
+
+  return acc;
+}, {SPLT:[], HackReactor:[]}) 
   
 export const Experience = ({workDesc}) => {
   const employers = Object.keys(workDesc);
@@ -172,20 +196,22 @@ export const Experience = ({workDesc}) => {
         <Highlight offset={offset} />
       </ListContainer>
       <WorkDescription {...workDesc[selected]}/>
-      <ModalComponent
-        child={
-          <MediaWrap
-            render={({width}) => (
-              <CarouselComponent
-                slideImages={images} 
-                children={projectDescComponents} 
-                width={width}
-              />
-            )}
-          />
-        }
-        id={selected}
-      />
+      {carouselChildren[selected] &&
+        <ModalComponent
+          child={
+            <MediaWrap
+              render={({width}) => (
+                <CarouselComponent
+                  slideImages={null} 
+                  children={carouselChildren[selected]} 
+                  width={width}
+                />
+              )}
+            />
+          }
+          id={selected}
+        />
+      }
     </WorkContainer>
   )
 }
