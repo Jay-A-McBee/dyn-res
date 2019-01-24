@@ -71,6 +71,9 @@ const Paper = styled.div`
     }
 `;
 
+const WrapRow = styled(Row)`
+    flex-flow: row wrap;
+`;
 const FullFolder = ({text}) => {
     return (
         <Folder>
@@ -88,9 +91,9 @@ export const ProjectSection = () => {
         <ContentWrapper padding={'3.5em 0'} id='<Projects/>'>
             <SectionHeader highlight>Projects</SectionHeader>
             <br />
-            <Row justify={'space-between'}>
+            <WrapRow justify={'space-between'}>
             {["I was curious about Vue so I made this","React native slide calculator and freight calculator","This website"].map( val => <FullFolder text={val} />)}
-            </Row>
+            </WrapRow>
         </ContentWrapper>
     )
 }
