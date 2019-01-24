@@ -4,7 +4,7 @@ import debounce from 'lodash.debounce';
 
 
 export const Navigation = () => {
-    const navLinks = ['About', 'Work', 'Projects'].reverse();
+    const navLinks = ['<About/>', '<Work/>', '<Projects/>'].reverse();
 
     const NavButton = styled.a`
         font-weight: 400; 
@@ -14,11 +14,11 @@ export const Navigation = () => {
         position: relative;
         right: 5%;
         padding: 2.5% .5% 2.5% 0;
-        color: rgba(226, 229, 232, 0.64);
+        color: rgba(255, 241, 239, 0.99);
         transition: all .25s ease-in-out;
 
         :hover{
-            color: rgb(159, 234, 150);
+            color: rgb(237,157,85);
         }
 
         ${props => props.withBorder && css`

@@ -15,7 +15,7 @@ const ModalBody = styled.div`
     transform: translateY(-100%);
     opacity: 0;
     transition: all .5s ease-in-out;
-    height: 50em;
+    height: 40em;
   
     ${Media.phone`
         max-width: 90%;
@@ -46,7 +46,22 @@ const ModalOverlay = styled.div`
     `}
 `;
 
-const ModalComponent = ({child, id}) => {
+const ModalButton = styled.button`
+    align-self: stretch;
+    padding: 1.15em;
+    color: rgb(255, 250, 239);
+    border: .5px solid rgb(255, 250, 239);
+    position: relative;
+    top: 2.5em;
+    transition: all .25s ease-in-out;
+    background-color: transparent;
+
+    :hover {
+        color: rgb(237, 157, 85);
+        border-color: rgb(237, 157, 85);
+    }
+`;
+const ModalComponent = ({child, id, message}) => {
     
     let[isOpen, toggle] = useState(null);
 
@@ -64,12 +79,11 @@ const ModalComponent = ({child, id}) => {
 
     return (
         <>
-        <button onClick={toggleModal}>Toggle</button>
+        <ModalButton onClick={toggleModal}>{message}</ModalButton>
         <ModalOverlay id='modal' open={isOpen} onClick={closeModal}>
             <ModalBody id={`modal_body_${id}`} open={isOpen}>
                 <i 
                     onClick={closeModal}
-                    style={{color: 'rgba(122, 203, 168, 0.9)'}}
                     className='pointer material-icons md-48 closeIcon'
                 >
                 arrow_back

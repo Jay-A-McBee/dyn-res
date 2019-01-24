@@ -53,6 +53,10 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
       line-height: 1.25;
     `}
   `;
+
+  const BigColumn = styled(Column)`
+    flex: 2;
+  `
 	
 	let contrib = tasks.map( (task, idx) => (
     <TechDescription key={idx} style={{"fontSize": '1.15em'}} >{task}</TechDescription>
@@ -61,7 +65,7 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
 	return(
     <Container>
       <DeviceImage src={photo} />
-      <Column justify={'center'}>
+      <BigColumn justify={'center'}>
         <ProjectName>{title}</ProjectName>
         {tasks.map( (task, idx) => (
           <TechDescription key={idx}>{task}</TechDescription>
@@ -72,7 +76,7 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
             </i>
           </a>
         }
-      </Column>
+      </BigColumn>
     </Container>
 	)
 }

@@ -19,15 +19,12 @@ import {
 
 
 const WorkContainer = styled(Row)`
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   width: 80%;
   margin: auto;
+  padding: 2.25em;
   ${Media.phone`
-    flex-direction: column;
     width: 95%;
+    flex-direction: column;
   `}
 `
 
@@ -169,10 +166,12 @@ export const Experience = ({workDesc}) => {
       <Column justify={'space-between'}>
         {!href ? 
           <Title>{title}</Title> :
-          <Title>{title+' '}<WorkLink target='_blank' href={href}>{selected}</WorkLink></Title>
+          <Title>{title+' '}<WorkLink href={href} target="_blank">{selected}</WorkLink></Title>
         }
         <Dates>{dates}</Dates>
-        <p>{description}</p>
+        <ul>
+        {Object.keys(description).map( key => <li>{description[key]}</li>)}
+        </ul>
       </Column>
     )
   }
@@ -183,7 +182,7 @@ export const Experience = ({workDesc}) => {
   } = workDesc[selected];
 
   return (
-    <WorkContainer>
+    <WorkContainer justify={'space-around'}>
       <ListContainer>
         {employers.map( (title, idx) => (
           <WorkPlace 
@@ -196,7 +195,7 @@ export const Experience = ({workDesc}) => {
         <Highlight offset={offset} />
       </ListContainer>
       <WorkDescription {...workDesc[selected]}/>
-      {carouselChildren[selected] &&
+      {carouselChildren[selected] && 
         <ModalComponent
           child={
             <MediaWrap
@@ -210,8 +209,8 @@ export const Experience = ({workDesc}) => {
             />
           }
           id={selected}
-        />
-      }
+          message={"View Work"}
+        />}
     </WorkContainer>
   )
 }

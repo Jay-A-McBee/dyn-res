@@ -51,7 +51,6 @@ import {
     flex-direction: column;
     align-items: center;
     background-color: rgba(10, 10, 10, 0.95);
-    padding: 1%;
   `;
 
   // ${props => props.next && css`
@@ -151,20 +150,24 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
     }
     {width < 500 && 
       <DarkColumn>
-        <div>{children[active]}</div>
-        <Row justify={'center'}>
+        <StretchRow justify={'center'}>
+          <Column justify={'center'}>
           <RotateIcon
             handleClick={selectNext}
-            size={'20px'}
+            size={'25px'}
             iconName={'chevron_left'}
           />
-          {slideImages && slideImages.map( image => <Circle />)}
+          </Column>
+          {children[active]}
+          <Column justify={'center'}>
           <RotateIcon
             handleClick={selectPrevious}
-            size={'20px'}
+            size={'25px'}
             iconName={'chevron_right'}
           />
-        </Row>
+          </Column>
+        </StretchRow>
+        {slideImages && slideImages.map( image => <Circle />)}
       </DarkColumn>
     }
     </>
