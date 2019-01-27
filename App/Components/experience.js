@@ -1,5 +1,6 @@
 import React from 'react';
 import {Experience} from './shufflePanel';
+import styled from 'styled-components';
 import {
   ContentWrapper
 } from './styleLayout';
@@ -17,12 +18,16 @@ const workContainer = {
 };
 
 
+const PositionedWrapper = styled(ContentWrapper)`
+  position: relative;
+  top: 7.5em;
+`
 export const Work = ({workDescriptions}) => {
   return(
     <ContentWrapper
-      id='Work' 
-      padding={'7.5em 0 7.5em 0'}
+      id='<Work/>' 
       justify={'center'}
+      padding={'3.5em 0'}
     >
       <SectionHeader highlight>Work Stuff</SectionHeader>
       <Experience

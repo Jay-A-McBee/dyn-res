@@ -25,6 +25,7 @@ export const ContentWrapper = styled.section`
   ${Media.phone`
     width: 90%;
     align-self: center;
+    margin-top: 0;
     ${props => props.offset && css`
       position: static;
     `}
@@ -78,5 +79,4 @@ export const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: ${props => props.justify || 'flex-start'};
-  padding: 1.25em 1.25em 1.25em 0;
 `;

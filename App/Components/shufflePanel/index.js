@@ -19,15 +19,18 @@ import {
 
 
 const WorkContainer = styled(Row)`
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   width: 80%;
   margin: auto;
+  padding: 2.25em;
+  max-height: 30em;
+
   ${Media.phone`
-    flex-direction: column;
     width: 95%;
+    margin: auto;
+    padding: 0;
+    flex-direction: column;
+    position: relative;
+    top: .5em;
   `}
 `
 
@@ -37,6 +40,9 @@ const ListContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   border-left: 1.5px solid rgba(10, 10, 10, 0.3);
+  margin-right: 1em;
+  postion: relative;
+  top: .5em;
 
   ${Media.phone`
     flex-direction: row;
@@ -50,8 +56,10 @@ const WorkPlace = styled.div`
   text-align: center;
   line-height: 1.5; 
   width: 7.75em;
+  height: 1.5em;
   transition: all 0.5s ease-in-out;
   padding: .5em;
+  background-color: ${props => props.selected ? 'rgba(209, 209, 214, .2)' : 'inherit'};
 
   :hover{
     background-color: rgba(209, 209, 214, .2);
@@ -65,7 +73,7 @@ const Highlight = styled.div`
       transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
       top: auto;
       bottom: -.1em;
-      left: 0px;
+      left: -.1em;
       transform: translateX(0);
 
       ${props => props.offset && css`
@@ -92,6 +100,7 @@ const Title = styled.p`
   font-size: 2em;
   font-weight: 700;
   margin: .5em 0;
+  color:  rgb(255, 251, 242);
 
   ${Media.phone`
     font-size: 1.25em;
@@ -117,6 +126,21 @@ const WorkLink = styled.a`
   :hover{
     text-decoration: underline;
   }
+`;
+
+const ListItem = styled.li`
+  list-style-type: triangle;
+  position: relative;
+  left: -1.75em;
+  margin-bottom: 1em;
+  line-height: 1.5em;
+`;
+
+const WorkColumn = styled(Column)`
+  ${Media.phone`
+    position: relative;
+    top: 1em;
+  `}
 `;
 
 const pictureMap = [
@@ -166,14 +190,33 @@ export const Experience = ({workDesc}) => {
   const WorkDescription = ({title, description, dates, href}) => {
     const workplace = title.split(' ').pop();
     return (
-      <Column justify={'space-between'}>
+      <WorkColumn justify={'space-between'}>
         {!href ? 
           <Title>{title}</Title> :
-          <Title>{title+' '}<WorkLink target='_blank' href={href}>{selected}</WorkLink></Title>
+          <Title>{title+' '}<WorkLink href={href} target="_blank">{selected}</WorkLink></Title>
         }
         <Dates>{dates}</Dates>
-        <p>{description}</p>
-      </Column>
+        <ul>
+          {Object.keys(description).map( key => <ListItem>{description[key]}</ListItem>)}
+        </ul>
+        {carouselChildren[selected] && 
+          <ModalComponent
+            child={
+              <MediaWrap
+                render={({width}) => (
+                  <CarouselComponent
+                    slideImages={null} 
+                    children={carouselChildren[selected]} 
+                    width={width}
+                  />
+                )}
+              />
+            }
+            id={selected}
+            message={"View Work"}
+            animation={{vertical: true, slideDown: true}}
+          />}
+      </WorkColumn>
     )
   }
 
@@ -183,7 +226,7 @@ export const Experience = ({workDesc}) => {
   } = workDesc[selected];
 
   return (
-    <WorkContainer>
+    <WorkContainer justify={'space-between'}>
       <ListContainer>
         {employers.map( (title, idx) => (
           <WorkPlace 
@@ -196,22 +239,6 @@ export const Experience = ({workDesc}) => {
         <Highlight offset={offset} />
       </ListContainer>
       <WorkDescription {...workDesc[selected]}/>
-      {carouselChildren[selected] &&
-        <ModalComponent
-          child={
-            <MediaWrap
-              render={({width}) => (
-                <CarouselComponent
-                  slideImages={null} 
-                  children={carouselChildren[selected]} 
-                  width={width}
-                />
-              )}
-            />
-          }
-          id={selected}
-        />
-      }
     </WorkContainer>
   )
 }
