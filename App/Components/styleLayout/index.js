@@ -25,6 +25,7 @@ export const ContentWrapper = styled.section`
   ${Media.phone`
     width: 90%;
     align-self: center;
+    margin-top: 0;
     ${props => props.offset && css`
       position: static;
     `}

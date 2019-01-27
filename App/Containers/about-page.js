@@ -59,7 +59,7 @@ export default function AboutMe(){
       title: 'Software Engineering Student',
       dates: 'March 2016 - June 2016',
       description: {
-        a:'Completed a rigourous class schedule combining computer science fundamentals with modern software development best practices over the course of a three month advanced software engineering immersive',
+        a:'Completed a rigourous class schedule combining computer science fundamentals with modern software development best practices',
         b:'Worked with a modern JS stack including frontend and backend frameworks',
         c:'Produced three full-stack JS applications as part of a four person team that included a bill-splitting app, a local musician directory and a sentiment analysis app',
       }

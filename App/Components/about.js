@@ -82,6 +82,7 @@ export const About = () => {
     height: 22.5em;
     transition: all .25s ease-in-out;
     filter: sepia(100%);
+    margin-top: 2.5em;
 
     :hover{
       filter: none;
@@ -103,7 +104,7 @@ export const About = () => {
       <SectionHeader highlight>
         {title}
       </SectionHeader>
-      <InnerContent justify={'space-around'}>
+      <InnerContent justify={'space-evenly'}>
         <Column justify={'space-between'}>
           <TextBlock padding>{bio}</TextBlock>
           <TextBlock padding>{aside}</TextBlock>

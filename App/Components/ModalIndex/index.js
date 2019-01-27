@@ -12,18 +12,26 @@ const ModalBody = styled.div`
     border: 1px solid #888;
     max-width: 60%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    transform: translateY(-100%);
+    transform: ${props => props.animation && props.animation.horizontal ? 
+        'translateX(100%)' : 
+        'translateY(-100%)'
+    };
     opacity: 0;
     transition: all .5s ease-in-out;
-    height: 40em;
+    height: ${props => props.height || '40em'};
   
     ${Media.phone`
-        max-width: 90%;
-        height: 32.5em;
+        max-width: ${props => props.width || '90%'};
+        height: ${props => props.height || '32.5em'}
     `}
 
-    ${props => props.open && css`
+    ${props => props.open && props.animation.slideDown && css`
         transform: translateY(10%);
+        opacity: 1;
+    `}
+
+    ${props => props.open && props.animation.slideIn && css`
+        transform: translateX(80%);
         opacity: 1;
     `}
 `
@@ -36,12 +44,12 @@ const ModalOverlay = styled.div`
     right: 0;
     background-color: rgba(10, 10, 10, 0.6);
     overflow-y: scroll;
-    opacity: 0;
+    visibility: hidden;
     z-index: -1;
     transition: all .5s ease-in-out;
 
     ${props => props.open && css`
-        opacity: 1;
+        visibility: visible;
         z-index: 100;
     `}
 `;
@@ -51,8 +59,6 @@ const ModalButton = styled.button`
     padding: 1.15em;
     color: rgb(255, 250, 239);
     border: .5px solid rgb(255, 250, 239);
-    position: relative;
-    top: 2.5em;
     transition: all .25s ease-in-out;
     background-color: transparent;
 
@@ -61,7 +67,7 @@ const ModalButton = styled.button`
         border-color: rgb(237, 157, 85);
     }
 `;
-const ModalComponent = ({child, id, message}) => {
+const ModalComponent = ({child, childClose, id, message, ButtonComponent, animation, height, width}) => {
     
     let[isOpen, toggle] = useState(null);
 
@@ -71,7 +77,12 @@ const ModalComponent = ({child, id, message}) => {
 
 
     const closeModal = ({nativeEvent}) => {
-        if(nativeEvent.target.id === 'modal' || /closeIcon/.test(nativeEvent.target.className)){
+
+        if(
+            nativeEvent.target.id === 'modal' || 
+            /closeIcon/.test(nativeEvent.target.className) || 
+            childClose
+        ){
             toggleModal();
         }
     }
@@ -79,9 +90,18 @@ const ModalComponent = ({child, id, message}) => {
 
     return (
         <>
-        <ModalButton onClick={toggleModal}>{message}</ModalButton>
+        {ButtonComponent ? 
+            <ButtonComponent onClick={toggleModal} /> :
+            <ModalButton onClick={toggleModal}>{message}</ModalButton>
+        }
         <ModalOverlay id='modal' open={isOpen} onClick={closeModal}>
-            <ModalBody id={`modal_body_${id}`} open={isOpen}>
+            <ModalBody 
+                id={`modal_body_${id}`} 
+                open={isOpen} 
+                animation={animation} 
+                height={height} 
+                width={width}
+            >
                 <i 
                     onClick={closeModal}
                     className='pointer material-icons md-48 closeIcon'
