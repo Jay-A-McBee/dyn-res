@@ -22,7 +22,7 @@ const WorkContainer = styled(Row)`
   width: 80%;
   margin: auto;
   padding: 2.25em;
-  max-height: 30em;
+  max-height: 32.5em;
 
   ${Media.phone`
     width: 95%;
@@ -41,7 +41,7 @@ const ListContainer = styled.div`
   justify-content: flex-start;
   border-left: 1.5px solid rgba(10, 10, 10, 0.3);
   margin-right: 1em;
-  postion: relative;
+  position: relative;
   top: .5em;
 
   ${Media.phone`
@@ -49,6 +49,7 @@ const ListContainer = styled.div`
     justify-content: space-around;
     border-bottom: 1.5px solid rgba(10, 10, 10, 0.3);
     border-left: none;
+    margin-right: 0;
   `}
 `;
 
@@ -59,6 +60,8 @@ const WorkPlace = styled.div`
   height: 1.5em;
   transition: all 0.5s ease-in-out;
   padding: .5em;
+  color: rgb(237, 157, 85);
+  font-weight: 700;
   background-color: ${props => props.selected ? 'rgba(209, 209, 214, .2)' : 'inherit'};
 
   :hover{
@@ -68,16 +71,16 @@ const WorkPlace = styled.div`
 
 const Highlight = styled.div`
     ${Media.phone`
-      width: 7.85em;
+      width: 7.65em;
       height: .12em;
       transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
       top: auto;
       bottom: -.1em;
-      left: -.1em;
+      left: 0;
       transform: translateX(0);
 
       ${props => props.offset && css`
-        transform: translateX(${7.85 * props.offset}em);
+        transform: translateX(${7.65 * props.offset}em);
       `}
     `}
 
