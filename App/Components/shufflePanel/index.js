@@ -22,11 +22,10 @@ const WorkContainer = styled(Row)`
   width: 80%;
   margin: auto;
   padding: 2.25em;
-  max-height: 30em;
+  max-height: 32.5em;
 
   ${Media.phone`
-    width: 95%;
-    margin: auto;
+    width: 100%;
     padding: 0;
     flex-direction: column;
     position: relative;
@@ -41,51 +40,60 @@ const ListContainer = styled.div`
   justify-content: flex-start;
   border-left: 1.5px solid rgba(10, 10, 10, 0.3);
   margin-right: 1em;
-  postion: relative;
+  position: relative;
   top: .5em;
 
   ${Media.phone`
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     border-bottom: 1.5px solid rgba(10, 10, 10, 0.3);
     border-left: none;
+    margin-right: 0;
   `}
 `;
 
 const WorkPlace = styled.div`
   text-align: center;
   line-height: 1.5; 
-  width: 7.75em;
+  width: 9em;
   height: 1.5em;
   transition: all 0.5s ease-in-out;
-  padding: .5em;
+  padding: .5em 0;
+  color: rgb(237, 157, 85);
+  font-weight: 700;
   background-color: ${props => props.selected ? 'rgba(209, 209, 214, .2)' : 'inherit'};
 
   :hover{
     background-color: rgba(209, 209, 214, .2);
   }
+
+  ${Media.phone`
+    flex: 1;
+    align-self: stretch;
+  `}
 `
 
 const Highlight = styled.div`
     ${Media.phone`
-      width: 7.85em;
+      width: 33.3%;
       height: .12em;
       transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
       top: auto;
       bottom: -.1em;
-      left: -.1em;
+      left: 0;
       transform: translateX(0);
 
       ${props => props.offset && css`
-        transform: translateX(${7.85 * props.offset}em);
+        transform: translateX(${((window.innerWidth - 40)/ 3) * props.offset}px);
       `}
     `}
 
+    font-size: 14px;
     position: absolute;
     display: block;
     width: .12em;
     height: ${40/16}em;
-    background: rgb(252, 219, 148);
+    background: rgb(237, 157, 85);
     transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.1s;
     transform: translateY(0);
     top: 0px;
