@@ -16,12 +16,14 @@ const PositionedWrapper = styled(ContentWrapper)`
 `;
 
 const Folder = styled.div`
+    position: relative;
+    margin-bottom: 2.5em;
     height: 15em;
     width: 20em;
-    margin-right: 2em;
 `;
 
 const FolderBack = styled(Folder)`
+    position: absolute;
     border-radius: 2.5px;
     border: 1px solid rgb(237, 157, 85);
     background-color: rgba(224, 210, 184, .9);
@@ -34,8 +36,7 @@ const FolderBack = styled(Folder)`
 const FolderFront = styled(FolderBack)`
     height: 14.5em;
     width: 20em;
-    position: relative;
-    top: -29em;
+    position: absolute;
     transition: all .25s ease-in
 
     ${Folder}:hover & {
@@ -47,8 +48,8 @@ const FolderTab = styled(FolderBack)`
     height: 1em;
     width: 5em;
     border-radius: 3em;
-    position: relative;
-    top: .5em;
+    position: absolute;
+    top: -.75em;
     transition: all .5s ease-in;
     ${Folder}:hover & {
         transform: translate3d(1em, -.2em, .25em) skew(-7deg);
@@ -60,19 +61,20 @@ const Paper = styled.div`
     width: 20em;
     background-color: white;
     border-radius: 2.5px;
-    position: relative;
-    top: -14.75em;
+    position: absolute;
+    top: -.1em;
     color: black;
     transition: all .5s ease-in .25s;
 
     ${Folder}:hover & {
-        top: -25em;
+        top: -10em;
         transform: translate3d(1em, -.2em, .25em) skew(-7deg);
     }
 `;
 
 const WrapRow = styled(Row)`
     flex-flow: row wrap;
+    justify-content: space-around;
 `;
 const FullFolder = ({text}) => {
     return (
@@ -88,10 +90,10 @@ const FullFolder = ({text}) => {
 
 export const ProjectSection = () => {
     return(
-        <ContentWrapper padding={'3.5em 0'} id='<Projects/>'>
+        <ContentWrapper id='<Projects/>'>
             <SectionHeader highlight>Projects</SectionHeader>
             <br />
-            <WrapRow justify={'space-between'}>
+            <WrapRow justify={'flex-start'}>
             {["I was curious about Vue so I made this","React native slide calculator and freight calculator","This website"].map( val => <FullFolder text={val} />)}
             </WrapRow>
         </ContentWrapper>
