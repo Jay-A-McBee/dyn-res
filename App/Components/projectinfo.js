@@ -1,15 +1,30 @@
 import React from 'react';
-import styled, {css} from 'styled-components';
+import styled, {css, keyframes} from 'styled-components';
 import {Media, MediaWrap} from './Media';
 import {Column} from './styleLayout';
 
 const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current}) => {
+
+    const fadeIn = keyframes`
+
+      from{
+          opacity: 0;
+      }
+
+      to{
+          opacity: 1;
+      }
+  `;
+
 
   const Container = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-self: stretch;
+    animation: ${fadeIn} .5s ease-in-out .25s;
+    animation-fill-mode: forwards;
+    opacity: 0;
 
     ${Media.phone`
       display: flex;
@@ -34,7 +49,7 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
     font-weight: 700;
     font-size: 1.75em;
     color: rgb(237, 157, 85);
-
+    
     ${Media.phone`
       position: relative;
       top: -.5em;
