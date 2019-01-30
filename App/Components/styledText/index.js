@@ -8,7 +8,7 @@ export const SectionHeader = styled.h1`
     font-size: 5em;
     margin-bottom: ${props => props.spread ? '-.07em': '-.25em'};
     ${Media.phone`
-        font-size: 3em;
+        font-size: 2.75em;
     `}
 `;
 

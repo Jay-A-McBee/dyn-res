@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import styled, {css} from 'styled-components';
+import styled, {css, keyframes} from 'styled-components';
 import ProjectImage from '../projectDesc';
 import {MediaWrap} from '../Media';
 import {
@@ -66,13 +66,6 @@ import {
   //     transform: translateX(120%);
   //   `}
 
-  const ChildContainer = styled.div`
-    transition: all .35s ease-in-out;
-    visibility: hidden;
-    ${props => props.current && css`
-      visibility: visible;      
-    `}
-  `;
 
   const StretchRow = styled(Row)`
     align-self: stretch;

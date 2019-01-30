@@ -75,7 +75,7 @@ const WorkPlace = styled.div`
 
 const Highlight = styled.div`
     ${Media.phone`
-      width: 33.3%;
+      width: 33.33%;
       height: .12em;
       transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
       top: auto;
@@ -84,7 +84,7 @@ const Highlight = styled.div`
       transform: translateX(0);
 
       ${props => props.offset && css`
-        transform: translateX(${((window.innerWidth - 40)/ 3) * props.offset}px);
+        transform: translateX(${100 * props.offset}%);
       `}
     `}
 
