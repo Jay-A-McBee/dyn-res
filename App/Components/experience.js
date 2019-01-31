@@ -25,6 +25,7 @@ const PositionedWrapper = styled(ContentWrapper)`
 export const Work = ({workDescriptions}) => {
   return(
     <ContentWrapper
+      id='Work'
       justify={'center'}
       padding={'5.5em 0'}
     >

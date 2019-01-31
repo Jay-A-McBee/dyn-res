@@ -85,15 +85,11 @@ const Nav = ({width}) => {
     }
 
     const scroll = (event) => {
-        const name = event.nativeEvent.target.getAttribute('name');
+        const name = event.nativeEvent.target.getAttribute('name').match(/\<(\w+) \/\>/)[1];
 
-        const scrollMap = {
-            '<Projects />': (width) => width > 500 ? 2200 : 2190,
-            '<Work />': (width) => width > 500 ? 1450 : 1650,
-            '<About />': (width) => width > 500 ? 750 : 675
-        }
+        const el = document.getElementById(name);
 
-        window.scrollTo(0, scrollMap[name](width));
+        el.scrollIntoView({block: 'start', inline: 'nearest', behavior: 'smooth'});
     }
 
     const respondToScroll = (e) => {
