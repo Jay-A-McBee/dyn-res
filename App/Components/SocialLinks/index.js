@@ -20,6 +20,7 @@ export const SocialLinks = ({width}) => {
     const VerticalLine = styled.div`
         width: .5em;
         height: ${props => props.height || '10em'};
+        color: rgb(255, 251, 242);
         border-right: ${.75/16}em solid rgba(226, 229, 232, 0.64);
         ${props => props.offset && css`
             position: relative;
@@ -33,14 +34,14 @@ export const SocialLinks = ({width}) => {
 
     const Link = styled.a`
         display: block;
-        color: rgba(226, 229, 232, 0.64);
+        color: rgb(255, 251, 242);
     
         ${props => props.marginBottom && css`
             margin-bottom: .15em;
         `}
 
         :hover {
-            color: rgb(125, 224, 112);
+            color: rgb(237,157,85);
         }
     `;
 

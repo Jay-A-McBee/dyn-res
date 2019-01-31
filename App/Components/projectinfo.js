@@ -22,9 +22,9 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
     flex-direction: row;
     justify-content: space-evenly;
     align-self: stretch;
+    opacity: 0;
     animation: ${fadeIn} .5s ease-in-out .25s;
     animation-fill-mode: forwards;
-    opacity: 0;
 
     ${Media.phone`
       display: flex;

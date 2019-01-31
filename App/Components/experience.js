@@ -25,9 +25,8 @@ const PositionedWrapper = styled(ContentWrapper)`
 export const Work = ({workDescriptions}) => {
   return(
     <ContentWrapper
-      id='<Work/>' 
       justify={'center'}
-      padding={'3.5em 0'}
+      padding={'5.5em 0'}
     >
       <SectionHeader highlight>Work Stuff</SectionHeader>
       <Experience
