@@ -23,16 +23,13 @@ export default function AboutMe(){
   }
 
     
-  let [active, select] = useState(null);
+  let [active, select] = useState('intro');
+  let [wasActive, selected] = useState({intro: true})
   
-  const selectProject = (event) => {
-    const {name} = event.nativeEvent.target;
+  const selectSection = (name) => {
     select(name);
+    selected({[name]: true, ...wasActive});
   };
-
-  const clearProject = () => {
-    select(null);
-  }
 
   const work = {
     ClickTripz: {
@@ -68,16 +65,17 @@ export default function AboutMe(){
 
   return(
     <div style={{display: 'flex', flexDirection: 'column'}}>
-      <Navigation />
+      <Navigation wasActive={wasActive} selectSection={selectSection} />
       <Row>
         <SocialLinks />
         <Column>
-          <Intro />
-          <About />
+          <Intro active={active === 'intro' || wasActive.intro} />
+          <About active={active === 'about' || wasActive.about}/>
           <Work
+            active={active === 'work'|| wasActive.work}
             workDescriptions={work}
           />
-          <Projects />
+          <Projects active={active === 'projects' || wasActive.projects} />
         </Column>
       </Row>
     </div>

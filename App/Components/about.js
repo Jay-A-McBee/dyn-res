@@ -20,7 +20,7 @@ import {
 import {Media} from './Media';
 import styled from 'styled-components';
 
-export const About = () => {
+export const About = ({active}) => {
 
   const contactStyles = {
     display: 'flex',
@@ -100,7 +100,7 @@ export const About = () => {
   `
   
 	return (
-    <ContentWrapper id='About' padding={'3.5em 0'}>
+    <ContentWrapper active={active} id='About' padding={'3.5em 0'}>
       <SectionHeader highlight>
         {title}
       </SectionHeader>

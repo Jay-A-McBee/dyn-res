@@ -22,12 +22,13 @@ const PositionedWrapper = styled(ContentWrapper)`
   position: relative;
   top: 7.5em;
 `
-export const Work = ({workDescriptions}) => {
+export const Work = ({workDescriptions, active}) => {
   return(
     <ContentWrapper
       id='Work'
       justify={'center'}
       padding={'5.5em 0'}
+      active={active}
     >
       <SectionHeader highlight>Work Stuff</SectionHeader>
       <Experience

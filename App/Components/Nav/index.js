@@ -41,9 +41,10 @@ const StyledNav = styled.nav`
     `}
 `;
 
-const Nav = ({width}) => {
+const Nav = ({width, select, wasActive}) => {
     const navLinks = ['<About />', '<Work />', '<Projects />'];
 
+    const sectionOrder = new Map([[1, 'about'], [2,'work'],[3,'projects']]);
 
     const heightBlock = window.innerHeight/10;
     
@@ -70,6 +71,20 @@ const Nav = ({width}) => {
     let[scrollTop, updateScrollTop] = useState(0);
     let[navStyles, updateNavStyle] = useState(baseNavStyle);
     let[scrollDirection, updateScrollDirection] = useState(null);
+    let[next, updateNext] = useState(1);
+
+    const scrollingToSection = (next) => {
+        const name = sectionOrder.get(next);
+        console.log(name);
+
+        if(name){
+            updateNext(next+1);
+
+            if(!wasActive[name]){
+                select(name);
+            }
+        }
+    }
 
     const  calcScroll = (update) => {
         const currentPos = [
@@ -90,6 +105,8 @@ const Nav = ({width}) => {
         const el = document.getElementById(name);
 
         el.scrollIntoView({block: 'start', inline: 'nearest', behavior: 'smooth'});
+
+        select(name.toLowerCase());
     }
 
     const respondToScroll = (e) => {
@@ -123,7 +140,7 @@ const Nav = ({width}) => {
     useEffect(
         () => {
 
-            let checkScroll = debounce(respondToScroll, 150, {leading: true});
+            let checkScroll = debounce(respondToScroll, 150, {leading: true, trailing: false});
 
             window.addEventListener('scroll', checkScroll);
 
@@ -185,8 +202,8 @@ const Nav = ({width}) => {
     )
 }
 
-export const Navigation = () => (
+export const Navigation = ({selectSection, wasActive}) => (
     <MediaWrap
-        render={({width}) => <Nav width={width}/>}
+        render={({width}) => <Nav wasActive={wasActive} select={selectSection} width={width}/>}
     />
 )

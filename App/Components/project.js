@@ -121,14 +121,14 @@ const FullFolder = ({text}) => {
 }
 
 
-export const ProjectSection = () => {
+export const ProjectSection = ({active}) => {
     return(
         <MediaWrap
          render={({width}) => {
 
             return (
 
-                <ContentWrapper id='Projects'>
+                <ContentWrapper active={active} id='Projects'>
                     <SectionHeader highlight>Projects</SectionHeader>
                     <br />
                     <WrapRow justify={'flex-start'}>
