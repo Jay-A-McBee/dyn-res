@@ -2,18 +2,21 @@ import React, {useState, useEffect} from 'react';
 import styled, {css} from 'styled-components';
 import debounce from 'lodash.debounce';
 import ModalComponent from '../ModalIndex';
-import {MediaWrap} from '../Media';
+import {Media, MediaWrap} from '../Media';
 
-const NavButton = styled.a`
-    font-weight: 400; 
+const NavButton = styled.div`
+    font-weight: 700; 
     font-size: 1.25em; 
     float: right; 
     text-align: center;
     position: relative;
     right: 5%;
     padding: 2.5% .5% 2.5% 0;
-    color: rgba(255, 241, 239, 0.99);
+    color: rgb(255, 251, 242);
     transition: all .25s ease-in-out;
+    background-color: transparent;
+    border: none;
+    margin-right: .75em
 
     :hover{
         color: rgb(237,157,85);
@@ -21,6 +24,14 @@ const NavButton = styled.a`
 
     ${props => props.withBorder && css`
         border: .5px solid rgba(179, 248, 218)
+    `}
+
+    ${Media.phone`
+        background-color: rgba(209, 209, 214, .2);
+        color: white;
+        flex: 1;
+        align-self: stretch;
+        margin-bottom: 2em;
     `}
 `;
 
@@ -31,7 +42,7 @@ const StyledNav = styled.nav`
 `;
 
 const Nav = ({width}) => {
-    const navLinks = ['<About/>', '<Work/>', '<Projects/>'];
+    const navLinks = ['<About />', '<Work />', '<Projects />'];
 
 
     const heightBlock = window.innerHeight/10;
@@ -73,14 +84,25 @@ const Nav = ({width}) => {
         return currentPos;
     }
 
+    const scroll = (event) => {
+        const name = event.nativeEvent.target.getAttribute('name');
+
+        const scrollMap = {
+            '<Projects />': (width) => width > 500 ? 2200 : 2190,
+            '<Work />': (width) => width > 500 ? 1450 : 1650,
+            '<About />': (width) => width > 500 ? 750 : 675
+        }
+
+        window.scrollTo(0, scrollMap[name](width));
+    }
+
     const respondToScroll = (e) => {
         
         const currentPos = calcScroll();
 
-        const movedEnough = currentPos > 0 && currentPos < 75;
         const movingDown = currentPos > scrollTop;
         
-        if(movedEnough){
+        if(scrollTop === 0){
             updateScrollTop(currentPos);
             updateNavStyle(navStyles + fixNav);
         }else if(movingDown){
@@ -124,10 +146,16 @@ const Nav = ({width}) => {
     const mobileNav = {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
         position: 'relative',
-        top: '2.5em'
+        top: '5em'
+    }
+
+    const desktopNav = {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        position: 'relative',
+        top: '-.4em'
     }
 
     const ButtonComponent = ({onClick}) => (
@@ -137,13 +165,15 @@ const Nav = ({width}) => {
 
     const MobileMenu = () => (
        <div style={{...mobileNav}}>
-            {navLinks.map( title => <NavButton key={title} href={`#${title}`}>{title}</NavButton>)}
+            {navLinks.map( title => <NavButton name={title} key={title} onClick={scroll}>{title}</NavButton>)}
        </div>
     )
 
     return width > 500 ? (
         <StyledNav navStyles={navStyles}>
-            {navLinks.map( title => <NavButton key={title} href={`#${title}`}>{title}</NavButton>)}
+            <div style={{...desktopNav}}>
+                {navLinks.map( title => <NavButton name={title} key={title} onClick={scroll}>{title}</NavButton>)}
+            </div>
         </StyledNav>
     ) : (
         <StyledNav navStyles={navStyles}>

@@ -128,7 +128,7 @@ export const ProjectSection = () => {
 
             return (
 
-                <ContentWrapper id='<Projects/>'>
+                <ContentWrapper id='<Projects />'>
                     <SectionHeader highlight>Projects</SectionHeader>
                     <br />
                     <WrapRow justify={'flex-start'}>

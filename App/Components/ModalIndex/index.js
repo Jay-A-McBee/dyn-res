@@ -54,16 +54,6 @@ const ModalOverlay = styled.div`
     `}
 `;
 
-const fadeIn = keyframes`
-
-    from{
-        opacity: 0;
-    }
-
-    to{
-        opacity: 1;
-    }
-`;
 
 const ModalButton = styled.button`
     align-self: stretch;
