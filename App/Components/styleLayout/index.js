@@ -42,7 +42,6 @@ export const ContentWrapper = styled.section`
     width: 90%;
     align-self: center;
     margin-top: 0;
-    scroll-snap-align: center;
     ${props => props.offset && css`
       position: static;
     `}
