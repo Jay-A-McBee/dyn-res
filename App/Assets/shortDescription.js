@@ -64,31 +64,45 @@ projectDescriptions.sentimentalist = {
   ]
 };
 
-// projectDescriptions.kitkat ={
-// 	title:'About Cats',
-// 	role: 'An education app built with Angular, Node and Express.',
-// 	tasks:[
-// 		'Node.js/Express',
-// 		'AngularJS and jQueryUI'
-// 	]
-// };
+projectDescriptions.vue ={
+	title:'Apt Finder',
+	role: 'I was curious about Vue and moving to Seattle so I built this for apartment hunting.',
+	tasks:[
+		'Vue',
+		'Vuex',
+		'Node.js/Express'
+	],
+	link: 'https://github.com/Jay-A-McBee/vue-apt-finder'
+};
 
-// projectDescriptions.electric = {
-// 	title: 'Digital Range',
-// 	role: 'A livestock sale form app',
-// 	tasks:[
-// 		'Angular and formly-form directive',
-// 	  'Node.js/Express'
-// 	]
-// };
+projectDescriptions.slide = {
+	title: 'Slide/Freight Calculator',
+	role: "As people from Texas call them -\'trading tools'\- If you're brokering a cattle deal this app will make it a breeze.",
+	tasks:[
+		'React-Native',
+	  	'Styled-Components'
+	],
+	link: 'https://github.com/Jay-A-McBee/rn_slide_calc'
+};
 
-// projectDescriptions.sandBox = {
-// 	title: 'Sandbox',
-// 	role: 'contacts manager',
-// 	tasks:[
-// 		'React/Redux, Redux Saga',
-// 	  'Node.js/Express bluebird coroutine',
-// 	  'Node Cassandra driver'
-// 	],
-// 	link: 'https://bitbucket.org/jay_mcbee/contact-react-redux-lib'
-// };
+projectDescriptions.portfolio = {
+	title: 'Portfolio V2',
+	role: 'This very screen you are scrolling was in need of some serious React refactors.',
+	tasks:[
+		'React - hooks api',
+		'Styled-Components' 
+	],
+	link: 'https://github.com/Jay-A-McBee/dyn-res'
+};
+
+projectDescriptions.sandbox = {
+	title: 'Sandbox',
+	role: 'I went ham with generators on this one - a contacts manager that\'s never .done',
+	tasks:[
+		'React/Redux', 
+		'Redux Saga',
+	  	'Node.js/Express bluebird coroutine',
+	  	'Node Cassandra driver'
+	],
+	link: 'https://github.com/Jay-A-McBee/yield-contacts'
+};

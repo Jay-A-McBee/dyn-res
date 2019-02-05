@@ -30,7 +30,7 @@ const Link = styled.a`
     }
 `
 
-export const Intro = ({active}) => {
+export const Intro = () => {
     const container = {
         display: 'flex',
         flexDirection: 'column',
@@ -67,7 +67,6 @@ export const Intro = ({active}) => {
             padding={'7.5em 0'}
             offset={'left: 10em;'}
             justify={'space-around'}
-            active={active}
         >
             <SectionHeader spread><span style={{...greetStyles}}>Hi - my name is</span> Austin McBee.</SectionHeader>
             <SectionHeader heavy>I flip web bits.</SectionHeader>

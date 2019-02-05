@@ -28,7 +28,6 @@ export const Work = ({workDescriptions, active}) => {
       id='Work'
       justify={'center'}
       padding={'5.5em 0'}
-      active={active}
     >
       <SectionHeader highlight>Work Stuff</SectionHeader>
       <Experience

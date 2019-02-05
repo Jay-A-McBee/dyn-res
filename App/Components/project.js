@@ -1,14 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
-import {MediaWrap} from './Media';
+import {Media, MediaWrap} from './Media';
 import {
   ContentWrapper,
-  Row
+  Row,
+  Column
 } from './styleLayout';
 
 import {
   SectionHeader
 } from './styledText';
+
+import {
+    slide,
+    portfolio,
+    vue,
+    sandbox
+} from '../Assets/shortDescription';
 
 
 const PositionedWrapper = styled(ContentWrapper)`
@@ -75,12 +83,12 @@ const Paper = styled.div`
     border-radius: 2.5px;
     position: absolute;
     top: -.1em;
-    color: black;
+    color: rgb(237, 157, 85);
     transition: all .5s ease-in .25s;
 
     ${Folder}:hover & {
-        top: -10em;
-        transform: translate3d(1em, -.2em, .25em) skew(-7deg);
+        top: -92.5%;
+        transform: translate3d(1em, -.2em, .25em) skew(-2.5deg);
     }
 `;
 
@@ -109,39 +117,60 @@ const MobileFolderTab = styled.div`
 `;
 
 
-const FullFolder = ({text}) => {
+const FullFolder = ({title, role, tasks, link}) => {
+    {console.log([slide, portfolio, vue, sandbox])}
     return (
         <Folder>
             <FolderTab></FolderTab>
             <FolderBack></FolderBack>
-            <Paper>{text}</Paper>
+            <Paper>
+                <Column>
+                    <h5>{title}</h5>
+                    <a target='_blank' href = {link}>
+                        <i className='zmdi zmdi-github-box zmdi-hc-2x'>
+                        </i>
+                    </a>
+                    <small>{role}</small>
+                    <Row>
+                        {tasks.map(task => <small>{task}</small>)}
+                    </Row>
+                </Column>
+            </Paper>
             <FolderFront></FolderFront>
         </Folder>
     )
 }
 
 
-export const ProjectSection = ({active}) => {
+
+
+export const ProjectSection = () => {
     return(
         <MediaWrap
          render={({width}) => {
 
             return (
 
-                <ContentWrapper active={active} id='Projects'>
+                <ContentWrapper id='Projects'>
                     <SectionHeader highlight>Projects</SectionHeader>
                     <br />
                     <WrapRow justify={'flex-start'}>
-                    {[
-                        "I was curious about Vue so I made this",
-                        "React native slide calculator and freight calculator",
-                        "This website"
-                    ].map( val =>  width > 500 ? 
-                        <FullFolder text={val} /> :
+                    {[slide, portfolio, vue, sandbox].map(props =>  width > 500 ? 
+                        <FullFolder {...props}/> :
                         <div>
                             <MobileFolderTab />
                             <MobileFolder>
-                                {val}
+                                <Column>
+                                <h5>{props.title}</h5>
+                                <a target='_blank' href = {props.link}>
+                                    <i className='zmdi zmdi-github-box zmdi-hc-2x'>
+                                    </i>
+                                </a>
+                                <small>{props.role}</small>
+                                <Row>
+                                    {props.tasks.map(task => <small>{task}</small>)}
+                                </Row>
+                                </Column>
                             </MobileFolder>
                         </div>
                      )}

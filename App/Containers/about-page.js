@@ -65,17 +65,16 @@ export default function AboutMe(){
 
   return(
     <div style={{display: 'flex', flexDirection: 'column'}}>
-      <Navigation wasActive={wasActive} selectSection={selectSection} />
+      <Navigation selectSection={selectSection} />
       <Row>
         <SocialLinks />
         <Column>
-          <Intro active={active === 'intro' || wasActive.intro} />
-          <About active={active === 'about' || wasActive.about}/>
+          <Intro />
+          <About />
           <Work
-            active={active === 'work'|| wasActive.work}
             workDescriptions={work}
           />
-          <Projects active={active === 'projects' || wasActive.projects} />
+          <Projects />
         </Column>
       </Row>
     </div>

@@ -19,19 +19,17 @@ export const SectionWrapper = styled.section`
     margin-top: 5em;
 `;
 
+// ${props => props.active && css`
+//     animation: ${enter} 1.5s cubic-bezier(0.645, 0.045, 0.355, 1) .75s;
+//     animation-fill-mode: forwards;
+//   `}
+
 export const ContentWrapper = styled.section`
   flex-direction: ${props => props.flexDirection || 'column'};
   justify-content: ${props => props.justify || 'space-between'};
   align-self: ${props => props.alignSelf || 'center'};
   padding: ${props => props.padding || 'none'};
   margin-top: 5em;
-  top: -100%;
-  scroll-snap-align: center;
-  
-  ${props => props.active && css`
-    animation: ${enter} 1.5s cubic-bezier(0.645, 0.045, 0.355, 1) .75s;
-    animation-fill-mode: forwards;
-  `}
 
   ${props => props.offset && css`
     position: relative;
@@ -44,6 +42,7 @@ export const ContentWrapper = styled.section`
     width: 90%;
     align-self: center;
     margin-top: 0;
+    scroll-snap-align: center;
     ${props => props.offset && css`
       position: static;
     `}
