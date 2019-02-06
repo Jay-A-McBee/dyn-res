@@ -6,12 +6,17 @@ import {Work} from '../Components/experience';
 import {ProjectSection as Projects}  from '../Components/project';
 import {ProjectDescription} from './projdesc-page';
 import {Navigation} from '../Components/Nav';
+import {Footer} from '../Components/Footer';
 import {
     SectionWrapper,
     Row,
     Column
 } from '../Components/styleLayout';
 import '../style.css';
+import {fab} from '@fortawesome/free-brands-svg-icons'
+import {library} from '@fortawesome/fontawesome-svg-core'
+
+library.add(fab);
 
 export default function AboutMe(){
 
@@ -23,16 +28,13 @@ export default function AboutMe(){
   }
 
     
-  let [active, select] = useState(null);
+  let [active, select] = useState('intro');
+  let [wasActive, selected] = useState({intro: true})
   
-  const selectProject = (event) => {
-    const {name} = event.nativeEvent.target;
+  const selectSection = (name) => {
     select(name);
+    selected({[name]: true, ...wasActive});
   };
-
-  const clearProject = () => {
-    select(null);
-  }
 
   const work = {
     ClickTripz: {
@@ -68,7 +70,7 @@ export default function AboutMe(){
 
   return(
     <div style={{display: 'flex', flexDirection: 'column'}}>
-      <Navigation />
+      <Navigation selectSection={selectSection} />
       <Row>
         <SocialLinks />
         <Column>
@@ -78,6 +80,7 @@ export default function AboutMe(){
             workDescriptions={work}
           />
           <Projects />
+          <Footer />
         </Column>
       </Row>
     </div>

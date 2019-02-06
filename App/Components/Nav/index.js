@@ -27,10 +27,13 @@ const NavButton = styled.div`
     `}
 
     ${Media.phone`
-        background-color: rgba(209, 209, 214, .2);
+        display: flex;
+        background-color: rgba(37, 40, 39, .75);
+        height: 2.5em;
         color: white;
+        justify-content: center;
+        align-items: center;
         flex: 1;
-        align-self: stretch;
         margin-bottom: 2em;
     `}
 `;
@@ -41,9 +44,10 @@ const StyledNav = styled.nav`
     `}
 `;
 
-const Nav = ({width}) => {
+const Nav = ({width, select, wasActive}) => {
     const navLinks = ['<About />', '<Work />', '<Projects />'];
 
+    const sectionOrder = new Map([[1, 'about'], [2,'work'],[3,'projects']]);
 
     const heightBlock = window.innerHeight/10;
     
@@ -70,6 +74,20 @@ const Nav = ({width}) => {
     let[scrollTop, updateScrollTop] = useState(0);
     let[navStyles, updateNavStyle] = useState(baseNavStyle);
     let[scrollDirection, updateScrollDirection] = useState(null);
+    let[next, updateNext] = useState(1);
+
+    const scrollingToSection = (next) => {
+        const name = sectionOrder.get(next);
+        console.log(name);
+
+        if(name){
+            updateNext(next+1);
+
+            if(!wasActive[name]){
+                select(name);
+            }
+        }
+    }
 
     const  calcScroll = (update) => {
         const currentPos = [
@@ -85,15 +103,13 @@ const Nav = ({width}) => {
     }
 
     const scroll = (event) => {
-        const name = event.nativeEvent.target.getAttribute('name');
+        const name = event.nativeEvent.target.getAttribute('name').match(/\<(\w+) \/\>/)[1];
 
-        const scrollMap = {
-            '<Projects />': (width) => width > 500 ? 2200 : 2190,
-            '<Work />': (width) => width > 500 ? 1450 : 1650,
-            '<About />': (width) => width > 500 ? 750 : 675
-        }
+        const el = document.getElementById(name);
 
-        window.scrollTo(0, scrollMap[name](width));
+        el.scrollIntoView({block: 'start', inline: 'nearest', behavior: 'smooth'});
+
+        select(name.toLowerCase());
     }
 
     const respondToScroll = (e) => {
@@ -127,7 +143,7 @@ const Nav = ({width}) => {
     useEffect(
         () => {
 
-            let checkScroll = debounce(respondToScroll, 150, {leading: true});
+            let checkScroll = debounce(respondToScroll, 150, {leading: true, trailing: false});
 
             window.addEventListener('scroll', checkScroll);
 
@@ -146,6 +162,7 @@ const Nav = ({width}) => {
     const mobileNav = {
         display: 'flex',
         flexDirection: 'column',
+        alignSelf: 'flex-end',
         position: 'relative',
         top: '5em'
     }
@@ -165,14 +182,29 @@ const Nav = ({width}) => {
 
     const MobileMenu = () => (
        <div style={{...mobileNav}}>
-            {navLinks.map( title => <NavButton name={title} key={title} onClick={scroll}>{title}</NavButton>)}
+            {navLinks.map( title => (
+                <NavButton 
+                    name={title} 
+                    key={title} 
+                    onClick={scroll}
+                >
+                {title}
+                </NavButton>
+            ))}
        </div>
     )
 
     return width > 500 ? (
         <StyledNav navStyles={navStyles}>
             <div style={{...desktopNav}}>
-                {navLinks.map( title => <NavButton name={title} key={title} onClick={scroll}>{title}</NavButton>)}
+                {navLinks.map( title => (
+                    <NavButton 
+                        name={title} 
+                        key={title} 
+                        onClick={scroll}
+                    >{title}
+                    </NavButton>
+                ))}
             </div>
         </StyledNav>
     ) : (
@@ -182,15 +214,16 @@ const Nav = ({width}) => {
                 child={<MobileMenu />}
                 animation={{horizontal: true, slideIn: true}}
                 height={'100vh'}
-                width={'45%'}
+                width={'65%'}
                 childClose
+                altBgColor
             />
         </StyledNav>
     )
 }
 
-export const Navigation = () => (
+export const Navigation = ({selectSection, wasActive}) => (
     <MediaWrap
-        render={({width}) => <Nav width={width}/>}
+        render={({width}) => <Nav wasActive={wasActive} select={selectSection} width={width}/>}
     />
 )

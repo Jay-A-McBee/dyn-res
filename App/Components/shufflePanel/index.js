@@ -18,16 +18,14 @@ import {
 } from '../styleLayout';
 
 
-const WorkContainer = styled(Row)`
+const WorkContainer = styled(Column)`
   width: 80%;
   margin: auto;
   padding: 2.25em;
-  max-height: 32.5em;
 
   ${Media.phone`
     width: 100%;
     padding: 0;
-    flex-direction: column;
     position: relative;
     top: .5em;
   `}
@@ -36,30 +34,24 @@ const WorkContainer = styled(Row)`
 const ListContainer = styled.div`
   display: flex;
   position: relative;
-  flex-direction: column;
-  justify-content: flex-start;
-  border-left: 1.5px solid rgba(10, 10, 10, 0.3);
-  margin-right: 1em;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1.5px solid rgba(10, 10, 10, 0.3);
+  margin-right: 0;
   position: relative;
-  top: .5em;
-
-  ${Media.phone`
-    flex-direction: row;
-    justify-content: space-between;
-    border-bottom: 1.5px solid rgba(10, 10, 10, 0.3);
-    border-left: none;
-    margin-right: 0;
-  `}
+  top: -.5em;
 `;
 
 const WorkPlace = styled.div`
   text-align: center;
-  line-height: 1.5; 
+  line-height: 1.5;
+  flex: 1;
   width: 9em;
   height: 1.5em;
   transition: all 0.5s ease-in-out;
   padding: .5em 0;
   color: rgb(237, 157, 85);
+  font-size: 1.5em;
   font-weight: 700;
   background-color: ${props => props.selected ? 'rgba(209, 209, 214, .2)' : 'inherit'};
 
@@ -69,39 +61,24 @@ const WorkPlace = styled.div`
 
   ${Media.phone`
     flex: 1;
-    align-self: stretch;
+    font-size: 1em;
   `}
 `
 
 const Highlight = styled.div`
-    ${Media.phone`
-      width: 33.33%;
-      height: .12em;
-      transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-      top: auto;
-      bottom: -.1em;
-      left: 0;
-      transform: translateX(0);
-
-      ${props => props.offset && css`
-        transform: translateX(${100 * props.offset}%);
-      `}
-    `}
-
-    font-size: 14px;
+    width: 33.33%;
+    height: .17em;
     position: absolute;
-    display: block;
-    width: .12em;
-    height: ${40/16}em;
-    background: rgb(237, 157, 85);
-    transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.1s;
-    transform: translateY(0);
-    top: 0px;
-    left: -.1em;
-    ${props => props.offset && css`
-        transform: translateY(${(40/16) * props.offset}em);
-    `}
+    transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+    top: auto;
+    bottom: -.1em;
+    left: 0;
+    transform: translateX(0);
+    background-color: rgb(237, 157, 85);
 
+    ${props => props.offset && css`
+      transform: translateX(${100 * props.offset}%);
+    `}
 `;
 
 const Title = styled.p`
@@ -167,7 +144,13 @@ const {
   descriptions
 } = makeDescObj(pictureMap, projectDescriptions);
 
-const carouselChildren = Object.keys(projectDescriptions).reduce( (acc, description) => {
+const carouselChildren = [
+  'admin', 
+  'splt', 
+  'fairshare', 
+  'journeymen', 
+  'sentimentalist'
+  ].reduce( (acc, description) => {
   
   const descriptionComponent = <ProjectInfo key={'img'} {...descriptions[description]}/>;
   
@@ -178,6 +161,7 @@ const carouselChildren = Object.keys(projectDescriptions).reduce( (acc, descript
   };
 
   return acc;
+
 }, {SPLT:[], HackReactor:[]}) 
   
 export const Experience = ({workDesc}) => {
@@ -198,7 +182,7 @@ export const Experience = ({workDesc}) => {
   const WorkDescription = ({title, description, dates, href}) => {
     const workplace = title.split(' ').pop();
     return (
-      <WorkColumn justify={'space-between'}>
+      <WorkColumn justify={'space-around'}>
         {!href ? 
           <Title>{title}</Title> :
           <Title>{title+' '}<WorkLink href={href} target="_blank">{selected}</WorkLink></Title>
@@ -207,7 +191,7 @@ export const Experience = ({workDesc}) => {
         <ul>
           {Object.keys(description).map( key => <ListItem>{description[key]}</ListItem>)}
         </ul>
-        {carouselChildren[selected] && 
+        {carouselChildren[selected] ?
           <ModalComponent
             child={
               <MediaWrap
@@ -223,7 +207,7 @@ export const Experience = ({workDesc}) => {
             id={selected}
             message={"View Work"}
             animation={{vertical: true, slideDown: true}}
-          />}
+          /> : <div style={{height: '7.5em'}}></div>}
       </WorkColumn>
     )
   }
@@ -234,7 +218,7 @@ export const Experience = ({workDesc}) => {
   } = workDesc[selected];
 
   return (
-    <WorkContainer justify={'space-between'}>
+    <WorkContainer justify={'space-around'}>
       <ListContainer>
         {employers.map( (title, idx) => (
           <WorkPlace 

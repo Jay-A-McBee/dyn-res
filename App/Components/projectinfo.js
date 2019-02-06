@@ -2,6 +2,7 @@ import React from 'react';
 import styled, {css, keyframes} from 'styled-components';
 import {Media, MediaWrap} from './Media';
 import {Column} from './styleLayout';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current}) => {
 
@@ -87,8 +88,7 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
         ))}
         {link && 
           <a target='_blank' href = {link}>
-            <i className='zmdi zmdi-github-box zmdi-hc-2x'>
-            </i>
+            <FontAwesomeIcon icon={['fab', 'github']} size='2x'/>
           </a>
         }
       </BigColumn>

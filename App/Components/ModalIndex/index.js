@@ -8,7 +8,7 @@ const ModalBody = styled.div`
     margin: auto;
     overflow: scroll;
     padding: 0;
-    background-color: rgba(10, 10, 10, 0.95);
+    background-color: ${props => props.altBgColor ? 'rgba(179, 226, 211, .9)': 'rgba(10, 10, 10, 0.95)'};
     border: 1px solid #888;
     max-width: 60%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
@@ -16,8 +16,9 @@ const ModalBody = styled.div`
         'translateX(100%)' : 
         'translateY(-100%)'
     };
+
     opacity: 0;
-    transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out .25s;
     height: ${props => props.height || '40em'};
   
     ${Media.phone`
@@ -31,7 +32,7 @@ const ModalBody = styled.div`
     `}
 
     ${props => props.open && props.animation.slideIn && css`
-        transform: translateX(80%);
+        transform: translateX(40%);
         opacity: 1;
     `}
 `
@@ -43,36 +44,53 @@ const ModalOverlay = styled.div`
     left: 0;
     right: 0;
     background-color: rgba(10, 10, 10, 0.6);
-    overflow-y: scroll;
-    visibility: hidden;
-    z-index: -1;
+    overflow: auto;
     transition: all .5s ease-in-out;
+    z-index: 100;
 
-    ${props => props.open && css`
-        visibility: visible;
-        z-index: 100;
+    transform: ${props => props.animation && props.animation.horizontal ? 
+        'translateX(100%)' : 
+        'translateY(-100%)'
+    };
+    
+
+     ${props => props.open && props.animation.slideDown && css`
+        transform: translateY(0%);
+    `}
+
+    ${props => props.open && props.animation.slideIn && css`
+        transform: translateX(0%);
     `}
 `;
 
-
 const ModalButton = styled.button`
     align-self: stretch;
-    padding: 1.15em;
+    padding: 1em;
+    font-size: 1.25em;
+    font-weight: 700;
     color: rgb(255, 250, 239);
-    border: .5px solid rgb(255, 250, 239);
+    border: .5px solid rgb(237, 157, 85);
     transition: all .25s ease-in-out;
-    background-color: transparent;
+    background-color: rgb(237, 157, 85);
+    border-radius: .25em;
 
     :hover {
-        color: rgb(237, 157, 85);
-        border-color: rgb(237, 157, 85);
+        border-color: rgb(255, 250, 239);
     }
 `;
-const ModalComponent = ({child, childClose, id, message, ButtonComponent, animation, height, width}) => {
+const ModalComponent = ({child, childClose, id, message, ButtonComponent, animation, height, width, altBgColor}) => {
     
     let[isOpen, toggle] = useState(null);
 
     const toggleModal = () => {
+        const [body] = Array.from(document.querySelectorAll('body'));
+        
+        if(/noScroll/.test(body.className)){
+            body.className = body.className.replace('noScroll', '');
+        }else{
+            body.className = `${body.className} noScroll`;
+        }
+
         toggle(!isOpen);
     }
 
@@ -95,13 +113,19 @@ const ModalComponent = ({child, childClose, id, message, ButtonComponent, animat
             <ButtonComponent onClick={toggleModal} /> :
             <ModalButton onClick={toggleModal}>{message}</ModalButton>
         }
-        <ModalOverlay id='modal' open={isOpen} onClick={closeModal}>
+        <ModalOverlay 
+            id='modal' 
+            open={isOpen} 
+            animation={animation} 
+            onClick={closeModal}
+        >
             <ModalBody 
                 id={`modal_body_${id}`} 
                 open={isOpen} 
                 animation={animation} 
                 height={height} 
                 width={width}
+                altBgColor={altBgColor}
             >
                 <i 
                     onClick={closeModal}

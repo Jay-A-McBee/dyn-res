@@ -20,7 +20,7 @@ import {
 import {Media} from './Media';
 import styled from 'styled-components';
 
-export const About = () => {
+export const About = ({active}) => {
 
   const contactStyles = {
     display: 'flex',
@@ -51,7 +51,7 @@ export const About = () => {
         </a*/
 
   const jsLibs = [
-    'ES6/7', 
+    'JavaScript', 
     'React/React-Native', 
     'Redux', 
     'Webpack',
@@ -100,7 +100,7 @@ export const About = () => {
   `
   
 	return (
-    <ContentWrapper padding={'3.5em 0'}>
+    <ContentWrapper id='About' padding={'3.5em 0'}>
       <SectionHeader highlight>
         {title}
       </SectionHeader>
@@ -108,13 +108,13 @@ export const About = () => {
         <Column justify={'space-between'}>
           <TextBlock padding>{bio}</TextBlock>
           <TextBlock padding>{aside}</TextBlock>
-          <InnerHeader underline>Stuff I work with:</InnerHeader>
+          <InnerHeader underline>I am experienced with</InnerHeader>
           <Row>
             <Column>
-              {jsLibs.slice(0,4).map( lib => <LibBlock>{lib}</LibBlock>)}
+              {jsLibs.slice(0,4).map( (lib, i) => <LibBlock key={i}>{lib}</LibBlock>)}
             </Column>
             <Column>
-              {jsLibs.slice(4,jsLibs.length).map( lib => <LibBlock>{lib}</LibBlock>)}
+              {jsLibs.slice(4,jsLibs.length).map( (lib, i) => <LibBlock key={i}>{lib}</LibBlock>)}
             </Column>
           </Row>
         </Column>

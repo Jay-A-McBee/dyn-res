@@ -1,5 +1,16 @@
-import styled, {css} from 'styled-components';
+import styled, {css, keyframes} from 'styled-components';
 import {Media} from '../Media';
+
+const enter = keyframes`
+  from{
+    top: 100%
+  }
+
+  to{
+    top: 0
+  }
+
+`;
 
 export const SectionWrapper = styled.section`
     display: flex;
@@ -7,6 +18,11 @@ export const SectionWrapper = styled.section`
     justify-content:${props => props.justify || 'space-between'};
     margin-top: 5em;
 `;
+
+// ${props => props.active && css`
+//     animation: ${enter} 1.5s cubic-bezier(0.645, 0.045, 0.355, 1) .75s;
+//     animation-fill-mode: forwards;
+//   `}
 
 export const ContentWrapper = styled.section`
   flex-direction: ${props => props.flexDirection || 'column'};

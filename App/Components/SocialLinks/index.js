@@ -6,6 +6,7 @@ import {
 import {
     MediaWrap
 } from '../Media';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 export const SocialLinks = ({width}) => {
@@ -49,18 +50,15 @@ export const SocialLinks = ({width}) => {
         return width > 500 ? (
             <CollapsableColumn>
                 <Link marginBottom href='mailto:jmcbee1@gmail.com'>
-                  <i className='zmdi zmdi-google'>
-                  </i>
+                  <FontAwesomeIcon icon={['fab', 'google']} />
                 </Link>
                 <VerticalLine height={'2.5em'} offset={'right: .25em'}/>
                 <Link marginBottom target='_blank' href='https://github.com/Jay-A-McBee'>
-                  <i className='zmdi zmdi-github-box'>
-                  </i>
+                  <FontAwesomeIcon icon={['fab', 'github']} />
                 </Link>
                 <VerticalLine height={'2.5em'} offset={'left: .25em'} />
                 <Link marginBottom target='_blank' href='https://www.linkedin.com/in/jayaustinmcbee/'>
-                    <i className='zmdi zmdi-linkedin-box'>
-                    </i>
+                    <FontAwesomeIcon icon={['fab', 'linkedin']} />
                 </Link>
                 <VerticalLine height={'2.5em'} offset= {'right: .25em'}/>
             </CollapsableColumn>

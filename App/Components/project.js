@@ -1,19 +1,44 @@
 import React from 'react';
 import styled from 'styled-components';
-import {MediaWrap} from './Media';
+import {Media, MediaWrap} from './Media';
 import {
   ContentWrapper,
-  Row
+  Row,
+  Column
 } from './styleLayout';
 
 import {
   SectionHeader
 } from './styledText';
 
+import {
+    slide,
+    portfolio,
+    vue,
+    sandbox
+} from '../Assets/shortDescription';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 const PositionedWrapper = styled(ContentWrapper)`
   position: relative;
   top: 15em;
+`;
+
+const Title = styled.p`
+    font-size: 1.75em;
+    font-weight: 400;
+    text-decoration: underline;
+`;
+
+const TitleRow = styled(Row)`
+    align-items: center;
+`;
+
+const TechItem = styled.small`
+    font-size: .9em;
+    font-weight: 100;
+    margin-right: .5em;
 `;
 
 const Folder = styled.div`
@@ -39,14 +64,18 @@ const FolderBack = styled.div`
 `;
 
 const FolderFront = styled.div`
-    height: 15em;
-    width: 20em;
+    height: 14em;
+    width: 19em;
     margin: 0;
-    width: 20em;
     position: absolute;
-    transition: all .25s ease-in
+    transition: all .25s ease-in;
+    color: rgb(237, 157, 85);
     background-color: rgba(224, 210, 184, .9);
     border-radius: 2.5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: .5em;
 
     ${Folder}:hover & {
         transform: translate3d(-.85em, .2em, .25em) skew(7deg);
@@ -68,19 +97,24 @@ const FolderTab = styled.div`
 `;
 
 const Paper = styled.div`
-    height: 14.75em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    height: 10.75em;
+    width: 16em;
     margin: 0;
-    width: 20em;
     background-color: white;
     border-radius: 2.5px;
-    position: absolute;
     top: -.1em;
-    color: black;
+    background-color: white;
+    color: rgb(237, 157, 85);
     transition: all .5s ease-in .25s;
+    padding: 2em;
 
     ${Folder}:hover & {
-        top: -10em;
-        transform: translate3d(1em, -.2em, .25em) skew(-7deg);
+        top: -92.5%;
+        transform: translate3d(1em, -.2em, .25em) skew(-2.5deg);
     }
 `;
 
@@ -90,8 +124,12 @@ const WrapRow = styled(Row)`
 `;
 
 const MobileFolder = styled.div`
-    height: 15em;
-    width: 20em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2em;
+    height: 11em;
+    width: 18em;
     border: 2.5px solid rgb(237, 157, 85);
     margin-bottom: .75em;
     border-radius: 2.5px;
@@ -108,17 +146,40 @@ const MobileFolderTab = styled.div`
     border-radius: 3em;
 `;
 
+const Description = ({title, role, tasks, link}) => {
+    return (
+        <>
+        <TitleRow justify={'space-between'}>
+            <Title>{title}</Title>
+            <a target='_blank' href = {link}>
+                <FontAwesomeIcon icon={['fab', 'github']} size='3x' />
+            </a>
+        </TitleRow>
+        <p style={{lineHeight: '1.25em'}}>{role}</p>
+        <Row>
+            {tasks.map(task => <TechItem>{task}</TechItem>)}
+        </Row>
+        </>
+    )
+};
 
-const FullFolder = ({text}) => {
+
+const FullFolder = (props) => {
     return (
         <Folder>
             <FolderTab></FolderTab>
             <FolderBack></FolderBack>
-            <Paper>{text}</Paper>
-            <FolderFront></FolderFront>
+            <Paper>
+                <Description {...props} />
+            </Paper>
+            <FolderFront>
+                <FontAwesomeIcon icon={props.icon} size='3x' />
+            </FolderFront>
         </Folder>
     )
 }
+
+
 
 
 export const ProjectSection = () => {
@@ -128,20 +189,16 @@ export const ProjectSection = () => {
 
             return (
 
-                <ContentWrapper id='<Projects />'>
+                <ContentWrapper id='Projects'>
                     <SectionHeader highlight>Projects</SectionHeader>
                     <br />
                     <WrapRow justify={'flex-start'}>
-                    {[
-                        "I was curious about Vue so I made this",
-                        "React native slide calculator and freight calculator",
-                        "This website"
-                    ].map( val =>  width > 500 ? 
-                        <FullFolder text={val} /> :
+                    {[slide, portfolio, vue, sandbox].map(props =>  width > 500 ? 
+                        <FullFolder {...props}/> :
                         <div>
                             <MobileFolderTab />
                             <MobileFolder>
-                                {val}
+                                <Description {...props} />
                             </MobileFolder>
                         </div>
                      )}

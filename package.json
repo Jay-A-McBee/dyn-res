@@ -13,11 +13,17 @@
   "license": "ISC",
   "dependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.14",
+    "@fortawesome/free-brands-svg-icons": "^5.7.1",
+    "@fortawesome/free-solid-svg-icons": "^5.7.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "body-parser": "1.18.3",
     "express": "4.16.4",
+    "i": "^0.3.6",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.11",
     "node-uuid": "1.4.8",
+    "npm": "^6.7.0",
     "react": "16.7.0-alpha.0",
     "react-dom": "16.7.0-alpha.0",
     "styled-components": "^4.1.3"
