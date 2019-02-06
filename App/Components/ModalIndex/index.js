@@ -83,6 +83,14 @@ const ModalComponent = ({child, childClose, id, message, ButtonComponent, animat
     let[isOpen, toggle] = useState(null);
 
     const toggleModal = () => {
+        const [body] = Array.from(document.querySelectorAll('body'));
+        
+        if(/noScroll/.test(body.className)){
+            body.className = body.className.replace('noScroll', '');
+        }else{
+            body.className = `${body.className} noScroll`;
+        }
+
         toggle(!isOpen);
     }
 
