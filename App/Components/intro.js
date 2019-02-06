@@ -70,7 +70,7 @@ export const Intro = () => {
             <Headline spread><span style={{...greetStyles}}>Hi - my name is</span> Austin McBee.</Headline>
             <Headline heavy>I work on the web.</Headline>
             <NarrowText padding>I am software developer based in Seattle, Washington specializing in modern web technologies. From React to vanilla JS, I write clean, maintainable code that scales.</NarrowText>
-            <TextBlock>My goals are to keep learning, stay sharp and build dope shit.</TextBlock>
+            <TextBlock>My goals are to keep learning, stay sharp and build cool stuff.</TextBlock>
             <Link target="_blank" href='mailto:jmcbee1@gmail.com'>Get in touch</Link>
         </ContentWrapper>
     )

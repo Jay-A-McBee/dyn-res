@@ -27,10 +27,13 @@ const NavButton = styled.div`
     `}
 
     ${Media.phone`
-        background-color: rgba(209, 209, 214, .2);
+        display: flex;
+        background-color: rgba(37, 40, 39, .75);
+        height: 2.5em;
         color: white;
+        justify-content: center;
+        align-items: center;
         flex: 1;
-        align-self: stretch;
         margin-bottom: 2em;
     `}
 `;
@@ -159,6 +162,7 @@ const Nav = ({width, select, wasActive}) => {
     const mobileNav = {
         display: 'flex',
         flexDirection: 'column',
+        alignSelf: 'flex-end',
         position: 'relative',
         top: '5em'
     }
@@ -178,14 +182,29 @@ const Nav = ({width, select, wasActive}) => {
 
     const MobileMenu = () => (
        <div style={{...mobileNav}}>
-            {navLinks.map( title => <NavButton name={title} key={title} onClick={scroll}>{title}</NavButton>)}
+            {navLinks.map( title => (
+                <NavButton 
+                    name={title} 
+                    key={title} 
+                    onClick={scroll}
+                >
+                {title}
+                </NavButton>
+            ))}
        </div>
     )
 
     return width > 500 ? (
         <StyledNav navStyles={navStyles}>
             <div style={{...desktopNav}}>
-                {navLinks.map( title => <NavButton name={title} key={title} onClick={scroll}>{title}</NavButton>)}
+                {navLinks.map( title => (
+                    <NavButton 
+                        name={title} 
+                        key={title} 
+                        onClick={scroll}
+                    >{title}
+                    </NavButton>
+                ))}
             </div>
         </StyledNav>
     ) : (
@@ -195,8 +214,9 @@ const Nav = ({width, select, wasActive}) => {
                 child={<MobileMenu />}
                 animation={{horizontal: true, slideIn: true}}
                 height={'100vh'}
-                width={'45%'}
+                width={'65%'}
                 childClose
+                altBgColor
             />
         </StyledNav>
     )

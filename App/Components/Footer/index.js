@@ -48,7 +48,7 @@ export const Footer = () => {
                             </Link>
                             </>
                         }
-                        <small>Built by J. McBee 2018</small>
+                        <small>Built by J. McBee 2019</small>
                     </Foot> 
                 )
             }}
