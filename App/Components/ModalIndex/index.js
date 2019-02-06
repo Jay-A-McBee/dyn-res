@@ -8,7 +8,7 @@ const ModalBody = styled.div`
     margin: auto;
     overflow: scroll;
     padding: 0;
-    background-color: ${props => props.altBgColor ? 'rgba(179, 226, 211, .9)': 'rgba(10, 10, 10, 0.95)'};
+    background-color: ${props => props.altBgColor ? 'rgba(103, 206, 178, .9)': 'rgba(10, 10, 10, 0.95)'};
     border: 1px solid #888;
     max-width: 60%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
@@ -16,9 +16,10 @@ const ModalBody = styled.div`
         'translateX(100%)' : 
         'translateY(-100%)'
     };
+    will-change: transform;
 
     opacity: 0;
-    transition: all .5s ease-in-out .25s;
+    transition: all .5s ease-in-out .1s;
     height: ${props => props.height || '40em'};
   
     ${Media.phone`
@@ -46,11 +47,11 @@ const ModalOverlay = styled.div`
     background-color: rgba(10, 10, 10, 0.6);
     transition: all .5s ease-in-out;
     z-index: 100;
-
     transform: ${props => props.animation && props.animation.horizontal ? 
         'translateX(100%)' : 
         'translateY(-100%)'
     };
+    will-change: transform;
     
 
      ${props => props.open && props.animation.slideDown && css`

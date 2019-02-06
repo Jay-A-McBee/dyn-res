@@ -28,9 +28,9 @@ const NavButton = styled.div`
 
     ${Media.phone`
         display: flex;
-        background-color: rgba(37, 40, 39, .75);
+        background-color: rgba(114, 98, 99, .99);
         height: 2.5em;
-        color: white;
+        color: rgb(237, 157, 85);
         justify-content: center;
         align-items: center;
         flex: 1;
@@ -74,18 +74,6 @@ const Nav = ({width, select}) => {
     let[scrollDirection, updateScrollDirection] = useState(null);
     let[next, updateNext] = useState(1);
 
-    const scrollingToSection = (next) => {
-        const name = sectionOrder.get(next);
-
-        if(name){
-            updateNext(next+1);
-
-            if(!wasActive[name]){
-                select(name);
-            }
-        }
-    }
-
     const  calcScroll = (update) => {
         const currentPos = [
             document.body.scrollTop, 
@@ -112,8 +100,7 @@ const Nav = ({width, select}) => {
     const respondToScroll = (e) => {
         
         const currentPos = calcScroll();
-
-        const movingDown = currentPos > scrollTop;
+        const movingDown = currentPos > 0 && currentPos > scrollTop;
 
         if(scrollTop === 0){
             updateScrollTop(currentPos);
@@ -124,7 +111,7 @@ const Nav = ({width, select}) => {
                 updateScrollDirection('down');
                 updateNavStyle(navStyles + hideNav);
             }
-        }else if(currentPos !== 0){
+        }else if(currentPos !== 0 && currentPos > 20){
             updateScrollTop(currentPos);
             if(scrollDirection !== 'up'){
                 updateScrollDirection('up');
