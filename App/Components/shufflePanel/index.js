@@ -51,6 +51,7 @@ const WorkPlace = styled.div`
   transition: all 0.5s ease-in-out;
   padding: .5em 0;
   color: rgb(237, 157, 85);
+  font-size: 1.5em;
   font-weight: 700;
   background-color: ${props => props.selected ? 'rgba(209, 209, 214, .2)' : 'inherit'};
 
@@ -60,7 +61,7 @@ const WorkPlace = styled.div`
 
   ${Media.phone`
     flex: 1;
-    align-self: stretch;
+    font-size: 1em;
   `}
 `
 
@@ -143,7 +144,13 @@ const {
   descriptions
 } = makeDescObj(pictureMap, projectDescriptions);
 
-const carouselChildren = ['admin', 'splt', 'fairshare', 'journeymen', 'sentimentalist'].reduce( (acc, description) => {
+const carouselChildren = [
+  'admin', 
+  'splt', 
+  'fairshare', 
+  'journeymen', 
+  'sentimentalist'
+  ].reduce( (acc, description) => {
   
   const descriptionComponent = <ProjectInfo key={'img'} {...descriptions[description]}/>;
   
@@ -154,6 +161,7 @@ const carouselChildren = ['admin', 'splt', 'fairshare', 'journeymen', 'sentiment
   };
 
   return acc;
+
 }, {SPLT:[], HackReactor:[]}) 
   
 export const Experience = ({workDesc}) => {

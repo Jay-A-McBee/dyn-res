@@ -36,9 +36,13 @@ import {
 
   const Circle = styled.div`
     border-radius: 50%;
-    height: ${10/16}em;
-    width: ${10/16}em;
-    background: rgba(114, 98, 99, 0.99);
+    height: ${15/16}em;
+    width: ${15/16}em;
+    background: rgba(114, 98, 99, 0.75);
+    margin-right: .25em;
+    ${props => props.selected && css`
+      background-color: rgba(114, 98, 99, 1);
+    `}
   `;
 
   const DarkColumn = styled(Column)`
@@ -96,8 +100,8 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
     }
   }
   
-  const selectSpecific = ({nativeEvent}) => {
-    updateActive(parseInt(nativeEvent.target.getAttribute('data-index'),10));
+  const selectSpecific = (e) => {
+    updateActive(parseInt(e.nativeEvent.target.getAttribute('name'),10));
   }
 
   const projectImages = slideImages ? slideImages.map( (imgObj, index) => ({
@@ -136,8 +140,15 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
             />
           </Column>
         </StretchRow>
-        <div onClick={selectSpecific} style={{...reelStyles}}>
-          {children.map( (props, idx) => <Circle />)}
+        <div style={{...reelStyles}}>
+          {children.map( (props, i) => (
+            <Circle 
+              key={i}
+              name={i} 
+              selected={i === active} 
+              onClick={selectSpecific}
+            />
+          ))}
         </div>
       </Container>
     }
@@ -160,7 +171,14 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
           />
           </Column>
         </StretchRow>
-        {slideImages && slideImages.map( image => <Circle />)}
+        {slideImages && slideImages.map((image, i) => (
+          <Circle 
+            key={i}
+            name={i} 
+            selected={i === active} 
+            onClick={selectSpecific} 
+          />
+        ))}
       </DarkColumn>
     }
     </>

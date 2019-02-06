@@ -30,6 +30,7 @@ export const Work = ({workDescriptions, active}) => {
       padding={'5.5em 0'}
     >
       <SectionHeader highlight>Work Stuff</SectionHeader>
+      <br />
       <Experience
         workDesc={workDescriptions}
       />

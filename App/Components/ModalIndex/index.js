@@ -45,8 +45,7 @@ const ModalOverlay = styled.div`
     background-color: rgba(10, 10, 10, 0.6);
     overflow-y: scroll;
     visibility: hidden;
-    z-index: -1;
-    transition: all .5s ease-in-out;
+    transition: visibility .5s ease-in-out z-index .5s ease-in-out .25s;
 
     ${props => props.open && css`
         visibility: visible;
