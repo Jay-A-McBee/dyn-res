@@ -72,37 +72,40 @@ projectDescriptions.vue ={
 		'Vuex',
 		'Node.js/Express'
 	],
-	link: 'https://github.com/Jay-A-McBee/vue-apt-finder'
+	link: 'https://github.com/Jay-A-McBee/vue-apt-finder',
+	icon: ['fab', 'vuejs']
 };
 
 projectDescriptions.slide = {
-	title: 'Slide/Freight Calculator',
-	role: "As people from Texas call them -\'trading tools'\- If you're brokering a cattle deal this app will make it a breeze.",
+	title: 'Slide Calc',
+	role: "In the parlance of a Texan--\'trading tools'\. If you're brokering a cattle deal, this app will make it a breeze.",
 	tasks:[
 		'React-Native',
 	  	'Styled-Components'
 	],
-	link: 'https://github.com/Jay-A-McBee/rn_slide_calc'
+	link: 'https://github.com/Jay-A-McBee/rn_slide_calc',
+	icon: ['fab', 'react']
 };
 
 projectDescriptions.portfolio = {
-	title: 'Portfolio V2',
+	title: 'Portfolio v2',
 	role: 'This very screen you are scrolling was in need of some serious React refactors.',
 	tasks:[
-		'React - hooks api',
+		'React (hooks API)',
 		'Styled-Components' 
 	],
-	link: 'https://github.com/Jay-A-McBee/dyn-res'
+	link: 'https://github.com/Jay-A-McBee/dyn-res',
+	icon:['fab', 'react']
 };
 
 projectDescriptions.sandbox = {
 	title: 'Sandbox',
 	role: 'I went ham with generators on this one - a contacts manager that\'s never .done',
 	tasks:[
-		'React/Redux', 
+		'React', 
 		'Redux Saga',
-	  	'Node.js/Express bluebird coroutine',
-	  	'Node Cassandra driver'
+	  	'bluebird coroutine'
 	],
-	link: 'https://github.com/Jay-A-McBee/yield-contacts'
+	link: 'https://github.com/Jay-A-McBee/yield-contacts',
+	icon: ['fab', 'node']
 };

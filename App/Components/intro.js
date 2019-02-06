@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { About } from './about';
 import styled from 'styled-components';
+import {Media} from './Media';
 
 import {
   ContentWrapper,
@@ -13,7 +14,8 @@ import {
 import {
   SectionHeader,
   InnerHeader,
-  TextBlock
+  TextBlock, 
+  Headline
 } from './styledText';
 
 const Link = styled.a`
@@ -29,6 +31,14 @@ const Link = styled.a`
         border-color: rgb(237, 157, 85);
     }
 `
+
+const NarrowText = styled(TextBlock)`
+    width: 65%;
+
+    ${Media.phone`
+        width: 100%;
+    `}
+`;
 
 export const Intro = () => {
     const container = {
@@ -50,17 +60,6 @@ export const Intro = () => {
         color: 'rgba(255, 241, 239, .99)'
     }
 
-    /*<Modal 
-        open={open}
-        toggle={toggleBio}
-        child={[<About key={'desc'} />]}
-        dialogAnimation={'side'}
-        id={'about'}
-    />*/
-
-    /*<i onClick={toggleBio} style={{fontSize: '3em'}} className="material-icons pointer">menu</i>*/
-
-
     return  (
         <ContentWrapper 
             alignSelf={'flex-start'} 
@@ -68,9 +67,10 @@ export const Intro = () => {
             offset={'left: 10em;'}
             justify={'space-around'}
         >
-            <SectionHeader spread><span style={{...greetStyles}}>Hi - my name is</span> Austin McBee.</SectionHeader>
-            <SectionHeader heavy>I flip web bits.</SectionHeader>
-            <TextBlock padding>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</TextBlock>
+            <Headline spread><span style={{...greetStyles}}>Hi - my name is</span> Austin McBee.</Headline>
+            <Headline heavy>I work on the web.</Headline>
+            <NarrowText padding>I am software developer based in Seattle, Washington specializing in modern web technologies. From React to vanilla JS, I write clean, maintainable code that scales.</NarrowText>
+            <TextBlock>My goals are to keep learning, stay sharp and build dope shit.</TextBlock>
             <Link target="_blank" href='mailto:jmcbee1@gmail.com'>Get in touch</Link>
         </ContentWrapper>
     )

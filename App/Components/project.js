@@ -17,11 +17,28 @@ import {
     vue,
     sandbox
 } from '../Assets/shortDescription';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const PositionedWrapper = styled(ContentWrapper)`
   position: relative;
   top: 15em;
+`;
+
+const Title = styled.p`
+    font-size: 1.75em;
+    font-weight: 400;
+    text-decoration: underline;
+`;
+
+const TitleRow = styled(Row)`
+    align-items: center;
+`;
+
+const TechItem = styled.small`
+    font-size: .9em;
+    font-weight: 100;
+    margin-right: .5em;
 `;
 
 const Folder = styled.div`
@@ -47,14 +64,18 @@ const FolderBack = styled.div`
 `;
 
 const FolderFront = styled.div`
-    height: 15em;
-    width: 20em;
+    height: 14em;
+    width: 19em;
     margin: 0;
-    width: 20em;
     position: absolute;
-    transition: all .25s ease-in
+    transition: all .25s ease-in;
+    color: rgb(237, 157, 85);
     background-color: rgba(224, 210, 184, .9);
     border-radius: 2.5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: .5em;
 
     ${Folder}:hover & {
         transform: translate3d(-.85em, .2em, .25em) skew(7deg);
@@ -76,15 +97,20 @@ const FolderTab = styled.div`
 `;
 
 const Paper = styled.div`
-    height: 14.75em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    height: 10.75em;
+    width: 16em;
     margin: 0;
-    width: 20em;
     background-color: white;
     border-radius: 2.5px;
-    position: absolute;
     top: -.1em;
+    background-color: white;
     color: rgb(237, 157, 85);
     transition: all .5s ease-in .25s;
+    padding: 2em;
 
     ${Folder}:hover & {
         top: -92.5%;
@@ -98,8 +124,12 @@ const WrapRow = styled(Row)`
 `;
 
 const MobileFolder = styled.div`
-    height: 15em;
-    width: 20em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2em;
+    height: 11em;
+    width: 18em;
     border: 2.5px solid rgb(237, 157, 85);
     margin-bottom: .75em;
     border-radius: 2.5px;
@@ -116,27 +146,35 @@ const MobileFolderTab = styled.div`
     border-radius: 3em;
 `;
 
+const Description = ({title, role, tasks, link}) => {
+    return (
+        <>
+        <TitleRow justify={'space-between'}>
+            <Title>{title}</Title>
+            <a target='_blank' href = {link}>
+                <FontAwesomeIcon icon={['fab', 'github']} size='3x' />
+            </a>
+        </TitleRow>
+        <p style={{lineHeight: '1.25em'}}>{role}</p>
+        <Row>
+            {tasks.map(task => <TechItem>{task}</TechItem>)}
+        </Row>
+        </>
+    )
+};
 
-const FullFolder = ({title, role, tasks, link}) => {
-    {console.log([slide, portfolio, vue, sandbox])}
+
+const FullFolder = (props) => {
     return (
         <Folder>
             <FolderTab></FolderTab>
             <FolderBack></FolderBack>
             <Paper>
-                <Column>
-                    <h5>{title}</h5>
-                    <a target='_blank' href = {link}>
-                        <i className='zmdi zmdi-github-box zmdi-hc-2x'>
-                        </i>
-                    </a>
-                    <small>{role}</small>
-                    <Row>
-                        {tasks.map(task => <small>{task}</small>)}
-                    </Row>
-                </Column>
+                <Description {...props} />
             </Paper>
-            <FolderFront></FolderFront>
+            <FolderFront>
+                <FontAwesomeIcon icon={props.icon} size='3x' />
+            </FolderFront>
         </Folder>
     )
 }
@@ -160,17 +198,7 @@ export const ProjectSection = () => {
                         <div>
                             <MobileFolderTab />
                             <MobileFolder>
-                                <Column>
-                                <h5>{props.title}</h5>
-                                <a target='_blank' href = {props.link}>
-                                    <i className='zmdi zmdi-github-box zmdi-hc-2x'>
-                                    </i>
-                                </a>
-                                <small>{props.role}</small>
-                                <Row>
-                                    {props.tasks.map(task => <small>{task}</small>)}
-                                </Row>
-                                </Column>
+                                <Description {...props} />
                             </MobileFolder>
                         </div>
                      )}

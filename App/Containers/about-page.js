@@ -6,12 +6,17 @@ import {Work} from '../Components/experience';
 import {ProjectSection as Projects}  from '../Components/project';
 import {ProjectDescription} from './projdesc-page';
 import {Navigation} from '../Components/Nav';
+import {Footer} from '../Components/Footer';
 import {
     SectionWrapper,
     Row,
     Column
 } from '../Components/styleLayout';
 import '../style.css';
+import {fab} from '@fortawesome/free-brands-svg-icons'
+import {library} from '@fortawesome/fontawesome-svg-core'
+
+library.add(fab);
 
 export default function AboutMe(){
 
@@ -75,6 +80,7 @@ export default function AboutMe(){
             workDescriptions={work}
           />
           <Projects />
+          <Footer />
         </Column>
       </Row>
     </div>

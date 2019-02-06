@@ -54,18 +54,19 @@ const ModalOverlay = styled.div`
     `}
 `;
 
-
 const ModalButton = styled.button`
     align-self: stretch;
-    padding: 1.15em;
+    padding: 1em;
+    font-size: 1.25em;
+    font-weight: 700;
     color: rgb(255, 250, 239);
-    border: .5px solid rgb(255, 250, 239);
+    border: .5px solid rgb(237, 157, 85);
     transition: all .25s ease-in-out;
-    background-color: transparent;
+    background-color: rgb(237, 157, 85);
+    border-radius: .25em;
 
     :hover {
-        color: rgb(237, 157, 85);
-        border-color: rgb(237, 157, 85);
+        border-color: rgb(255, 250, 239);
     }
 `;
 const ModalComponent = ({child, childClose, id, message, ButtonComponent, animation, height, width}) => {

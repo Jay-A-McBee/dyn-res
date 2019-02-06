@@ -12,6 +12,11 @@ export const SectionHeader = styled.h1`
     `}
 `;
 
+export const Headline = styled(SectionHeader)`
+    font-size: 7em;
+    padding: 0;
+`;
+
 export const InnerHeader = styled.h3`
     font-weight: 400;
     color: ${props => props.color || 'white'};
@@ -21,6 +26,7 @@ export const InnerHeader = styled.h3`
 export const TextBlock = styled.p`
     font-size: 1.25em;
     text-align: justify;
+
     ${props => props.padding && css`
         padding: 1.25em 1.25em 1.25em 0;
     `}
