@@ -44,7 +44,7 @@ const StyledNav = styled.nav`
     `}
 `;
 
-const Nav = ({width, select, wasActive}) => {
+const Nav = ({width, select}) => {
     const navLinks = ['<About />', '<Work />', '<Projects />'];
 
     const sectionOrder = new Map([[1, 'about'], [2,'work'],[3,'projects']]);
@@ -62,9 +62,7 @@ const Nav = ({width, select, wasActive}) => {
         transition: all .5s ease-in-out;
     `;
 
-    let hideNav = `
-        opacity: 0;
-    `;
+    let hideNav = width > 500 ? `opacity: 0;` : '';
 
     let fixNav = `
         background-color: rgba(114, 98, 99, 1);
@@ -78,7 +76,6 @@ const Nav = ({width, select, wasActive}) => {
 
     const scrollingToSection = (next) => {
         const name = sectionOrder.get(next);
-        console.log(name);
 
         if(name){
             updateNext(next+1);
@@ -93,7 +90,7 @@ const Nav = ({width, select, wasActive}) => {
         const currentPos = [
             document.body.scrollTop, 
             document.documentElement.scrollTop
-        ].reduce( (total,pos) => total += pos, 0);
+        ].reduce((total,pos) => total += pos, 0);
 
         if(update){
             updateScrollTop(currentPos);
@@ -117,7 +114,7 @@ const Nav = ({width, select, wasActive}) => {
         const currentPos = calcScroll();
 
         const movingDown = currentPos > scrollTop;
-        
+
         if(scrollTop === 0){
             updateScrollTop(currentPos);
             updateNavStyle(navStyles + fixNav);
@@ -222,8 +219,8 @@ const Nav = ({width, select, wasActive}) => {
     )
 }
 
-export const Navigation = ({selectSection, wasActive}) => (
+export const Navigation = ({selectSection}) => (
     <MediaWrap
-        render={({width}) => <Nav wasActive={wasActive} select={selectSection} width={width}/>}
+        render={({width}) => <Nav select={selectSection} width={width}/>}
     />
 )

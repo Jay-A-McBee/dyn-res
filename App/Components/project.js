@@ -157,7 +157,7 @@ const Description = ({title, role, tasks, link}) => {
         </TitleRow>
         <p style={{lineHeight: '1.25em'}}>{role}</p>
         <Row>
-            {tasks.map(task => <TechItem>{task}</TechItem>)}
+            {tasks.map((task, i) => <TechItem key={i}>{task}</TechItem>)}
         </Row>
         </>
     )
@@ -193,9 +193,9 @@ export const ProjectSection = () => {
                     <SectionHeader highlight>Projects</SectionHeader>
                     <br />
                     <WrapRow justify={'flex-start'}>
-                    {[slide, portfolio, vue, sandbox].map(props =>  width > 500 ? 
-                        <FullFolder {...props}/> :
-                        <div>
+                    {[slide, portfolio, vue, sandbox].map((props, i) =>  width > 500 ? 
+                        <FullFolder key={i} {...props}/> :
+                        <div key={i}>
                             <MobileFolderTab />
                             <MobileFolder>
                                 <Description {...props} />

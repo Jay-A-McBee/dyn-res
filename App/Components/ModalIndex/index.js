@@ -44,7 +44,6 @@ const ModalOverlay = styled.div`
     left: 0;
     right: 0;
     background-color: rgba(10, 10, 10, 0.6);
-    overflow: auto;
     transition: all .5s ease-in-out;
     z-index: 100;
 
@@ -84,15 +83,15 @@ const ModalComponent = ({child, childClose, id, message, ButtonComponent, animat
 
     const toggleModal = () => {
         const [body] = Array.from(document.querySelectorAll('body'));
-        
-        if(/noScroll/.test(body.className)){
-            body.className = body.className.replace('noScroll', '');
-        }else{
+
+        if(!isOpen){
             body.className = `${body.className} noScroll`;
+        }else{
+            body.className = body.className.replace(/noScroll/,'');
         }
 
         toggle(!isOpen);
-    }
+    };
 
 
     const closeModal = ({nativeEvent}) => {
@@ -104,8 +103,7 @@ const ModalComponent = ({child, childClose, id, message, ButtonComponent, animat
         ){
             toggleModal();
         }
-    }
-
+    };
 
     return (
         <>
