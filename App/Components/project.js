@@ -59,6 +59,7 @@ const FolderBack = styled.div`
     transition: all .5s ease-in-out;
 
     ${Folder}:hover & {
+        box-shadow: .5em .75em .25em .25em rgba(10, 10, 10, 0.3);
         transform: translate3d(1em, -.2em, .25em) skew(-7deg);
     }
 `;
@@ -148,18 +149,18 @@ const MobileFolderTab = styled.div`
 
 const Description = ({title, role, tasks, link}) => {
     return (
-        <>
-        <TitleRow justify={'space-between'}>
-            <Title>{title}</Title>
-            <a target='_blank' href = {link}>
-                <FontAwesomeIcon icon={['fab', 'github']} size='3x' />
-            </a>
-        </TitleRow>
-        <p style={{lineHeight: '1.25em'}}>{role}</p>
-        <Row>
-            {tasks.map((task, i) => <TechItem key={i}>{task}</TechItem>)}
-        </Row>
-        </>
+        <React.Fragment>
+            <TitleRow justify={'space-between'}>
+                <Title>{title}</Title>
+                <a target='_blank' href = {link}>
+                    <FontAwesomeIcon icon={['fab', 'github']} size='3x' />
+                </a>
+            </TitleRow>
+            <p style={{lineHeight: '1.25em'}}>{role}</p>
+            <Row>
+                {tasks.map((task, i) => <TechItem key={i}>{task}</TechItem>)}
+            </Row>
+        </React.Fragment>
     )
 };
 
@@ -186,10 +187,8 @@ export const ProjectSection = () => {
     return(
         <MediaWrap
          render={({width}) => {
-
             return (
-
-                <ContentWrapper id='Projects'>
+                <ContentWrapper padding={width < 500 && '4em 0'} id='Projects'>
                     <SectionHeader highlight>Projects</SectionHeader>
                     <br />
                     <WrapRow justify={'flex-start'}>
