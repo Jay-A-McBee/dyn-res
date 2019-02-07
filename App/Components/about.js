@@ -112,7 +112,7 @@ export const About = ({active}) => {
   
 	return (
     <ContentWrapper id='About' padding={'4em 0'}>
-      <SectionHeader highlight>
+      <SectionHeader highlight active={active}>
         {title}
       </SectionHeader>
       <InnerContent justify={'space-evenly'}>
