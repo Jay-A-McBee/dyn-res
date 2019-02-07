@@ -6,7 +6,7 @@ import {Media, MediaWrap} from '../Media';
 
 const NavButton = styled.div`
     font-weight: 700; 
-    font-size: 1.25em; 
+    font-size: 1.5em; 
     float: right; 
     text-align: center;
     position: relative;
@@ -115,11 +115,14 @@ const Nav = ({width, select}) => {
     useEffect(
         () => {
 
-            let checkScroll = debounce(respondToScroll, 500, {leading: true});
+            if(width > 500){
 
-            window.addEventListener('scroll', checkScroll);
+                let checkScroll = debounce(respondToScroll, 500, {leading: true});
 
-            return () => window.removeEventListener('scroll', checkScroll);
+                window.addEventListener('scroll', checkScroll);
+
+                return () => window.removeEventListener('scroll', checkScroll);
+            }
         }
     )
     
@@ -180,7 +183,7 @@ const Nav = ({width, select}) => {
             </div>
         </StyledNav>
     ) : (
-        <StyledNav navStyles={navStyles}>
+        <StyledNav navStyles={navStyles + fixNav}>
             <ModalComponent
                 ButtonComponent={ButtonComponent}
                 child={<MobileMenu />}
