@@ -16,7 +16,8 @@ const NavButton = styled.div`
     transition: all .25s ease-in-out;
     background-color: transparent;
     border: none;
-    margin-right: .75em
+    margin-right: .75em;
+    cursor: pointer;
 
     :hover{
         color: rgb(237,157,85);
