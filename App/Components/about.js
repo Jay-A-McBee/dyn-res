@@ -51,14 +51,14 @@ export const About = ({active}) => {
         </a*/
 
   const jsLibs = [
-    'JavaScript', 
-    'React/React-Native', 
+    'JavaScript',
+    'HTML/CSS', 
+    'React', 
+    'React-Native',
     'Redux', 
-    'Webpack',
     'Node.js',
     'Express',
-    'Jest',
-    'Enzyme'
+    'Jest'
   ];
 
   const libSection = {
@@ -97,7 +97,18 @@ export const About = ({active}) => {
   const LibBlock = styled.div`
     padding: .3em;
     justify-content: flex-start;
+    ::before{
+      content: '〉';
+    }
   `
+
+  const FlexRow = styled(Row)`
+      justify-content: flex-start;
+      align-items: flex-start;
+    ${Media.phone`
+      justify-content: space-evenly;
+    `}
+  `;
   
 	return (
     <ContentWrapper id='About' padding={'4em 0'}>
@@ -108,15 +119,15 @@ export const About = ({active}) => {
         <Column justify={'space-between'}>
           <TextBlock padding>{bio}</TextBlock>
           <TextBlock padding>{aside}</TextBlock>
-          <InnerHeader underline>I am experienced with</InnerHeader>
-          <Row>
+          <InnerHeader>Experienced with:</InnerHeader>
+          <FlexRow>
             <Column>
-              {jsLibs.slice(0,4).map( (lib, i) => <LibBlock key={i}>{lib}</LibBlock>)}
+              {jsLibs.slice(0,jsLibs.length/2).map( (lib, i) => <LibBlock key={i}>{lib}</LibBlock>)}
             </Column>
             <Column>
-              {jsLibs.slice(4,jsLibs.length).map( (lib, i) => <LibBlock key={i}>{lib}</LibBlock>)}
+              {jsLibs.slice(jsLibs.length/2,jsLibs.length).map( (lib, i) => <LibBlock key={i}>{lib}</LibBlock>)}
             </Column>
-          </Row>
+          </FlexRow>
         </Column>
         <FluidColumn justify={'center'}>
           <Image src={Me}/>
