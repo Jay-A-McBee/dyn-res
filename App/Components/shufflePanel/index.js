@@ -189,7 +189,7 @@ export const Experience = ({workDesc}) => {
         }
         <Dates>{dates}</Dates>
         <ul>
-          {Object.keys(description).map( key => <ListItem>{description[key]}</ListItem>)}
+          {Object.keys(description).map((key, i) => <ListItem key={i}>{description[key]}</ListItem>)}
         </ul>
         {carouselChildren[selected] ?
           <ModalComponent
@@ -220,8 +220,9 @@ export const Experience = ({workDesc}) => {
   return (
     <WorkContainer justify={'space-around'}>
       <ListContainer>
-        {employers.map( (title, idx) => (
+        {employers.map( (title, i) => (
           <WorkPlace 
+            key={i}
             name={title} 
             onClick={updateSelected} 
             selected={selected === title}

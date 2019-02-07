@@ -54,7 +54,6 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
     ${Media.phone`
       position: relative;
       top: -.5em;
-      left: .75em;
     `}
   `;
 
@@ -65,7 +64,6 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
     ${Media.phone`
       position: relative;
       top: -.5em;
-      left: 1.5em;
       line-height: 1.25;
     `}
   `;
@@ -96,4 +94,4 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
 	)
 }
 
-export default ProjectInfo
+export default ProjectInfo;

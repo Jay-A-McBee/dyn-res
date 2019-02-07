@@ -100,7 +100,7 @@ export const About = ({active}) => {
   `
   
 	return (
-    <ContentWrapper id='About' padding={'3.5em 0'}>
+    <ContentWrapper id='About' padding={'4em 0'}>
       <SectionHeader highlight>
         {title}
       </SectionHeader>

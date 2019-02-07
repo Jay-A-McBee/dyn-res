@@ -28,12 +28,14 @@ const NavButton = styled.div`
 
     ${Media.phone`
         display: flex;
-        background-color: rgba(37, 40, 39, .75);
+        background-color: rgba(114, 98, 99, .99);
+        border: .075em solid rgb(237, 157, 85);
         height: 2.5em;
-        color: white;
+        color: rgb(237, 157, 85);
         justify-content: center;
         align-items: center;
-        flex: 1;
+        align-self: center;
+        width: 80%;
         margin-bottom: 2em;
     `}
 `;
@@ -44,10 +46,8 @@ const StyledNav = styled.nav`
     `}
 `;
 
-const Nav = ({width, select, wasActive}) => {
+const Nav = ({width, select}) => {
     const navLinks = ['<About />', '<Work />', '<Projects />'];
-
-    const sectionOrder = new Map([[1, 'about'], [2,'work'],[3,'projects']]);
 
     const heightBlock = window.innerHeight/10;
     
@@ -59,12 +59,10 @@ const Nav = ({width, select, wasActive}) => {
         z-index: 10;
         position: fixed;
         top: 0;
-        transition: all .5s ease-in-out;
+        transition: all .15s ease-in-out;
     `;
 
-    let hideNav = `
-        opacity: 0;
-    `;
+    let hideNav = width > 500 ? `opacity: 0;` : '';
 
     let fixNav = `
         background-color: rgba(114, 98, 99, 1);
@@ -73,31 +71,14 @@ const Nav = ({width, select, wasActive}) => {
 
     let[scrollTop, updateScrollTop] = useState(0);
     let[navStyles, updateNavStyle] = useState(baseNavStyle);
-    let[scrollDirection, updateScrollDirection] = useState(null);
     let[next, updateNext] = useState(1);
 
-    const scrollingToSection = (next) => {
-        const name = sectionOrder.get(next);
-        console.log(name);
-
-        if(name){
-            updateNext(next+1);
-
-            if(!wasActive[name]){
-                select(name);
-            }
-        }
-    }
-
-    const  calcScroll = (update) => {
+    const  calcScroll = () => {
         const currentPos = [
             document.body.scrollTop, 
             document.documentElement.scrollTop
-        ].reduce( (total,pos) => total += pos, 0);
+        ].reduce((total,pos) => total += pos, 0);
 
-        if(update){
-            updateScrollTop(currentPos);
-        }
 
         return currentPos;
     }
@@ -113,28 +94,19 @@ const Nav = ({width, select, wasActive}) => {
     }
 
     const respondToScroll = (e) => {
-        
         const currentPos = calcScroll();
-
         const movingDown = currentPos > scrollTop;
-        
-        if(scrollTop === 0){
+
+        if(currentPos > 0 && currentPos < 75){
             updateScrollTop(currentPos);
             updateNavStyle(navStyles + fixNav);
         }else if(movingDown){
             updateScrollTop(currentPos);
-            if(scrollDirection !== 'down'){
-                updateScrollDirection('down');
-                updateNavStyle(navStyles + hideNav);
-            }
+            updateNavStyle(navStyles + hideNav);
         }else if(currentPos !== 0){
             updateScrollTop(currentPos);
-            if(scrollDirection !== 'up'){
-                updateScrollDirection('up');
-                updateNavStyle(baseNavStyle + fixNav);
-            }
+            updateNavStyle(baseNavStyle + fixNav);
         }else{
-            updateScrollDirection(null);
             updateScrollTop(currentPos);
             updateNavStyle(baseNavStyle);
         }
@@ -143,7 +115,7 @@ const Nav = ({width, select, wasActive}) => {
     useEffect(
         () => {
 
-            let checkScroll = debounce(respondToScroll, 150, {leading: true, trailing: false});
+            let checkScroll = debounce(respondToScroll, 500, {leading: true});
 
             window.addEventListener('scroll', checkScroll);
 
@@ -222,8 +194,8 @@ const Nav = ({width, select, wasActive}) => {
     )
 }
 
-export const Navigation = ({selectSection, wasActive}) => (
+export const Navigation = ({selectSection}) => (
     <MediaWrap
-        render={({width}) => <Nav wasActive={wasActive} select={selectSection} width={width}/>}
+        render={({width}) => <Nav select={selectSection} width={width}/>}
     />
 )
