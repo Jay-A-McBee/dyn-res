@@ -64,8 +64,8 @@ export default function AboutMe(){
       <Row>
         <SocialLinks />
         <Column>
-          <Intro />
-          <About />
+          <Intro active={active === 'intro'} />
+          <About active={active === 'about'}/>
           <Work
             workDescriptions={work}
           />

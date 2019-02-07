@@ -1,5 +1,18 @@
-import styled, {css} from 'styled-components';
+import styled, {css, keyframes} from 'styled-components';
 import {Media} from '../Media';
+
+
+const fadeInAndUp = keyframes`
+    from {
+        opacity: 0;
+        transform: translateY(${20/16}em);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+`;
 
 export const SectionHeader = styled.h1`
     font-weight: ${props => props.heavy ? 700:400};
@@ -7,14 +20,18 @@ export const SectionHeader = styled.h1`
     text-decoration: ${props => props.underline ? 'underline' : 'none'};
     font-size: 5em;
     margin-bottom: ${props => props.spread ? '-.07em': '-.25em'};
+    
     ${Media.phone`
         font-size: 2.75em;
     `}
+
 `;
 
 export const Headline = styled(SectionHeader)`
     font-size: 7em;
     padding: 0;
+    animation: ${fadeInAndUp} .5s ease-in-out;
+    animation-fill-mode: forwards;
 `;
 
 export const InnerHeader = styled.h3`
@@ -26,6 +43,9 @@ export const InnerHeader = styled.h3`
 export const TextBlock = styled.p`
     font-size: 1.25em;
     text-align: justify;
+    opacity: 0;
+    animation: ${fadeInAndUp} .5s ease-in-out .25s;
+    animation-fill-mode: forwards;
 
     ${props => props.padding && css`
         padding: 1.25em 1.25em 1.25em 0;

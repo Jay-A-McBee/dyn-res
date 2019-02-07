@@ -1,8 +1,20 @@
 import React, {useState, useEffect} from 'react';
-import styled, {css} from 'styled-components';
+import styled, {css, keyframes} from 'styled-components';
 import debounce from 'lodash.debounce';
 import ModalComponent from '../ModalIndex';
 import {Media, MediaWrap} from '../Media';
+
+const fadeInAndUp = keyframes`
+    from {
+        opacity: 0;
+        transform: translateY(${20/16}em);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+`;
 
 const NavButton = styled.div`
     font-weight: 700; 
@@ -22,7 +34,9 @@ const NavButton = styled.div`
     :hover{
         color: rgb(237,157,85);
     }
-
+    animation: ${fadeInAndUp} .5s ease-in-out;
+    animation-fill-mode: forwards;
+    
     ${props => props.withBorder && css`
         border: .5px solid rgba(179, 248, 218)
     `}
