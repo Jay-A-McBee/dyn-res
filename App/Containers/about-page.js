@@ -19,21 +19,11 @@ import {library} from '@fortawesome/fontawesome-svg-core'
 library.add(fab);
 
 export default function AboutMe(){
-
-
-  let [open, toggleBio] = useState(false);
-
-  const toggle = () => {
-    toggleBio(!open);
-  }
-
     
   let [active, select] = useState('intro');
-  let [wasActive, selected] = useState({intro: true})
   
   const selectSection = (name) => {
     select(name);
-    selected({[name]: true, ...wasActive});
   };
 
   const work = {

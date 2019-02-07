@@ -175,8 +175,8 @@ export const Experience = ({workDesc}) => {
     const title = e.nativeEvent.target.getAttribute('name');
     const next = employers.indexOf(title);
 
-    offset = updateOffset(next);
-    selected = selectWorkExperience(title);
+    updateOffset(next);
+    selectWorkExperience(title);
   }
 
   const WorkDescription = ({title, description, dates, href}) => {
