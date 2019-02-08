@@ -10,7 +10,7 @@ import sentimentalistScreen from '../../Assets/pics/sentimentalistShell.png';
 import projectDescriptions from '../../Assets/shortDescription';
 import {makeDescObj} from '../../helpers';
 import ProjectInfo from '../projectinfo';
-import {MediaWrap, Media} from '../Media';
+import {useWidthHook, Media} from '../Media';
 import {
   FluidColumn, 
   Row, 
@@ -197,6 +197,7 @@ export const Experience = ({workDesc, inView}) => {
   
   let[selected, selectWorkExperience] = useState(employers[0]);
   let[offset, updateOffset] = useState(0);
+  let width = useWidthHook();
 
   const updateSelected = (e) => {
     e.preventDefault();
@@ -222,14 +223,9 @@ export const Experience = ({workDesc, inView}) => {
         {carouselChildren[selected] ?
           <ModalComponent
             child={
-              <MediaWrap
-                render={({width}) => (
-                  <CarouselComponent
-                    slideImages={null} 
-                    children={carouselChildren[selected]} 
-                    width={width}
-                  />
-                )}
+              <CarouselComponent
+                slideImages={null} 
+                children={carouselChildren[selected]} 
               />
             }
             id={selected}

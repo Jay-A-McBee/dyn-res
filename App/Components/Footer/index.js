@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {MediaWrap} from '../Media';
+import {useWidthHook} from '../Media';
 
 
 const Foot = styled.div`
@@ -27,31 +27,27 @@ const Link = styled.a`
 `;
 
 export const Footer = () => {
+    let width = useWidthHook();
+    
     return(
-        <MediaWrap
-            render={({width}) => {
-                return (
-                    <Foot>
-                        {width <= 500 &&
-                            <>
-                            <Link href='mailto:jmcbee1@gmail.com'>
-                              <i className='zmdi zmdi-google'>
-                              </i>
-                            </Link>
-                            <Link target='_blank' href='https://github.com/Jay-A-McBee'>
-                              <i className='zmdi zmdi-github-box'>
-                              </i>
-                            </Link>
-                            <Link target='_blank' href='https://www.linkedin.com/in/jayaustinmcbee/'>
-                                <i className='zmdi zmdi-linkedin-box'>
-                                </i>
-                            </Link>
-                            </>
-                        }
-                        <small>Built by J. McBee 2019</small>
-                    </Foot> 
-                )
-            }}
-        />
+        <Foot>
+            {width <= 500 &&
+                <>
+                <Link href='mailto:jmcbee1@gmail.com'>
+                  <i className='zmdi zmdi-google'>
+                  </i>
+                </Link>
+                <Link target='_blank' href='https://github.com/Jay-A-McBee'>
+                  <i className='zmdi zmdi-github-box'>
+                  </i>
+                </Link>
+                <Link target='_blank' href='https://www.linkedin.com/in/jayaustinmcbee/'>
+                    <i className='zmdi zmdi-linkedin-box'>
+                    </i>
+                </Link>
+                </>
+            }
+            <small>Built by J. McBee 2019</small>
+        </Foot> 
     )
 }

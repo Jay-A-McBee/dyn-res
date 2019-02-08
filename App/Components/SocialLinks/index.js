@@ -4,7 +4,7 @@ import {
     CollapsableColumn
 } from '../styleLayout';
 import {
-    MediaWrap
+    useWidthHook
 } from '../Media';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {UseScrollTracking} from '../ScrollHook';
@@ -47,7 +47,11 @@ const Link = styled.a`
     }
 `;
 
-const Links = ({width, inView}) => {
+export const SocialLinks = () => {
+
+    let inView = UseScrollTracking('Links');
+    let width = useWidthHook();
+
     return width > 500 ? (
         <CollapsableColumn id='Links'>
             <Link active={inView} marginBottom href='mailto:jmcbee1@gmail.com'>
@@ -66,15 +70,3 @@ const Links = ({width, inView}) => {
     ) : null;
 };
 
-export const SocialLinks = ({width}) => {
-
-    let inView = UseScrollTracking('Links');
-
-    return (
-        <MediaWrap
-            render={({width}) => (
-                <Links width={width} inView={inView} />
-            )}
-        />
-    )
-}

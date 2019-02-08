@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import styled, {css, keyframes} from 'styled-components';
 import debounce from 'lodash.debounce';
 import ModalComponent from '../ModalIndex';
-import {Media, MediaWrap} from '../Media';
+import {Media, useWidthHook} from '../Media';
+import {UseScrollTracking} from '../ScrollHook';
 
 const fadeInAndUp = keyframes`
     from {
@@ -61,7 +62,7 @@ const StyledNav = styled.nav`
     `}
 `;
 
-const Nav = ({width, select}) => {
+export const Navigation = ({select}) => {
     const navLinks = ['<About />', '<Work />', '<Projects />'];
 
     const heightBlock = window.innerHeight/10;
@@ -126,6 +127,8 @@ const Nav = ({width, select}) => {
             updateNavStyle(baseNavStyle);
         }
     }
+
+    let width = useWidthHook();
 
     useEffect(
         () => {
@@ -211,9 +214,3 @@ const Nav = ({width, select}) => {
         </StyledNav>
     )
 }
-
-export const Navigation = ({selectSection}) => (
-    <MediaWrap
-        render={({width}) => <Nav select={selectSection} width={width}/>}
-    />
-)

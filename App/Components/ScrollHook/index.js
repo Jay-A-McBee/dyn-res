@@ -6,23 +6,19 @@ import debounce from 'lodash.debounce';
 export const UseScrollTracking = (id) => {
 
     let scrollHandler = useRef();
+    let position = useRef();
 
     let [inView, setPosition] = useState();
 
     function calcLocation(){
-        const el = document.getElementById(id);
-
-        const {
-            top
-        } = el.getBoundingClientRect();
-
-        var isVisible = top < window.innerHeight;
+        const {scrollY} = window;
+        var isVisible = (position.current - scrollY) < 250 || position.current < window.innerHeight;
 
         setPosition(isVisible);
     };
 
     const registerScrollHandler = () => {
-        scrollHandler.current = debounce(calcLocation, 150, {leading:true, trailing: true});
+        scrollHandler.current = debounce(calcLocation, 100, {leading:true, trailing: true});
         window.addEventListener('scroll', scrollHandler.current);
     };
 
@@ -32,16 +28,17 @@ export const UseScrollTracking = (id) => {
     };
 
     useEffect(() => {
+        if(!position.current){
+            const el = document.getElementById(id);
+            position.current = el.offsetTop;
+        }
+
         if(!inView){
             calcLocation();
             registerScrollHandler();
         }
 
-        if(!!scrollHandler.current){
-            return () => unregisterScrollHandler();
-        }
-
-        return;
+        return () => unregisterScrollHandler();
     });
 
 

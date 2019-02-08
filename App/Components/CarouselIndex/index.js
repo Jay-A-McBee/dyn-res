@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import styled, {css, keyframes} from 'styled-components';
 import ProjectImage from '../projectDesc';
-import {MediaWrap} from '../Media';
+import {useWidthHook} from '../Media';
 import {
   Column, 
   Row
@@ -75,10 +75,11 @@ import {
     align-self: stretch;
   `;
 
-export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], slideImages, width}) => {
+export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], slideImages}) => {
 
 
   let [active, updateActive] = useState(0);
+  let width = useWidthHook();
 
   const selectNext = (e) => {
     e.preventDefault();

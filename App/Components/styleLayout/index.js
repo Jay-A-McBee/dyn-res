@@ -29,7 +29,7 @@ export const ContentWrapper = styled.section`
   justify-content: ${props => props.justify || 'space-between'};
   align-self: ${props => props.alignSelf || 'center'};
   padding: ${props => props.padding || 'none'};
-  margin-top: 5em;
+  margin-top: 5.5em;
 
   ${props => props.offset && css`
     position: relative;
@@ -41,7 +41,7 @@ export const ContentWrapper = styled.section`
   ${Media.phone`
     width: 90%;
     align-self: center;
-    margin-top: 0;
+    margin-top: 2.5em;
     ${props => props.offset && css`
       position: static;
     `}

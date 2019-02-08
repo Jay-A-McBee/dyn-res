@@ -84,7 +84,9 @@ export const Intro = () => {
             id='Intro'
             alignSelf={'flex-start'} 
             padding={'7.5em 0'}
-            offset={'left: 10em;'}
+            offset={`
+                left: 10em;
+            `}
             justify={'space-around'}
         >
             <Headline active={inView} spread><span style={{...greetStyles}}>Hi - my name is</span> Austin McBee.</Headline>

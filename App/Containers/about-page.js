@@ -59,7 +59,7 @@ export default function AboutMe(){
   }
 
   return(
-    <div style={{display: 'flex', flexDirection: 'column'}}>
+    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
       <Navigation selectSection={selectSection} />
       <Row>
         <SocialLinks />

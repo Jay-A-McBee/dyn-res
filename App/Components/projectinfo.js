@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, {css, keyframes} from 'styled-components';
-import {Media, MediaWrap} from './Media';
+import {Media} from './Media';
 import {Column} from './styleLayout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

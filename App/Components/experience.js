@@ -26,12 +26,12 @@ const PositionedWrapper = styled(ContentWrapper)`
 export const Work = ({workDescriptions}) => {
 
   let inView = UseScrollTracking('Work');
-  
+
   return(
     <ContentWrapper
       id='Work'
       justify={'center'}
-      padding={'5.5em 0'}
+      padding={'5em 0 0 0'}
     >
       <SectionHeader 
         active={inView} 

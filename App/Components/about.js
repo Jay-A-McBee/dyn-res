@@ -86,7 +86,7 @@ export const About = () => {
   let inView = UseScrollTracking('About');
 
 	return (
-    <ContentWrapper id='About' padding={'4em 0'}>
+    <ContentWrapper id='About' padding={'5em 0 0 0'}>
       <SectionHeader highlight active={inView}>
         {title}
       </SectionHeader>

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
-import {Media, MediaWrap} from './Media';
+import {Media, useWidthHook} from './Media';
 import {
   ContentWrapper,
   Row,
@@ -204,28 +204,26 @@ const FullFolder = ({inView, icon, ...rest}) => {
 export const ProjectSection = () => {
 
     let inView = UseScrollTracking('Projects');
+    let width = useWidthHook();
 
     return(
-        <MediaWrap
-         render={({width}) => {
-            return (
-                <ContentWrapper padding={width < 500 && '4em 0'} id='Projects'>
-                    <SectionHeader active={inView} highlight>Projects</SectionHeader>
-                    <br />
-                    <WrapRow justify={'flex-start'}>
-                    {[slide, portfolio, vue, sandbox].map((props, i) =>  width > 500 ? 
-                        <FullFolder key={i} inView={inView} {...props}/> :
-                        <div key={i}>
-                            <MobileFolderTab />
-                            <MobileFolder active={inView}>
-                                <Description {...props} />
-                            </MobileFolder>
-                        </div>
-                     )}
-                    </WrapRow>
-                </ContentWrapper>
-            )
-         }}
-        />
+        <ContentWrapper     
+            id='Projects'
+            padding={'5em 0 0 0'}
+        >
+            <SectionHeader active={inView} highlight>Projects</SectionHeader>
+            <br />
+            <WrapRow justify={'flex-start'}>
+            {[slide, portfolio, vue, sandbox].map((props, i) =>  width > 500 ? 
+                <FullFolder key={i} inView={inView} {...props}/> :
+                <div key={i}>
+                    <MobileFolderTab />
+                    <MobileFolder active={inView}>
+                        <Description {...props} />
+                    </MobileFolder>
+                </div>
+             )}
+            </WrapRow>
+        </ContentWrapper>
     )
 }
