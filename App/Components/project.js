@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import {Media, MediaWrap} from './Media';
 import {
   ContentWrapper,
@@ -10,6 +10,8 @@ import {
 import {
   SectionHeader
 } from './styledText';
+
+import {ScrollWrap} from './Scroll';
 
 import {
     slide,
@@ -46,6 +48,14 @@ const Folder = styled.div`
     margin: 2.5em;
     height: 15em;
     width: 20em;
+    transition: all .5s ease-in-out;
+    opacity: 0;
+    transform: translateY(${20/16}em);
+
+    ${props => props.active && css`
+        opacity: 1;
+        transform: translateY(0);
+    `}
 `;
 
 const FolderBack = styled.div`
@@ -134,6 +144,14 @@ const MobileFolder = styled.div`
     border: 2.5px solid rgb(237, 157, 85);
     margin-bottom: .75em;
     border-radius: 2.5px;
+    transition: all .5s ease-in-out;
+    opacity: 0;
+    transform: translateY(${20/16}em);
+
+    ${props => props.active && css`
+        opacity: 1;
+        transform: translateY(0);
+    `}
 
 `;
 
@@ -165,16 +183,16 @@ const Description = ({title, role, tasks, link}) => {
 };
 
 
-const FullFolder = (props) => {
+const FullFolder = ({inView, icon, ...rest}) => {
     return (
-        <Folder>
+        <Folder active={inView}>
             <FolderTab></FolderTab>
             <FolderBack></FolderBack>
             <Paper>
-                <Description {...props} />
+                <Description {...rest} />
             </Paper>
             <FolderFront>
-                <FontAwesomeIcon icon={props.icon} size='3x' />
+                <FontAwesomeIcon icon={icon} size='3x' />
             </FolderFront>
         </Folder>
     )
@@ -183,20 +201,20 @@ const FullFolder = (props) => {
 
 
 
-export const ProjectSection = () => {
+const ProjSection = ({inView}) => {
     return(
         <MediaWrap
          render={({width}) => {
             return (
                 <ContentWrapper padding={width < 500 && '4em 0'} id='Projects'>
-                    <SectionHeader highlight>Projects</SectionHeader>
+                    <SectionHeader active={inView} highlight>Projects</SectionHeader>
                     <br />
                     <WrapRow justify={'flex-start'}>
                     {[slide, portfolio, vue, sandbox].map((props, i) =>  width > 500 ? 
-                        <FullFolder key={i} {...props}/> :
+                        <FullFolder key={i} inView={inView} {...props}/> :
                         <div key={i}>
                             <MobileFolderTab />
-                            <MobileFolder>
+                            <MobileFolder active={inView}>
                                 <Description {...props} />
                             </MobileFolder>
                         </div>
@@ -208,3 +226,12 @@ export const ProjectSection = () => {
         />
     )
 }
+
+export const ProjectSection = () => {
+  return (
+    <ScrollWrap
+      id={'Projects'}
+      render={({inView}) => <ProjSection inView={inView} />}
+    />
+  )
+};

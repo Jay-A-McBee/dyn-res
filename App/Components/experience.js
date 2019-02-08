@@ -1,6 +1,7 @@
 import React from 'react';
 import {Experience} from './shufflePanel';
 import styled from 'styled-components';
+import {ScrollWrap} from './Scroll';
 import {
   ContentWrapper
 } from './styleLayout';
@@ -22,18 +23,33 @@ const PositionedWrapper = styled(ContentWrapper)`
   position: relative;
   top: 7.5em;
 `
-export const Work = ({workDescriptions, active}) => {
+const Wrk = ({workDescriptions, inView}) => {
   return(
     <ContentWrapper
       id='Work'
       justify={'center'}
       padding={'5.5em 0'}
     >
-      <SectionHeader highlight>Work Stuff</SectionHeader>
+      <SectionHeader 
+        active={inView} 
+        highlight
+      >
+      Work Stuff
+      </SectionHeader>
       <br />
       <Experience
+        inView={inView}
         workDesc={workDescriptions}
       />
     </ContentWrapper>  
+  )
+}
+
+export const Work = ({workDescriptions}) => {
+  return (
+    <ScrollWrap
+      id={'Work'}
+      render={({inView}) => <Wrk workDescriptions={workDescriptions} inView={inView} />}
+    />
   )
 }

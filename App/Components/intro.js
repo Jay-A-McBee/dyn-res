@@ -2,6 +2,7 @@ import React from 'react';
 import { About } from './about';
 import styled, {keyframes} from 'styled-components';
 import {Media} from './Media';
+import {ScrollWrap} from './Scroll';
 
 import {
   ContentWrapper,
@@ -54,7 +55,7 @@ const NarrowText = styled(TextBlock)`
     `}
 `;
 
-export const Intro = ({active}) => {
+const Int = ({inView}) => {
     const container = {
         display: 'flex',
         flexDirection: 'column',
@@ -76,16 +77,26 @@ export const Intro = ({active}) => {
 
     return  (
         <ContentWrapper 
+            id='Intro'
             alignSelf={'flex-start'} 
             padding={'7.5em 0'}
             offset={'left: 10em;'}
             justify={'space-around'}
         >
-            <Headline active={active} spread><span style={{...greetStyles}}>Hi - my name is</span> Austin McBee.</Headline>
-            <Headline active={active} heavy>I work on the web.</Headline>
-            <NarrowText padding>I am software developer based in Seattle, Washington specializing in modern web technologies. From React to vanilla JS, I write clean, maintainable code that scales.</NarrowText>
-            <TextBlock>My goals are to keep learning, stay sharp and build cool stuff.</TextBlock>
+            <Headline active={inView} spread><span style={{...greetStyles}}>Hi - my name is</span> Austin McBee.</Headline>
+            <Headline active={inView} heavy>I work on the web.</Headline>
+            <NarrowText active={inView} padding>I am software developer based in Seattle, Washington specializing in modern web technologies. From React to vanilla JS, I write clean, maintainable code that scales.</NarrowText>
+            <TextBlock active={inView}>My goals are to keep learning, stay sharp and build cool stuff.</TextBlock>
             <Link target="_blank" href='mailto:jmcbee1@gmail.com'>Get in touch</Link>
         </ContentWrapper>
     )
 }
+
+export const Intro = () => {
+  return (
+    <ScrollWrap
+      id={'Intro'}
+      render={({inView}) => <Int inView={inView} />}
+    />
+  )
+};

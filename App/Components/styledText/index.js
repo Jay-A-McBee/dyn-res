@@ -20,6 +20,15 @@ export const SectionHeader = styled.h1`
     text-decoration: ${props => props.underline ? 'underline' : 'none'};
     font-size: 5em;
     margin-bottom: ${props => props.spread ? '-.07em': '-.25em'};
+    transition: all .5s ease-in-out;
+    opacity: 0;
+    transform: translateY(${20/16}em);
+
+    ${props => props.active && css`
+        opacity: 1;
+        transform: translateY(0);
+    `}
+
     
     ${Media.phone`
         font-size: 2.75em;
@@ -30,22 +39,32 @@ export const SectionHeader = styled.h1`
 export const Headline = styled(SectionHeader)`
     font-size: 7em;
     padding: 0;
-    animation: ${fadeInAndUp} .5s ease-in-out;
-    animation-fill-mode: forwards;
 `;
 
 export const InnerHeader = styled.h3`
     font-weight: 400;
     color: ${props => props.color || 'white'};
     text-decoration: ${props => props.underline ? 'underline' : 'none'};
+    opacity: 0;
+    transform: translateY(${20/16}em);
+
+    ${props => props.active && css`
+        opacity: 1;
+        transform: translateY(0);
+    `}
 `;
 
 export const TextBlock = styled.p`
     font-size: 1.25em;
     text-align: justify;
+    transition: all .5s ease-in-out;
     opacity: 0;
-    animation: ${fadeInAndUp} .5s ease-in-out .25s;
-    animation-fill-mode: forwards;
+    transform: translateY(${20/16}em);
+
+    ${props => props.active && css`
+        opacity: 1;
+        transform: translateY(0);
+    `}
 
     ${props => props.padding && css`
         padding: 1.25em 1.25em 1.25em 0;

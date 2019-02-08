@@ -40,6 +40,13 @@ const ListContainer = styled.div`
   margin-right: 0;
   position: relative;
   top: -.5em;
+  opacity: 0;
+  transform: translateY(${20/16}em);
+
+  ${props => props.active && css`
+      opacity: 1;
+      transform: translateY(0);
+  `}
 `;
 
 const WorkPlace = styled.div`
@@ -86,6 +93,13 @@ const Title = styled.p`
   font-weight: 700;
   margin: .5em 0;
   color:  rgb(255, 251, 242);
+  opacity: 0;
+  transform: translateY(${20/16}em);
+
+  ${props => props.active && css`
+      opacity: 1;
+      transform: translateY(0);
+  `}
 
   ${Media.phone`
     font-size: 1.25em;
@@ -96,6 +110,13 @@ const Dates = styled.p`
   font-size: 1.5em;
   font-weight: 400;
   margin: 0 0 0.5em 0;
+  opacity: 0;
+  transform: translateY(${20/16}em);
+
+  ${props => props.active && css`
+      opacity: 1;
+      transform: translateY(0);
+  `}
 
   ${Media.phone`
     font-size: 1.25em;
@@ -119,6 +140,13 @@ const ListItem = styled.li`
   left: -1.75em;
   margin-bottom: 1em;
   line-height: 1.5em;
+  opacity: 0;
+  transform: translateY(${20/16}em);
+
+  ${props => props.active && css`
+      opacity: 1;
+      transform: translateY(0);
+  `}
 `;
 
 const WorkColumn = styled(Column)`
@@ -164,7 +192,7 @@ const carouselChildren = [
 
 }, {SPLT:[], HackReactor:[]}) 
   
-export const Experience = ({workDesc}) => {
+export const Experience = ({workDesc, inView}) => {
   const employers = Object.keys(workDesc);
   
   let[selected, selectWorkExperience] = useState(employers[0]);
@@ -184,12 +212,12 @@ export const Experience = ({workDesc}) => {
     return (
       <WorkColumn justify={'space-around'}>
         {!href ? 
-          <Title>{title}</Title> :
-          <Title>{title+' '}<WorkLink href={href} target="_blank">{selected}</WorkLink></Title>
+          <Title active={inView}>{title}</Title> :
+          <Title active={inView}>{title+' '}<WorkLink href={href} target="_blank">{selected}</WorkLink></Title>
         }
-        <Dates>{dates}</Dates>
+        <Dates active={inView}>{dates}</Dates>
         <ul>
-          {Object.keys(description).map((key, i) => <ListItem key={i}>{description[key]}</ListItem>)}
+          {Object.keys(description).map((key, i) => <ListItem active={inView} key={i}>{description[key]}</ListItem>)}
         </ul>
         {carouselChildren[selected] ?
           <ModalComponent
@@ -219,7 +247,7 @@ export const Experience = ({workDesc}) => {
 
   return (
     <WorkContainer justify={'space-around'}>
-      <ListContainer>
+      <ListContainer active={inView}>
         {employers.map( (title, i) => (
           <WorkPlace 
             key={i}
