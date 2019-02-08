@@ -16,8 +16,8 @@ export const UseScrollTracking = (id) => {
             top
         } = el.getBoundingClientRect();
 
-        var isVisible = top < 775;
-        
+        var isVisible = top < window.innerHeight;
+
         setPosition(isVisible);
     };
 

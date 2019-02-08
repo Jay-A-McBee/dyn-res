@@ -20,7 +20,7 @@ export const SectionHeader = styled.h1`
     text-decoration: ${props => props.underline ? 'underline' : 'none'};
     font-size: 5em;
     margin-bottom: ${props => props.spread ? '-.07em': '-.25em'};
-    transition: all .5s ease-in-out;
+    transition: all .25s ease-in-out;
     opacity: 0;
     transform: translateY(${20/16}em);
 
@@ -45,6 +45,7 @@ export const InnerHeader = styled.h3`
     font-weight: 400;
     color: ${props => props.color || 'white'};
     text-decoration: ${props => props.underline ? 'underline' : 'none'};
+    transition: all .25s ease-in-out;
     opacity: 0;
     transform: translateY(${20/16}em);
 
@@ -57,7 +58,7 @@ export const InnerHeader = styled.h3`
 export const TextBlock = styled.p`
     font-size: 1.25em;
     text-align: justify;
-    transition: all .5s ease-in-out;
+    transition: all .25s ease-in-out;
     opacity: 0;
     transform: translateY(${20/16}em);
 
