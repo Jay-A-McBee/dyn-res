@@ -105,9 +105,6 @@ export const About = ({active}) => {
   const FlexRow = styled(Row)`
       justify-content: flex-start;
       align-items: flex-start;
-    ${Media.phone`
-      justify-content: space-evenly;
-    `}
   `;
   
 	return (
