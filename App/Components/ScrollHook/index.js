@@ -3,7 +3,7 @@ import debounce from 'lodash.debounce';
 
 
 
-export const ScrollWrap = ({render, id}) => {
+export const UseScrollTracking = (id) => {
 
     let scrollHandler = useRef();
 
@@ -16,13 +16,13 @@ export const ScrollWrap = ({render, id}) => {
             top
         } = el.getBoundingClientRect();
 
-        var isVisible = top < 750;
+        var isVisible = top < 775;
         
         setPosition(isVisible);
     };
 
     const registerScrollHandler = () => {
-        scrollHandler.current = debounce(calcLocation, 150, {leading:false, trailing: true});
+        scrollHandler.current = debounce(calcLocation, 150, {leading:true, trailing: true});
         window.addEventListener('scroll', scrollHandler.current);
     };
 
@@ -37,11 +37,13 @@ export const ScrollWrap = ({render, id}) => {
             registerScrollHandler();
         }
 
-        if(scrollHandler.current){
+        if(!!scrollHandler.current){
             return () => unregisterScrollHandler();
         }
+
+        return;
     });
 
 
-    return render({inView});
+    return inView;
 }

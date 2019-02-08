@@ -2,7 +2,7 @@ import React from 'react';
 import { About } from './about';
 import styled, {keyframes} from 'styled-components';
 import {Media} from './Media';
-import {ScrollWrap} from './Scroll';
+import {UseScrollTracking} from './ScrollHook';
 
 import {
   ContentWrapper,
@@ -55,7 +55,9 @@ const NarrowText = styled(TextBlock)`
     `}
 `;
 
-const Int = ({inView}) => {
+export const Intro = () => {
+
+
     const container = {
         display: 'flex',
         flexDirection: 'column',
@@ -75,6 +77,8 @@ const Int = ({inView}) => {
         color: 'rgba(255, 241, 239, .99)'
     }
 
+    let inView = UseScrollTracking('Intro');
+
     return  (
         <ContentWrapper 
             id='Intro'
@@ -91,12 +95,3 @@ const Int = ({inView}) => {
         </ContentWrapper>
     )
 }
-
-export const Intro = () => {
-  return (
-    <ScrollWrap
-      id={'Intro'}
-      render={({inView}) => <Int inView={inView} />}
-    />
-  )
-};

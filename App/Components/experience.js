@@ -1,7 +1,7 @@
 import React from 'react';
 import {Experience} from './shufflePanel';
 import styled from 'styled-components';
-import {ScrollWrap} from './Scroll';
+import {UseScrollTracking} from './ScrollHook';
 import {
   ContentWrapper
 } from './styleLayout';
@@ -23,7 +23,10 @@ const PositionedWrapper = styled(ContentWrapper)`
   position: relative;
   top: 7.5em;
 `
-const Wrk = ({workDescriptions, inView}) => {
+export const Work = ({workDescriptions}) => {
+
+  let inView = UseScrollTracking('Work');
+  
   return(
     <ContentWrapper
       id='Work'
@@ -42,14 +45,5 @@ const Wrk = ({workDescriptions, inView}) => {
         workDesc={workDescriptions}
       />
     </ContentWrapper>  
-  )
-}
-
-export const Work = ({workDescriptions}) => {
-  return (
-    <ScrollWrap
-      id={'Work'}
-      render={({inView}) => <Wrk workDescriptions={workDescriptions} inView={inView} />}
-    />
   )
 }

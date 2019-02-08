@@ -18,7 +18,7 @@ import {
 } from './styledText';
 
 
-import {ScrollWrap} from './Scroll';
+import {UseScrollTracking} from './ScrollHook';
 import {Media} from './Media';
 import styled, {css} from 'styled-components';
 
@@ -68,7 +68,7 @@ const FlexRow = styled(Row)`
 `;
 
 
-const Abt = ({inView}) => {
+export const About = () => {
 
   const jsLibs = [
     'JavaScript',
@@ -82,6 +82,8 @@ const Abt = ({inView}) => {
   ];
 
   const title = 'About';
+
+  let inView = UseScrollTracking('About');
 
 	return (
     <ContentWrapper id='About' padding={'4em 0'}>
@@ -109,12 +111,3 @@ const Abt = ({inView}) => {
     </ContentWrapper>
 	)
 }
-
-export const About = () => {
-  return (
-    <ScrollWrap
-      id={'About'}
-      render={({inView}) => <Abt inView={inView} />}
-    />
-  )
-};

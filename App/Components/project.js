@@ -11,7 +11,7 @@ import {
   SectionHeader
 } from './styledText';
 
-import {ScrollWrap} from './Scroll';
+import {UseScrollTracking} from './ScrollHook';
 
 import {
     slide,
@@ -201,7 +201,10 @@ const FullFolder = ({inView, icon, ...rest}) => {
 
 
 
-const ProjSection = ({inView}) => {
+export const ProjectSection = () => {
+
+    let inView = UseScrollTracking('Projects');
+
     return(
         <MediaWrap
          render={({width}) => {
@@ -226,12 +229,3 @@ const ProjSection = ({inView}) => {
         />
     )
 }
-
-export const ProjectSection = () => {
-  return (
-    <ScrollWrap
-      id={'Projects'}
-      render={({inView}) => <ProjSection inView={inView} />}
-    />
-  )
-};
