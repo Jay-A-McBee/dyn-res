@@ -1,5 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
-import debounce from 'lodash.debounce';
+import throttle from 'lodash/throttle';
 
 
 
@@ -18,7 +18,7 @@ export const UseScrollTracking = (id) => {
     };
 
     const registerScrollHandler = () => {
-        scrollHandler.current = debounce(calcLocation, 100, {leading:true, trailing: true});
+        scrollHandler.current = throttle(calcLocation, 250, {leading:true, trailing: true});
         window.addEventListener('scroll', scrollHandler.current);
     };
 

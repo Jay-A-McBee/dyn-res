@@ -88,6 +88,7 @@ export const Intro = () => {
                 left: 10em;
             `}
             justify={'space-around'}
+            margin
         >
             <Headline active={inView} spread><span style={{...greetStyles}}>Hi - my name is</span> Austin McBee.</Headline>
             <Headline active={inView} heavy>I work on the web.</Headline>

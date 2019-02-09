@@ -32,6 +32,7 @@ export const Work = ({workDescriptions}) => {
       id='Work'
       justify={'center'}
       padding={'5em 0 0 0'}
+      margin
     >
       <SectionHeader 
         active={inView} 

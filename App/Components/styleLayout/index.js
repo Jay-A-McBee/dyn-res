@@ -29,7 +29,7 @@ export const ContentWrapper = styled.section`
   justify-content: ${props => props.justify || 'space-between'};
   align-self: ${props => props.alignSelf || 'center'};
   padding: ${props => props.padding || 'none'};
-  margin-top: 5.5em;
+  margin-top: ${props => props.margin && '5.5em'};
 
   ${props => props.offset && css`
     position: relative;
