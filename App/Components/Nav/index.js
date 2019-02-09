@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import styled, {css, keyframes} from 'styled-components';
 import debounce from 'lodash.debounce';
 import ModalComponent from '../ModalIndex';
@@ -57,57 +57,70 @@ const NavButton = styled.div`
 `;
 
 const StyledNav = styled.nav`
-    ${props => props.navStyles && css`
-        ${props.navStyles}
+    padding-right: 10%;
+    height: 75px;
+    width: 100%;
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+    ${Media.phone`
+        background-color: rgba(114, 98, 99, 1);
+        box-shadow: 0 2.5px 5px rgba(10, 10, 10, .4);
+    `}
+
+    ${Media.desktop`
+        ${props => props.hide && `
+            transform: translateY(-75px);
+        `}
+        ${props => props.fix && `
+            background-color: rgba(114, 98, 99, 1);
+            box-shadow: 0 2.5px 5px rgba(10, 10, 10, .4);
+        `}
+    `}
+`;
+
+const NavButtonContainer = styled.div`
+    display: flex;
+    position: relative;
+
+    ${Media.desktop`
+        flex-direction: row;
+        justify-content: flex-end;
+        top: -.4em;
+    `}
+    ${Media.phone`
+        flex-direction: column;
+        align-self: flex-end;
+        top: 5em;
     `}
 `;
 
 export const Navigation = ({select}) => {
-    const navLinks = ['<About />', '<Work />', '<Projects />'];
-
-    const heightBlock = window.innerHeight/10;
     
-    let baseNavStyle = `
-        opacity: 1;
-        padding-right: 10%;
-        height: 75px;
-        width: 100%;
-        z-index: 10;
-        position: fixed;
-        top: 0;
-        transition: all .15s ease-in-out;
-    `;
-
-    let hideNav = width > 500 ? `opacity: 0;` : '';
-
-    let fixNav = `
-        background-color: rgba(114, 98, 99, 1);
-        box-shadow: 0 2.5px 5px rgba(10, 10, 10, .4);
-    `
-
     let[scrollTop, updateScrollTop] = useState(0);
-    let[navStyles, updateNavStyle] = useState(baseNavStyle);
+    let[navStyles, updateNavStyle] = useState({fix:false, hide:false});
     let[next, updateNext] = useState(1);
+    let handler = useRef();
 
     const  calcScroll = () => {
-        const currentPos = [
-            document.body.scrollTop, 
-            document.documentElement.scrollTop
-        ].reduce((total,pos) => total += pos, 0);
-
-
-        return currentPos;
-    }
+        return (document.body.scrollTop || 0) + (document.documentElement.scrollTop || 0);
+    };
 
     const scroll = (event) => {
         const name = event.nativeEvent.target.getAttribute('name').match(/\<(\w+) \/\>/)[1];
 
         const el = document.getElementById(name);
 
-        el.scrollIntoView({block: 'start', inline: 'nearest', behavior: 'smooth'});
+        el.scrollIntoView({
+            block: 'start', 
+            inline: 'nearest', 
+            behavior: 'smooth'
+        });
 
         select(name.toLowerCase());
-    }
+    };
 
     const respondToScroll = (e) => {
         const currentPos = calcScroll();
@@ -115,18 +128,18 @@ export const Navigation = ({select}) => {
 
         if(currentPos > 0 && currentPos < 75){
             updateScrollTop(currentPos);
-            updateNavStyle(navStyles + fixNav);
+            updateNavStyle({...navStyles, fix:true});
         }else if(movingDown){
             updateScrollTop(currentPos);
-            updateNavStyle(navStyles + hideNav);
-        }else if(currentPos !== 0){
+            updateNavStyle({...navStyles, hide:true});
+        }else if(!movingDown && currentPos > 50){
             updateScrollTop(currentPos);
-            updateNavStyle(baseNavStyle + fixNav);
+            updateNavStyle({...navStyles, hide:false});
         }else{
-            updateScrollTop(currentPos);
-            updateNavStyle(baseNavStyle);
+            updateScrollTop(0);
+            updateNavStyle({hide:false, fix:false});
         }
-    }
+    };
 
     let width = useWidthHook();
 
@@ -137,46 +150,36 @@ export const Navigation = ({select}) => {
 
                 let checkScroll = debounce(respondToScroll, 500, {leading: true});
 
+                handler.current = checkScroll;
+
                 window.addEventListener('scroll', checkScroll);
 
                 return () => {
-                    window.removeEventListener('scroll', checkScroll);
+                    window.removeEventListener('scroll', handler.current);
+                    handler.current = null;
                 }
             }
         }
-    )
+    );
     
     const iconStyles = {
         float: 'right',
         position: 'relative',
         top: '.75em',
         right:'.75em',
+    };
 
-    }
+    const navLinks = ['<About />', '<Work />', '<Projects />'];
 
-    const mobileNav = {
-        display: 'flex',
-        flexDirection: 'column',
-        alignSelf: 'flex-end',
-        position: 'relative',
-        top: '5em'
-    }
 
-    const desktopNav = {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        position: 'relative',
-        top: '-.4em'
-    }
 
     const ButtonComponent = ({onClick}) => (
         <i onClick={onClick} style={{...iconStyles}} className='zmdi zmdi-menu zmdi-hc-2x'>
         </i>
-    )
+    );
 
     const MobileMenu = () => (
-       <div style={{...mobileNav}}>
+       <NavButtonContainer>
             {navLinks.map( title => (
                 <NavButton 
                     name={title} 
@@ -186,12 +189,12 @@ export const Navigation = ({select}) => {
                 {title}
                 </NavButton>
             ))}
-       </div>
-    )
+       </NavButtonContainer>
+    );
 
     return width > 500 ? (
-        <StyledNav navStyles={navStyles}>
-            <div style={{...desktopNav}}>
+        <StyledNav {...navStyles}>
+            <NavButtonContainer>
                 {navLinks.map( title => (
                     <NavButton 
                         name={title} 
@@ -200,10 +203,10 @@ export const Navigation = ({select}) => {
                     >{title}
                     </NavButton>
                 ))}
-            </div>
+            </NavButtonContainer>
         </StyledNav>
     ) : (
-        <StyledNav navStyles={navStyles + fixNav}>
+        <StyledNav {...navStyles}>
             <ModalComponent
                 ButtonComponent={ButtonComponent}
                 child={<MobileMenu />}
