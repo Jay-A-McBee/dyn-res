@@ -12,6 +12,10 @@ const enter = keyframes`
 
 `;
 
+const inAndup = css`
+  
+`
+
 export const SectionWrapper = styled.section`
     display: flex;
     flex-direction: ${props => props.flexDirection || 'column'};

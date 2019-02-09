@@ -7,7 +7,7 @@ import spltScreen from '../../Assets/pics/spltscreen.png';
 import fairshareScreen from '../../Assets/pics/fairshareShell.png';
 import journeymenScreen from '../../Assets/pics/journeymenShell.png';
 import sentimentalistScreen from '../../Assets/pics/sentimentalistShell.png';
-import projectDescriptions from '../../Assets/shortDescription';
+import {projectDescriptions, work} from '../../Assets/shortDescription';
 import {makeDescObj} from '../../helpers';
 import ProjectInfo from '../projectinfo';
 import {useWidthHook, Media} from '../Media';
@@ -16,6 +16,9 @@ import {
   Row, 
   Column
 } from '../styleLayout';
+import {
+    inAndUp
+} from '../styledText';
 
 
 const WorkContainer = styled(Column)`
@@ -40,13 +43,7 @@ const ListContainer = styled.div`
   margin-right: 0;
   position: relative;
   top: -.5em;
-  opacity: 0;
-  transform: translateY(${20/16}em);
-
-  ${props => props.active && css`
-      opacity: 1;
-      transform: translateY(0);
-  `}
+  ${props => inAndUp(props)}
 `;
 
 const WorkPlace = styled.div`
@@ -61,7 +58,7 @@ const WorkPlace = styled.div`
   font-size: 1.5em;
   font-weight: 700;
   background-color: ${props => props.selected ? 'rgba(209, 209, 214, .2)' : 'inherit'};
-
+  ${props => inAndUp(props)}
   :hover{
     background-color: rgba(209, 209, 214, .2);
   }
@@ -82,6 +79,7 @@ const Highlight = styled.div`
     left: 0;
     transform: translateX(0);
     background-color: rgb(237, 157, 85);
+    ${props => inAndUp(props)}
 
     ${props => props.offset && css`
       transform: translateX(${100 * props.offset}%);
@@ -93,30 +91,18 @@ const Title = styled.p`
   font-weight: 700;
   margin: .5em 0;
   color:  rgb(255, 251, 242);
-  opacity: 0;
-  transform: translateY(${20/16}em);
-
-  ${props => props.active && css`
-      opacity: 1;
-      transform: translateY(0);
-  `}
+  ${props => inAndUp(props)}
 
   ${Media.phone`
     font-size: 1.25em;
-    `}
+  `}
 `;
 
 const Dates = styled.p`
   font-size: 1.5em;
   font-weight: 400;
   margin: 0 0 0.5em 0;
-  opacity: 0;
-  transform: translateY(${20/16}em);
-
-  ${props => props.active && css`
-      opacity: 1;
-      transform: translateY(0);
-  `}
+  ${props => inAndUp(props)}
 
   ${Media.phone`
     font-size: 1.25em;
@@ -140,13 +126,7 @@ const ListItem = styled.li`
   left: -1.75em;
   margin-bottom: 1em;
   line-height: 1.5em;
-  opacity: 0;
-  transform: translateY(${20/16}em);
-
-  ${props => props.active && css`
-      opacity: 1;
-      transform: translateY(0);
-  `}
+  ${props => inAndUp(props)}
 `;
 
 const WorkColumn = styled(Column)`
@@ -191,9 +171,36 @@ const carouselChildren = [
   return acc;
 
 }, {SPLT:[], HackReactor:[]}) 
+
+const WorkDescription = ({title, description, dates, href, selected, inView}) => {
+  return (
+    <WorkColumn justify={'space-around'}>
+      {!href ? 
+        <Title active={inView}>{title}</Title> :
+        <Title active={inView}>{title+' '}<WorkLink href={href} target="_blank">{selected}</WorkLink></Title>
+      }
+      <Dates active={inView}>{dates}</Dates>
+      <ul>
+        {Object.keys(description).map((key, i) => <ListItem active={inView} key={i}>{description[key]}</ListItem>)}
+      </ul>
+      {carouselChildren[selected] ?
+        <ModalComponent
+          child={
+            <CarouselComponent
+              slideImages={null} 
+              children={carouselChildren[selected]} 
+            />
+          }
+          id={selected}
+          message={"View Work"}
+          animation={{vertical: true, slideDown: true}}
+        /> : null}
+    </WorkColumn>
+  )
+}
   
-export const Experience = ({workDesc, inView}) => {
-  const employers = Object.keys(workDesc);
+export const Experience = ({inView}) => {
+  const employers = Object.keys(work);
   
   let[selected, selectWorkExperience] = useState(employers[0]);
   let[offset, updateOffset] = useState(0);
@@ -201,6 +208,7 @@ export const Experience = ({workDesc, inView}) => {
 
   const updateSelected = (e) => {
     e.preventDefault();
+
     const title = e.nativeEvent.target.getAttribute('name');
     const next = employers.indexOf(title);
 
@@ -208,44 +216,17 @@ export const Experience = ({workDesc, inView}) => {
     selectWorkExperience(title);
   }
 
-  const WorkDescription = ({title, description, dates, href}) => {
-    const workplace = title.split(' ').pop();
-    return (
-      <WorkColumn justify={'space-around'}>
-        {!href ? 
-          <Title active={inView}>{title}</Title> :
-          <Title active={inView}>{title+' '}<WorkLink href={href} target="_blank">{selected}</WorkLink></Title>
-        }
-        <Dates active={inView}>{dates}</Dates>
-        <ul>
-          {Object.keys(description).map((key, i) => <ListItem active={inView} key={i}>{description[key]}</ListItem>)}
-        </ul>
-        {carouselChildren[selected] ?
-          <ModalComponent
-            child={
-              <CarouselComponent
-                slideImages={null} 
-                children={carouselChildren[selected]} 
-              />
-            }
-            id={selected}
-            message={"View Work"}
-            animation={{vertical: true, slideDown: true}}
-          /> : <div style={{height: '7.5em'}}></div>}
-      </WorkColumn>
-    )
-  }
-
   let {
     title,
     description
-  } = workDesc[selected];
+  } = work[selected];
 
   return (
     <WorkContainer justify={'space-around'}>
       <ListContainer active={inView}>
         {employers.map( (title, i) => (
-          <WorkPlace 
+          <WorkPlace
+            active={inView}
             key={i}
             name={title} 
             onClick={updateSelected} 
@@ -253,9 +234,9 @@ export const Experience = ({workDesc, inView}) => {
           >{title}
           </WorkPlace>
         ))}
-        <Highlight offset={offset} />
+        <Highlight active={inView} offset={offset} />
       </ListContainer>
-      <WorkDescription {...workDesc[selected]}/>
+      <WorkDescription selected={selected} inView={inView} {...work[selected]}/>
     </WorkContainer>
   )
 }

@@ -41,12 +41,13 @@ export const useWidthHook = () => {
   let handler = useRef();
 
   function subscribe(){
-    handler.current = debounce(updateWidth, 500);
-    window.addEventListener('resize', handler.current);
+    const update = debounce(updateWidth, 500, {leading:false, trailing: true});
+    handler.current = update;
+    window.addEventListener('resize', update);
   }
 
-  function unsubscribe(current){
-    window.removeEventListener('resize', current);
+  function unsubscribe(){
+    window.removeEventListener('resize', handler.current);
     handler.current = null;
   }
 
@@ -55,7 +56,7 @@ export const useWidthHook = () => {
       subscribe();
     }
 
-    return () => unsubscribe(handler.current);
+    return () => unsubscribe();
   })
 
   return width;

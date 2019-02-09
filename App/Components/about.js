@@ -22,11 +22,7 @@ import {UseScrollTracking} from './ScrollHook';
 import {Media} from './Media';
 import styled, {css} from 'styled-components';
 
-const Image = styled.img`
-  height: 22.5em;
-  transition: all .25s ease-in-out;
-  filter: sepia(100%);
-  margin-top: 2.5em;
+const inAndUp = props => css`
   opacity: 0;
   transform: translateY(${20/16}em);
 
@@ -34,6 +30,14 @@ const Image = styled.img`
       opacity: 1;
       transform: translateY(0);
   `}
+`;
+
+const Image = styled.img`
+  height: 22.5em;
+  transition: all .25s ease-in-out;
+  filter: sepia(100%);
+  margin-top: 2.5em;
+  ${inAndUp}
 
   :hover{
     filter: none;
@@ -49,13 +53,7 @@ const LibBlock = styled.div`
   padding: .3em;
   justify-content: flex-start;
   transition: all .5s ease-in-out;
-  opacity: 0;
-  transform: translateY(${20/16}em);
-
-  ${props => props.active && css`
-      opacity: 1;
-      transform: translateY(0);
-  `}
+  ${inAndUp}
 
   ::before{
     content: '〉';

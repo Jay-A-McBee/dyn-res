@@ -8,24 +8,16 @@ import {
 } from './styleLayout';
 
 import {
-  SectionHeader
+  SectionHeader,
+  inAndUp
 } from './styledText';
 
 import {UseScrollTracking} from './ScrollHook';
 
 import {
-    slide,
-    portfolio,
-    vue,
-    sandbox
+    projectDescriptions
 } from '../Assets/shortDescription';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-
-const PositionedWrapper = styled(ContentWrapper)`
-  position: relative;
-  top: 15em;
-`;
 
 const Title = styled.p`
     font-size: 1.75em;
@@ -49,13 +41,7 @@ const Folder = styled.div`
     height: 15em;
     width: 20em;
     transition: all .5s ease-in-out;
-    opacity: 0;
-    transform: translateY(${20/16}em);
-
-    ${props => props.active && css`
-        opacity: 1;
-        transform: translateY(0);
-    `}
+    ${props => inAndUp(props)}
 `;
 
 const FolderBack = styled.div`
@@ -145,13 +131,7 @@ const MobileFolder = styled.div`
     margin-bottom: .75em;
     border-radius: 2.5px;
     transition: all .5s ease-in-out;
-    opacity: 0;
-    transform: translateY(${20/16}em);
-
-    ${props => props.active && css`
-        opacity: 1;
-        transform: translateY(0);
-    `}
+    ${props => inAndUp(props)}
 
 `;
 
@@ -163,6 +143,7 @@ const MobileFolderTab = styled.div`
     width: 5em;
     border-top: 2.5px solid rgb(237, 157, 85);
     border-radius: 3em;
+    ${props => inAndUp(props)}
 `;
 
 const Description = ({title, role, tasks, link}) => {
@@ -199,7 +180,12 @@ const FullFolder = ({inView, icon, ...rest}) => {
 }
 
 
-
+const {
+    slide,
+    portfolio,
+    vue,
+    sandbox
+} = projectDescriptions;
 
 export const ProjectSection = () => {
 
@@ -209,7 +195,7 @@ export const ProjectSection = () => {
     return(
         <ContentWrapper     
             id='Projects'
-            padding={'5em 0 0 0'}
+            padding={width > 500 ? '5em 0 0 0' : '3.5em 0 0 0'}
         >
             <SectionHeader active={inView} highlight>Projects</SectionHeader>
             <br />

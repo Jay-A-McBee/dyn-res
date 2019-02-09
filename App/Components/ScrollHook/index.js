@@ -11,14 +11,16 @@ export const UseScrollTracking = (id) => {
     let [inView, setPosition] = useState();
 
     function calcLocation(){
-        const {scrollY} = window;
-        var isVisible = (position.current - scrollY) < 250 || position.current < window.innerHeight;
+        var isVisible = (
+            position.current.offset - window.scrollY < 350 ||
+            position.current.top < window.innerHeight
+        );
 
         setPosition(isVisible);
     };
 
     const registerScrollHandler = () => {
-        const handler = throttle(calcLocation, 250, {leading:true, trailing: true});
+        const handler = throttle(calcLocation, 150, {leading:true, trailing: true});
         scrollHandler.current = handler;
         window.addEventListener('scroll', handler);
     };
@@ -31,7 +33,10 @@ export const UseScrollTracking = (id) => {
     useEffect(() => {
         if(!position.current){
             const el = document.getElementById(id);
-            position.current = el.offsetTop;
+            const{
+                top
+            } = el.getBoundingClientRect();
+            position.current = {top, offset: el.offsetTop}
         }
 
         if(!inView){

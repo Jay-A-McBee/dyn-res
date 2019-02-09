@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import styled, {css, keyframes} from 'styled-components';
 import ProjectImage from '../projectDesc';
 import {useWidthHook} from '../Media';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   Column, 
   Row
@@ -10,8 +11,8 @@ import {
   const reelStyles = {
     display: 'flex',
     flexDirection: 'row',
+    alignSelf: 'center',
     justifyContent: 'center',
-    marginTop: '.5%',
     width: '60%'
   }
 
@@ -26,13 +27,10 @@ import {
     opacity: '0.98' 
   }
 
-  const chevronContainer = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
+  const ChevronContainer = styled(Column)`
+    justify-content: center;
+    align-items: center;
+  `;
 
   const Circle = styled.div`
     border-radius: 50%;
@@ -57,23 +55,18 @@ import {
     background-color: rgba(10, 10, 10, 0.95);
   `;
 
-  // ${props => props.next && css`
-  //     transition: all .35s ease-in-out;
-  //     transform: translateX(-120%);
-  //   `}
-  //   ${props => props.current && css`
-  //     transition: opacity .35s ease-in-out .5s;
-  //     opacity: 1;
-  //   `}
-  //   ${props => props.previous && css`
-  //     transition: all .35s ease-in-out;
-  //     transform: translateX(120%);
-  //   `}
-
-
   const StretchRow = styled(Row)`
-    align-self: stretch;
+    justify-content: space-around;
+    width: 100%;
   `;
+
+  const RotateIcon = ({handleClick, size, iconName}) => (
+    <FontAwesomeIcon 
+      icon={iconName}
+      onClick={handleClick}
+      size={size}
+    />
+  );
 
 export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], slideImages}) => {
 
@@ -112,67 +105,57 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
     ...imgObj
   })) : null;
 
-  const RotateIcon = ({handleClick, size, iconName}) => (
-    <i 
-      className='material-icons' 
-      style={{"fontSize": size}} 
-      onClick={handleClick}>{iconName}
-    </i>
-  )
-
-  return (
-    <>
-    {width > 500 && 
-      <Container>
-        <StretchRow justify={'space-between'}>
-          <Column justify={'center'}>
-            <RotateIcon
-              handleClick={selectNext}
-              size={'40px'}
-              iconName={'chevron_left'}
-            />
-          </Column>
-          {children[active]}
-          <Column justify={'center'}>
-            <RotateIcon
-              handleClick={selectPrevious}
-              size={'40px'}
-              iconName={'chevron_right'}
-            />
-          </Column>
-        </StretchRow>
-        <div style={{...reelStyles}}>
-          {children.map( (props, i) => (
-            <Circle 
-              key={i}
-              name={i} 
-              selected={i === active} 
-              onClick={selectSpecific}
-            />
-          ))}
-        </div>
-      </Container>
-    }
-    {width < 500 && 
-      <DarkColumn>
-        <StretchRow justify={'center'}>
-          <Column justify={'center'}>
-          <RotateIcon
-            handleClick={selectNext}
-            size={'25px'}
-            iconName={'chevron_left'}
-          />
-          </Column>
-          {children[active]}
-          <Column justify={'center'}>
+  return width > 700 ? (
+    <Container>
+      <StretchRow justify={'space-between'}>
+        <ChevronContainer justify={'center'}>
           <RotateIcon
             handleClick={selectPrevious}
-            size={'25px'}
-            iconName={'chevron_right'}
+            size={'2x'}
+            iconName={'chevron-left'}
           />
-          </Column>
-        </StretchRow>
-        {slideImages && slideImages.map((image, i) => (
+        </ChevronContainer>
+        {children[active]}
+        <ChevronContainer justify={'center'}>
+          <RotateIcon
+            handleClick={selectNext}
+            size={'2x'}
+            iconName={'chevron-right'}
+          />
+        </ChevronContainer>
+      </StretchRow>
+      <div style={{...reelStyles}}>
+        {children.map( (props, i) => (
+          <Circle 
+            key={i}
+            name={i} 
+            selected={i === active} 
+            onClick={selectSpecific}
+          />
+        ))}
+      </div>
+    </Container>
+  ) : (
+    <DarkColumn>
+      <StretchRow justify={'center'}>
+        <ChevronContainer justify={'center'}>
+        <RotateIcon
+          handleClick={selectPrevious}
+          size={'1x'}
+          iconName={'chevron-left'}
+        />
+        </ChevronContainer>
+        {children[active]}
+        <ChevronContainer justify={'center'}>
+        <RotateIcon
+          handleClick={selectNext}
+          size={'1x'}
+          iconName={'chevron-right'}
+        />
+        </ChevronContainer>
+      </StretchRow>
+      <div style={{...reelStyles}}>
+        {children.map((child, i) => (
           <Circle 
             key={i}
             name={i} 
@@ -180,8 +163,7 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
             onClick={selectSpecific} 
           />
         ))}
-      </DarkColumn>
-    }
-    </>
+      </div>
+    </DarkColumn>
   )
 };

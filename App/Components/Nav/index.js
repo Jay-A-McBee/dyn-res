@@ -126,7 +126,7 @@ export const Navigation = ({select}) => {
         const currentPos = calcScroll();
         const movingDown = currentPos > scrollTop;
 
-        if(currentPos > 0 && currentPos < 75){
+        if(currentPos > 0 && currentPos < 100){
             updateScrollTop(currentPos);
             updateNavStyle({...navStyles, fix:true});
         }else if(movingDown){
@@ -146,7 +146,7 @@ export const Navigation = ({select}) => {
     useEffect(
         () => {
 
-            if(width > 500){
+            if(width > 700){
 
                 let checkScroll = debounce(respondToScroll, 500, {leading: true});
 
@@ -192,7 +192,7 @@ export const Navigation = ({select}) => {
        </NavButtonContainer>
     );
 
-    return width > 500 ? (
+    return width > 700 ? (
         <StyledNav {...navStyles}>
             <NavButtonContainer>
                 {navLinks.map( title => (
