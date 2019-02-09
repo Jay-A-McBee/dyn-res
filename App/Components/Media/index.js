@@ -55,7 +55,7 @@ export const useWidthHook = () => {
       subscribe();
     }
 
-    return unsubscribe();
+    return () => unsubscribe();
   })
 
   return width;
