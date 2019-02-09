@@ -49,8 +49,12 @@ const Link = styled.a`
 
 export const SocialLinks = () => {
 
-    let inView = UseScrollTracking('Links');
     let width = useWidthHook();
+    let inView
+
+    if(width > 500){
+        inView = UseScrollTracking('Links');
+    }
 
     return width > 500 ? (
         <CollapsableColumn id='Links'>

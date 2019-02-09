@@ -139,7 +139,9 @@ export const Navigation = ({select}) => {
 
                 window.addEventListener('scroll', checkScroll);
 
-                return () => window.removeEventListener('scroll', checkScroll);
+                return () => {
+                    window.removeEventListener('scroll', checkScroll);
+                }
             }
         }
     )
