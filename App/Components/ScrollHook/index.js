@@ -18,7 +18,7 @@ export const UseScrollTracking = (id) => {
     const registerScrollHandler = () => {
         const handler = throttle(calcLocation, 150, {leading:true, trailing: true});
         scrollHandler.current = handler;
-        window.addEventListener('scroll', handler);
+        window.addEventListener('scroll', scrollHandler.current);
     };
 
     const unregisterScrollHandler = () => {

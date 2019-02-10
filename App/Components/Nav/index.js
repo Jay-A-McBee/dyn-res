@@ -154,7 +154,7 @@ export const Navigation = ({select}) => {
 
                 handler.current = checkScroll;
 
-                window.addEventListener('scroll', checkScroll);
+                window.addEventListener('scroll', handler.current);
 
                 return () => {
                     window.removeEventListener('scroll', handler.current);
