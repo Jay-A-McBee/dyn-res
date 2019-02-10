@@ -45,14 +45,15 @@ const NavButton = styled.div`
 
     ${Media.phone`
         display: flex;
-        background-color: rgba(114, 98, 99, .99);
+        background-color: inherit;
         border: .075em solid rgb(237, 157, 85);
+        border-radius: .5em;
         height: 2.5em;
-        color: rgb(237, 157, 85);
+        color: rgba(103, 206, 178, .99);
         justify-content: center;
         align-items: center;
         align-self: center;
-        width: 80%;
+        width: 70%;
         margin-bottom: 2em;
     `}
 `;
@@ -67,19 +68,13 @@ const StyledNav = styled.nav`
     left: 0;
     transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
 
-    ${Media.phone`
-        background-color: rgba(114, 98, 99, 1);
-        box-shadow: 0 2.5px 5px rgba(10, 10, 10, .4);
+    ${props => props.hide && `
+        transform: translateY(-75px);
     `}
 
-    ${Media.desktop`
-        ${props => props.hide && `
-            transform: translateY(-75px);
-        `}
-        ${props => props.fix && `
-            background-color: rgba(114, 98, 99, 1);
-            box-shadow: 0 2.5px 5px rgba(10, 10, 10, .4);
-        `}
+    ${props => props.fix && `
+        background-color: rgba(114, 98, 99, 1);
+        box-shadow: 0 2.5px 5px rgba(10, 10, 10, .4);
     `}
 `;
 
@@ -106,10 +101,6 @@ export const Navigation = ({select}) => {
     let[next, updateNext] = useState(1);
     let handler = useRef();
 
-    const  calcScroll = () => {
-        return (document.body.scrollTop || 0) + (document.documentElement.scrollTop || 0);
-    };
-
     const scroll = (event) => {
         const name = event.nativeEvent.target.getAttribute('name').match(/\<(\w+) \/\>/)[1];
 
@@ -124,8 +115,8 @@ export const Navigation = ({select}) => {
         select(name.toLowerCase());
     };
 
-    const respondToScroll = (e) => {
-        const currentPos = calcScroll();
+    const respondToScroll = () => {
+        const currentPos = window.scrollY;
         const movingDown = currentPos > scrollTop;
 
         if(currentPos > 0 && currentPos < 100){
@@ -136,7 +127,7 @@ export const Navigation = ({select}) => {
             updateNavStyle({...navStyles, hide:true});
         }else if(!movingDown && currentPos > 50){
             updateScrollTop(currentPos);
-            updateNavStyle({...navStyles, hide:false});
+            updateNavStyle({...navStyles, hide:false, fix:true});
         }else{
             updateScrollTop(0);
             updateNavStyle({hide:false, fix:false});
@@ -145,22 +136,25 @@ export const Navigation = ({select}) => {
 
     let width = useWidthHook();
 
+
+    const subscribe = () => {
+        handler.current = debounce(respondToScroll, 250, {leading: true});
+        window.addEventListener('scroll', handler.current);
+    }
+
+    const unsubscribe = () => {
+        window.removeEventListener('scroll', handler.current);
+        handler.current = null;
+    }
+
     useEffect(
         () => {
 
-            if(width > 700){
-
-                let checkScroll = debounce(respondToScroll, 500, {leading: true});
-
-                handler.current = checkScroll;
-
-                window.addEventListener('scroll', handler.current);
-
-                return () => {
-                    window.removeEventListener('scroll', handler.current);
-                    handler.current = null;
-                }
+            if(!handler.current){
+                subscribe();
             }
+
+            return () => unsubscribe();
         }
     );
     
@@ -169,6 +163,7 @@ export const Navigation = ({select}) => {
         position: 'relative',
         top: '.75em',
         right:'.75em',
+        fontWeight: '100'
     };
 
     const navLinks = ['<About />', '<Work />', '<Projects />'];

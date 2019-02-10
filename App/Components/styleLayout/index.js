@@ -12,9 +12,20 @@ const enter = keyframes`
 
 `;
 
-const inAndup = css`
+export const inAndUp = props => css`
+    .animate{
+        transition: all .5s ease-in-out;
+        opacity: 0;
+        transform: translateY(${20/16}em);
+    }
 
-`
+    ${props => props.active && `
+        .animate{
+          opacity: 1;
+          transform: translateY(0);
+        }
+    `}
+`;
 
 export const SectionWrapper = styled.section`
     display: flex;
@@ -23,17 +34,14 @@ export const SectionWrapper = styled.section`
     margin-top: 5em;
 `;
 
-// ${props => props.active && css`
-//     animation: ${enter} 1.5s cubic-bezier(0.645, 0.045, 0.355, 1) .75s;
-//     animation-fill-mode: forwards;
-//   `}
-
 export const ContentWrapper = styled.section`
   flex-direction: ${props => props.flexDirection || 'column'};
   justify-content: ${props => props.justify || 'space-between'};
   align-self: ${props => props.alignSelf || 'center'};
-  padding: ${props => props.padding || 'none'};
-  margin-top: ${props => props.margin && '5.5em'};
+  padding: ${props => props.padding || '0'};
+  margin-top: ${props => props.margin ? props.margin : '5.5em'};
+
+  ${props => inAndUp(props)}
 
   ${props => props.offset && css`
     position: relative;
@@ -45,7 +53,7 @@ export const ContentWrapper = styled.section`
   ${Media.phone`
     width: 90%;
     align-self: center;
-    margin-top: 2.5em;
+    margin-top: ${props => props.margin ? props.margin : '2.5em'};
     position: relative;
     top: 2.5em;
     left: 0;

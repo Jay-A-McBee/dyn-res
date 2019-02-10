@@ -41,8 +41,7 @@ export const useWidthHook = () => {
   let handler = useRef();
 
   function subscribe(){
-    const update = debounce(updateWidth, 500, {leading:false, trailing: true});
-    handler.current = update;
+    handler.current = debounce(updateWidth, 500, {leading:false, trailing: true});
     window.addEventListener('resize', handler.current);
   }
 

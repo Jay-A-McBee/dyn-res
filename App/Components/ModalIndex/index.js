@@ -8,7 +8,7 @@ const ModalBody = styled.div`
     margin: auto;
     overflow: scroll;
     padding: 0;
-    background-color: ${props => props.altBgColor ? 'rgba(103, 206, 178, .9)': 'rgba(10, 10, 10, 0.95)'};
+    background-color: ${props => props.altBgColor ? 'rgba(114, 98, 99, .99)': 'rgba(10, 10, 10, 0.95)'};
     border: 1px solid #888;
     max-width: 70%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
@@ -78,6 +78,15 @@ const ModalButton = styled.button`
         border-color: rgb(255, 250, 239);
     }
 `;
+
+const CloseButton = styled.button`
+    border:none;
+    border-radius:.5em;
+    background-color: inherit;
+    padding: .5em;
+    color: inherit;
+`;
+
 const ModalComponent = ({
     child, 
     childClose, 
@@ -106,9 +115,6 @@ const ModalComponent = ({
 
 
     const closeModal = ({nativeEvent}) => {
-
-        const name = nativeEvent.target.localName;
-
         if(
             nativeEvent.target.id === 'modal' || 
             nativeEvent.target.id === 'close' || 
@@ -138,13 +144,17 @@ const ModalComponent = ({
                 width={width}
                 altBgColor={altBgColor}
             >
-                <FontAwesomeIcon
-                    id='close'
-                    style={{padding: '10px'}}
+                <CloseButton
+                    id ='close'
                     onClick={closeModal}
-                    icon='times'
-                    size='1x'
-                />
+                >
+                    <FontAwesomeIcon
+                        id='close'
+                        onClick={closeModal}
+                        icon='times'
+                        size='lg'
+                    />
+                </CloseButton>
                 {Array.isArray(child) ? [...child] : child}
             </ModalBody>
         </ModalOverlay>

@@ -41,7 +41,6 @@ const Folder = styled.div`
     height: 15em;
     width: 20em;
     transition: all .5s ease-in-out;
-    ${props => inAndUp(props)}
 `;
 
 const FolderBack = styled.div`
@@ -126,12 +125,11 @@ const MobileFolder = styled.div`
     justify-content: space-between;
     padding: 2em;
     height: 11em;
-    width: 18em;
+    width: 16em;
     border: 2.5px solid rgb(237, 157, 85);
     margin-bottom: .75em;
     border-radius: 2.5px;
     transition: all .5s ease-in-out;
-    ${props => inAndUp(props)}
 
 `;
 
@@ -143,7 +141,6 @@ const MobileFolderTab = styled.div`
     width: 5em;
     border-top: 2.5px solid rgb(237, 157, 85);
     border-radius: 3em;
-    ${props => inAndUp(props)}
 `;
 
 const Description = ({title, role, tasks, link}) => {
@@ -166,7 +163,7 @@ const Description = ({title, role, tasks, link}) => {
 
 const FullFolder = ({inView, icon, ...rest}) => {
     return (
-        <Folder active={inView}>
+        <Folder className='animate'>
             <FolderTab></FolderTab>
             <FolderBack></FolderBack>
             <Paper>
@@ -196,15 +193,16 @@ export const ProjectSection = () => {
         <ContentWrapper     
             id='Projects'
             padding={'7.5em 0 5em 0'}
+            active={inView}
         >
-            <SectionHeader active={inView} highlight>Projects</SectionHeader>
+            <SectionHeader className='animate' highlight>Projects</SectionHeader>
             <br />
             <WrapRow justify={'flex-start'}>
             {[slide, portfolio, vue, sandbox].map((props, i) =>  width > 500 ? 
-                <FullFolder key={i} inView={inView} {...props}/> :
+                <FullFolder key={i} className='animate' {...props}/> :
                 <div key={i}>
-                    <MobileFolderTab />
-                    <MobileFolder active={inView}>
+                    <MobileFolderTab className='animate'/>
+                    <MobileFolder className='animate'>
                         <Description {...props} />
                     </MobileFolder>
                 </div>

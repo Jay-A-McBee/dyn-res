@@ -84,26 +84,26 @@ export const About = () => {
   let inView = UseScrollTracking('About');
 
 	return (
-    <ContentWrapper id='About' padding={'7.5em 0 0 0'} margin>
-      <SectionHeader highlight active={inView}>
+    <ContentWrapper active={inView} id='About' padding={'7.5em 0 0 0'}>
+      <SectionHeader highlight className='animate'>
         {title}
       </SectionHeader>
       <InnerContent justify={'space-evenly'}>
         <Column justify={'space-evenly'}>
-          <TextBlock active={inView} padding>{bio}</TextBlock>
-          <TextBlock active={inView} padding>{aside}</TextBlock>
-          <InnerHeader active={inView}>Experienced with:</InnerHeader>
+          <TextBlock className='animate' padding>{bio}</TextBlock>
+          <TextBlock className='animate' padding>{aside}</TextBlock>
+          <InnerHeader className='animate'>Experienced with:</InnerHeader>
           <FlexRow>
             <Column>
-              {jsLibs.slice(0,jsLibs.length/2).map( (lib, i) => <LibBlock active={inView} key={i}>{lib}</LibBlock>)}
+              {jsLibs.slice(0,jsLibs.length/2).map( (lib, i) => <LibBlock className='animate' key={i}>{lib}</LibBlock>)}
             </Column>
             <Column>
-              {jsLibs.slice(jsLibs.length/2,jsLibs.length).map( (lib, i) => <LibBlock active={inView} key={i}>{lib}</LibBlock>)}
+              {jsLibs.slice(jsLibs.length/2,jsLibs.length).map( (lib, i) => <LibBlock className='animate' key={i}>{lib}</LibBlock>)}
             </Column>
           </FlexRow>
         </Column>
         <FluidColumn justify={'center'}>
-          <Image active={inView} src={Me}/>
+          <Image className='animate' src={Me}/>
         </FluidColumn>
       </InnerContent>
     </ContentWrapper>

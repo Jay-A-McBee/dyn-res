@@ -44,7 +44,6 @@ const ListContainer = styled.div`
   margin-right: 0;
   position: relative;
   top: -.5em;
-  ${props => inAndUp(props)}
 `;
 
 const WorkPlace = styled.div`
@@ -59,7 +58,6 @@ const WorkPlace = styled.div`
   font-size: 1.5em;
   font-weight: 700;
   background-color: ${props => props.selected ? 'rgba(209, 209, 214, .2)' : 'inherit'};
-  ${props => inAndUp(props)}
   :hover{
     background-color: rgba(209, 209, 214, .2);
   }
@@ -80,7 +78,6 @@ const Highlight = styled.div`
     bottom: -.1em;
     transform: translateX(0);
     background-color: rgb(237, 157, 85);
-    ${props => inAndUp(props)}
 
     ${props => props.offset && css`
       transform: translateX(${100 * props.offset}%);
@@ -92,7 +89,6 @@ const Title = styled.p`
   font-weight: 700;
   margin: .5em 0;
   color:  rgb(255, 251, 242);
-  ${props => inAndUp(props)}
 
   ${Media.phone`
     font-size: 1.25em;
@@ -103,7 +99,6 @@ const Dates = styled.p`
   font-size: 1.5em;
   font-weight: 400;
   margin: 0 0 0.5em 0;
-  ${props => inAndUp(props)}
 
   ${Media.phone`
     font-size: 1.25em;
@@ -124,7 +119,6 @@ const WorkLink = styled.a`
 const BulletItem = styled(Row)`
   justify-content: flex-start;
   align-items: flex-start;
-  ${props => inAndUp(props)}
 `;
 
 const ListItem = styled.p`
@@ -186,13 +180,13 @@ const WorkDescription = ({title, description, dates, href, selected, inView}) =>
   return (
     <WorkColumn justify={'space-around'}>
       {!href ? 
-        <Title active={inView}>{title}</Title> :
-        <Title active={inView}>{title+' '}<WorkLink href={href} target="_blank">{selected}</WorkLink></Title>
+        <Title className='animate'>{title}</Title> :
+        <Title className='animate'>{title+' '}<WorkLink href={href} target="_blank">{selected}</WorkLink></Title>
       }
-      <Dates active={inView}>{dates}</Dates>
+      <Dates className='animate'>{dates}</Dates>
       <br />
       {Object.keys(description).map((key, i) => 
-        <BulletItem key={i} active={inView}>
+        <BulletItem className='animate' key={i}>
           <FontAwesomeIcon style={{color: 'rgb(237, 157, 85)'}} icon='chevron-right' size='1x' />
           <ListItem>{description[key]}</ListItem>
         </BulletItem>
@@ -213,7 +207,7 @@ const WorkDescription = ({title, description, dates, href, selected, inView}) =>
   )
 }
   
-export const Experience = ({inView}) => {
+export const Experience = () => {
   const employers = Object.keys(work);
   
   let[selected, selectWorkExperience] = useState(employers[0]);
@@ -237,10 +231,10 @@ export const Experience = ({inView}) => {
 
   return (
     <WorkContainer justify={'space-around'}>
-      <ListContainer active={inView}>
+      <ListContainer className='animate'>
         {employers.map( (title, i) => (
           <WorkPlace
-            active={inView}
+            className='animate'
             key={i}
             name={title} 
             onClick={updateSelected} 
@@ -248,9 +242,9 @@ export const Experience = ({inView}) => {
           >{title}
           </WorkPlace>
         ))}
-        <Highlight active={inView} offset={offset} />
+        <Highlight offset={offset} />
       </ListContainer>
-      <WorkDescription selected={selected} inView={inView} {...work[selected]}/>
+      <WorkDescription selected={selected}  {...work[selected]}/>
     </WorkContainer>
   )
 }

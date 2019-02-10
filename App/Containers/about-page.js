@@ -7,6 +7,7 @@ import {ProjectSection as Projects}  from '../Components/project';
 import {ProjectDescription} from './projdesc-page';
 import {Navigation} from '../Components/Nav';
 import {Footer} from '../Components/Footer';
+import {Farewell} from '../Components/Farewell';
 import {
     SectionWrapper,
     Row,
@@ -25,7 +26,8 @@ import {
   faChevronLeft, 
   faChevronRight, 
   faBars, 
-  faTimes
+  faTimes,
+  faEnvelope
 } from '@fortawesome/free-solid-svg-icons'
 
 import {library} from '@fortawesome/fontawesome-svg-core'
@@ -40,7 +42,8 @@ library.add(
   faChevronLeft, 
   faChevronRight, 
   faBars, 
-  faTimes
+  faTimes,
+  faEnvelope
 );
 
 export default function AboutMe(){
@@ -61,6 +64,7 @@ export default function AboutMe(){
         <About />
         <Work />
         <Projects />
+        <Farewell />
         <Footer />
       </Column>
     </div>

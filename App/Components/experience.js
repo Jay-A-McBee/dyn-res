@@ -31,18 +31,18 @@ export const Work = ({workDescriptions}) => {
     <ContentWrapper
       id='Work'
       justify={'center'}
-      padding={'7.5em 0 0 0'}
-      margin
+      padding={'5em 0 0 0'}
+      margin={'10em'}
+      active={inView}
     >
       <SectionHeader 
-        active={inView} 
+        className='animate' 
         highlight
       >
       Work Stuff
       </SectionHeader>
       <br />
       <Experience
-        inView={inView}
         workDesc={workDescriptions}
       />
     </ContentWrapper>  

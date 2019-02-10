@@ -8,65 +8,54 @@ import {
   Row
 } from '../styleLayout';
 
-  const reelStyles = {
-    display: 'flex',
-    flexDirection: 'row',
-    alignSelf: 'center',
-    justifyContent: 'center',
-    width: '60%'
-  }
+const Reel = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-content: center;
+  width: 60%;
+`;
 
-  const reelCard = {
-    maxWidth: '20%',
-    maxHeight: '3em',
-    transition: 'filter 1s'
-  }
+const ChevronContainer = styled(Column)`
+  justify-content: center;
+  align-items: center;
+`;
 
-  const inactive = {
-    filter: `brightness(0.25)`,
-    opacity: '0.98' 
-  }
+const Circle = styled.div`
+  border-radius: 50%;
+  height: ${15/16}em;
+  width: ${15/16}em;
+  background: rgba(114, 98, 99, 0.75);
+  margin-right: .25em;
+  ${props => props.selected && css`
+    background-color: rgba(114, 98, 99, 1);
+  `}
+`;
 
-  const ChevronContainer = styled(Column)`
-    justify-content: center;
-    align-items: center;
-  `;
+const DarkColumn = styled(Column)`
+  background-color: rgba(10, 10, 10, 0.75);
+  padding: 1%;
+`;
 
-  const Circle = styled.div`
-    border-radius: 50%;
-    height: ${15/16}em;
-    width: ${15/16}em;
-    background: rgba(114, 98, 99, 0.75);
-    margin-right: .25em;
-    ${props => props.selected && css`
-      background-color: rgba(114, 98, 99, 1);
-    `}
-  `;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(10, 10, 10, 0.95);
+`;
 
-  const DarkColumn = styled(Column)`
-    background-color: rgba(10, 10, 10, 0.75);
-    padding: 1%;
-  `;
+const StretchRow = styled(Row)`
+  justify-content: space-around;
+  width: 100%;
+`;
 
-  const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgba(10, 10, 10, 0.95);
-  `;
-
-  const StretchRow = styled(Row)`
-    justify-content: space-around;
-    width: 100%;
-  `;
-
-  const RotateIcon = ({handleClick, size, iconName}) => (
-    <FontAwesomeIcon 
-      icon={iconName}
-      onClick={handleClick}
-      size={size}
-    />
-  );
+const RotateIcon = ({handleClick, size, iconName}) => (
+  <FontAwesomeIcon 
+    icon={iconName}
+    onClick={handleClick}
+    size={size}
+  />
+);
 
 export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], slideImages}) => {
 
@@ -124,7 +113,7 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
           />
         </ChevronContainer>
       </StretchRow>
-      <div style={{...reelStyles}}>
+      <Reel>
         {children.map( (props, i) => (
           <Circle 
             key={i}
@@ -133,26 +122,26 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
             onClick={selectSpecific}
           />
         ))}
-      </div>
+      </Reel>
     </Container>
   ) : (
     <DarkColumn>
       <StretchRow justify={'center'}>
         <ChevronContainer justify={'center'}>
-        <RotateIcon
-          handleClick={selectPrevious}
-          iconName={'chevron-left'}
-        />
+          <RotateIcon
+            handleClick={selectPrevious}
+            iconName={'chevron-left'}
+          />
         </ChevronContainer>
         {children[active]}
         <ChevronContainer justify={'center'}>
-        <RotateIcon
-          handleClick={selectNext}
-          iconName={'chevron-right'}
-        />
+          <RotateIcon
+            handleClick={selectNext}
+            iconName={'chevron-right'}
+          />
         </ChevronContainer>
       </StretchRow>
-      <div style={{...reelStyles}}>
+      <Reel>
         {children.map((child, i) => (
           <Circle 
             key={i}
@@ -161,7 +150,7 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
             onClick={selectSpecific} 
           />
         ))}
-      </div>
+      </Reel>
     </DarkColumn>
   )
 };

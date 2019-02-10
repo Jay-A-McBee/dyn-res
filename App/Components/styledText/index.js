@@ -2,22 +2,27 @@ import styled, {css} from 'styled-components';
 import {Media} from '../Media';
 
 export const inAndUp = props => css`
-    transition: all .5s ease-in-out;
-    opacity: 0;
-    transform: translateY(${20/16}em);
+    .animate {
+        transition: all .5s ease-in-out;
+        opacity: 0;
+        transform: translateY(${20/16}em);
+    }
 
     ${props => props.active && `
-      opacity: 1;
-      transform: translateY(0);
+        .animate {
+          opacity: 1;
+          transform: translateY(0);
+        }
     `}
 `;
 
-export const SectionHeader = styled.p`
+export const SectionHeader = styled.h3`
     font-weight: ${props => props.heavy ? 700:400};
     color: ${props => props.highlight ? 'rgb(255, 251, 242)' : 'rgb(237, 157, 85)'};
     text-decoration: ${props => props.underline ? 'underline' : 'none'};
     font-size: 5em;
-    margin-bottom: .1em;
+    margin-bottom: 0;
+    margin-top: 0;
     transition: all .25s ease-in-out;
     ${props => inAndUp(props)}
 
@@ -29,13 +34,13 @@ export const SectionHeader = styled.p`
 `;
 
 export const Headline = styled(SectionHeader)`
-    line-height: .65;
+    line-height: .85;
     font-size: 6em;
     padding: 0;
-    margin: ${props => props.margin ? props.margin : '.5em 0 0 0 '};
-
+    margin-bottom: .5em;
     ${Media.phone`
         font-size: ${props => props.size}
+        width: ${props => props.width || '100%'}
     `}
 `;
 
@@ -60,6 +65,7 @@ export const TextBlock = styled.p`
     `}
 
     ${Media.phone`
-        font-size: 1em;
+        font-size: .85em;
+        line-height: 1.5;
     `}
 `;
