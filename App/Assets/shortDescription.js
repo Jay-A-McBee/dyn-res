@@ -36,7 +36,7 @@ projectDescriptions.fairshare = {
 	tasks:[
 		'React/Redux',
 		'Node.js/Express',
-	  	'Passport OAuth 2.0'
+	  	'OAuth 2.0'
    	],
 	link: 'https://github.com/AngryPulpGophers/fairshare'
 };

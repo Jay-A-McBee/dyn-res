@@ -53,9 +53,6 @@ const Link = styled.a`
 
 
 export const Farewell = () => {
-
-    let width = useWidthHook();
-
     return (
         <ContentWrapper
             margin={'0'}
