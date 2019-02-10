@@ -11,7 +11,6 @@ export const UseScrollTracking = (id) => {
     let [inView, setPosition] = useState();
 
     function calcLocation(){
-        console.log([id, position.current, scrollY])
         var isVisible = position.current.offset - window.scrollY < 300 || position.current.offset <= window.innerHeight;
         setPosition(isVisible);
     };
