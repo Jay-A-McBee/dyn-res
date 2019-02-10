@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import styled, {css} from 'styled-components';
 import debounce from 'lodash.debounce';
 
@@ -31,23 +31,32 @@ export const Media = Object.keys(sizes).reduce( (acc, label) => {
     return acc;
 },{});
 
-export const MediaWrap = ({render}) => {
+export const useWidthHook = () => {
   let[width, setWidth] = useState(window.innerWidth);
 
   function updateWidth(){
     setWidth(window.innerWidth);
   };
 
+  let handler = useRef();
+
+  function subscribe(){
+    handler.current = debounce(updateWidth, 500, {leading:false, trailing: true});
+    window.addEventListener('resize', handler.current);
+  }
+
+  function unsubscribe(){
+    window.removeEventListener('resize', handler.current);
+    handler.current = null;
+  }
+
   useEffect( () => {
+    if(!handler.current){
+      subscribe();
+    }
 
-    const checkWidth = debounce(updateWidth, 500);
-
-    window.addEventListener('resize', checkWidth);
-
-    () => window.removeEventListener('resize', checkWidth);
+    return () => unsubscribe();
   })
 
-  return (
-    render({width})
-  )
+  return width;
 }

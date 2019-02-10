@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, {css, keyframes} from 'styled-components';
-import {Media, MediaWrap} from './Media';
+import {Media} from './Media';
 import {Column} from './styleLayout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -21,28 +21,30 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
   const Container = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    align-self: stretch;
+    justify-content: space-around;
     opacity: 0;
     animation: ${fadeIn} .5s ease-in-out .25s;
     animation-fill-mode: forwards;
 
+    ${Media.desktop`
+      width: ${570/16}em;
+    `}
+
     ${Media.phone`
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      height: ${420/16}em;
     `}
 `;
 
   const heightBlock = window.innerHeight / 160;
 
   const DeviceImage = styled.img`
-    border-radius: .25em;
     height: 30em;
-
     ${Media.phone`
       align-self: center;
-      height: 20em;
+      height: 17.5em;
+      width: 17.5em;
     `}
   `;
 
@@ -53,29 +55,27 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
     
     ${Media.phone`
       position: relative;
-      top: -.5em;
+      top: 1em;
+      margin-bottom: .5em;
+      font-size: 1.5em;
     `}
   `;
 
   const TechDescription = styled.p`
-    font-weight: 300;
-    line-height: 1.5;
-
+    font-weight: 400;
+    line-height: .15;
     ${Media.phone`
+      font-size: .95em;
       position: relative;
-      top: -.5em;
-      line-height: 1.25;
+      top: 1.75em;
+      line-height: .25;
     `}
   `;
 
   const BigColumn = styled(Column)`
-    flex: 2;
-  `
-	
-	let contrib = tasks.map( (task, idx) => (
-    <TechDescription key={idx} style={{"fontSize": '1.15em'}} >{task}</TechDescription>
-  ))
-	
+    position: relative;
+    top: -2.5em;
+  `	
 	return(
     <Container>
       <DeviceImage src={photo} />
@@ -85,8 +85,8 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
           <TechDescription key={idx}>{task}</TechDescription>
         ))}
         {link && 
-          <a target='_blank' href = {link}>
-            <FontAwesomeIcon icon={['fab', 'github']} size='2x'/>
+          <a style={{position: 'relative', top: '1.25em'}} target='_blank' href = {link}>
+            <FontAwesomeIcon icon={['fab','github']} size='2x'/>
           </a>
         }
       </BigColumn>

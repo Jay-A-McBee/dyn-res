@@ -1,7 +1,8 @@
 import React from 'react';
 import { About } from './about';
-import styled, {keyframes} from 'styled-components';
-import {Media} from './Media';
+import styled, {css} from 'styled-components';
+import {Media, useWidthHook} from './Media';
+import {UseScrollTracking} from './ScrollHook';
 
 import {
   ContentWrapper,
@@ -18,27 +19,17 @@ import {
   Headline
 } from './styledText';
 
-const fadeInAndUp = keyframes`
-    from {
-        opacity: 0;
-        transform: translateY(${20/16}em);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-`;
-
 const Link = styled.a`
     padding: 1.15em;
     color: rgb(255, 250, 239);
     border: .5px solid rgb(255, 250, 239);
-    position: relative;
-    top: 2.5em;
     transition: all .25s ease-in-out;
-    animation: ${fadeInAndUp} 1s ease-in-out;
-    animation-fill-mode: forwards;
+    position: relative;
+    top: 1.75em;
+    ${Media.phone`
+      padding: .75em;
+      font-size: .85em;
+    `}
 
     :hover {
         color: rgb(237, 157, 85);
@@ -50,42 +41,57 @@ const NarrowText = styled(TextBlock)`
     width: 65%;
 
     ${Media.phone`
-        width: 100%;
+      width: 95%
     `}
 `;
 
-export const Intro = ({active}) => {
-    const container = {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-    }
-
-    const intro = {
-        color: 'white',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        paddingLeft: '5em',
-    }
+export const Intro = () => {
 
     const greetStyles = {
-        fontSize: '.35em',
+        fontSize: '.25em',
         color: 'rgba(255, 241, 239, .99)'
     }
 
+    let inView = UseScrollTracking('Intro');
+    let width = useWidthHook();
+
     return  (
         <ContentWrapper 
+            id='Intro'
             alignSelf={'flex-start'} 
-            padding={'7.5em 0'}
-            offset={'left: 10em;'}
-            justify={'space-around'}
+            offset={`
+                left: 10em;
+            `}
+            padding={'5em 0'}
+            justify={'center'}
+            active={inView}
+            className='animate'
         >
-            <Headline active={active} spread><span style={{...greetStyles}}>Hi - my name is</span> Austin McBee.</Headline>
-            <Headline active={active} heavy>I work on the web.</Headline>
-            <NarrowText padding>I am software developer based in Seattle, Washington specializing in modern web technologies. From React to vanilla JS, I write clean, maintainable code that scales.</NarrowText>
-            <TextBlock>My goals are to keep learning, stay sharp and build cool stuff.</TextBlock>
-            <Link target="_blank" href='mailto:jmcbee1@gmail.com'>Get in touch</Link>
+            <Headline 
+              className='animate'
+              size={'2.5em'}
+              spread
+            >
+              <span style={{...greetStyles}}>Hi - my name is</span> Austin McBee.
+            </Headline>
+            <Headline 
+              className='animate'
+              size={'2.30em'}
+              heavy
+            >
+              I work on the web.
+            </Headline>
+            <NarrowText 
+              className='animate'
+            >
+              I am software developer based in Seattle, Washington specializing in modern web technologies. From React to vanilla JS, I write clean, maintainable code that scales.
+            </NarrowText>
+            <NarrowText 
+              className='animate'
+            >
+              My goals are to keep learning, stay sharp and build cool stuff.
+            </NarrowText>
+            <Link className='animate' target="_blank" href='mailto:jmcbee1@gmail.com'>Get in touch</Link>
         </ContentWrapper>
     )
 }

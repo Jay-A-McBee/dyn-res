@@ -17,38 +17,56 @@ import {
   TextBlock
 } from './styledText';
 
+
+import {UseScrollTracking} from './ScrollHook';
 import {Media} from './Media';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
-export const About = ({active}) => {
+const inAndUp = props => css`
+  opacity: 0;
+  transform: translateY(${20/16}em);
 
-  const contactStyles = {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent:'center',
-    marginTop: '2em'
+  ${props => props.active && css`
+      opacity: 1;
+      transform: translateY(0);
+  `}
+`;
+
+const Image = styled.img`
+  height: 22.5em;
+  transition: all .25s ease-in-out;
+  filter: sepia(100%);
+  margin-top: 2.5em;
+  ${inAndUp}
+
+  :hover{
+    filter: none;
   }
 
-  //Icons
+  ${Media.phone`
+    height: ${350/16}em;
+    width: ${300/16}em;
+  `}
+`
 
-  /*        <a target='_blank' href='mailto:jmcbee1@gmail.com'>
-          <i
-            className='zmdi zmdi-google zmdi-hc-2x'
-          >
-          </i>
-        </a>
-        <a target='_blank' href='https://github.com/Jay-A-McBee'>
-          <i
-            className='zmdi zmdi-github-box zmdi-hc-2x'
-          >
-          </i>
-        </a>
-        <a target='_blank' href='https://www.linkedin.com/in/jayaustinmcbee/'>
-          <i
-            className='zmdi zmdi-linkedin-box zmdi-hc-2x'
-          >
-          </i>
-        </a*/
+const LibBlock = styled.div`
+  padding: .3em;
+  justify-content: flex-start;
+  transition: all .5s ease-in-out;
+  ${inAndUp}
+
+  ::before{
+    content: '〉';
+  }
+`
+
+const FlexRow = styled(Row)`
+    justify-content: flex-start;
+    align-items: flex-start;
+`;
+
+
+export const About = () => {
 
   const jsLibs = [
     'JavaScript',
@@ -61,73 +79,31 @@ export const About = ({active}) => {
     'Jest'
   ];
 
-  const libSection = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    maxWidth: '80%'
-  }
-
-  const aboutContainer = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    width: '65%',
-    margin: 'auto'
-  }
-
   const title = 'About';
 
-  const Image = styled.img`
-    height: 22.5em;
-    transition: all .25s ease-in-out;
-    filter: sepia(100%);
-    margin-top: 2.5em;
+  let inView = UseScrollTracking('About');
 
-    :hover{
-      filter: none;
-    }
-
-    ${Media.phone`
-      height: ${350/16}em;
-      width: ${300/16}em;
-    `}
-  `
-
-  const LibBlock = styled.div`
-    padding: .3em;
-    justify-content: flex-start;
-    ::before{
-      content: '〉';
-    }
-  `
-
-  const FlexRow = styled(Row)`
-      justify-content: flex-start;
-      align-items: flex-start;
-  `;
-  
 	return (
-    <ContentWrapper id='About' padding={'4em 0'}>
-      <SectionHeader highlight active={active}>
+    <ContentWrapper active={inView} id='About' padding={'7.5em 0 0 0'}>
+      <SectionHeader highlight className='animate'>
         {title}
       </SectionHeader>
       <InnerContent justify={'space-evenly'}>
-        <Column justify={'space-between'}>
-          <TextBlock padding>{bio}</TextBlock>
-          <TextBlock padding>{aside}</TextBlock>
-          <InnerHeader>Experienced with:</InnerHeader>
+        <Column justify={'space-evenly'}>
+          <TextBlock className='animate' padding>{bio}</TextBlock>
+          <TextBlock className='animate' padding>{aside}</TextBlock>
+          <InnerHeader className='animate'>Experienced with:</InnerHeader>
           <FlexRow>
             <Column>
-              {jsLibs.slice(0,jsLibs.length/2).map( (lib, i) => <LibBlock key={i}>{lib}</LibBlock>)}
+              {jsLibs.slice(0,jsLibs.length/2).map( (lib, i) => <LibBlock className='animate' key={i}>{lib}</LibBlock>)}
             </Column>
             <Column>
-              {jsLibs.slice(jsLibs.length/2,jsLibs.length).map( (lib, i) => <LibBlock key={i}>{lib}</LibBlock>)}
+              {jsLibs.slice(jsLibs.length/2,jsLibs.length).map( (lib, i) => <LibBlock className='animate' key={i}>{lib}</LibBlock>)}
             </Column>
           </FlexRow>
         </Column>
         <FluidColumn justify={'center'}>
-          <Image src={Me}/>
+          <Image className='animate' src={Me}/>
         </FluidColumn>
       </InnerContent>
     </ContentWrapper>

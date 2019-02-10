@@ -7,15 +7,19 @@ import spltScreen from '../../Assets/pics/spltscreen.png';
 import fairshareScreen from '../../Assets/pics/fairshareShell.png';
 import journeymenScreen from '../../Assets/pics/journeymenShell.png';
 import sentimentalistScreen from '../../Assets/pics/sentimentalistShell.png';
-import projectDescriptions from '../../Assets/shortDescription';
+import {projectDescriptions, work} from '../../Assets/shortDescription';
 import {makeDescObj} from '../../helpers';
 import ProjectInfo from '../projectinfo';
-import {MediaWrap, Media} from '../Media';
+import {useWidthHook, Media} from '../Media';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   FluidColumn, 
   Row, 
   Column
 } from '../styleLayout';
+import {
+    inAndUp
+} from '../styledText';
 
 
 const WorkContainer = styled(Column)`
@@ -54,7 +58,6 @@ const WorkPlace = styled.div`
   font-size: 1.5em;
   font-weight: 700;
   background-color: ${props => props.selected ? 'rgba(209, 209, 214, .2)' : 'inherit'};
-
   :hover{
     background-color: rgba(209, 209, 214, .2);
   }
@@ -66,13 +69,13 @@ const WorkPlace = styled.div`
 `
 
 const Highlight = styled.div`
-    width: 33.33%;
-    height: .17em;
+    width: 33.3%;
+    height: .2em;
     position: absolute;
     transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
     top: auto;
-    bottom: -.1em;
     left: 0;
+    bottom: -.1em;
     transform: translateX(0);
     background-color: rgb(237, 157, 85);
 
@@ -89,7 +92,7 @@ const Title = styled.p`
 
   ${Media.phone`
     font-size: 1.25em;
-    `}
+  `}
 `;
 
 const Dates = styled.p`
@@ -113,12 +116,21 @@ const WorkLink = styled.a`
   }
 `;
 
-const ListItem = styled.li`
-  list-style-type: triangle;
-  position: relative;
-  left: -1.75em;
+const BulletItem = styled(Row)`
+  justify-content: flex-start;
+  align-items: flex-start;
+`;
+
+const ListItem = styled.p`
   margin-bottom: 1em;
-  line-height: 1.5em;
+  position:relative;
+  width: 85%;
+  left: 1em;
+  top: -.1em;
+
+  ${Media.phone`
+    font-size: .95em;
+  `}
 `;
 
 const WorkColumn = styled(Column)`
@@ -163,15 +175,48 @@ const carouselChildren = [
   return acc;
 
 }, {SPLT:[], HackReactor:[]}) 
+
+const WorkDescription = ({title, description, dates, href, selected, inView}) => {
+  return (
+    <WorkColumn justify={'space-around'}>
+      {!href ? 
+        <Title className='animate'>{title}</Title> :
+        <Title className='animate'>{title+' '}<WorkLink href={href} target="_blank">{selected}</WorkLink></Title>
+      }
+      <Dates className='animate'>{dates}</Dates>
+      <br />
+      {Object.keys(description).map((key, i) => 
+        <BulletItem className='animate' key={i}>
+          <FontAwesomeIcon style={{color: 'rgb(237, 157, 85)'}} icon='chevron-right' size='1x' />
+          <ListItem>{description[key]}</ListItem>
+        </BulletItem>
+      )}
+      {carouselChildren[selected] ?
+        <ModalComponent
+          child={
+            <CarouselComponent
+              slideImages={null} 
+              children={carouselChildren[selected]} 
+            />
+          }
+          id={selected}
+          message={"View Work"}
+          animation={{vertical: true, slideDown: true}}
+        /> : null}
+    </WorkColumn>
+  )
+}
   
-export const Experience = ({workDesc}) => {
-  const employers = Object.keys(workDesc);
+export const Experience = () => {
+  const employers = Object.keys(work);
   
   let[selected, selectWorkExperience] = useState(employers[0]);
   let[offset, updateOffset] = useState(0);
+  let width = useWidthHook();
 
   const updateSelected = (e) => {
     e.preventDefault();
+
     const title = e.nativeEvent.target.getAttribute('name');
     const next = employers.indexOf(title);
 
@@ -179,49 +224,17 @@ export const Experience = ({workDesc}) => {
     selectWorkExperience(title);
   }
 
-  const WorkDescription = ({title, description, dates, href}) => {
-    const workplace = title.split(' ').pop();
-    return (
-      <WorkColumn justify={'space-around'}>
-        {!href ? 
-          <Title>{title}</Title> :
-          <Title>{title+' '}<WorkLink href={href} target="_blank">{selected}</WorkLink></Title>
-        }
-        <Dates>{dates}</Dates>
-        <ul>
-          {Object.keys(description).map((key, i) => <ListItem key={i}>{description[key]}</ListItem>)}
-        </ul>
-        {carouselChildren[selected] ?
-          <ModalComponent
-            child={
-              <MediaWrap
-                render={({width}) => (
-                  <CarouselComponent
-                    slideImages={null} 
-                    children={carouselChildren[selected]} 
-                    width={width}
-                  />
-                )}
-              />
-            }
-            id={selected}
-            message={"View Work"}
-            animation={{vertical: true, slideDown: true}}
-          /> : <div style={{height: '7.5em'}}></div>}
-      </WorkColumn>
-    )
-  }
-
   let {
     title,
     description
-  } = workDesc[selected];
+  } = work[selected];
 
   return (
     <WorkContainer justify={'space-around'}>
-      <ListContainer>
+      <ListContainer className='animate'>
         {employers.map( (title, i) => (
-          <WorkPlace 
+          <WorkPlace
+            className='animate'
             key={i}
             name={title} 
             onClick={updateSelected} 
@@ -231,7 +244,7 @@ export const Experience = ({workDesc}) => {
         ))}
         <Highlight offset={offset} />
       </ListContainer>
-      <WorkDescription {...workDesc[selected]}/>
+      <WorkDescription selected={selected}  {...work[selected]}/>
     </WorkContainer>
   )
 }

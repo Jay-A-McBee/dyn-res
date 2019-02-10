@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import {Media, MediaWrap} from './Media';
+import styled, {css} from 'styled-components';
+import {Media, useWidthHook} from './Media';
 import {
   ContentWrapper,
   Row,
@@ -8,22 +8,16 @@ import {
 } from './styleLayout';
 
 import {
-  SectionHeader
+  SectionHeader,
+  inAndUp
 } from './styledText';
 
+import {UseScrollTracking} from './ScrollHook';
+
 import {
-    slide,
-    portfolio,
-    vue,
-    sandbox
+    projectDescriptions
 } from '../Assets/shortDescription';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-
-const PositionedWrapper = styled(ContentWrapper)`
-  position: relative;
-  top: 15em;
-`;
 
 const Title = styled.p`
     font-size: 1.75em;
@@ -46,6 +40,7 @@ const Folder = styled.div`
     margin: 2.5em;
     height: 15em;
     width: 20em;
+    transition: all .5s ease-in-out;
 `;
 
 const FolderBack = styled.div`
@@ -130,10 +125,11 @@ const MobileFolder = styled.div`
     justify-content: space-between;
     padding: 2em;
     height: 11em;
-    width: 18em;
+    width: 16em;
     border: 2.5px solid rgb(237, 157, 85);
     margin-bottom: .75em;
     border-radius: 2.5px;
+    transition: all .5s ease-in-out;
 
 `;
 
@@ -165,46 +161,53 @@ const Description = ({title, role, tasks, link}) => {
 };
 
 
-const FullFolder = (props) => {
+const FullFolder = ({inView, icon, ...rest}) => {
     return (
-        <Folder>
+        <Folder className='animate'>
             <FolderTab></FolderTab>
             <FolderBack></FolderBack>
             <Paper>
-                <Description {...props} />
+                <Description {...rest} />
             </Paper>
             <FolderFront>
-                <FontAwesomeIcon icon={props.icon} size='3x' />
+                <FontAwesomeIcon icon={icon} size='3x' />
             </FolderFront>
         </Folder>
     )
 }
 
 
-
+const {
+    slide,
+    portfolio,
+    vue,
+    sandbox
+} = projectDescriptions;
 
 export const ProjectSection = () => {
+
+    let inView = UseScrollTracking('Projects');
+    let width = useWidthHook();
+
     return(
-        <MediaWrap
-         render={({width}) => {
-            return (
-                <ContentWrapper padding={width < 500 && '4em 0'} id='Projects'>
-                    <SectionHeader highlight>Projects</SectionHeader>
-                    <br />
-                    <WrapRow justify={'flex-start'}>
-                    {[slide, portfolio, vue, sandbox].map((props, i) =>  width > 500 ? 
-                        <FullFolder key={i} {...props}/> :
-                        <div key={i}>
-                            <MobileFolderTab />
-                            <MobileFolder>
-                                <Description {...props} />
-                            </MobileFolder>
-                        </div>
-                     )}
-                    </WrapRow>
-                </ContentWrapper>
-            )
-         }}
-        />
+        <ContentWrapper     
+            id='Projects'
+            padding={'7.5em 0 5em 0'}
+            active={inView}
+        >
+            <SectionHeader className='animate' highlight>Projects</SectionHeader>
+            <br />
+            <WrapRow justify={'flex-start'}>
+            {[slide, portfolio, vue, sandbox].map((props, i) =>  width > 500 ? 
+                <FullFolder key={i} className='animate' {...props}/> :
+                <div key={i}>
+                    <MobileFolderTab className='animate'/>
+                    <MobileFolder className='animate'>
+                        <Description {...props} />
+                    </MobileFolder>
+                </div>
+             )}
+            </WrapRow>
+        </ContentWrapper>
     )
 }

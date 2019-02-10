@@ -1,8 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import styled, {css, keyframes} from 'styled-components';
 import debounce from 'lodash.debounce';
 import ModalComponent from '../ModalIndex';
-import {Media, MediaWrap} from '../Media';
+import {Media, useWidthHook} from '../Media';
+import {UseScrollTracking} from '../ScrollHook';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 const fadeInAndUp = keyframes`
     from {
@@ -43,135 +45,137 @@ const NavButton = styled.div`
 
     ${Media.phone`
         display: flex;
-        background-color: rgba(114, 98, 99, .99);
+        background-color: inherit;
         border: .075em solid rgb(237, 157, 85);
+        border-radius: .5em;
         height: 2.5em;
-        color: rgb(237, 157, 85);
+        color: rgba(103, 206, 178, .99);
         justify-content: center;
         align-items: center;
         align-self: center;
-        width: 80%;
+        width: 70%;
         margin-bottom: 2em;
     `}
 `;
 
 const StyledNav = styled.nav`
-    ${props => props.navStyles && css`
-        ${props.navStyles}
+    padding-right: 10%;
+    height: 75px;
+    width: 100%;
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+    ${props => props.hide && `
+        transform: translateY(-75px);
+    `}
+
+    ${props => props.fix && `
+        background-color: rgba(114, 98, 99, 1);
+        box-shadow: 0 2.5px 5px rgba(10, 10, 10, .4);
     `}
 `;
 
-const Nav = ({width, select}) => {
-    const navLinks = ['<About />', '<Work />', '<Projects />'];
+const NavButtonContainer = styled.div`
+    display: flex;
+    position: relative;
 
-    const heightBlock = window.innerHeight/10;
+    ${Media.desktop`
+        flex-direction: row;
+        justify-content: flex-end;
+        top: -.4em;
+    `}
+    ${Media.phone`
+        flex-direction: column;
+        align-self: flex-end;
+        top: 5em;
+    `}
+`;
+
+export const Navigation = ({select}) => {
     
-    let baseNavStyle = `
-        opacity: 1;
-        padding-right: 10%;
-        height: 75px;
-        width: 100%;
-        z-index: 10;
-        position: fixed;
-        top: 0;
-        transition: all .15s ease-in-out;
-    `;
-
-    let hideNav = width > 500 ? `opacity: 0;` : '';
-
-    let fixNav = `
-        background-color: rgba(114, 98, 99, 1);
-        box-shadow: 0 2.5px 5px rgba(10, 10, 10, .4);
-    `
-
     let[scrollTop, updateScrollTop] = useState(0);
-    let[navStyles, updateNavStyle] = useState(baseNavStyle);
+    let[navStyles, updateNavStyle] = useState({fix:false, hide:false});
     let[next, updateNext] = useState(1);
-
-    const  calcScroll = () => {
-        const currentPos = [
-            document.body.scrollTop, 
-            document.documentElement.scrollTop
-        ].reduce((total,pos) => total += pos, 0);
-
-
-        return currentPos;
-    }
+    let handler = useRef();
 
     const scroll = (event) => {
         const name = event.nativeEvent.target.getAttribute('name').match(/\<(\w+) \/\>/)[1];
 
         const el = document.getElementById(name);
 
-        el.scrollIntoView({block: 'start', inline: 'nearest', behavior: 'smooth'});
+        el.scrollIntoView({
+            block: 'start', 
+            inline: 'nearest', 
+            behavior: 'smooth'
+        });
 
         select(name.toLowerCase());
-    }
+    };
 
-    const respondToScroll = (e) => {
-        const currentPos = calcScroll();
+    const respondToScroll = () => {
+        const currentPos = window.scrollY;
         const movingDown = currentPos > scrollTop;
 
-        if(currentPos > 0 && currentPos < 75){
+        if(currentPos > 0 && currentPos < 100){
             updateScrollTop(currentPos);
-            updateNavStyle(navStyles + fixNav);
+            updateNavStyle({...navStyles, fix:true});
         }else if(movingDown){
             updateScrollTop(currentPos);
-            updateNavStyle(navStyles + hideNav);
-        }else if(currentPos !== 0){
+            updateNavStyle({...navStyles, hide:true});
+        }else if(!movingDown && currentPos > 50){
             updateScrollTop(currentPos);
-            updateNavStyle(baseNavStyle + fixNav);
+            updateNavStyle({...navStyles, hide:false, fix:true});
         }else{
-            updateScrollTop(currentPos);
-            updateNavStyle(baseNavStyle);
+            updateScrollTop(0);
+            updateNavStyle({hide:false, fix:false});
         }
+    };
+
+    let width = useWidthHook();
+
+
+    const subscribe = () => {
+        handler.current = debounce(respondToScroll, 250, {leading: true});
+        window.addEventListener('scroll', handler.current);
+    }
+
+    const unsubscribe = () => {
+        window.removeEventListener('scroll', handler.current);
+        handler.current = null;
     }
 
     useEffect(
         () => {
 
-            if(width > 500){
-
-                let checkScroll = debounce(respondToScroll, 500, {leading: true});
-
-                window.addEventListener('scroll', checkScroll);
-
-                return () => window.removeEventListener('scroll', checkScroll);
+            if(!handler.current){
+                subscribe();
             }
+
+            return () => unsubscribe();
         }
-    )
+    );
     
     const iconStyles = {
         float: 'right',
         position: 'relative',
         top: '.75em',
         right:'.75em',
+        fontWeight: '100'
+    };
 
-    }
+    const navLinks = ['<About />', '<Work />', '<Projects />'];
 
-    const mobileNav = {
-        display: 'flex',
-        flexDirection: 'column',
-        alignSelf: 'flex-end',
-        position: 'relative',
-        top: '5em'
-    }
 
-    const desktopNav = {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        position: 'relative',
-        top: '-.4em'
-    }
 
     const ButtonComponent = ({onClick}) => (
-        <i onClick={onClick} style={{...iconStyles}} className='zmdi zmdi-menu zmdi-hc-2x'>
-        </i>
-    )
+        <FontAwesomeIcon onClick={onClick} style={{...iconStyles}} size='2x' icon='bars' />
+    );
 
     const MobileMenu = () => (
-       <div style={{...mobileNav}}>
+       <NavButtonContainer>
             {navLinks.map( title => (
                 <NavButton 
                     name={title} 
@@ -181,12 +185,12 @@ const Nav = ({width, select}) => {
                 {title}
                 </NavButton>
             ))}
-       </div>
-    )
+       </NavButtonContainer>
+    );
 
-    return width > 500 ? (
-        <StyledNav navStyles={navStyles}>
-            <div style={{...desktopNav}}>
+    return width > 700 ? (
+        <StyledNav {...navStyles}>
+            <NavButtonContainer>
                 {navLinks.map( title => (
                     <NavButton 
                         name={title} 
@@ -195,10 +199,10 @@ const Nav = ({width, select}) => {
                     >{title}
                     </NavButton>
                 ))}
-            </div>
+            </NavButtonContainer>
         </StyledNav>
     ) : (
-        <StyledNav navStyles={navStyles + fixNav}>
+        <StyledNav {...navStyles}>
             <ModalComponent
                 ButtonComponent={ButtonComponent}
                 child={<MobileMenu />}
@@ -211,9 +215,3 @@ const Nav = ({width, select}) => {
         </StyledNav>
     )
 }
-
-export const Navigation = ({selectSection}) => (
-    <MediaWrap
-        render={({width}) => <Nav select={selectSection} width={width}/>}
-    />
-)

@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
 import styled, {css, keyframes} from 'styled-components';
 import {Media} from '../Media';
-
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 const ModalBody = styled.div`
     position: relative;
     margin: auto;
     overflow: scroll;
     padding: 0;
-    background-color: ${props => props.altBgColor ? 'rgba(103, 206, 178, .9)': 'rgba(10, 10, 10, 0.95)'};
+    background-color: ${props => props.altBgColor ? 'rgba(114, 98, 99, .99)': 'rgba(10, 10, 10, 0.95)'};
     border: 1px solid #888;
-    max-width: 60%;
+    max-width: 70%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     transform: ${props => props.animation && props.animation.horizontal ? 
         'translateX(100%)' : 
@@ -20,7 +20,7 @@ const ModalBody = styled.div`
 
     opacity: 0;
     transition: all .5s ease-in-out .1s;
-    height: ${props => props.height || '40em'};
+    height: ${props => props.height || '35em'};
   
     ${Media.phone`
         max-width: ${props => props.width || '90%'};
@@ -78,9 +78,28 @@ const ModalButton = styled.button`
         border-color: rgb(255, 250, 239);
     }
 `;
-const ModalComponent = ({child, childClose, id, message, ButtonComponent, animation, height, width, altBgColor}) => {
+
+const CloseButton = styled.button`
+    border:none;
+    border-radius:.5em;
+    background-color: inherit;
+    padding: .5em;
+    color: inherit;
+`;
+
+const ModalComponent = ({
+    child, 
+    childClose, 
+    id, 
+    message, 
+    ButtonComponent, 
+    animation, 
+    height, 
+    width, 
+    altBgColor,
+}) => {
     
-    let[isOpen, toggle] = useState(null);
+    let[isOpen, toggle] = useState(false);
 
     const toggleModal = () => {
         const [body] = Array.from(document.querySelectorAll('body'));
@@ -96,10 +115,9 @@ const ModalComponent = ({child, childClose, id, message, ButtonComponent, animat
 
 
     const closeModal = ({nativeEvent}) => {
-
         if(
             nativeEvent.target.id === 'modal' || 
-            /closeIcon/.test(nativeEvent.target.className) || 
+            nativeEvent.target.id === 'close' || 
             childClose
         ){
             toggleModal();
@@ -126,12 +144,17 @@ const ModalComponent = ({child, childClose, id, message, ButtonComponent, animat
                 width={width}
                 altBgColor={altBgColor}
             >
-                <i 
+                <CloseButton
+                    id ='close'
                     onClick={closeModal}
-                    className='pointer material-icons md-48 closeIcon'
                 >
-                arrow_back
-                </i>
+                    <FontAwesomeIcon
+                        id='close'
+                        onClick={closeModal}
+                        icon='times'
+                        size='lg'
+                    />
+                </CloseButton>
                 {Array.isArray(child) ? [...child] : child}
             </ModalBody>
         </ModalOverlay>

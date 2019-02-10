@@ -4,21 +4,12 @@ import {
     CollapsableColumn
 } from '../styleLayout';
 import {
-    MediaWrap
+    Media
 } from '../Media';
+import {
+    UseScrollTracking
+} from '../ScrollHook';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-const fadeInAndUp = keyframes`
-    from {
-        opacity: 0;
-        transform: translateY(${20/16}em);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-`;
 
 
 const VerticalLine = styled.div`
@@ -26,8 +17,16 @@ const VerticalLine = styled.div`
     height: ${props => props.height || '10em'};
     color: rgb(255, 251, 242);
     border-right: ${.75/16}em solid rgba(226, 229, 232, 0.64);
-    animation: ${fadeInAndUp} .5s ease-in-out;
-    animation-fill-mode: forwards;
+    transition: all .25s ease-in-out;
+    opacity: 0;
+    transform: translateY(${20/16}em);
+
+    ${Media.desktop`
+        ${props => props.active && css`
+            opacity: 1;
+            transform: translateY(0);
+        `}
+    `}
 
     ${props => props.offset && css`
         position: relative;
@@ -38,11 +37,15 @@ const VerticalLine = styled.div`
 const Link = styled.a`
     display: block;
     color: rgb(255, 251, 242);
-    animation: ${fadeInAndUp} .5s ease-in-out;
-    animation-fill-mode: forwards;
-    
-    ${props => props.marginBottom && css`
-        margin-bottom: .15em;
+    transition: all .25s ease-in-out;
+    opacity: 0;
+    transform: translateY(${20/16}em);
+
+    ${Media.desktop`
+        ${props => props.active && css`
+            opacity: 1;
+            transform: translateY(0);
+        `}
     `}
 
     :hover {
@@ -50,35 +53,25 @@ const Link = styled.a`
     }
 `;
 
-export const SocialLinks = ({width}) => {
+export const SocialLinks = () => {
 
-
-    const Links = ({width}) => {
-        return width > 500 ? (
-            <CollapsableColumn>
-                <Link marginBottom href='mailto:jmcbee1@gmail.com'>
-                  <FontAwesomeIcon icon={['fab', 'google']} />
-                </Link>
-                <VerticalLine height={'2.5em'} offset={'right: .25em'}/>
-                <Link marginBottom target='_blank' href='https://github.com/Jay-A-McBee'>
-                  <FontAwesomeIcon icon={['fab', 'github']} />
-                </Link>
-                <VerticalLine height={'2.5em'} offset={'left: .25em'} />
-                <Link marginBottom target='_blank' href='https://www.linkedin.com/in/jayaustinmcbee/'>
-                    <FontAwesomeIcon icon={['fab', 'linkedin']} />
-                </Link>
-                <VerticalLine height={'2.5em'} offset= {'right: .25em'}/>
-            </CollapsableColumn>
-        ) : null;
-    };
-
-
+    let active = UseScrollTracking('Links');
 
     return (
-        <MediaWrap
-            render={({width}) => (
-                <Links width={width} />
-            )}
-        />
-    )
-}
+        <CollapsableColumn id='Links'>
+            <Link active={active} marginBottom href='mailto:jmcbee1@gmail.com'>
+              <FontAwesomeIcon icon={['fab', 'google']} />
+            </Link>
+            <VerticalLine active={active} height={'2.5em'} offset={'right: .25em'}/>
+            <Link active={active} marginBottom target='_blank' href='https://github.com/Jay-A-McBee'>
+              <FontAwesomeIcon icon={['fab','github']} />
+            </Link>
+            <VerticalLine active={active} height={'2.5em'} offset={'left: .25em'} />
+            <Link active={active}marginBottom target='_blank' href='https://www.linkedin.com/in/jayaustinmcbee/'>
+                <FontAwesomeIcon icon={['fab','linkedin']} />
+            </Link>
+            <VerticalLine active={active} height={'2.5em'} offset= {'right: .25em'}/>
+        </CollapsableColumn>
+    );
+};
+

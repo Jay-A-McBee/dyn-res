@@ -1,6 +1,7 @@
 import React from 'react';
 import {Experience} from './shufflePanel';
 import styled from 'styled-components';
+import {UseScrollTracking} from './ScrollHook';
 import {
   ContentWrapper
 } from './styleLayout';
@@ -22,14 +23,24 @@ const PositionedWrapper = styled(ContentWrapper)`
   position: relative;
   top: 7.5em;
 `
-export const Work = ({workDescriptions, active}) => {
+export const Work = ({workDescriptions}) => {
+
+  let inView = UseScrollTracking('Work');
+
   return(
     <ContentWrapper
       id='Work'
       justify={'center'}
-      padding={'5.5em 0'}
+      padding={'5em 0 0 0'}
+      margin={'10em'}
+      active={inView}
     >
-      <SectionHeader highlight>Work Stuff</SectionHeader>
+      <SectionHeader 
+        className='animate' 
+        highlight
+      >
+      Work Stuff
+      </SectionHeader>
       <br />
       <Experience
         workDesc={workDescriptions}
