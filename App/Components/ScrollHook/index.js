@@ -16,8 +16,7 @@ export const UseScrollTracking = (id) => {
     };
 
     const registerScrollHandler = () => {
-        const handler = throttle(calcLocation, 150, {leading:true, trailing: true});
-        scrollHandler.current = handler;
+        scrollHandler.current = throttle(calcLocation, 150, {leading:true, trailing: true});
         window.addEventListener('scroll', scrollHandler.current);
     };
 
@@ -35,7 +34,7 @@ export const UseScrollTracking = (id) => {
             position.current = {top, offset: el.offsetTop}
         }
 
-        if(!inView){
+        if(!inView && !scrollHandler.current){
             calcLocation();
             registerScrollHandler();
         }
