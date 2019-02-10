@@ -31,7 +31,7 @@ export const Work = ({workDescriptions}) => {
     <ContentWrapper
       id='Work'
       justify={'center'}
-      padding={'5em 0 0 0'}
+      padding={'7.5em 0 0 0'}
       margin
     >
       <SectionHeader 

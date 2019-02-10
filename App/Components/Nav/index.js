@@ -4,6 +4,7 @@ import debounce from 'lodash.debounce';
 import ModalComponent from '../ModalIndex';
 import {Media, useWidthHook} from '../Media';
 import {UseScrollTracking} from '../ScrollHook';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 const fadeInAndUp = keyframes`
     from {
@@ -63,6 +64,7 @@ const StyledNav = styled.nav`
     z-index: 10;
     position: fixed;
     top: 0;
+    left: 0;
     transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
 
     ${Media.phone`
@@ -174,8 +176,7 @@ export const Navigation = ({select}) => {
 
 
     const ButtonComponent = ({onClick}) => (
-        <i onClick={onClick} style={{...iconStyles}} className='zmdi zmdi-menu zmdi-hc-2x'>
-        </i>
+        <FontAwesomeIcon onClick={onClick} style={{...iconStyles}} size='2x' icon='bars' />
     );
 
     const MobileMenu = () => (

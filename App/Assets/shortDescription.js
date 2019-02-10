@@ -124,7 +124,7 @@ export const work = {
       href: 'https://www.splt.io',
       dates: 'Sept 2016 - April 2017',
       description: {
-        a:'Contributed to a few different products including an enterprise-first carpooling mobile app, an accompanying analytics dashboard, and a non-emergency medical transport dispatch portal',
+        a:'Contributed to multiple products including an enterprise-first carpooling mobile app, an accompanying analytics dashboard, and a non-emergency medical transport dispatch portal',
         b:'Worked extensively with React and React-Native to create a reusable component library',
         c:'Integrated multiple third-party APIs including PayPal, Stripe, Google Geolocate and Edmund\'s',
       }

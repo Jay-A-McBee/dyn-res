@@ -11,6 +11,7 @@ import {projectDescriptions, work} from '../../Assets/shortDescription';
 import {makeDescObj} from '../../helpers';
 import ProjectInfo from '../projectinfo';
 import {useWidthHook, Media} from '../Media';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   FluidColumn, 
   Row, 
@@ -70,13 +71,13 @@ const WorkPlace = styled.div`
 `
 
 const Highlight = styled.div`
-    width: 33.33%;
-    height: .17em;
+    width: 33.3%;
+    height: .2em;
     position: absolute;
     transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
     top: auto;
-    bottom: -.1em;
     left: 0;
+    bottom: -.1em;
     transform: translateX(0);
     background-color: rgb(237, 157, 85);
     ${props => inAndUp(props)}
@@ -120,13 +121,22 @@ const WorkLink = styled.a`
   }
 `;
 
-const ListItem = styled.li`
-  list-style-type: triangle;
-  position: relative;
-  left: -1.75em;
-  margin-bottom: 1em;
-  line-height: 1.5em;
+const BulletItem = styled(Row)`
+  justify-content: flex-start;
+  align-items: flex-start;
   ${props => inAndUp(props)}
+`;
+
+const ListItem = styled.p`
+  margin-bottom: 1em;
+  position:relative;
+  width: 85%;
+  left: 1em;
+  top: -.1em;
+
+  ${Media.phone`
+    font-size: .95em;
+  `}
 `;
 
 const WorkColumn = styled(Column)`
@@ -180,9 +190,13 @@ const WorkDescription = ({title, description, dates, href, selected, inView}) =>
         <Title active={inView}>{title+' '}<WorkLink href={href} target="_blank">{selected}</WorkLink></Title>
       }
       <Dates active={inView}>{dates}</Dates>
-      <ul>
-        {Object.keys(description).map((key, i) => <ListItem active={inView} key={i}>{description[key]}</ListItem>)}
-      </ul>
+      <br />
+      {Object.keys(description).map((key, i) => 
+        <BulletItem key={i} active={inView}>
+          <FontAwesomeIcon style={{color: 'rgb(237, 157, 85)'}} icon='chevron-right' size='1x' />
+          <ListItem>{description[key]}</ListItem>
+        </BulletItem>
+      )}
       {carouselChildren[selected] ?
         <ModalComponent
           child={

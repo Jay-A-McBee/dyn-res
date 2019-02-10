@@ -13,11 +13,35 @@ import {
     Column
 } from '../Components/styleLayout';
 import {GlobalStyle} from '../Components/globalStyles';
-import {faGithub, faLinkedin, faGoogle, faReact, faVuejs, faNode} from '@fortawesome/free-brands-svg-icons'
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import {
+  faGithub, 
+  faLinkedin, 
+  faGoogle, 
+  faReact, 
+  faVuejs, 
+  faNode
+} from '@fortawesome/free-brands-svg-icons'
+import { 
+  faChevronLeft, 
+  faChevronRight, 
+  faBars, 
+  faTimes
+} from '@fortawesome/free-solid-svg-icons'
+
 import {library} from '@fortawesome/fontawesome-svg-core'
 
-library.add(faLinkedin, faGithub, faGoogle, faReact, faVuejs, faNode, faChevronLeft, faChevronRight);
+library.add(
+  faLinkedin, 
+  faGithub, 
+  faGoogle, 
+  faReact, 
+  faVuejs, 
+  faNode, 
+  faChevronLeft, 
+  faChevronRight, 
+  faBars, 
+  faTimes
+);
 
 export default function AboutMe(){
     
@@ -28,19 +52,17 @@ export default function AboutMe(){
   };
 
   return(
-    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '100%'}}>
       <GlobalStyle />
       <Navigation select={selectSection} />
-      <Row>
-        <SocialLinks />
-        <Column>
-          <Intro />
-          <About />
-          <Work />
-          <Projects />
-          <Footer />
-        </Column>
-      </Row>
+      <SocialLinks />
+      <Column>
+        <Intro />
+        <About />
+        <Work />
+        <Projects />
+        <Footer />
+      </Column>
     </div>
   )
 }

@@ -13,7 +13,7 @@ const enter = keyframes`
 `;
 
 const inAndup = css`
-  
+
 `
 
 export const SectionWrapper = styled.section`
@@ -46,9 +46,9 @@ export const ContentWrapper = styled.section`
     width: 90%;
     align-self: center;
     margin-top: 2.5em;
-    ${props => props.offset && css`
-      position: static;
-    `}
+    position: relative;
+    top: 2.5em;
+    left: 0;
   `}
 `;
 

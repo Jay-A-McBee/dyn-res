@@ -11,11 +11,8 @@ export const UseScrollTracking = (id) => {
     let [inView, setPosition] = useState();
 
     function calcLocation(){
-        var isVisible = (
-            position.current.offset - window.scrollY < 350 ||
-            position.current.top < window.innerHeight
-        );
-
+        console.log([id, position.current, scrollY])
+        var isVisible = position.current.offset - window.scrollY < 300 || position.current.offset <= window.innerHeight;
         setPosition(isVisible);
     };
 
@@ -33,7 +30,7 @@ export const UseScrollTracking = (id) => {
     useEffect(() => {
         if(!position.current){
             const el = document.getElementById(id);
-            const{
+            const {
                 top
             } = el.getBoundingClientRect();
             position.current = {top, offset: el.offsetTop}

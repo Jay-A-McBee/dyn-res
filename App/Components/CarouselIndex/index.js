@@ -141,7 +141,6 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
         <ChevronContainer justify={'center'}>
         <RotateIcon
           handleClick={selectPrevious}
-          size={'1x'}
           iconName={'chevron-left'}
         />
         </ChevronContainer>
@@ -149,7 +148,6 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
         <ChevronContainer justify={'center'}>
         <RotateIcon
           handleClick={selectNext}
-          size={'1x'}
           iconName={'chevron-right'}
         />
         </ChevronContainer>

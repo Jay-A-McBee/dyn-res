@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled, {css, keyframes} from 'styled-components';
 import {Media} from '../Media';
-
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 const ModalBody = styled.div`
     position: relative;
@@ -20,7 +20,7 @@ const ModalBody = styled.div`
 
     opacity: 0;
     transition: all .5s ease-in-out .1s;
-    height: ${props => props.height || '40em'};
+    height: ${props => props.height || '35em'};
   
     ${Media.phone`
         max-width: ${props => props.width || '90%'};
@@ -107,9 +107,11 @@ const ModalComponent = ({
 
     const closeModal = ({nativeEvent}) => {
 
+        const name = nativeEvent.target.localName;
+
         if(
             nativeEvent.target.id === 'modal' || 
-            /closeIcon/.test(nativeEvent.target.className) || 
+            nativeEvent.target.id === 'close' || 
             childClose
         ){
             toggleModal();
@@ -136,12 +138,13 @@ const ModalComponent = ({
                 width={width}
                 altBgColor={altBgColor}
             >
-                <i 
+                <FontAwesomeIcon
+                    id='close'
+                    style={{padding: '10px'}}
                     onClick={closeModal}
-                    className='pointer material-icons md-48 closeIcon'
-                >
-                arrow_back
-                </i>
+                    icon='times'
+                    size='1x'
+                />
                 {Array.isArray(child) ? [...child] : child}
             </ModalBody>
         </ModalOverlay>

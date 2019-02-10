@@ -84,12 +84,12 @@ export const About = () => {
   let inView = UseScrollTracking('About');
 
 	return (
-    <ContentWrapper id='About' padding={'5em 0 0 0'} margin>
+    <ContentWrapper id='About' padding={'7.5em 0 0 0'} margin>
       <SectionHeader highlight active={inView}>
         {title}
       </SectionHeader>
       <InnerContent justify={'space-evenly'}>
-        <Column justify={'space-between'}>
+        <Column justify={'space-evenly'}>
           <TextBlock active={inView} padding>{bio}</TextBlock>
           <TextBlock active={inView} padding>{aside}</TextBlock>
           <InnerHeader active={inView}>Experienced with:</InnerHeader>

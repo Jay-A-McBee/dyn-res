@@ -195,7 +195,7 @@ export const ProjectSection = () => {
     return(
         <ContentWrapper     
             id='Projects'
-            padding={width > 500 ? '5em 0 0 0' : '3.5em 0 0 0'}
+            padding={'7.5em 0 5em 0'}
         >
             <SectionHeader active={inView} highlight>Projects</SectionHeader>
             <br />
