@@ -100,6 +100,7 @@ export const Navigation = ({select}) => {
     let[navStyles, updateNavStyle] = useState({fix:false, hide:false});
     let[next, updateNext] = useState(1);
     let handler = useRef();
+    let isOpen = useRef();
 
     const scroll = (event) => {
         const name = event.nativeEvent.target.getAttribute('name').match(/\<(\w+) \/\>/)[1];
@@ -119,18 +120,21 @@ export const Navigation = ({select}) => {
         const currentPos = window.scrollY;
         const movingDown = currentPos > scrollTop;
 
-        if(currentPos > 0 && currentPos < 100){
-            updateScrollTop(currentPos);
-            updateNavStyle({...navStyles, fix:true});
-        }else if(movingDown){
-            updateScrollTop(currentPos);
-            updateNavStyle({...navStyles, hide:true});
-        }else if(!movingDown && currentPos > 50){
-            updateScrollTop(currentPos);
-            updateNavStyle({...navStyles, hide:false, fix:true});
-        }else{
-            updateScrollTop(0);
-            updateNavStyle({hide:false, fix:false});
+        if(!isOpen.current || isOpen.current !== true){
+
+            if(currentPos > 0 && currentPos < 100){
+                updateScrollTop(currentPos);
+                updateNavStyle({...navStyles, fix:true});
+            }else if(movingDown){
+                updateScrollTop(currentPos);
+                updateNavStyle({...navStyles, hide:true});
+            }else if(!movingDown && currentPos > 50){
+                updateScrollTop(currentPos);
+                updateNavStyle({...navStyles, hide:false, fix:true});
+            }else{
+                updateScrollTop(0);
+                updateNavStyle({hide:false, fix:false});
+            }
         }
     };
 
@@ -168,25 +172,29 @@ export const Navigation = ({select}) => {
 
     const navLinks = ['<About />', '<Work />', '<Projects />'];
 
-
-
     const ButtonComponent = ({onClick}) => (
         <FontAwesomeIcon onClick={onClick} style={{...iconStyles}} size='2x' icon='bars' />
     );
 
-    const MobileMenu = () => (
-       <NavButtonContainer>
-            {navLinks.map( title => (
-                <NavButton 
-                    name={title} 
-                    key={title} 
-                    onClick={scroll}
-                >
-                {title}
-                </NavButton>
-            ))}
-       </NavButtonContainer>
-    );
+    const MobileMenu = ({open}) => {
+        useEffect(() => {
+            isOpen.current = open;
+        })
+
+        return (
+           <NavButtonContainer>
+                {navLinks.map( title => (
+                    <NavButton 
+                        name={title} 
+                        key={title} 
+                        onClick={scroll}
+                    >
+                    {title}
+                    </NavButton>
+                ))}
+           </NavButtonContainer>
+        );
+    }
 
     return width > 700 ? (
         <StyledNav {...navStyles}>
@@ -205,7 +213,7 @@ export const Navigation = ({select}) => {
         <StyledNav {...navStyles}>
             <ModalComponent
                 ButtonComponent={ButtonComponent}
-                child={<MobileMenu />}
+                child={(open) => <MobileMenu open={open} />}
                 animation={{horizontal: true, slideIn: true}}
                 height={'100vh'}
                 width={'65%'}

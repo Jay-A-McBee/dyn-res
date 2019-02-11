@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, {css} from 'styled-components';
+import styled, {css, keyframes} from 'styled-components';
 import {Media, useWidthHook} from './Media';
 import {
   ContentWrapper,
@@ -18,6 +18,17 @@ import {
     projectDescriptions
 } from '../Assets/shortDescription';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
+const jitter = keyframes`
+    from{
+      transform: rotate(360deg);
+    }
+
+    to{
+      transform: rotate(0deg);
+    }
+`;
 
 const Title = styled.p`
     font-size: 1.75em;
@@ -111,6 +122,10 @@ const Paper = styled.div`
     ${Folder}:hover & {
         top: -92.5%;
         transform: translate3d(1em, -.2em, .25em) skew(-2.5deg);
+        .jitter{
+            animation: ${jitter} 1.5s cubic-bezier(.77,-0.48,.83,.87) 2s;
+            animation-iteration-count: 1;
+        }   
     }
 `;
 
@@ -143,14 +158,16 @@ const MobileFolderTab = styled.div`
     border-radius: 3em;
 `;
 
+const Link = styled.a``;
+
 const Description = ({title, role, tasks, link}) => {
     return (
         <React.Fragment>
             <TitleRow justify={'space-between'}>
                 <Title>{title}</Title>
-                <a target='_blank' href = {link}>
+                <Link className='jitter' target='_blank' href = {link}>
                     <FontAwesomeIcon icon={['fab', 'github']} size='3x' />
-                </a>
+                </Link>
             </TitleRow>
             <p style={{lineHeight: '1.25em'}}>{role}</p>
             <Row>

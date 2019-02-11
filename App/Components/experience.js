@@ -39,7 +39,7 @@ export const Work = ({workDescriptions}) => {
         className='animate' 
         highlight
       >
-      Work Stuff
+      Work
       </SectionHeader>
       <br />
       <Experience

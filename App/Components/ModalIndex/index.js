@@ -155,7 +155,7 @@ const ModalComponent = ({
                         size='lg'
                     />
                 </CloseButton>
-                {Array.isArray(child) ? [...child] : child}
+                {child(isOpen)}
             </ModalBody>
         </ModalOverlay>
         </>
