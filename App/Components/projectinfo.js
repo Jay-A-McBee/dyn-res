@@ -77,7 +77,7 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
   `	
 
   const Link = styled.a`
-    position: 'relative';
+    position: relative;
     top: 1.25em;
   `;
 
