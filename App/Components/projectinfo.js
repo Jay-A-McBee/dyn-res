@@ -17,7 +17,6 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
       }
   `;
 
-
   const Container = styled.div`
     display: flex;
     flex-direction: row;
@@ -76,6 +75,13 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
     position: relative;
     top: -2.5em;
   `	
+
+  const Link = styled.a`
+    position: 'relative';
+    top: 1.25em;
+  `;
+
+
 	return(
     <Container>
       <DeviceImage src={photo} />
@@ -85,9 +91,9 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
           <TechDescription key={idx}>{task}</TechDescription>
         ))}
         {link && 
-          <a style={{position: 'relative', top: '1.25em'}} target='_blank' href = {link}>
+          <Link target='_blank' href={link}>
             <FontAwesomeIcon icon={['fab','github']} size='2x'/>
-          </a>
+          </Link>
         }
       </BigColumn>
     </Container>

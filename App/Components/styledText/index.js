@@ -25,7 +25,6 @@ export const SectionHeader = styled.h3`
     margin-top: 0;
     transition: all .25s ease-in-out;
     ${props => inAndUp(props)}
-
     
     ${Media.phone`
         font-size: 2.75em;
