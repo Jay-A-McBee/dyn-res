@@ -43,6 +43,20 @@ const NavButton = styled.div`
         border: .5px solid rgba(179, 248, 218)
     `}
 
+    ${Media.tablet`
+        display: flex;
+        background-color: inherit;
+        border: .075em solid rgb(237, 157, 85);
+        border-radius: .5em;
+        height: 2.5em;
+        color: rgba(103, 206, 178, .99);
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        width: 70%;
+        margin-bottom: 2em;
+    `}
+
     ${Media.phone`
         display: flex;
         background-color: inherit;
@@ -86,6 +100,11 @@ const NavButtonContainer = styled.div`
         flex-direction: row;
         justify-content: flex-end;
         top: -.4em;
+    `}
+    ${Media.tablet`
+        flex-direction: column;
+        align-self: flex-end;
+        top: 5em;
     `}
     ${Media.phone`
         flex-direction: column;
@@ -196,7 +215,7 @@ export const Navigation = ({select}) => {
         );
     }
 
-    return width > 700 ? (
+    return width > 800 ? (
         <StyledNav {...navStyles}>
             <NavButtonContainer>
                 {navLinks.map( title => (

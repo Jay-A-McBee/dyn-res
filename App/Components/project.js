@@ -215,7 +215,7 @@ export const ProjectSection = () => {
             <SectionHeader className='animate' highlight>Projects</SectionHeader>
             <br />
             <WrapRow justify={'flex-start'}>
-            {[slide, portfolio, vue, sandbox].map((props, i) =>  width > 500 ? 
+            {[slide, portfolio, vue, sandbox].map((props, i) =>  width > 800 ? 
                 <FullFolder key={i} className='animate' {...props}/> :
                 <div key={i}>
                     <MobileFolderTab className='animate'/>

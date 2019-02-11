@@ -40,6 +40,13 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
 
   const DeviceImage = styled.img`
     height: 30em;
+
+    ${Media.tablet`
+      align-self: center;
+      height: 17.5em;
+      width: 17.5em;
+    `}
+
     ${Media.phone`
       align-self: center;
       height: 17.5em;
@@ -51,6 +58,13 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
     font-weight: 700;
     font-size: 1.75em;
     color: rgb(237, 157, 85);
+
+    ${Media.tablet`
+      position: relative;
+      top: 1em;
+      margin-bottom: .5em;
+      font-size: 1.5em;
+    `}
     
     ${Media.phone`
       position: relative;
@@ -63,6 +77,12 @@ const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current
   const TechDescription = styled.p`
     font-weight: 400;
     line-height: .15;
+    ${Media.tablet`
+      font-size: .95em;
+      position: relative;
+      top: 1.75em;
+      line-height: .25;
+    `}
     ${Media.phone`
       font-size: .95em;
       position: relative;

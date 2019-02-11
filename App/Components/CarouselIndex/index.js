@@ -94,7 +94,7 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
     ...imgObj
   })) : null;
 
-  return width > 700 ? (
+  return width > 800 ? (
     <Container>
       <StretchRow justify={'space-between'}>
         <ChevronContainer justify={'center'}>

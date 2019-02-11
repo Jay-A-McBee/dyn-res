@@ -24,12 +24,20 @@ const ModalBody = styled.div`
   
     ${Media.phone`
         max-width: ${props => props.width || '90%'};
-        height: ${props => props.height || '32.5em'}
+        height: ${props => props.height || '32.5em'};
+    `}
+
+    ${Media.tablet`
+        max-width: ${props => props.width || '80%'};
+        height: ${props => props.height || '25.5em'};
     `}
 
     ${props => props.open && props.animation.slideDown && css`
         transform: translateY(10%);
         opacity: 1;
+        ${Media.tablet`
+            transform: translateY(50%);
+        `}
     `}
 
     ${props => props.open && props.animation.slideIn && css`

@@ -20,15 +20,26 @@ import {
 } from './styledText';
 
 const Link = styled.a`
+    display: flex;
+    justify-content: center;
     padding: 1.15em;
     color: rgb(255, 250, 239);
     border: .5px solid rgb(255, 250, 239);
     transition: all .25s ease-in-out;
     position: relative;
     top: 1.75em;
+    width: 12.5%;
+
     ${Media.phone`
+      width: 20%;
       padding: .75em;
       font-size: .85em;
+    `}
+
+    ${Media.tablet`
+      width: 20%;
+      padding: .75em;
+      font-size: .75em;
     `}
 
     :hover {
@@ -36,9 +47,26 @@ const Link = styled.a`
         border-color: rgb(237, 157, 85);
     }
 `
+const PositionedWrapper = styled(ContentWrapper)`
+  position: relative;
+  top: 2.5em;
+  margin-bottom: 7.5em;
+
+  ${Media.tablet`
+    top: 5.5em;
+  `}
+
+  ${Media.phone`
+    top: 4em;
+  `}
+`
 
 const NarrowText = styled(TextBlock)`
     width: 65%;
+
+    ${Media.tablet`
+      width: 75%
+    `}
 
     ${Media.phone`
       width: 95%
@@ -54,16 +82,15 @@ export const Intro = () => {
 
     let inView = UseScrollTracking('Intro');
     let width = useWidthHook();
+    console.log(width);
 
     return  (
-        <ContentWrapper 
+        <PositionedWrapper 
             id='Intro'
             alignSelf={'flex-start'} 
-            offset={`
-                left: 10em;
-            `}
-            padding={'5em 0'}
-            justify={'center'}
+            offset={ width > 800 ? `left: 10em;` : false}
+            padding={'2.5em 0'}
+            justify={'space-around'}
             active={inView}
             className='animate'
         >
@@ -92,6 +119,6 @@ export const Intro = () => {
               My goals are to keep learning, stay sharp and build cool stuff.
             </NarrowText>
             <Link className='animate' target="_blank" href='mailto:jmcbee1@gmail.com'>Get in touch</Link>
-        </ContentWrapper>
+        </PositionedWrapper>
     )
 }
