@@ -43,20 +43,16 @@ export const useWidthHook = () => {
   function subscribe(){
     handler.current = debounce(updateWidth, 500, {leading:false, trailing: true});
     window.addEventListener('resize', handler.current);
-  }
 
-  function unsubscribe(){
-    window.removeEventListener('resize', handler.current);
-    handler.current = null;
-  }
-
-  useEffect( () => {
-    if(!handler.current){
-      subscribe();
+    return {
+      unsubscribe: () => window.removeEventListener('resize', handler.current)
     }
+  }
 
-    return () => unsubscribe();
-  })
+  useEffect(() => {
+    const listener = subscribe();
+    return () => listener.unsubscribe();
+  },[])
 
   return width;
 }

@@ -47,17 +47,10 @@ library.add(
 );
 
 export default function AboutMe(){
-    
-  let [active, select] = useState('intro');
-  
-  const selectSection = (name) => {
-    select(name);
-  };
-
   return(
     <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '100%'}}>
       <GlobalStyle />
-      <Navigation select={selectSection} />
+      <Navigation />
       <SocialLinks />
       <Column>
         <Intro />

@@ -12,18 +12,20 @@ export const UseScrollTracking = (id) => {
 
     function calcLocation(){
         var isVisible = position.current.offset - window.scrollY < 300 || position.current.offset <= window.innerHeight;
-        setPosition(isVisible);
+
+        if(isVisible){ 
+            setPosition(isVisible);
+        }
+
+        return;
     };
 
-    const registerScrollHandler = () => {
+    const subscribe = () => {
         scrollHandler.current = throttle(calcLocation, 150, {leading:true, trailing: true});
         window.addEventListener('scroll', scrollHandler.current);
     };
 
-    const unregisterScrollHandler = () => {
-        window.removeEventListener('scroll', scrollHandler.current);
-        scrollHandler.current = null;
-    };
+    const unsubscribe = () => window.removeEventListener('scroll', scrollHandler.current);
 
     useEffect(() => {
         if(!position.current){
@@ -34,12 +36,14 @@ export const UseScrollTracking = (id) => {
             position.current = {top, offset: el.offsetTop}
         }
 
+
         if(!inView && !scrollHandler.current){
             calcLocation();
-            registerScrollHandler();
+            subscribe();
+        }else{
+            debugger
+            unsubscribe();
         }
-
-        return () => unregisterScrollHandler();
     });
 
 

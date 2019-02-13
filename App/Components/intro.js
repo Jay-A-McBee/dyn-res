@@ -82,13 +82,12 @@ export const Intro = () => {
 
     let inView = UseScrollTracking('Intro');
     let width = useWidthHook();
-    console.log(width);
 
     return  (
         <PositionedWrapper 
             id='Intro'
             alignSelf={'flex-start'} 
-            offset={ width > 800 ? `left: 10em;` : false}
+            offset={ width > 800 ? `left: 10em;` : null}
             padding={'2.5em 0'}
             justify={'space-around'}
             active={inView}

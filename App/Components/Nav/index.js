@@ -82,11 +82,11 @@ const StyledNav = styled.nav`
     left: 0;
     transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
 
-    ${props => props.hide && `
+    ${props => props.hide && css`
         transform: translateY(-75px);
     `}
 
-    ${props => props.fix && `
+    ${props => props.fix && css`
         background-color: rgba(114, 98, 99, 1);
         box-shadow: 0 2.5px 5px rgba(10, 10, 10, .4);
     `}
@@ -113,11 +113,10 @@ const NavButtonContainer = styled.div`
     `}
 `;
 
-export const Navigation = ({select}) => {
+export const Navigation = () => {
     
     let[scrollTop, updateScrollTop] = useState(0);
     let[navStyles, updateNavStyle] = useState({fix:false, hide:false});
-    let[next, updateNext] = useState(1);
     let handler = useRef();
     let isOpen = useRef();
 
@@ -131,14 +130,12 @@ export const Navigation = ({select}) => {
             inline: 'nearest', 
             behavior: 'smooth'
         });
-
-        select(name.toLowerCase());
     };
 
     const respondToScroll = () => {
         const currentPos = window.scrollY;
         const movingDown = currentPos > scrollTop;
-
+        
         if(!isOpen.current || isOpen.current !== true){
 
             if(currentPos > 0 && currentPos < 100){
@@ -149,7 +146,7 @@ export const Navigation = ({select}) => {
                 updateNavStyle({...navStyles, hide:true});
             }else if(!movingDown && currentPos > 50){
                 updateScrollTop(currentPos);
-                updateNavStyle({...navStyles, hide:false, fix:true});
+                updateNavStyle({fix: true, hide:false});
             }else{
                 updateScrollTop(0);
                 updateNavStyle({hide:false, fix:false});
@@ -161,7 +158,7 @@ export const Navigation = ({select}) => {
 
 
     const subscribe = () => {
-        handler.current = debounce(respondToScroll, 250, {leading: true});
+        handler.current = debounce(respondToScroll, 150, {leading: true});
         window.addEventListener('scroll', handler.current);
     }
 
@@ -170,16 +167,14 @@ export const Navigation = ({select}) => {
         handler.current = null;
     }
 
-    useEffect(
-        () => {
+    useEffect(() => {
 
-            if(!handler.current){
-                subscribe();
-            }
-
-            return () => unsubscribe();
+        if(!handler.current){
+            subscribe();
         }
-    );
+
+        return () => unsubscribe();
+    },[scrollTop]);
     
     const iconStyles = {
         float: 'right',
