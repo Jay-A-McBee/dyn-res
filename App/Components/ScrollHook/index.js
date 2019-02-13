@@ -33,6 +33,7 @@ export const UseScrollTracking = (id) => {
             const {
                 top
             } = el.getBoundingClientRect();
+
             position.current = {top, offset: el.offsetTop}
         }
 
@@ -40,11 +41,10 @@ export const UseScrollTracking = (id) => {
         if(!inView && !scrollHandler.current){
             calcLocation();
             subscribe();
-        }else{
-            debugger
-            unsubscribe();
         }
-    });
+
+        return () => unsubscribe()
+    },[inView]);
 
 
     return inView;
