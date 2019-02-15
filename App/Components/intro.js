@@ -1,8 +1,8 @@
-import React, {useRef} from 'react';
+import React, {useRef, forwardRef} from 'react';
 import { About } from './about';
 import styled, {css} from 'styled-components';
 import {Media, useWidthHook} from './Media';
-import {UseScrollTracking} from './ScrollHook';
+import {scrollImperativeHandle} from './Handles';
 
 import {
   ContentWrapper,
@@ -73,21 +73,22 @@ const NarrowText = styled(TextBlock)`
     `}
 `;
 
-export const Intro = () => {
+export const Intro = forwardRef(({inView}, ref) => {
 
     const greetStyles = {
         fontSize: '.25em',
         color: 'rgba(255, 241, 239, .99)'
     }
 
-    let container = useRef(null);
-    let inView = UseScrollTracking(container);
     let width = useWidthHook();
+
+    let introContainer = useRef(null);
+
+    scrollImperativeHandle(introContainer, ref);
 
     return  (
         <PositionedWrapper 
-            ref={container}
-            id='Intro'
+            ref={introContainer}
             alignSelf={'flex-start'} 
             offset={ width > 800 ? `left: 10em;` : null}
             padding={'2.5em 0'}
@@ -122,4 +123,4 @@ export const Intro = () => {
             <Link className='animate' target="_blank" href='mailto:jmcbee1@gmail.com'>Get in touch</Link>
         </PositionedWrapper>
     )
-}
+});

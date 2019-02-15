@@ -3,7 +3,6 @@ import styled, {css, keyframes} from 'styled-components';
 import debounce from 'lodash.debounce';
 import ModalComponent from '../ModalIndex';
 import {Media, useWidthHook} from '../Media';
-import {UseScrollTracking} from '../ScrollHook';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 const fadeInAndUp = keyframes`
@@ -113,23 +112,16 @@ const NavButtonContainer = styled.div`
     `}
 `;
 
-export const Navigation = () => {
+export const Navigation = ({scroll}) => {
     
     let[scrollTop, updateScrollTop] = useState(0);
     let[navStyles, updateNavStyle] = useState({fix:false, hide:false});
     let handler = useRef();
     let isOpen = useRef();
 
-    const scroll = (event) => {
-        const name = event.nativeEvent.target.getAttribute('name').match(/\<(\w+) \/\>/)[1];
-
-        const el = document.getElementById(name);
-
-        el.scrollIntoView({
-            block: 'start', 
-            inline: 'nearest', 
-            behavior: 'smooth'
-        });
+    const scrollToSection = (event) => {
+        const name = event.target.getAttribute('name').match(/\<(\w+) \/\>/)[1];
+        scroll(name);
     };
 
     const respondToScroll = () => {
@@ -201,7 +193,7 @@ export const Navigation = () => {
                     <NavButton 
                         name={title} 
                         key={title} 
-                        onClick={scroll}
+                        onClick={scrollToSection}
                     >
                     {title}
                     </NavButton>
@@ -217,7 +209,7 @@ export const Navigation = () => {
                     <NavButton 
                         name={title} 
                         key={title} 
-                        onClick={scroll}
+                        onClick={scrollToSection}
                     >{title}
                     </NavButton>
                 ))}

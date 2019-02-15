@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, forwardRef} from 'react';
 import styled, {css, keyframes} from 'styled-components';
 import {Media, useWidthHook} from './Media';
 import {
@@ -11,9 +11,7 @@ import {
   SectionHeader,
   inAndUp
 } from './styledText';
-
-import {UseScrollTracking} from './ScrollHook';
-
+import {scrollImperativeHandle} from './Handles';
 import {
     projectDescriptions
 } from '../Assets/shortDescription';
@@ -201,18 +199,18 @@ const {
     sandbox
 } = projectDescriptions;
 
-export const ProjectSection = () => {
+export const ProjectSection = forwardRef(({inView}, ref) => {
 
-    let container = useRef(null);
-    let inView = UseScrollTracking(container);
     let width = useWidthHook();
+    let projectContainer = useRef(null);
+
+    scrollImperativeHandle(projectContainer, ref, 'Projects');
 
     return(
-        <ContentWrapper     
-            id='Projects'
+        <ContentWrapper    
+            ref={projectContainer} 
             padding={'7.5em 0 5em 0'}
             active={inView}
-            ref={container}
         >
             <SectionHeader className='animate' highlight>Projects</SectionHeader>
             <br />
@@ -229,4 +227,4 @@ export const ProjectSection = () => {
             </WrapRow>
         </ContentWrapper>
     )
-}
+})
