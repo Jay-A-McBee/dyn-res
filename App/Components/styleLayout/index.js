@@ -87,6 +87,7 @@ export const CollapsableColumn = styled.div`
 
   ${Media.phone`
     width: 0em;
+    opacity: 0;
   `}
 `;
 

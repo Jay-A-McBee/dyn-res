@@ -30,17 +30,18 @@ const Link = styled.a`
     top: 1.75em;
     width: 12.5%;
 
-    ${Media.phone`
-      width: 20%;
-      padding: .75em;
-      font-size: .85em;
-    `}
-
     ${Media.tablet`
       width: 20%;
       padding: .75em;
       font-size: .75em;
     `}
+
+    ${Media.phone`
+      width: 27.5%;
+      padding: .75em;
+      font-size: .85em;
+    `}
+
 
     :hover {
         color: rgb(237, 157, 85);

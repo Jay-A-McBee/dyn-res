@@ -4,15 +4,15 @@ import debounce from 'lodash.debounce';
 
 const sizes = {
   desktop: {
-    size: 770,
+    size: 751,
     width: 'min-width'
   },
   tablet: {
-    size: 768,
+    size: 750,
     width: 'max-width'
   },
   phone: {
-    size: 576,
+    size: 600,
     width: 'max-width'
   }
 };

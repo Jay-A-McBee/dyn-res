@@ -21,22 +21,25 @@ const ModalBody = styled.div`
     opacity: 0;
     transition: all .5s ease-in-out .1s;
     height: ${props => props.height || '35em'};
-  
+    
+    ${Media.tablet`
+        max-width: ${props => props.width || '80%'};
+        height: ${props => props.height || '25.5em'};
+    `}
     ${Media.phone`
         max-width: ${props => props.width || '90%'};
         height: ${props => props.height || '32.5em'};
     `}
 
-    ${Media.tablet`
-        max-width: ${props => props.width || '80%'};
-        height: ${props => props.height || '25.5em'};
-    `}
 
     ${props => props.open && props.animation.slideDown && css`
         transform: translateY(10%);
         opacity: 1;
         ${Media.tablet`
             transform: translateY(50%);
+        `}
+        ${Media.phone`
+            transform: translateY(10%);
         `}
     `}
 

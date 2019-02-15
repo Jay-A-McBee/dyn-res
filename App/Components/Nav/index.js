@@ -202,7 +202,7 @@ export const Navigation = ({scroll}) => {
         );
     }
 
-    return width > 800 ? (
+    return width > 750 ? (
         <StyledNav {...navStyles}>
             <NavButtonContainer>
                 {navLinks.map( title => (
