@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import styled, {css, keyframes} from 'styled-components';
 import {
     CollapsableColumn
@@ -55,10 +55,12 @@ const Link = styled.a`
 
 export const SocialLinks = () => {
 
-    let active = UseScrollTracking('Links');
+
+    let container = useRef(null);
+    let active = UseScrollTracking(container);
 
     return (
-        <CollapsableColumn id='Links'>
+        <CollapsableColumn ref={container} id='Links'>
             <Link active={active} marginBottom href='mailto:jmcbee1@gmail.com'>
               <FontAwesomeIcon icon={['fab', 'google']} />
             </Link>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import styled, {css, keyframes} from 'styled-components';
 import {Media, useWidthHook} from './Media';
 import {
@@ -203,7 +203,8 @@ const {
 
 export const ProjectSection = () => {
 
-    let inView = UseScrollTracking('Projects');
+    let container = useRef(null);
+    let inView = UseScrollTracking(container);
     let width = useWidthHook();
 
     return(
@@ -211,6 +212,7 @@ export const ProjectSection = () => {
             id='Projects'
             padding={'7.5em 0 5em 0'}
             active={inView}
+            ref={container}
         >
             <SectionHeader className='animate' highlight>Projects</SectionHeader>
             <br />

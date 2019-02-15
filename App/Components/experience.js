@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {Experience} from './shufflePanel';
 import styled from 'styled-components';
 import {UseScrollTracking} from './ScrollHook';
@@ -25,7 +25,8 @@ const PositionedWrapper = styled(ContentWrapper)`
 `
 export const Work = ({workDescriptions}) => {
 
-  let inView = UseScrollTracking('Work');
+  let container = useRef(null);
+  let inView = UseScrollTracking(container);
 
   return(
     <ContentWrapper
@@ -34,6 +35,7 @@ export const Work = ({workDescriptions}) => {
       padding={'5em 0 0 0'}
       margin={'10em'}
       active={inView}
+      ref={container}
     >
       <SectionHeader 
         className='animate' 

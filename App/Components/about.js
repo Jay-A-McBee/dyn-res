@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {
   bio,
   aside
@@ -81,10 +81,11 @@ export const About = () => {
 
   const title = 'About';
 
-  let inView = UseScrollTracking('About');
+  let container = useRef(null);
+  let inView = UseScrollTracking(container);
 
 	return (
-    <ContentWrapper active={inView} id='About' padding={'7.5em 0 0 0'}>
+    <ContentWrapper ref={container} active={inView} id='About' padding={'7.5em 0 0 0'}>
       <SectionHeader highlight className='animate'>
         {title}
       </SectionHeader>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import { About } from './about';
 import styled, {css} from 'styled-components';
 import {Media, useWidthHook} from './Media';
@@ -80,11 +80,13 @@ export const Intro = () => {
         color: 'rgba(255, 241, 239, .99)'
     }
 
-    let inView = UseScrollTracking('Intro');
+    let container = useRef(null);
+    let inView = UseScrollTracking(container);
     let width = useWidthHook();
 
     return  (
         <PositionedWrapper 
+            ref={container}
             id='Intro'
             alignSelf={'flex-start'} 
             offset={ width > 800 ? `left: 10em;` : null}

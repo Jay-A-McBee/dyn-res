@@ -3,7 +3,7 @@ import throttle from 'lodash/throttle';
 
 
 
-export const UseScrollTracking = (id) => {
+export const UseScrollTracking = (ref) => {
 
     let scrollHandler = useRef();
     let position = useRef();
@@ -28,13 +28,12 @@ export const UseScrollTracking = (id) => {
     const unsubscribe = () => window.removeEventListener('scroll', scrollHandler.current);
 
     useEffect(() => {
-        if(!position.current){
-            const el = document.getElementById(id);
+        if(!position.current && ref.current){
             const {
                 top
-            } = el.getBoundingClientRect();
+            } = ref.current.getBoundingClientRect();
 
-            position.current = {top, offset: el.offsetTop}
+            position.current = {top, offset: ref.current.offsetTop}
         }
 
 
