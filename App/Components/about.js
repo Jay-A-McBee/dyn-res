@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, forwardRef, useImperativeHandle} from 'react';
 import {
   bio,
   aside
@@ -16,9 +16,7 @@ import {
   InnerHeader,
   TextBlock
 } from './styledText';
-
-
-import {UseScrollTracking} from './ScrollHook';
+import {scrollImperativeHandle} from './Handles';
 import {Media} from './Media';
 import styled, {css} from 'styled-components';
 
@@ -66,7 +64,7 @@ const FlexRow = styled(Row)`
 `;
 
 
-export const About = () => {
+export const About = forwardRef(({inView}, ref) => {
 
   const jsLibs = [
     'JavaScript',
@@ -79,14 +77,14 @@ export const About = () => {
     'Jest'
   ];
 
-  const title = 'About';
+  let aboutContainer = useRef(null);
 
-  let inView = UseScrollTracking('About');
+  scrollImperativeHandle(aboutContainer, ref, 'About');
 
 	return (
-    <ContentWrapper active={inView} id='About' padding={'7.5em 0 0 0'}>
+    <ContentWrapper ref={aboutContainer} active={inView} padding={'7.5em 0 0 0'}>
       <SectionHeader highlight className='animate'>
-        {title}
+        About
       </SectionHeader>
       <InnerContent justify={'space-evenly'}>
         <Column justify={'space-evenly'}>
@@ -108,4 +106,4 @@ export const About = () => {
       </InnerContent>
     </ContentWrapper>
 	)
-}
+});

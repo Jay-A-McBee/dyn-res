@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useEffect} from 'react';
 import {SocialLinks} from '../Components/SocialLinks';
 import {Intro} from '../Components/intro';
 import {About} from '../Components/about';
@@ -14,6 +14,7 @@ import {
     Column
 } from '../Components/styleLayout';
 import {GlobalStyle} from '../Components/globalStyles';
+import {UseScrollTracking} from '../Components/ScrollHook';
 import {
   faGithub, 
   faLinkedin, 
@@ -47,23 +48,41 @@ library.add(
 );
 
 export default function AboutMe(){
-    
-  let [active, select] = useState('intro');
-  
-  const selectSection = (name) => {
-    select(name);
-  };
+
+  let aboutEl = useRef();
+  let workEl = useRef();
+  let projectEl = useRef();
+  let introEl = useRef();
+  let linksEl = useRef();
+
+  let aboutInView = UseScrollTracking(aboutEl);
+  let introInView = UseScrollTracking(introEl);
+  let workInView = UseScrollTracking(workEl);
+  let projectInView = UseScrollTracking(projectEl);
+  let linksInView = UseScrollTracking(linksEl);
+
+  const scroll = (name) => {
+    let el = [
+      aboutEl,
+      workEl, 
+      projectEl
+    ].filter( ref => ref.current.id === name)[0];
+
+    el.current.scroll();
+  }
 
   return(
     <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '100%'}}>
       <GlobalStyle />
-      <Navigation select={selectSection} />
-      <SocialLinks />
+      <Navigation 
+        scroll={scroll}
+      />
+      <SocialLinks ref={linksEl} inView={linksInView} />
       <Column>
-        <Intro />
-        <About />
-        <Work />
-        <Projects />
+        <Intro ref={introEl} inView={introInView} />
+        <About ref={aboutEl} inView={aboutInView} />
+        <Work ref={workEl} inView={workInView} />
+        <Projects ref={projectEl} inView={projectInView} />
         <Farewell />
         <Footer />
       </Column>

@@ -37,6 +37,10 @@ export const Headline = styled(SectionHeader)`
     font-size: 6em;
     padding: 0;
     margin-bottom: .5em;
+    ${Media.tablet`
+        font-size: 4em;
+        width: 100%;
+    `}
     ${Media.phone`
         font-size: ${props => props.size}
         width: ${props => props.width || '100%'}

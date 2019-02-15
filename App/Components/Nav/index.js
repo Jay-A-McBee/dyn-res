@@ -3,7 +3,6 @@ import styled, {css, keyframes} from 'styled-components';
 import debounce from 'lodash.debounce';
 import ModalComponent from '../ModalIndex';
 import {Media, useWidthHook} from '../Media';
-import {UseScrollTracking} from '../ScrollHook';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 const fadeInAndUp = keyframes`
@@ -43,6 +42,20 @@ const NavButton = styled.div`
         border: .5px solid rgba(179, 248, 218)
     `}
 
+    ${Media.tablet`
+        display: flex;
+        background-color: inherit;
+        border: .075em solid rgb(237, 157, 85);
+        border-radius: .5em;
+        height: 2.5em;
+        color: rgba(103, 206, 178, .99);
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        width: 70%;
+        margin-bottom: 2em;
+    `}
+
     ${Media.phone`
         display: flex;
         background-color: inherit;
@@ -68,11 +81,11 @@ const StyledNav = styled.nav`
     left: 0;
     transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
 
-    ${props => props.hide && `
+    ${props => props.hide && css`
         transform: translateY(-75px);
     `}
 
-    ${props => props.fix && `
+    ${props => props.fix && css`
         background-color: rgba(114, 98, 99, 1);
         box-shadow: 0 2.5px 5px rgba(10, 10, 10, .4);
     `}
@@ -87,6 +100,11 @@ const NavButtonContainer = styled.div`
         justify-content: flex-end;
         top: -.4em;
     `}
+    ${Media.tablet`
+        flex-direction: column;
+        align-self: flex-end;
+        top: 5em;
+    `}
     ${Media.phone`
         flex-direction: column;
         align-self: flex-end;
@@ -94,32 +112,22 @@ const NavButtonContainer = styled.div`
     `}
 `;
 
-export const Navigation = ({select}) => {
+export const Navigation = ({scroll}) => {
     
     let[scrollTop, updateScrollTop] = useState(0);
     let[navStyles, updateNavStyle] = useState({fix:false, hide:false});
-    let[next, updateNext] = useState(1);
     let handler = useRef();
     let isOpen = useRef();
 
-    const scroll = (event) => {
-        const name = event.nativeEvent.target.getAttribute('name').match(/\<(\w+) \/\>/)[1];
-
-        const el = document.getElementById(name);
-
-        el.scrollIntoView({
-            block: 'start', 
-            inline: 'nearest', 
-            behavior: 'smooth'
-        });
-
-        select(name.toLowerCase());
+    const scrollToSection = (event) => {
+        const name = event.target.getAttribute('name').match(/\<(\w+) \/\>/)[1];
+        scroll(name);
     };
 
     const respondToScroll = () => {
         const currentPos = window.scrollY;
         const movingDown = currentPos > scrollTop;
-
+        
         if(!isOpen.current || isOpen.current !== true){
 
             if(currentPos > 0 && currentPos < 100){
@@ -130,7 +138,7 @@ export const Navigation = ({select}) => {
                 updateNavStyle({...navStyles, hide:true});
             }else if(!movingDown && currentPos > 50){
                 updateScrollTop(currentPos);
-                updateNavStyle({...navStyles, hide:false, fix:true});
+                updateNavStyle({fix: true, hide:false});
             }else{
                 updateScrollTop(0);
                 updateNavStyle({hide:false, fix:false});
@@ -142,7 +150,7 @@ export const Navigation = ({select}) => {
 
 
     const subscribe = () => {
-        handler.current = debounce(respondToScroll, 250, {leading: true});
+        handler.current = debounce(respondToScroll, 150, {leading: true});
         window.addEventListener('scroll', handler.current);
     }
 
@@ -151,16 +159,14 @@ export const Navigation = ({select}) => {
         handler.current = null;
     }
 
-    useEffect(
-        () => {
+    useEffect(() => {
 
-            if(!handler.current){
-                subscribe();
-            }
-
-            return () => unsubscribe();
+        if(!handler.current){
+            subscribe();
         }
-    );
+
+        return () => unsubscribe();
+    },[scrollTop]);
     
     const iconStyles = {
         float: 'right',
@@ -187,7 +193,7 @@ export const Navigation = ({select}) => {
                     <NavButton 
                         name={title} 
                         key={title} 
-                        onClick={scroll}
+                        onClick={scrollToSection}
                     >
                     {title}
                     </NavButton>
@@ -196,14 +202,14 @@ export const Navigation = ({select}) => {
         );
     }
 
-    return width > 700 ? (
+    return width > 800 ? (
         <StyledNav {...navStyles}>
             <NavButtonContainer>
                 {navLinks.map( title => (
                     <NavButton 
                         name={title} 
                         key={title} 
-                        onClick={scroll}
+                        onClick={scrollToSection}
                     >{title}
                     </NavButton>
                 ))}

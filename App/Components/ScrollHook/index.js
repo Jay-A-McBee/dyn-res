@@ -3,44 +3,39 @@ import throttle from 'lodash/throttle';
 
 
 
-export const UseScrollTracking = (id) => {
-
-    let scrollHandler = useRef();
+export const UseScrollTracking = (ref) => {
+    let scrollHandler = useRef();   
     let position = useRef();
 
     let [inView, setPosition] = useState();
 
     function calcLocation(){
         var isVisible = position.current.offset - window.scrollY < 300 || position.current.offset <= window.innerHeight;
-        setPosition(isVisible);
+
+        if(isVisible){ 
+            setPosition(isVisible);
+        }
+
+        return;
     };
 
-    const registerScrollHandler = () => {
+    const subscribe = () => {
         scrollHandler.current = throttle(calcLocation, 150, {leading:true, trailing: true});
         window.addEventListener('scroll', scrollHandler.current);
     };
 
-    const unregisterScrollHandler = () => {
-        window.removeEventListener('scroll', scrollHandler.current);
-        scrollHandler.current = null;
-    };
+    const unsubscribe = () => window.removeEventListener('scroll', scrollHandler.current);
 
     useEffect(() => {
-        if(!position.current){
-            const el = document.getElementById(id);
-            const {
-                top
-            } = el.getBoundingClientRect();
-            position.current = {top, offset: el.offsetTop}
-        }
-
-        if(!inView && !scrollHandler.current){
+        if(!position.current && ref.current.getCoords){
+            position.current = ref.current.getCoords();
             calcLocation();
-            registerScrollHandler();
+            subscribe();
         }
 
-        return () => unregisterScrollHandler();
-    });
+
+        return () => unsubscribe()
+    },[inView]);
 
 
     return inView;

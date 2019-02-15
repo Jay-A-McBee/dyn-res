@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, forwardRef} from 'react';
 import styled, {css, keyframes} from 'styled-components';
 import {Media, useWidthHook} from './Media';
 import {
@@ -11,9 +11,7 @@ import {
   SectionHeader,
   inAndUp
 } from './styledText';
-
-import {UseScrollTracking} from './ScrollHook';
-
+import {scrollImperativeHandle} from './Handles';
 import {
     projectDescriptions
 } from '../Assets/shortDescription';
@@ -201,21 +199,23 @@ const {
     sandbox
 } = projectDescriptions;
 
-export const ProjectSection = () => {
+export const ProjectSection = forwardRef(({inView}, ref) => {
 
-    let inView = UseScrollTracking('Projects');
     let width = useWidthHook();
+    let projectContainer = useRef(null);
+
+    scrollImperativeHandle(projectContainer, ref, 'Projects');
 
     return(
-        <ContentWrapper     
-            id='Projects'
+        <ContentWrapper    
+            ref={projectContainer} 
             padding={'7.5em 0 5em 0'}
             active={inView}
         >
             <SectionHeader className='animate' highlight>Projects</SectionHeader>
             <br />
             <WrapRow justify={'flex-start'}>
-            {[slide, portfolio, vue, sandbox].map((props, i) =>  width > 500 ? 
+            {[slide, portfolio, vue, sandbox].map((props, i) =>  width > 800 ? 
                 <FullFolder key={i} className='animate' {...props}/> :
                 <div key={i}>
                     <MobileFolderTab className='animate'/>
@@ -227,4 +227,4 @@ export const ProjectSection = () => {
             </WrapRow>
         </ContentWrapper>
     )
-}
+})

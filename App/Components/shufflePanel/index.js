@@ -193,8 +193,9 @@ const WorkDescription = ({title, description, dates, href, selected, inView}) =>
       )}
       {carouselChildren[selected] ?
         <ModalComponent
-          child={() => (
+          child={(open) => (
             <CarouselComponent
+              open={open}
               slideImages={null} 
               children={carouselChildren[selected]} 
             />

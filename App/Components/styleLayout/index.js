@@ -35,6 +35,7 @@ export const SectionWrapper = styled.section`
 `;
 
 export const ContentWrapper = styled.section`
+  display: flex;
   flex-direction: ${props => props.flexDirection || 'column'};
   justify-content: ${props => props.justify || 'space-between'};
   align-self: ${props => props.alignSelf || 'center'};
@@ -49,7 +50,13 @@ export const ContentWrapper = styled.section`
   `}
 
   ${Media.desktop`width: 65%`}
-  ${Media.tablet`width: 75%`}
+
+  ${Media.tablet`
+    width: 75%;
+    margin-top: ${props => props.margin ? props.margin : '5.5em'};
+    align-self: center;
+  `}
+
   ${Media.phone`
     width: 90%;
     align-self: center;

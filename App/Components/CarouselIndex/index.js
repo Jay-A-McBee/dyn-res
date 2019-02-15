@@ -63,6 +63,12 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
   let [active, updateActive] = useState(0);
   let width = useWidthHook();
 
+  const resetActive = () => {
+    if(!children[active]){
+      updateActive(0);
+    }
+  }
+
   const selectNext = (e) => {
     e.preventDefault();
     const next = ++active;
@@ -82,6 +88,10 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
       updateActive(children.length - 1);
     }
   }
+
+  useEffect(() => {
+    resetActive();
+  },[children])
   
   const selectSpecific = (e) => {
     updateActive(parseInt(e.nativeEvent.target.getAttribute('name'),10));
@@ -94,7 +104,7 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
     ...imgObj
   })) : null;
 
-  return width > 700 ? (
+  return width > 800 ? (
     <Container>
       <StretchRow justify={'space-between'}>
         <ChevronContainer justify={'center'}>
