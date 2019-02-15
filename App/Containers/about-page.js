@@ -84,7 +84,7 @@ export default function AboutMe(){
         <Work ref={workEl} inView={workInView} />
         <Projects ref={projectEl} inView={projectInView} />
         <Farewell />
-        <Footer />*/}
+        <Footer />
       </Column>
     </div>
   )
