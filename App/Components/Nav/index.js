@@ -120,7 +120,7 @@ export const Navigation = ({scroll}) => {
     let isOpen = useRef();
 
     const scrollToSection = (event) => {
-        const name = event.target.getAttribute('name').match(/\<(\w+) \/\>/)[1];
+        const name = event.target.getAttribute('name');
         scroll(name);
     };
 
@@ -191,7 +191,7 @@ export const Navigation = ({scroll}) => {
            <NavButtonContainer>
                 {navLinks.map( title => (
                     <NavButton 
-                        name={title} 
+                        name={title.match(/\<(\w+) \/\>/)[1].toLowerCase()} 
                         key={title} 
                         onClick={scrollToSection}
                     >
@@ -207,7 +207,7 @@ export const Navigation = ({scroll}) => {
             <NavButtonContainer>
                 {navLinks.map( title => (
                     <NavButton 
-                        name={title} 
+                        name={title.match(/\<(\w+) \/\>/)[1].toLowerCase()} 
                         key={title} 
                         onClick={scrollToSection}
                     >{title}

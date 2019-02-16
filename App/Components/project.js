@@ -204,7 +204,7 @@ export const ProjectSection = forwardRef(({inView}, ref) => {
     let width = useWidthHook();
     let projectContainer = useRef(null);
 
-    scrollImperativeHandle(projectContainer, ref, 'Projects');
+    scrollImperativeHandle(projectContainer, ref, 'projects');
 
     return(
         <ContentWrapper    

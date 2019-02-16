@@ -1,42 +1,31 @@
 import React, {useState, useRef, useEffect} from 'react';
-import throttle from 'lodash/throttle';
+import debounce from 'lodash.debounce';
 
 
 
-export const UseScrollTracking = (ref) => {
+export const useScrollPosition = () => {
     let scrollHandler = useRef();   
-    let position = useRef();
 
-    let [inView, setPosition] = useState();
+    let [position, setPosition] = useState(0);
 
-    function calcLocation(){
-        var isVisible = position.current.offset - window.scrollY < 300 || position.current.offset <= window.innerHeight;
-
-        if(isVisible){ 
-            setPosition(isVisible);
-        }
-
-        return;
-    };
+    const set = () => setPosition(window.scrollY);
 
     const subscribe = () => {
-        scrollHandler.current = throttle(calcLocation, 150, {leading:true, trailing: true});
+        scrollHandler.current = debounce(() => {
+            set();
+        }, 150, {leading:true, trailing: true});
         window.addEventListener('scroll', scrollHandler.current);
     };
 
     const unsubscribe = () => window.removeEventListener('scroll', scrollHandler.current);
 
     useEffect(() => {
-        if(!position.current && ref.current.getCoords){
-            position.current = ref.current.getCoords();
-            calcLocation();
+        if(!scrollHandler.current){
             subscribe();
         }
+        // return () => unsubscribe()
+    });
 
 
-        return () => unsubscribe()
-    },[inView]);
-
-
-    return inView;
+    return position;
 }

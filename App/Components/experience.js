@@ -27,7 +27,7 @@ export const Work = forwardRef(({workDescriptions, inView}, ref) => {
 
   let workContainer = useRef(null);
 
-  scrollImperativeHandle(workContainer, ref, 'Work');
+  scrollImperativeHandle(workContainer, ref, 'work');
 
   return(
     <ContentWrapper

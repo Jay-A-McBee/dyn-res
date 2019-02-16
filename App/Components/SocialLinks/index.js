@@ -55,10 +55,10 @@ export const SocialLinks = forwardRef(({inView}, ref) => {
 
     const linksContainer = useRef(null);
 
-    scrollImperativeHandle(linksContainer, ref);
+    scrollImperativeHandle(linksContainer, ref, 'links');
 
     return (
-        <CollapsableColumn ref={linksContainer} id='Links'>
+        <CollapsableColumn ref={linksContainer}>
             <Link active={inView} marginBottom href='mailto:jmcbee1@gmail.com'>
               <FontAwesomeIcon icon={['fab', 'google']} />
             </Link>

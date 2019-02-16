@@ -1,4 +1,4 @@
-import React, {useRef, forwardRef, useImperativeHandle} from 'react';
+import React, {useState, useRef, forwardRef} from 'react';
 import {
   bio,
   aside
@@ -66,6 +66,8 @@ const FlexRow = styled(Row)`
 
 export const About = forwardRef(({inView}, ref) => {
 
+
+
   const jsLibs = [
     'JavaScript',
     'HTML/CSS', 
@@ -79,7 +81,7 @@ export const About = forwardRef(({inView}, ref) => {
 
   let aboutContainer = useRef(null);
 
-  scrollImperativeHandle(aboutContainer, ref, 'About');
+  scrollImperativeHandle(aboutContainer, ref, 'about');
 
 	return (
     <ContentWrapper ref={aboutContainer} active={inView} padding={'7.5em 0 0 0'}>

@@ -85,7 +85,7 @@ export const Intro = forwardRef(({inView}, ref) => {
 
     let introContainer = useRef(null);
 
-    scrollImperativeHandle(introContainer, ref);
+    scrollImperativeHandle(introContainer, ref, 'intro');
 
     return  (
         <PositionedWrapper 
