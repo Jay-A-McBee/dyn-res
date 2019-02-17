@@ -29,7 +29,7 @@ export const useVisibility = (ref) => {
             checkVisibility(ref.current.offset);
         }, 750, {leading:true, trailing: true});
 
-        window.addEventListener('scroll', scrollHandler.current);
+        window.addEventListener('scroll', scrollHandler.current, {passive: true});
     };
 
     function unsubscribe(){
