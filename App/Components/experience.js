@@ -2,6 +2,7 @@ import React, {useRef, forwardRef} from 'react';
 import {Experience} from './shufflePanel';
 import styled from 'styled-components';
 import {scrollImperativeHandle} from './Handles';
+import {useVisibility} from './ScrollHook';
 import {
   ContentWrapper
 } from './styleLayout';
@@ -29,13 +30,15 @@ export const Work = forwardRef(({workDescriptions, inView}, ref) => {
 
   scrollImperativeHandle(workContainer, ref, 'work');
 
+  let active = useVisibility(ref);
+
   return(
     <ContentWrapper
       ref={workContainer}
       justify={'center'}
       padding={'5em 0 0 0'}
       margin={'10em'}
-      active={inView}
+      active={active}
     >
       <SectionHeader 
         className='animate' 

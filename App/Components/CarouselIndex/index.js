@@ -49,11 +49,12 @@ const StretchRow = styled(Row)`
   width: 100%;
 `;
 
-const RotateIcon = ({handleClick, size, iconName}) => (
+const RotateIcon = ({keyup, handleClick, size, iconName}) => (
   <FontAwesomeIcon 
     icon={iconName}
     onClick={handleClick}
     size={size}
+    onKeyUp={keyup}
   />
 );
 
@@ -69,8 +70,17 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
     }
   }
 
+  const keyup = (e) => {
+
+    const keyMap = {
+      37: selectNext,
+      39: selectPrevious
+    }
+
+    keyMap[e.keyCode](e);
+  }
+
   const selectNext = (e) => {
-    e.preventDefault();
     const next = ++active;
     if(next < children.length){
       updateActive(next);
@@ -80,7 +90,6 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
   }
 
   const selectPrevious = (e) => {
-    e.preventDefault();
     const previous = --active;
     if(previous >= 0){
       updateActive(previous);
@@ -94,7 +103,7 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
   },[children])
   
   const selectSpecific = (e) => {
-    updateActive(parseInt(e.nativeEvent.target.getAttribute('name'),10));
+    updateActive(parseInt(e.target.getAttribute('name'),10));
   }
 
   const projectImages = slideImages ? slideImages.map( (imgObj, index) => ({
@@ -108,15 +117,18 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
     <Container>
       <StretchRow justify={'space-between'}>
         <ChevronContainer justify={'center'}>
-          <RotateIcon
-            handleClick={selectPrevious}
-            size={'2x'}
-            iconName={'chevron-left'}
-          />
+          <button onKeyUp={keyup}>
+            <RotateIcon
+              handleClick={selectPrevious}
+              size={'2x'}
+              iconName={'chevron-left'}
+            />
+          </button>
         </ChevronContainer>
         {children[active]}
         <ChevronContainer justify={'center'}>
           <RotateIcon
+            keyup={keyup}
             handleClick={selectNext}
             size={'2x'}
             iconName={'chevron-right'}

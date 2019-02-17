@@ -16,6 +16,7 @@ import {
   InnerHeader,
   TextBlock
 } from './styledText';
+import {useVisibility} from './ScrollHook';
 import {scrollImperativeHandle} from './Handles';
 import {Media} from './Media';
 import styled, {css} from 'styled-components';
@@ -81,11 +82,20 @@ export const About = forwardRef(({inView}, ref) => {
 
   let aboutContainer = useRef(null);
 
+  let active = useVisibility(ref);
+
   scrollImperativeHandle(aboutContainer, ref, 'about');
 
 	return (
-    <ContentWrapper ref={aboutContainer} active={inView} padding={'7.5em 0 0 0'}>
-      <SectionHeader highlight className='animate'>
+    <ContentWrapper 
+      ref={aboutContainer} 
+      active={active} 
+      padding={'7.5em 0 0 0'}
+    >
+      <SectionHeader 
+        highlight 
+        className='animate'
+      >
         About
       </SectionHeader>
       <InnerContent justify={'space-evenly'}>
@@ -95,10 +105,24 @@ export const About = forwardRef(({inView}, ref) => {
           <InnerHeader className='animate'>Experienced with:</InnerHeader>
           <FlexRow>
             <Column>
-              {jsLibs.slice(0,jsLibs.length/2).map( (lib, i) => <LibBlock className='animate' key={i}>{lib}</LibBlock>)}
+              {jsLibs.slice(0,jsLibs.length/2).map( (lib, i) => 
+                <LibBlock 
+                  className='animate' 
+                  key={i}
+                >
+                {lib}
+                </LibBlock>
+              )}
             </Column>
             <Column>
-              {jsLibs.slice(jsLibs.length/2,jsLibs.length).map( (lib, i) => <LibBlock className='animate' key={i}>{lib}</LibBlock>)}
+              {jsLibs.slice(jsLibs.length/2,jsLibs.length).map( (lib, i) => 
+                <LibBlock 
+                  className='animate' 
+                  key={i}
+                >
+                {lib}
+                </LibBlock>
+              )}
             </Column>
           </FlexRow>
         </Column>

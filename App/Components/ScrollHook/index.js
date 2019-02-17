@@ -1,31 +1,42 @@
-import React, {useState, useRef, useEffect} from 'react';
-import debounce from 'lodash.debounce';
+import React, {useState, useRef, useEffect, useLayoutEffect} from 'react';
+import throttle from 'lodash/throttle';
 
 
+export const useVisibility = (ref) => {
+    let scrollHandler = useRef(); 
+    let [active, setViewState] = useState(false);
 
-export const useScrollPosition = () => {
-    let scrollHandler = useRef();   
-
-    let [position, setPosition] = useState(0);
-
-    const set = () => setPosition(window.scrollY);
-
-    const subscribe = () => {
-        scrollHandler.current = debounce(() => {
-            set();
-        }, 150, {leading:true, trailing: true});
-        window.addEventListener('scroll', scrollHandler.current);
-    };
-
-    const unsubscribe = () => window.removeEventListener('scroll', scrollHandler.current);
 
     useEffect(() => {
         if(!scrollHandler.current){
+            checkVisibility(ref.current.offset);
             subscribe();
         }
-        // return () => unsubscribe()
+
+        if(active) unsubscribe();
     });
 
+    function checkVisibility(offset){
+      if(!offset) return false;
+      let show = offset - window.scrollY <= 500 || offset < window.innerHeight;
+      if(show){
+        setViewState(show);
+      }
+    }
 
-    return position;
+    function subscribe(){
+        scrollHandler.current = throttle(() => {
+            checkVisibility(ref.current.offset);
+        }, 750, {leading:true, trailing: true});
+
+        window.addEventListener('scroll', scrollHandler.current);
+    };
+
+    function unsubscribe(){
+        window.removeEventListener('scroll', scrollHandler.current);
+        scrollHandler.current = null;
+    }
+
+
+    return active;
 }

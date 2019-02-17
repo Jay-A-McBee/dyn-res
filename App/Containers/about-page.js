@@ -14,7 +14,7 @@ import {
     Column
 } from '../Components/styleLayout';
 import {GlobalStyle} from '../Components/globalStyles';
-import {useScrollPosition} from '../Components/ScrollHook';
+import {Scroll} from '../Components/ScrollHook';
 import {
   faGithub, 
   faLinkedin, 
@@ -69,14 +69,14 @@ export default function AboutMe(){
     let start = offset;
     let currentTime = 0;
     let change = offset - scrollY;
-    let step = 25;
-    let duration = 200;
+    let step = 20;
+    let duration = 250;
 
     //http://www.timotheegroleau.com/Flash/experiments/easing_function_generator.htm
     function bezier(time, base, change, duration){
       var ts=(time/=duration)*time;
       var tc=ts*time;
-      return base+change*(9.4025*tc*ts + -30.6025*ts*ts + 28.9*tc +  -6.6*ts + -0.1*time);
+      return base+change*(9.4025*tc*ts + -35*ts*ts + 28.9*tc +  -6.6*ts + -0.1*time);
     }
 
     function animate(timestamp){
@@ -84,13 +84,13 @@ export default function AboutMe(){
 
       let distance = bezier(currentTime, start, change, duration);
 
-      window.scrollTo({
+      window.scroll({
         left: 0,
         top: distance,
         behavior: 'smooth'
       });
 
-      if(currentTime < duration && distance < offset){
+      if(currentTime < duration && distance < offset ){
         requestAnimationFrame(animate);
       }else{
         return;
@@ -99,64 +99,34 @@ export default function AboutMe(){
     requestAnimationFrame(animate);
   }
 
-  let [inView, updateScroll] = useState({
-    intro: false,
-    about: false,
-    work: false,
-    projects: false,
-    links: false
-  });
-
-  let [allVisible, setVisible] = useState(false);
-  let scrollPosition = useScrollPosition();
-
-  const checkVisibility = (scrollPosition) => {
-
-    const isInView = ({current:{offset}}) => {
-      return offset - scrollPosition <= window.innerHeight || offset < window.innerHeight;
-    }
-
-    let allVisible = true;
-
-    const refMap = [aboutEl, introEl, projectEl, linksEl, workEl].reduce( (acc,ref) => {
-      acc[ref.current.id] = ref;
-      return acc;
-    },{})
-
-    const newState = Object.keys(inView).reduce((newState, k) => {
-      
-      if(!inView[k]){
-        allVisible = false;
-        newState[k] = isInView(refMap[k])
-      }else{
-        newState[k] = true;
-      }
-      return newState;
-    },{});
-
-    if(allVisible){
-      setVisible(true);
-    }else{
-      updateScroll(newState);
-    }
-  }
-
-  useEffect(() => {
-    checkVisibility(scrollPosition);
-  },[scrollPosition])
-
   return(
-    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '100%'}}>
+    <div style={{
+        display: 'flex', 
+        flexDirection: 'column', 
+        justifyContent: 'space-between', 
+        width: '100%'
+      }}
+    >
       <GlobalStyle />
       <Navigation 
         scroll={scroll}
       />
-      <SocialLinks ref={linksEl} inView={inView.links || allVisible} />
+      <SocialLinks 
+        ref={linksEl} 
+      />
       <Column>
-        <Intro ref={introEl} inView={inView.intro || allVisible} />
-        <About ref={aboutEl} inView={inView.about || allVisible} />
-        <Work ref={workEl} inView={inView.work || allVisible} />
-        <Projects ref={projectEl} inView={inView.projects || allVisible} />
+        <Intro 
+          ref={introEl} 
+        />
+        <About 
+          ref={aboutEl} 
+        />
+        <Work 
+          ref={workEl} 
+        />
+        <Projects 
+          ref={projectEl} 
+        /> 
         <Farewell />
         <Footer />
       </Column>
