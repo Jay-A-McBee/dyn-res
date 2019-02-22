@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import styled, {css} from 'styled-components';
-import debounce from 'lodash.debounce';
+import debounce from 'lodash/debounce';
 
 const sizes = {
   desktop: {

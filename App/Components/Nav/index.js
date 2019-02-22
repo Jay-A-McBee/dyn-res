@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import styled, {css, keyframes} from 'styled-components';
-import debounce from 'lodash.debounce';
+import debounce from 'lodash/debounce';
 import ModalComponent from '../ModalIndex';
 import {Media, useWidthHook} from '../Media';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
