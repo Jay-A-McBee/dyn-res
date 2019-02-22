@@ -6,7 +6,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 const ModalBody = styled.div`
     position: relative;
     margin: auto;
-    overflow: scroll;
+    overflowY: scroll;
     padding: 0;
     background-color: ${props => props.altBgColor ? 'rgba(114, 98, 99, .99)': 'rgba(10, 10, 10, 0.95)'};
     border: 1px solid #888;
