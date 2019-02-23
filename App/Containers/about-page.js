@@ -65,36 +65,33 @@ export default function AboutMe(){
     const {
       offset
     } = el.current;
-    
-    let start = offset;
-    let currentTime = 0;
-    let change = offset - scrollY;
-    let step = 20;
-    let duration = 250;
 
-    //http://www.timotheegroleau.com/Flash/experiments/easing_function_generator.htm
-    function bezier(time, base, change, duration){
-      var ts=(time/=duration)*time;
-      var tc=ts*time;
-      return base+change*(9.4025*tc*ts + -35*ts*ts + 28.9*tc +  -6.6*ts + -0.1*time);
-    }
+    let startPositionY = window.scrollY;
+    let endPositionY = offset;
+    let duration = 350;
+    let startTime
+    let currentPositionY
 
     function animate(timestamp){
-      currentTime += step;
+      if(!startTime) startTime = timestamp;
 
-      let distance = bezier(currentTime, start, change, duration);
+      const easeInOutQuart = (x) =>   x < .5 ? 8 * x * x * x * x : 1 - 8 * (--x) * x * x * x;
+
+      let progress = timestamp - startTime;
+      let deltaTop = endPositionY - startPositionY;
+      let rateOfChange = progress >= duration ? 1 : easeInOutQuart(progress/duration);
+      currentPositionY = startPositionY + Math.ceil(deltaTop * rateOfChange);
 
       window.scroll({
         left: 0,
-        top: distance,
+        top: currentPositionY,
         behavior: 'smooth'
       });
 
-      if(currentTime < duration && distance < offset ){
+      if(rateOfChange < 1){
         requestAnimationFrame(animate);
-      }else{
-        return;
       }
+      return;
     }
     requestAnimationFrame(animate);
   }

@@ -148,7 +148,6 @@ export const Navigation = ({scroll}) => {
 
     let width = useWidthHook();
 
-
     const subscribe = () => {
         handler.current = debounce(respondToScroll, 150, {leading: true});
         window.addEventListener('scroll', handler.current);
@@ -185,7 +184,7 @@ export const Navigation = ({scroll}) => {
     const MobileMenu = ({open}) => {
         useEffect(() => {
             isOpen.current = open;
-        })
+        },[open])
 
         return (
            <NavButtonContainer>
