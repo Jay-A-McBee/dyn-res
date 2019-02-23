@@ -1,8 +1,11 @@
-import React, {useRef, forwardRef} from 'react';
+import React, {useRef, forwardRef, useState, useEffect} from 'react';
 import { About } from './about';
 import styled, {css} from 'styled-components';
 import {Media, useWidthHook} from './Media';
 import {scrollImperativeHandle} from './Handles';
+import {
+  useVisibility
+} from './ScrollHook';
 
 import {
   ContentWrapper,
@@ -74,7 +77,7 @@ const NarrowText = styled(TextBlock)`
     `}
 `;
 
-export const Intro = forwardRef(({inView}, ref) => {
+export const Intro = forwardRef(({inView, offset}, ref) => {
 
     const greetStyles = {
         fontSize: '.25em',
@@ -85,7 +88,9 @@ export const Intro = forwardRef(({inView}, ref) => {
 
     let introContainer = useRef(null);
 
-    scrollImperativeHandle(introContainer, ref);
+    let active = useVisibility(ref);
+
+    scrollImperativeHandle(introContainer, ref, 'intro');
 
     return  (
         <PositionedWrapper 
@@ -94,8 +99,7 @@ export const Intro = forwardRef(({inView}, ref) => {
             offset={ width > 800 ? `left: 10em;` : null}
             padding={'2.5em 0'}
             justify={'space-around'}
-            active={inView}
-            className='animate'
+            active={active}
         >
             <Headline 
               className='animate'

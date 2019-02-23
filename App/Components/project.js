@@ -12,6 +12,7 @@ import {
   inAndUp
 } from './styledText';
 import {scrollImperativeHandle} from './Handles';
+import {useVisibility} from './ScrollHook';
 import {
     projectDescriptions
 } from '../Assets/shortDescription';
@@ -201,16 +202,18 @@ const {
 
 export const ProjectSection = forwardRef(({inView}, ref) => {
 
-    let width = useWidthHook();
     let projectContainer = useRef(null);
 
-    scrollImperativeHandle(projectContainer, ref, 'Projects');
+    scrollImperativeHandle(projectContainer, ref, 'projects');
+    
+    let width = useWidthHook();
+    let active = useVisibility(ref);
 
     return(
         <ContentWrapper    
             ref={projectContainer} 
             padding={'7.5em 0 5em 0'}
-            active={inView}
+            active={active}
         >
             <SectionHeader className='animate' highlight>Projects</SectionHeader>
             <br />

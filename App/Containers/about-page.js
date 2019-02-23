@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 import {SocialLinks} from '../Components/SocialLinks';
 import {Intro} from '../Components/intro';
 import {About} from '../Components/about';
@@ -14,7 +14,7 @@ import {
     Column
 } from '../Components/styleLayout';
 import {GlobalStyle} from '../Components/globalStyles';
-import {UseScrollTracking} from '../Components/ScrollHook';
+import {Scroll} from '../Components/ScrollHook';
 import {
   faGithub, 
   faLinkedin, 
@@ -55,12 +55,6 @@ export default function AboutMe(){
   let introEl = useRef();
   let linksEl = useRef();
 
-  let aboutInView = UseScrollTracking(aboutEl);
-  let introInView = UseScrollTracking(introEl);
-  let workInView = UseScrollTracking(workEl);
-  let projectInView = UseScrollTracking(projectEl);
-  let linksInView = UseScrollTracking(linksEl);
-
   const scroll = (name) => {
     let el = [
       aboutEl,
@@ -68,21 +62,68 @@ export default function AboutMe(){
       projectEl
     ].filter( ref => ref.current.id === name)[0];
 
-    el.current.scroll();
+    const {
+      offset
+    } = el.current;
+
+    let startPositionY = window.scrollY;
+    let endPositionY = offset;
+    let duration = 350;
+    let startTime
+    let currentPositionY
+
+    function animate(timestamp){
+      if(!startTime) startTime = timestamp;
+
+      const easeInOutQuart = (x) =>   x < .5 ? 8 * x * x * x * x : 1 - 8 * (--x) * x * x * x;
+
+      let progress = timestamp - startTime;
+      let deltaTop = endPositionY - startPositionY;
+      let rateOfChange = progress >= duration ? 1 : easeInOutQuart(progress/duration);
+      currentPositionY = startPositionY + Math.ceil(deltaTop * rateOfChange);
+
+      window.scroll({
+        left: 0,
+        top: currentPositionY,
+        behavior: 'smooth'
+      });
+
+      if(rateOfChange < 1){
+        requestAnimationFrame(animate);
+      }
+      return;
+    }
+    requestAnimationFrame(animate);
   }
 
   return(
-    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '100%'}}>
+    <div style={{
+        display: 'flex', 
+        flexDirection: 'column', 
+        justifyContent: 'space-between', 
+        width: '100%'
+      }}
+    >
       <GlobalStyle />
       <Navigation 
         scroll={scroll}
       />
-      <SocialLinks ref={linksEl} inView={linksInView} />
+      <SocialLinks 
+        ref={linksEl} 
+      />
       <Column>
-        <Intro ref={introEl} inView={introInView} />
-        <About ref={aboutEl} inView={aboutInView} />
-        <Work ref={workEl} inView={workInView} />
-        <Projects ref={projectEl} inView={projectInView} />
+        <Intro 
+          ref={introEl} 
+        />
+        <About 
+          ref={aboutEl} 
+        />
+        <Work 
+          ref={workEl} 
+        />
+        <Projects 
+          ref={projectEl} 
+        /> 
         <Farewell />
         <Footer />
       </Column>
