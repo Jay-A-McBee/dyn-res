@@ -66,17 +66,17 @@ const ViewPort = styled(Row)`
     transition: transform 1s ease-in-out .25s;
     position: absolute;
     top: auto;
-    left: 10;
+    left: 0px;
 
     ${props => props.active && css`
-        transform: translateX(${props => props.active * (705/-16)}em);
+        transform: translateX(${props => props.active * ((props.dimensions.width + 40)/-16) - .5}em);
     `}
 `
 
 const View = styled.div`
     position: relative;
-    width: ${720/16}em;
-    height: ${500/16}em;
+    width: ${props => props.dimensions.width/16}em;
+    height: ${props => props.dimensions.height/16}em;
     overflow: hidden;
 `;
 
@@ -139,8 +139,18 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
   let view = useRef(null);
 
   const getDimensions = (width) => {
-      
+      const makeDimensions = (height, width) => ({
+        height, 
+        width
+      });
 
+      if(width > 800){
+        return makeDimensions(500, 700)
+      }else if(width < 800 && width > 500){
+        return makeDimensions(400, 600);
+      }else{
+        return makeDimensions(450, 280.5);
+      }
   }
 
   return width > 800 ? (
@@ -160,10 +170,8 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
             iconName={'chevron-left'}
           />
         </ChevronContainer>
-        <View
-            dimensions={getHeightAndWidth(width)}
-        >
-            <ViewPort active={active}>
+        <View dimensions={getDimensions(width)}>
+            <ViewPort dimensions={getDimensions(width)} active={active}>
                 {children}
             </ViewPort> 
         </View> 
@@ -201,9 +209,11 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
             iconName={'chevron-left'}
           />
         </ChevronContainer>
-        <ViewPort active={active.current} offset={offset.current}>
-            {children}
-        </ViewPort> 
+        <View dimensions={getDimensions(width)}>
+            <ViewPort dimensions={getDimensions(width)} active={active}>
+                {children}
+            </ViewPort> 
+        </View> 
         <ChevronContainer justify={'center'}>
           <RotateIcon
             handleClick={selectNext}

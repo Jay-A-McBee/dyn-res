@@ -20,12 +20,12 @@ const Container = styled.div`
     flex-direction: row;
     justify-content: space-around;
     transition: all .75s ease-in-out;
-    margin: 0 2.5em;
+    margin: 0 2.5em 0 0;
 
     ${props => props.active && `opacity: 1`}
 
     ${Media.desktop`
-        max-width: ${700/16}em;
+        width: ${700/16}em;
     `}
 
     ${Media.phone`
@@ -91,8 +91,9 @@ ${Media.phone`
 `;
 
 const BigColumn = styled(Column)`
-position: relative;
-top: -2.5em;
+    position: relative;
+    top: -2.5em;
+    padding: 0 .5em;
 `	
 
 const Link = styled.a`
