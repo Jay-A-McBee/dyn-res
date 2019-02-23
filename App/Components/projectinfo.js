@@ -20,11 +20,12 @@ const Container = styled.div`
     flex-direction: row;
     justify-content: space-around;
     transition: all .75s ease-in-out;
+    margin: 0 2.5em;
 
     ${props => props.active && `opacity: 1`}
 
     ${Media.desktop`
-        max-width: ${600/16}em;
+        max-width: ${700/16}em;
     `}
 
     ${Media.phone`

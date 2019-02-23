@@ -19,6 +19,7 @@ const Reel = styled.div`
 
 const ChevronContainer = styled(Column)`
   justify-content: center;
+  width: 10%;
   align-items: center;
   align-self: center;
   z-index: 25;
@@ -68,13 +69,13 @@ const ViewPort = styled(Row)`
     left: 10;
 
     ${props => props.active && css`
-        transform: translateX(${props => props.active * (610/-16)}em);
+        transform: translateX(${props => props.active * (705/-16)}em);
     `}
 `
 
 const View = styled.div`
     position: relative;
-    width: ${620/16}em;
+    width: ${720/16}em;
     height: ${500/16}em;
     overflow: hidden;
 `;
@@ -122,7 +123,7 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
 
   useEffect(() => {
     resetActive();
-  },[children])
+  },[children.length])
   
   const selectSpecific = (e) => {
     updateActive(parseInt(e.nativeEvent.target.getAttribute('name'),10));
@@ -136,7 +137,11 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
   })) : null;
 
   let view = useRef(null);
-// children = children.map( (child, i) => React.cloneElement(child, {active: active === i}));
+
+  const getDimensions = (width) => {
+      
+
+  }
 
   return width > 800 ? (
     <Container>
@@ -155,7 +160,9 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
             iconName={'chevron-left'}
           />
         </ChevronContainer>
-        <View>
+        <View
+            dimensions={getHeightAndWidth(width)}
+        >
             <ViewPort active={active}>
                 {children}
             </ViewPort> 
