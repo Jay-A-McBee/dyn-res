@@ -61,14 +61,14 @@ export default function AboutMe(){
       workEl, 
       projectEl
     ].filter( ref => ref.current.id === name)[0];
-
+debugger
     const {
       offset
     } = el.current;
 
     let startPositionY = window.scrollY;
     let endPositionY = offset;
-    let duration = 100;
+    let duration = 150;
     let startTime
     let currentPositionY
 

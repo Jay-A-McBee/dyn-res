@@ -28,49 +28,55 @@ const Container = styled.div`
         width: ${700/16}em;
     `}
 
+    ${Media.tablet`
+        width: ${480/16}em;
+        justify-content: space-between;
+    `}
+
     ${Media.phone`
         display: flex;
         flex-direction: column;
+        justify-content: space-evenly;
+        padding-left: .25em;
         height: ${420/16}em;
+        width: ${280/16}em;
     `}
 `;
 
 const heightBlock = window.innerHeight / 160;
 
 const DeviceImage = styled.img`
-height: 30em;
+    height: 30em;
+    width: 30em;
+    ${Media.tablet`
+        height: 17.5em;
+        width: 17.5em;
+    `}
 
-${Media.tablet`
-  align-self: center;
-  height: 17.5em;
-  width: 17.5em;
-`}
-
-${Media.phone`
-  align-self: center;
-  height: 17.5em;
-  width: 17.5em;
-`}
+    ${Media.phone`
+        height: 16.5em;
+        width: 16.5em;
+    `}
 `;
 
 const ProjectName = styled.p`
-font-weight: 700;
-font-size: 1.75em;
-color: rgb(237, 157, 85);
+    font-weight: 700;
+    font-size: 1.75em;
+    color: rgb(237, 157, 85);
 
-${Media.tablet`
-  position: relative;
-  top: 1em;
-  margin-bottom: .5em;
-  font-size: 1.5em;
-`}
+    ${Media.tablet`
+        position: relative;
+        top: 1em;
+        margin-bottom: .5em;
+        font-size: 1.5em;
+    `}
 
-${Media.phone`
-  position: relative;
-  top: 1em;
-  margin-bottom: .5em;
-  font-size: 1.5em;
-`}
+    ${Media.phone`
+        position: relative;
+        top: 1em;
+        margin-bottom: .5em;
+        font-size: 1.5em;
+    `}
 `;
 
 const TechDescription = styled.p`
