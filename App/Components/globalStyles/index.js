@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-
+// rgba(114, 98, 99, .99)
 export const GlobalStyle = createGlobalStyle`
     html{
         scroll-behavior: smooth;
@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
     body{
         font-family: 'Roboto', courier;
         color: rgb(252, 219, 148);
-        background-color: rgba(114, 98, 99, .99);
+        background-color: rgba(45, 38, 38, .9);
         margin:0; 
         padding:0;
         background-size: 100% 100%;

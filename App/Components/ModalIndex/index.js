@@ -62,10 +62,8 @@ const ModalOverlay = styled.div`
         'translateX(100%)' : 
         'translateY(-100%)'
     };
-    will-change: transform;
     
-
-     ${props => props.open && props.animation.slideDown && css`
+    ${props => props.open && props.animation.slideDown && css`
         transform: translateY(0%);
     `}
 

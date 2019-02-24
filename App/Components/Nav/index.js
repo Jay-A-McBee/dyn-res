@@ -86,7 +86,7 @@ const StyledNav = styled.nav`
     `}
 
     ${props => props.fix && css`
-        background-color: rgba(114, 98, 99, 1);
+        background-color: rgb(61, 45, 45);
         box-shadow: 0 2.5px 5px rgba(10, 10, 10, .4);
     `}
 `;
@@ -94,11 +94,11 @@ const StyledNav = styled.nav`
 const NavButtonContainer = styled.div`
     display: flex;
     position: relative;
-
+    align-items: center;
+    height: 75px;
     ${Media.desktop`
         flex-direction: row;
         justify-content: flex-end;
-        top: -.4em;
     `}
     ${Media.tablet`
         flex-direction: column;

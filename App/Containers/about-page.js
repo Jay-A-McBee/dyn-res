@@ -68,7 +68,7 @@ export default function AboutMe(){
 
     let startPositionY = window.scrollY;
     let endPositionY = offset;
-    let duration = 500;
+    let duration = 100;
     let startTime
     let currentPositionY
 
