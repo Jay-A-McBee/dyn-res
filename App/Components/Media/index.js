@@ -1,14 +1,14 @@
 import React, {useState, useEffect, useRef} from 'react';
 import styled, {css} from 'styled-components';
-import debounce from 'lodash.debounce';
+import debounce from 'lodash/debounce';
 
 const sizes = {
   desktop: {
-    size: 751,
+    size: 800,
     width: 'min-width'
   },
   tablet: {
-    size: 750,
+    size: 799,
     width: 'max-width'
   },
   phone: {

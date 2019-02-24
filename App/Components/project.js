@@ -12,6 +12,7 @@ import {
   inAndUp
 } from './styledText';
 import {scrollImperativeHandle} from './Handles';
+import {useVisibility} from './ScrollHook';
 import {
     projectDescriptions
 } from '../Assets/shortDescription';
@@ -119,11 +120,7 @@ const Paper = styled.div`
 
     ${Folder}:hover & {
         top: -92.5%;
-        transform: translate3d(1em, -.2em, .25em) skew(-2.5deg);
-        .jitter{
-            animation: ${jitter} 1.5s cubic-bezier(.77,-0.48,.83,.87) 2s;
-            animation-iteration-count: 1;
-        }   
+        transform: translate3d(1em, -.2em, .25em) skew(-2.5deg);  
     }
 `;
 
@@ -163,7 +160,7 @@ const Description = ({title, role, tasks, link}) => {
         <React.Fragment>
             <TitleRow justify={'space-between'}>
                 <Title>{title}</Title>
-                <Link className='jitter' target='_blank' href = {link}>
+                <Link target='_blank' href = {link}>
                     <FontAwesomeIcon icon={['fab', 'github']} size='3x' />
                 </Link>
             </TitleRow>
@@ -201,16 +198,18 @@ const {
 
 export const ProjectSection = forwardRef(({inView}, ref) => {
 
-    let width = useWidthHook();
     let projectContainer = useRef(null);
 
-    scrollImperativeHandle(projectContainer, ref, 'Projects');
+    scrollImperativeHandle(projectContainer, ref, 'projects');
+    
+    let width = useWidthHook();
+    let active = useVisibility(ref);
 
     return(
         <ContentWrapper    
             ref={projectContainer} 
             padding={'7.5em 0 5em 0'}
-            active={inView}
+            active={active}
         >
             <SectionHeader className='animate' highlight>Projects</SectionHeader>
             <br />

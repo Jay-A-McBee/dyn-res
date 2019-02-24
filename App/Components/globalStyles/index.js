@@ -28,7 +28,6 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     a{
-        margin-right: 15px;
         padding: 2px;
         color: rgb(103, 206, 178);
         text-decoration: none;

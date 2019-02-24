@@ -6,9 +6,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 const ModalBody = styled.div`
     position: relative;
     margin: auto;
-    overflow: scroll;
     padding: 0;
-    background-color: ${props => props.altBgColor ? 'rgba(114, 98, 99, .99)': 'rgba(10, 10, 10, 0.95)'};
+    background-color: ${props => props.altBgColor ? 'rgba(114, 98, 99, .99)': 'rgba(45, 38, 38, .99)'};
     border: 1px solid #888;
     max-width: 70%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
@@ -26,6 +25,7 @@ const ModalBody = styled.div`
         max-width: ${props => props.width || '80%'};
         height: ${props => props.height || '25.5em'};
     `}
+
     ${Media.phone`
         max-width: ${props => props.width || '90%'};
         height: ${props => props.height || '32.5em'};
@@ -55,17 +55,15 @@ const ModalOverlay = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(10, 10, 10, 0.6);
+    background-color: rgba(10, 10, 10, 0.8);
     transition: all .5s ease-in-out;
     z-index: 100;
     transform: ${props => props.animation && props.animation.horizontal ? 
         'translateX(100%)' : 
         'translateY(-100%)'
     };
-    will-change: transform;
     
-
-     ${props => props.open && props.animation.slideDown && css`
+    ${props => props.open && props.animation.slideDown && css`
         transform: translateY(0%);
     `}
 
