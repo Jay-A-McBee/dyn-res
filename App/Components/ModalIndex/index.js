@@ -8,7 +8,7 @@ const ModalBody = styled.div`
     margin: auto;
     overflowY: scroll;
     padding: 0;
-    background-color: ${props => props.altBgColor ? 'rgba(114, 98, 99, .99)': 'rgba(10, 10, 10, 0.95)'};
+    background-color: ${props => props.altBgColor ? 'rgba(114, 98, 99, .99)': 'rgba(45, 38, 38, .99)'};
     border: 1px solid #888;
     max-width: 70%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
@@ -55,7 +55,7 @@ const ModalOverlay = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(10, 10, 10, 0.6);
+    background-color: rgba(10, 10, 10, 0.8);
     transition: all .5s ease-in-out;
     z-index: 100;
     transform: ${props => props.animation && props.animation.horizontal ? 

@@ -40,7 +40,7 @@ const Circle = styled.div`
 `;
 
 const DarkColumn = styled(Column)`
-  background-color: rgba(10, 10, 10, 0.75);
+  background-color: inherit;
   padding: 1%;
 `;
 
@@ -48,7 +48,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(10, 10, 10, 0.95);
+  background-color: inherit;
 `;
 
 const StretchRow = styled(Row)`
@@ -63,7 +63,7 @@ const StretchRow = styled(Row)`
 
 const ViewPort = styled(Row)`
     justify-content: space-between;
-    transition: transform 1s ease-in-out .25s;
+    transition: transform .75s cubic-bezier(.1, .25, .75, 1) .15s;
     position: absolute;
     top: auto;
     left: 0px;
