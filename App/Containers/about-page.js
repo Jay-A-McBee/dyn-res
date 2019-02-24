@@ -68,7 +68,7 @@ export default function AboutMe(){
 
     let startPositionY = window.scrollY;
     let endPositionY = offset;
-    let duration = 150;
+    let duration = 250;
     let startTime
     let currentPositionY
 
@@ -95,7 +95,7 @@ export default function AboutMe(){
         return;
       }
     }
-    setTimeout(() => requestAnimationFrame(animate), 100);
+    requestAnimationFrame(animate);
   }
 
   return(
