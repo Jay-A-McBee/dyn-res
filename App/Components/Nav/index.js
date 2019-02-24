@@ -86,7 +86,7 @@ const StyledNav = styled.nav`
     `}
 
     ${props => props.fix && css`
-        background-color: rgba(114, 98, 99, 1);
+        background-color: rgb(114, 98, 99);
         box-shadow: 0 2.5px 5px rgba(10, 10, 10, .4);
     `}
 `;
@@ -94,11 +94,11 @@ const StyledNav = styled.nav`
 const NavButtonContainer = styled.div`
     display: flex;
     position: relative;
-
+    align-items: center;
     ${Media.desktop`
+        height: 75px;
         flex-direction: row;
         justify-content: flex-end;
-        top: -.4em;
     `}
     ${Media.tablet`
         flex-direction: column;
@@ -120,7 +120,7 @@ export const Navigation = ({scroll}) => {
     let isOpen = useRef();
 
     const scrollToSection = (event) => {
-        const name = event.target.getAttribute('name').match(/\<(\w+) \/\>/)[1];
+        const name = event.target.getAttribute('name');
         scroll(name);
     };
 
@@ -147,7 +147,6 @@ export const Navigation = ({scroll}) => {
     };
 
     let width = useWidthHook();
-
 
     const subscribe = () => {
         handler.current = debounce(respondToScroll, 150, {leading: true});
@@ -185,13 +184,13 @@ export const Navigation = ({scroll}) => {
     const MobileMenu = ({open}) => {
         useEffect(() => {
             isOpen.current = open;
-        })
+        },[open])
 
         return (
            <NavButtonContainer>
                 {navLinks.map( title => (
                     <NavButton 
-                        name={title} 
+                        name={title.match(/\<(\w+) \/\>/)[1].toLowerCase()} 
                         key={title} 
                         onClick={scrollToSection}
                     >
@@ -202,12 +201,12 @@ export const Navigation = ({scroll}) => {
         );
     }
 
-    return width > 750 ? (
+    return width > 800 ? (
         <StyledNav {...navStyles}>
             <NavButtonContainer>
                 {navLinks.map( title => (
                     <NavButton 
-                        name={title} 
+                        name={title.match(/\<(\w+) \/\>/)[1].toLowerCase()} 
                         key={title} 
                         onClick={scrollToSection}
                     >{title}

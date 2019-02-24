@@ -42,7 +42,6 @@ const ListContainer = styled.div`
   justify-content: space-between;
   border-bottom: 1.5px solid rgba(10, 10, 10, 0.3);
   margin-right: 0;
-  position: relative;
   top: -.5em;
 `;
 
@@ -162,9 +161,9 @@ const carouselChildren = [
   'fairshare', 
   'journeymen', 
   'sentimentalist'
-  ].reduce( (acc, description) => {
+  ].reduce( (acc, description, i) => {
   
-  const descriptionComponent = <ProjectInfo key={'img'} {...descriptions[description]}/>;
+  const descriptionComponent = <ProjectInfo key={i} {...descriptions[description]}/>;
   
   if(/admin|splt/.test(description)){
     acc.SPLT.push(descriptionComponent);

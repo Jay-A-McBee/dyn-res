@@ -6,6 +6,7 @@ import {
 import {
     Media
 } from '../Media';
+import {useVisibility} from '../ScrollHook';
 import {scrollImperativeHandle} from '../Handles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -51,26 +52,28 @@ const Link = styled.a`
     }
 `;
 
-export const SocialLinks = forwardRef(({inView}, ref) => {
+export const SocialLinks = forwardRef(({inView, offset}, ref) => {
 
     const linksContainer = useRef(null);
 
-    scrollImperativeHandle(linksContainer, ref);
+    scrollImperativeHandle(linksContainer, ref, 'links');
+
+    let active = useVisibility(ref);
 
     return (
-        <CollapsableColumn ref={linksContainer} id='Links'>
-            <Link active={inView} marginBottom href='mailto:jmcbee1@gmail.com'>
+        <CollapsableColumn ref={linksContainer}>
+            <Link active={active} marginBottom href='mailto:jmcbee1@gmail.com'>
               <FontAwesomeIcon icon={['fab', 'google']} />
             </Link>
-            <VerticalLine active={inView} height={'2.5em'} offset={'right: .25em'}/>
-            <Link active={inView} marginBottom target='_blank' href='https://github.com/Jay-A-McBee'>
+            <VerticalLine active={active} height={'2.5em'} offset={'right: .25em'}/>
+            <Link active={active} marginBottom target='_blank' href='https://github.com/Jay-A-McBee'>
               <FontAwesomeIcon icon={['fab','github']} />
             </Link>
-            <VerticalLine active={inView} height={'2.5em'} offset={'left: .25em'} />
-            <Link active={inView}marginBottom target='_blank' href='https://www.linkedin.com/in/jayaustinmcbee/'>
+            <VerticalLine active={active} height={'2.5em'} offset={'left: .25em'} />
+            <Link active={active}marginBottom target='_blank' href='https://www.linkedin.com/in/jayaustinmcbee/'>
                 <FontAwesomeIcon icon={['fab','linkedin']} />
             </Link>
-            <VerticalLine active={inView} height={'2.5em'} offset= {'right: .25em'}/>
+            <VerticalLine active={active} height={'2.5em'} offset= {'right: .25em'}/>
         </CollapsableColumn>
     );
 });
