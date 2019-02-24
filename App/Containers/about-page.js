@@ -61,7 +61,7 @@ export default function AboutMe(){
       workEl, 
       projectEl
     ].filter( ref => ref.current.id === name)[0];
-debugger
+    
     const {
       offset
     } = el.current;
