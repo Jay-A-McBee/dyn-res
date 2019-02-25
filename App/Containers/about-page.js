@@ -68,7 +68,7 @@ export default function AboutMe(){
 
     let startPositionY = window.scrollY;
     let endPositionY = offset;
-    let duration = 250;
+    let duration = 350;
     let startTime
     let currentPositionY
 
@@ -79,9 +79,9 @@ export default function AboutMe(){
 
       let progress = timestamp - startTime;
       let deltaTop = endPositionY - startPositionY;
-      let rateOfChange = progress >= duration ? 1 : defaultEasing(progress/duration);
+      let changePercent = progress >= duration ? 1 : defaultEasing(progress/duration);
 
-      currentPositionY = startPositionY + Math.ceil(deltaTop * rateOfChange);
+      currentPositionY = startPositionY + Math.ceil(deltaTop * changePercent);
 
       window.scroll({
         left: 0,
@@ -89,7 +89,7 @@ export default function AboutMe(){
         behavior: 'smooth'
       });
 
-      if(rateOfChange < 1){
+      if(changePercent < 1){
         requestAnimationFrame(animate);
       }else{
         return;
