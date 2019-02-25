@@ -2,7 +2,6 @@ import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
     html{
-        scroll-behavior: smooth;
         -webkit-font-smoothing: antialiased;
         margin:0; 
         padding:0;

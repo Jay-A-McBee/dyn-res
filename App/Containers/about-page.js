@@ -55,7 +55,7 @@ export default function AboutMe(){
   let introEl = useRef();
   let linksEl = useRef();
 
-  const scroll = (name) => {
+  const scroll = (name, width) => {
     let el = [
       aboutEl,
       workEl, 
@@ -63,19 +63,20 @@ export default function AboutMe(){
     ].filter( ref => ref.current.id === name)[0];
     
     const {
-      offset
+      offset,
     } = el.current;
 
     let startPositionY = window.scrollY;
     let endPositionY = offset;
-    let duration = 350;
+
+    let duration = width > 500 ? 500 : 1500;
     let startTime
     let currentPositionY
 
     function animate(timestamp){
       if(!startTime) startTime = timestamp;
 
-      const defaultEasing = function (t) { return t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t };
+      const defaultEasing = (t) => t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t;
 
       let progress = timestamp - startTime;
       let deltaTop = endPositionY - startPositionY;

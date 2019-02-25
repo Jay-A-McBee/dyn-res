@@ -118,10 +118,11 @@ export const Navigation = ({scroll}) => {
     let[navStyles, updateNavStyle] = useState({fix:false, hide:false});
     let handler = useRef();
     let isOpen = useRef();
+    let width = useWidthHook();
 
     const scrollToSection = (event) => {
         const name = event.target.getAttribute('name');
-        scroll(name);
+        scroll(name, width);
     };
 
     const respondToScroll = () => {
@@ -146,7 +147,6 @@ export const Navigation = ({scroll}) => {
         }
     };
 
-    let width = useWidthHook();
 
     const subscribe = () => {
         handler.current = debounce(respondToScroll, 150, {leading: true});
