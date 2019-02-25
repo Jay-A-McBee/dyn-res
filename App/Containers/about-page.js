@@ -63,38 +63,38 @@ export default function AboutMe(){
     ].filter( ref => ref.current.id === name)[0];
     
     const {
-      offset,
-    } = el.current;
-
-    let startPositionY = window.scrollY;
-    let endPositionY = offset;
-
+      offsetTop,
+    } = el.current.container;
+    
+    let startPositionY = window.pageYOffset;
+    let endPositionY = offsetTop;
+    
     let duration = width > 500 ? 500 : 1500;
     let startTime
     let currentPositionY
-
+    
     function animate(timestamp){
-      if(!startTime) startTime = timestamp;
-
-      const defaultEasing = (t) => t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t;
-
-      let progress = timestamp - startTime;
-      let deltaTop = endPositionY - startPositionY;
-      let changePercent = progress >= duration ? 1 : defaultEasing(progress/duration);
-
-      currentPositionY = startPositionY + Math.ceil(deltaTop * changePercent);
-
-      window.scroll({
-        left: 0,
-        top: currentPositionY,
-        behavior: 'smooth'
-      });
-
-      if(changePercent < 1){
-        requestAnimationFrame(animate);
-      }else{
-        return;
-      }
+        if(!startTime) startTime = timestamp;
+        
+        const defaultEasing = (t) => t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t;
+        
+        let progress = timestamp - startTime;
+        let deltaTop = endPositionY - startPositionY;
+        let changePercent = progress >= duration ? 1 : defaultEasing(progress/duration);
+        
+        currentPositionY = startPositionY + Math.ceil(deltaTop * changePercent);
+        
+        window.scroll({
+            left: 0,
+            top: currentPositionY,
+            behavior: 'smooth'
+        });
+        
+        if(changePercent < 1){
+            requestAnimationFrame(animate);
+        }else{
+            return;
+        }
     }
     requestAnimationFrame(animate);
   }

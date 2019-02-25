@@ -9,7 +9,7 @@ export const useVisibility = (ref) => {
 
     useEffect(() => {
         if(!scrollHandler.current){
-            checkVisibility(ref.current.offset);
+            checkVisibility(ref.current.container.offsetTop);
             subscribe();
         }
 
@@ -26,7 +26,7 @@ export const useVisibility = (ref) => {
 
     function subscribe(){
         scrollHandler.current = throttle(() => {
-            checkVisibility(ref.current.offset);
+            checkVisibility(ref.current.container.offsetTop);
         }, 750, {leading:true, trailing: true});
 
         window.addEventListener('scroll', scrollHandler.current, {passive: true});
