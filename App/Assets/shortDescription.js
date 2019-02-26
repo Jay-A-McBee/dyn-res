@@ -87,7 +87,7 @@ projectDescriptions.slide = {
 
 projectDescriptions.portfolio = {
 	title: 'Portfolio v2',
-	role: 'This very screen you are scrolling was in need of some serious React refactors.',
+	role: 'This website - recently refactored extensively and still a WIP.',
 	tasks:[
 		'React (hooks API)',
 		'Styled-Components' 

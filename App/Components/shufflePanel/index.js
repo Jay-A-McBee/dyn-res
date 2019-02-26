@@ -49,7 +49,6 @@ const WorkPlace = styled.div`
   text-align: center;
   line-height: 1.5;
   flex: 1;
-  width: 9em;
   height: 1.5em;
   transition: all 0.5s ease-in-out;
   padding: .5em 0;
@@ -68,7 +67,7 @@ const WorkPlace = styled.div`
 `
 
 const Highlight = styled.div`
-    width: 33.3%;
+    width: ${100.06/3}%;
     height: .2em;
     position: absolute;
     transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
