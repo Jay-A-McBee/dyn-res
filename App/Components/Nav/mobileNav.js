@@ -72,7 +72,7 @@ const MenuBody = styled.div`
     align-self: flex-end;
     background-color: rgba(114, 98, 99, .99);
     height: 100vh;
-    width: 45%;
+    width: 65%;
 `;
 
 const NavButtonContainer = styled.div`
