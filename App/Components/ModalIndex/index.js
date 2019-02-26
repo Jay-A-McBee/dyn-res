@@ -7,7 +7,7 @@ const ModalBody = styled.div`
     position: relative;
     margin: auto;
     padding: 0;
-    background-color: ${props => props.altBgColor ? 'rgba(114, 98, 99, .99)': 'rgba(45, 38, 38, .99)'};
+    background-color: rgba(45, 38, 38, .99);
     border: 1px solid #888;
     max-width: 70%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
@@ -98,20 +98,18 @@ const CloseButton = styled.button`
 
 const ModalComponent = ({
     child, 
-    childClose, 
     id, 
     message, 
     ButtonComponent, 
     animation, 
     height, 
     width, 
-    altBgColor,
 }) => {
     
     let[isOpen, toggle] = useState(false);
 
     const toggleModal = () => {
-        const [body] = Array.from(document.querySelectorAll('body'));
+        const body = document.querySelector('body');
 
         if(!isOpen){
             body.className = `${body.className} noScroll`;
@@ -126,8 +124,7 @@ const ModalComponent = ({
     const closeModal = ({nativeEvent}) => {
         if(
             nativeEvent.target.id === 'modal' || 
-            nativeEvent.target.id === 'close' || 
-            childClose
+            nativeEvent.target.id === 'close'
         ){
             toggleModal();
         }
@@ -151,7 +148,6 @@ const ModalComponent = ({
                 animation={animation} 
                 height={height} 
                 width={width}
-                altBgColor={altBgColor}
             >
                 <CloseButton
                     id ='close'
