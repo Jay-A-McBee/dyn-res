@@ -1,6 +1,6 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useLayoutEffect, useRef} from 'react';
 import styled, {css, keyframes} from 'styled-components';
-import debounce from 'lodash/debounce';
+import throttle from 'lodash/throttle';
 import {MobileNav} from './mobileNav';
 import {Media, useWidthHook} from '../Media';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -51,7 +51,7 @@ const StyledNav = styled.nav`
     position: fixed;
     top: 0;
     left: 0;
-    transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all .5s ease-in-out;
 
     ${props => props.hide && css`
         transform: translateY(-75px);
@@ -74,10 +74,10 @@ const NavButtonContainer = styled.div`
 
 export const Navigation = ({scroll}) => {
     
-    let[scrollTop, updateScrollTop] = useState(0);
     let[navStyles, updateNavStyle] = useState({fix:false, hide:false});
     let[isOpen, toggleOpen] = useState(false);
     let handler = useRef();
+    let location = useRef(pageYOffset);
     let width = useWidthHook();
 
     const toggle = () => {
@@ -98,46 +98,42 @@ export const Navigation = ({scroll}) => {
     };
 
     const respondToScroll = () => {
-        const currentPos = window.scrollY;
-        const movingDown = currentPos > scrollTop;
-        
-        if(!isOpen){
+        const currentPos = window.pageYOffset;
+        const movingDown = currentPos > location.current;
 
+        if(!isOpen){
             if(currentPos > 0 && currentPos < 100){
-                updateScrollTop(currentPos);
                 updateNavStyle({...navStyles, fix:true});
             }else if(movingDown){
-                updateScrollTop(currentPos);
-                updateNavStyle({...navStyles, hide:true});
+                updateNavStyle({...navStyles, hide:true, fix:true});
             }else if(!movingDown && currentPos > 50){
-                updateScrollTop(currentPos);
-                updateNavStyle({fix: true, hide:false});
+                updateNavStyle({fix: true, hide: false});
             }else{
-                updateScrollTop(0);
+                location.current = 0;
                 updateNavStyle({hide:false, fix:false});
             }
         }
     };
 
-
     const subscribe = () => {
-        handler.current = debounce(respondToScroll, 150, {leading: true});
+        handler.current = throttle(respondToScroll, 250, {leading: true, trailing: true});
         window.addEventListener('scroll', handler.current);
-    }
+    };
 
     const unsubscribe = () => {
         window.removeEventListener('scroll', handler.current);
         handler.current = null;
-    }
+    };
 
     useEffect(() => {
-
         if(!handler.current){
             subscribe();
         }
+    })
 
-        return () => unsubscribe();
-    },[scrollTop]);
+    useLayoutEffect(() => {
+        location.current = pageYOffset;
+    },[navStyles]);
     
     const iconStyles = {
         float: 'right',
