@@ -8,7 +8,7 @@ import {
 } from '../Media';
 import {useVisibility} from '../ScrollHook';
 import {scrollImperativeHandle} from '../Handles';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 
 const VerticalLine = styled.div`

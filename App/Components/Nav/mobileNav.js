@@ -73,6 +73,7 @@ const MenuBody = styled.div`
     background-color: rgba(114, 98, 99, .99);
     height: 100vh;
     width: 65%;
+    z-index: 110;
 `;
 
 const NavButtonContainer = styled.div`
@@ -116,7 +117,7 @@ const Button = styled.button`
     background-color: rgba(114, 98, 99, .99);
     border: none;
     color: inherit;
-    padding: .5em;
+    padding: 1.75em;
     
 `
        
@@ -136,7 +137,7 @@ const ButtonComponent = ({onClick}) => (
 
 const CloseButton = ({onClick}) => (
     <Button onClick={onClick}>
-        <FontAwesomeIcon onClick={onClick} size='2x' icon='times' />
+        <FontAwesomeIcon onClick={onClick} size='2x' icon='arrow-left' />
     </Button>
 );
 

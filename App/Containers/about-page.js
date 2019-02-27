@@ -28,7 +28,8 @@ import {
   faChevronRight, 
   faBars, 
   faTimes,
-  faEnvelope
+  faEnvelope,
+  faArrowLeft
 } from '@fortawesome/free-solid-svg-icons'
 
 import {library} from '@fortawesome/fontawesome-svg-core'
@@ -44,7 +45,8 @@ library.add(
   faChevronRight, 
   faBars, 
   faTimes,
-  faEnvelope
+  faEnvelope,
+  faArrowLeft
 );
 
 export default function AboutMe(){

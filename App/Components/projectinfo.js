@@ -30,14 +30,13 @@ const Container = styled.div`
 
     ${Media.tablet`
         width: ${480/16}em;
-        justify-content: space-between;
+        justify-content: space-around;
     `}
 
     ${Media.phone`
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
-        padding-left: .25em;
         height: ${420/16}em;
         width: ${280/16}em;
     `}
@@ -54,8 +53,9 @@ const DeviceImage = styled.img`
     `}
 
     ${Media.phone`
-        height: 16.5em;
-        width: 16.5em;
+        position: relative;
+        height: 17.5em;
+        width: 17.5em;
     `}
 `;
 
@@ -74,6 +74,7 @@ const ProjectName = styled.p`
     ${Media.phone`
         position: relative;
         top: 1em;
+        left: .5em;
         margin-bottom: .5em;
         font-size: 1.5em;
     `}
@@ -92,6 +93,7 @@ ${Media.phone`
   font-size: .95em;
   position: relative;
   top: 1.75em;
+  left: .75em;
   line-height: .25;
 `}
 `;
@@ -99,12 +101,16 @@ ${Media.phone`
 const BigColumn = styled(Column)`
     position: relative;
     top: -2.5em;
-    padding: 0 .5em;
 `	
 
 const Link = styled.a`
-position: relative;
-top: 1.25em;
+  position: relative;
+  ${Media.phone`
+    font-size: .95em;
+    top: 1.75em;
+    left: .65em;
+    line-height: .25;
+  `}
 `;
 const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current, active}) => {
 
