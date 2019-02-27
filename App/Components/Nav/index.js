@@ -51,7 +51,7 @@ const StyledNav = styled.nav`
     position: fixed;
     top: 0;
     left: 0;
-    transition: all .5s cubic-bezier(.065, .5, .85, 1);
+    transition: all .5s ease-in-out;
 
     ${props => props.hide && css`
         transform: translateY(-75px);
