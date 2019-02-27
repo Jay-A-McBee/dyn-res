@@ -73,6 +73,8 @@ const MenuBody = styled.div`
     background-color: rgba(114, 98, 99, .99);
     height: 100vh;
     width: 65%;
+    z-index: 110;
+    filter: blur(0px);
 `;
 
 const NavButtonContainer = styled.div`
@@ -94,6 +96,7 @@ const ModalOverlay = styled.div`
     background-color: rgba(10, 10, 10, 0.8);
     transition: all .5s ease-in-out;
     z-index: 100;
+    filter: blur(5px);
     transform: ${props => props.animation && props.animation.horizontal ? 
         'translateX(100%)' : 
         'translateY(-100%)'
@@ -116,7 +119,7 @@ const Button = styled.button`
     background-color: rgba(114, 98, 99, .99);
     border: none;
     color: inherit;
-    padding: .5em;
+    padding: 1.75em;
     
 `
        
@@ -136,7 +139,7 @@ const ButtonComponent = ({onClick}) => (
 
 const CloseButton = ({onClick}) => (
     <Button onClick={onClick}>
-        <FontAwesomeIcon onClick={onClick} size='2x' icon='times' />
+        <FontAwesomeIcon onClick={onClick} size='2x' icon='arrow-left' />
     </Button>
 );
 

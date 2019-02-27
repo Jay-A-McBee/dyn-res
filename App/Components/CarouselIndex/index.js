@@ -33,7 +33,7 @@ const Circle = styled.div`
   height: ${15/16}em;
   width: ${15/16}em;
   background: rgba(114, 98, 99, 0.75);
-  margin-right: .25em;
+  margin-right: .75em;
   ${props => props.selected && css`
     background-color: rgba(114, 98, 99, 1);
   `}
@@ -69,7 +69,7 @@ const ViewPort = styled(Row)`
     left: 0px;
 
     ${props => props.active && css`
-        transform: translateX(${props => props.active * ((props.dimensions.width + 40)/-16) - .5}em);
+        transform: translateX(${props => props.active * ((props.dimensions.width + 40)/-16)}em);
     `}
 `
 const View = styled.div`
@@ -80,13 +80,24 @@ const View = styled.div`
     overflow: hidden;
 `;
 
+const Button = styled.button`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2em;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+`;
+
 const RotateIcon = ({handleClick, size, iconName}) => (
-  <FontAwesomeIcon 
-    icon={iconName}
-    onClick={handleClick}
-    size={size}
-    color='#fcdb94'
-  />
+  <Button onClick={handleClick}>
+    <FontAwesomeIcon 
+      icon={iconName}
+      size={size}
+      color='#fcdb94'
+    />
+  </Button>
 );
 
 export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], slideImages}) => {
@@ -102,7 +113,6 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
   }
 
   const selectNext = (e) => {
-    e.preventDefault();
     const next = ++active;
     if(next < children.length){
       updateActive(next);
@@ -112,7 +122,6 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
   }
 
   const selectPrevious = (e) => {
-    e.preventDefault();
     const previous = --active;
     if(previous >= 0){
       updateActive(previous);
@@ -151,7 +160,7 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
       }else{
         return makeDimensions(450, 280);
       }
-  }
+  };
 
   return width > 800 ? (
     <Container>
@@ -160,7 +169,7 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
             justify={'center'}
             align={`
                 position: absolute;
-                left: 2em;
+                left: 1em;
             `}
             ref={comp => view.current = comp}
         >
@@ -172,14 +181,14 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
         </ChevronContainer>
         <View dimensions={getDimensions(width)}>
             <ViewPort dimensions={getDimensions(width)} active={active}>
-                {children}
+              {children}
             </ViewPort> 
         </View> 
         <ChevronContainer 
             justify={'center'}
             align={`
                 position: absolute;
-                right: 2em;
+                right: 1em;
             `}
         >
           <RotateIcon
