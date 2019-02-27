@@ -74,7 +74,6 @@ const MenuBody = styled.div`
     height: 100vh;
     width: 65%;
     z-index: 110;
-    filter: blur(0px);
 `;
 
 const NavButtonContainer = styled.div`
@@ -96,7 +95,6 @@ const ModalOverlay = styled.div`
     background-color: rgba(10, 10, 10, 0.8);
     transition: all .5s ease-in-out;
     z-index: 100;
-    filter: blur(5px);
     transform: ${props => props.animation && props.animation.horizontal ? 
         'translateX(100%)' : 
         'translateY(-100%)'
