@@ -154,8 +154,8 @@ export const MobileNav = ({scroll, isOpen, toggle, navStyles, width}) => {
         const name = ev.target.getAttribute('name');
 
         if(name){
+            setTimeout(() => scrollToSection(name), 750);
             toggle(!isOpen);
-            setTimeout(() => scrollToSection(name), 150);
         }
     };
 

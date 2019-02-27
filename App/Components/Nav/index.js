@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useLayoutEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import styled, {css, keyframes} from 'styled-components';
 import throttle from 'lodash/throttle';
 import {MobileNav} from './mobileNav';
@@ -129,12 +129,9 @@ export const Navigation = ({scroll}) => {
         if(!handler.current){
             subscribe();
         }
-    })
+        location.current = pageYOffset >= 0 ? pageYOffset : 0;
+    },[navStyles])
 
-    useLayoutEffect(() => {
-        location.current = pageYOffset;
-    },[navStyles]);
-    
     const iconStyles = {
         float: 'right',
         position: 'relative',
