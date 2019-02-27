@@ -93,7 +93,7 @@ const ModalOverlay = styled.div`
     left: 0;
     right: 0;
     background-color: rgba(10, 10, 10, 0.8);
-    transition: all .5s ease-in-out;
+    transition: all .75s cubic-bezier(.75, -.25, .85, 1);
     z-index: 100;
     transform: ${props => props.animation && props.animation.horizontal ? 
         'translateX(100%)' : 
@@ -114,7 +114,10 @@ const Button = styled.button`
     align-self: flex-start;
     width: 15%;
     justify-content: center;
-    background-color: rgba(114, 98, 99, .99);
+    background-color: inherit;
+    position: relative;
+    top: 5em;
+    left: .5em;
     border: none;
     color: inherit;
     padding: 1.75em;
