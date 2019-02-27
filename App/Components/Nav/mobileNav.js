@@ -71,7 +71,6 @@ const MenuBody = styled.div`
     flex-direction: column;
     align-self: flex-end;
     background-color: rgba(114, 98, 99, .99);
-    overflow-Y: scroll;
     height: 100vh;
     width: 65%;
     z-index: 110;
