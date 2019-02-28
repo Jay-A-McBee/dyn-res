@@ -44,24 +44,29 @@ const Container = styled.div`
 
 const heightBlock = window.innerHeight / 160;
 
-const DeviceImage = styled.img`
-    height: 30em;
-    width: 30em;
-    ${Media.tablet`
-        height: 17.5em;
-        width: 17.5em;
-    `}
 
-    ${Media.phone`
-        position: relative;
-        height: 17.5em;
-        width: 17.5em;
-    `}
+
+const DeviceImage = styled.img`
+  height: 100%;
+  width: 75%;
+  margin: auto;
+
+  ${Media.tablet`
+    width: 65%;
+    height: 110%;
+  `}
+
+  ${Media.phone`
+    position: relative;
+    left: -.5em;
+    height: 75%;
+    width: 95%;
+  `}
 `;
 
 const ProjectName = styled.p`
     font-weight: 700;
-    font-size: 1.75em;
+    font-size: 1.65em;
     color: rgb(237, 157, 85);
 
     ${Media.tablet`
@@ -81,21 +86,21 @@ const ProjectName = styled.p`
 `;
 
 const TechDescription = styled.p`
-font-weight: 400;
-line-height: .15;
-${Media.tablet`
-  font-size: .95em;
-  position: relative;
-  top: 1.75em;
-  line-height: .25;
-`}
-${Media.phone`
-  font-size: .95em;
-  position: relative;
-  top: 1.75em;
-  left: .75em;
-  line-height: .25;
-`}
+  font-weight: 400;
+  line-height: .15;
+  ${Media.tablet`
+    font-size: .95em;
+    position: relative;
+    top: 1.75em;
+    line-height: .25;
+  `}
+  ${Media.phone`
+    font-size: .95em;
+    position: relative;
+    top: 1.75em;
+    left: .75em;
+    line-height: .25;
+  `}
 `;
 
 const BigColumn = styled(Column)`
@@ -104,11 +109,15 @@ const BigColumn = styled(Column)`
 `	
 
 const Link = styled.a`
-  position: relative;
+    position: relative;
+    top: .5em;
+    ${Media.tablet`
+    top: 1.75em;
+  `}
   ${Media.phone`
     font-size: .95em;
-    top: 1.75em;
     left: .65em;
+    top: 1.75em;
     line-height: .25;
   `}
 `;

@@ -34,7 +34,7 @@ export const Footer = () => {
     
     return(
         <Foot>
-            {width <= 500 &&
+            {width <= 800 &&
                 <>
                 <Link marginBottom href='mailto:jmcbee1@gmail.com'>
                     <FontAwesomeIcon icon={['fab', 'google']} />
