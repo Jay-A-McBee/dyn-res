@@ -87,49 +87,49 @@ export const About = forwardRef(({inView}, ref) => {
     scrollImperativeHandle(aboutContainer, ref, 'about');
 
 	return (
-        <ContentWrapper 
-        ref={aboutContainer} 
-        active={active} 
-        padding={'7.5em 0 0 0'}
-        >
-            <SectionHeader 
-                highlight 
-                className='animate'
-            >
-                About
-            </SectionHeader>
-            <InnerContent justify={'space-evenly'}>
-                <Column justify={'space-evenly'}>
-                    <TextBlock className='animate' padding>{bio}</TextBlock>
-                    <TextBlock className='animate' padding>{aside}</TextBlock>
-                    <InnerHeader className='animate'>Experienced with:</InnerHeader>
-                    <FlexRow>
-                        <Column>
-                        {jsLibs.slice(0,jsLibs.length/2).map((lib, i) => 
-                            <LibBlock 
-                                className='animate' 
-                                key={i}
-                            >
-                            {lib}
-                            </LibBlock>
-                        )}
-                        </Column>
-                        <Column>
-                        {jsLibs.slice(jsLibs.length/2,jsLibs.length).map( (lib, i) => 
-                            <LibBlock 
-                                className='animate' 
-                                key={i}
-                            >
-                            {lib}
-                            </LibBlock>
-                        )}
-                        </Column>
-                    </FlexRow>
-                </Column>
-                <FluidColumn justify={'center'}>
-                    <Image className='animate' src={Me}/>
-                </FluidColumn>
-            </InnerContent>
-        </ContentWrapper>
+    <ContentWrapper 
+      ref={aboutContainer} 
+      active={active} 
+      padding={'7.5em 0 0 0'}
+    >
+      <SectionHeader 
+        highlight 
+        className='animate'
+      >
+        About
+      </SectionHeader>
+      <InnerContent justify={'space-evenly'}>
+          <Column justify={'space-evenly'}>
+              <TextBlock className='animate' padding>{bio}</TextBlock>
+              <TextBlock className='animate' padding>{aside}</TextBlock>
+              <InnerHeader className='animate'>Experienced with:</InnerHeader>
+              <FlexRow>
+                  <Column>
+                  {jsLibs.slice(0,jsLibs.length/2).map((lib, i) => 
+                      <LibBlock 
+                        className='animate' 
+                        key={i}
+                      >
+                      {lib}
+                      </LibBlock>
+                  )}
+                  </Column>
+                  <Column>
+                  {jsLibs.slice(jsLibs.length/2,jsLibs.length).map( (lib, i) => 
+                      <LibBlock 
+                        className='animate' 
+                        key={i}
+                      >
+                      {lib}
+                      </LibBlock>
+                  )}
+                  </Column>
+              </FlexRow>
+          </Column>
+          <FluidColumn justify={'center'}>
+              <Image className='animate' src={Me}/>
+          </FluidColumn>
+      </InnerContent>
+    </ContentWrapper>
 	)
 });

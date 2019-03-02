@@ -88,6 +88,7 @@ const ModalOverlay = styled.div`
     display: flex;
     justify-content: flex-end;
     position: fixed;
+    overflow: hidden;
     top: 0;
     bottom: 0;
     left: 0;
@@ -171,7 +172,6 @@ export const MobileNav = ({scroll, isOpen, toggle, navStyles, width}) => {
                 height={'100vh'}
                 width={'65%'}
                 open={isOpen}
-                onClick={toggleMenu}
             >
                 <MenuBody>
                     <CloseButton onClick={toggleMenu} />

@@ -1,4 +1,5 @@
 import React, {useRef, useEffect, useState} from 'react';
+import styled from 'styled-components';
 import {SocialLinks} from '../Components/SocialLinks';
 import {Intro} from '../Components/intro';
 import {About} from '../Components/about';
@@ -49,6 +50,17 @@ library.add(
   faArrowLeft
 );
 
+
+const AppWrapper = styled.div`
+  display: flex; 
+  flexDirection: column; 
+  justifyContent: space-between; 
+  width: 100%;
+  ${props => props.isLocked && `
+    position: fixed;
+  `}
+`;
+
 export default function AboutMe(){
 
   let aboutEl = useRef();
@@ -87,9 +99,9 @@ export default function AboutMe(){
         currentPositionY = startPositionY + Math.ceil(deltaTop * changePercent);
         
         window.scroll({
-            left: 0,
-            top: currentPositionY,
-            behavior: 'smooth'
+          left: 0,
+          top: currentPositionY,
+          behavior: 'smooth'
         });
         
         if(changePercent < 1){
@@ -102,13 +114,7 @@ export default function AboutMe(){
   }
 
   return(
-    <div style={{
-        display: 'flex', 
-        flexDirection: 'column', 
-        justifyContent: 'space-between', 
-        width: '100%'
-      }}
-    >
+    <AppWrapper>
       <GlobalStyle />
       <Navigation 
         scroll={scroll}
@@ -132,6 +138,6 @@ export default function AboutMe(){
         <Farewell />
         <Footer />
       </Column>
-    </div>
+    </AppWrapper>
   )
 }

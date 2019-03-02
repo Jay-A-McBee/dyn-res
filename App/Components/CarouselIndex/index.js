@@ -55,39 +55,33 @@ const StretchRow = styled(Row)`
   justify-content: space-around;
 `;
 
- // ${Media.desktop`
-    //     ${props => props.offset && css`
-    //         transform: translateX(${offset * (570/16)}em)
-    //     `}
-    // `}
-
 const ViewPort = styled(Row)`
-    justify-content: space-between;
-    transition: transform .75s cubic-bezier(.1, .25, .75, 1) .15s;
-    position: absolute;
-    top: auto;
-    left: 0px;
+  justify-content: space-between;
+  transition: transform .75s cubic-bezier(.1, .25, .75, 1) .15s;
+  position: absolute;
+  top: auto;
+  left: 0px;
 
-    ${props => props.active && css`
-        transform: translateX(${props => props.active * ((props.dimensions.width + 40)/-16)}em);
-    `}
+  ${props => props.active && css`
+    transform: translateX(${props => props.active * (props.dimensions.width/-16)}em);
+  `}
 `
 const View = styled.div`
-    position: relative;
-    align-self: center;
-    width: ${props => props.dimensions.width/16}em
-    height: ${props => props.dimensions.height/16}em;
-    overflow: hidden;
+  position: relative;
+  align-self: center;
+  width: ${props => props.dimensions.width/16}em
+  height: ${props => props.dimensions.height/16}em;
+  overflow: hidden;
 `;
 
 const Button = styled.button`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2em;
-    border: none;
-    background-color: inherit;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
 `;
 
 const RotateIcon = ({handleClick, size, iconName}) => (
@@ -148,18 +142,19 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
   let view = useRef(null);
 
   const getDimensions = (width) => {
-      const makeDimensions = (height, width) => ({
-        height, 
-        width
-      });
 
-      if(width > 800){
-        return makeDimensions(500, 700)
-      }else if(width < 800 && width > 500){
-        return makeDimensions(320, 480);
-      }else{
-        return makeDimensions(450, 280);
-      }
+    const makeDimensions = (height, width) => ({
+      height, 
+      width
+    });
+
+    if(width > 800){
+      return makeDimensions(500, 716);
+    }else if(width < 800 && width > 500){
+      return makeDimensions(320, 496);
+    }else{
+      return makeDimensions(450, 296);
+    }
   };
 
   return width > 800 ? (

@@ -20,7 +20,7 @@ const Container = styled.div`
     flex-direction: row;
     justify-content: space-around;
     transition: all .75s ease-in-out;
-    margin: 0 2.5em 0 0;
+    padding: 0 .5em;
 
     ${props => props.active && `opacity: 1`}
 
@@ -59,7 +59,7 @@ const DeviceImage = styled.img`
   ${Media.phone`
     position: relative;
     left: -.5em;
-    height: 75%;
+    height: 65%;
     width: 95%;
   `}
 `;
@@ -122,9 +122,6 @@ const Link = styled.a`
   `}
 `;
 const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current, active}) => {
-
-
-
 	return(
     <Container active={active || false}>
       <DeviceImage src={photo} />
