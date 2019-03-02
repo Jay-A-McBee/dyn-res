@@ -12,7 +12,7 @@ import 'jest-styled-components';
 
 describe('SectionWrapper StyComp', () => {
     it(`
-        defaults:
+        renders a <section> element with defaults:
             flex-direction:row;
             justify-content:space-between;
     `, () => {
@@ -21,10 +21,15 @@ describe('SectionWrapper StyComp', () => {
             <SectionWrapper/>
         ).toJSON();
 
+        expect(tree.type).toBe('section');
         expect(tree).toMatchSnapshot();
     });
 
-    it('accepts flexDirection and justify props', () => {
+    it(`
+        accepts props:
+            justify
+            flexDirection
+    `, () => {
         let tree = renderer.create(
             <SectionWrapper 
                 justify={'flex-end'}
@@ -34,4 +39,44 @@ describe('SectionWrapper StyComp', () => {
 
         expect(tree).toMatchSnapshot();
     })
+});
+
+describe('ContentWrapper StyComp', () => {
+    it(`
+        renders a configurable <section> element
+    `, () => {
+
+        let tree = renderer.create(
+            <ContentWrapper/>
+        ).toJSON();
+
+        expect(tree.type).toBe('section');
+        expect(tree).toMatchSnapshot();
+    });
+
+    it(`
+        accepts props:
+            flexDirection
+            justify
+            alignSelf
+            padding
+            margin
+            offset
+    `, () => {
+
+        let tree = renderer.create(
+            <ContentWrapper
+                flexDirection={'row'}
+                justify={'flex-start'}
+                alignSelf={'center'}
+                padding={'20em'}
+                margin={'0 2em'}
+                offset={`
+                    top:20px;
+                `}
+            />
+        ).toJSON();
+
+        expect(tree).toMatchSnapshot();
+    });
 });

@@ -1,7 +1,173 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ContentWrapper StyComp 
+        accepts props:
+            flexDirection
+            justify
+            alignSelf
+            padding
+            margin
+            offset
+     1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  padding: 20em;
+  margin-top: 0 2em;
+  position: relative;
+  top: 20px;
+}
+
+.c0 .animate {
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  opacity: 0;
+  -webkit-transform: translateY(1.25em);
+  -ms-transform: translateY(1.25em);
+  transform: translateY(1.25em);
+}
+
+@media only screen and (min-width:50em) {
+  .c0 {
+    width: 65%;
+  }
+}
+
+@media only screen and (max-width:49.9375em) {
+  .c0 {
+    width: 75%;
+    margin-top: 0 2em;
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+  }
+}
+
+@media only screen and (max-width:37.5em) {
+  .c0 {
+    width: 90%;
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    margin-top: 0 2em;
+    position: relative;
+    top: 2.5em;
+    left: 0;
+  }
+}
+
+<section
+  className="c0"
+  offset="
+                    top:20px;
+                "
+/>
+`;
+
+exports[`ContentWrapper StyComp 
+        renders a configurable <section> element
+     1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  padding: 0;
+  margin-top: 5.5em;
+}
+
+.c0 .animate {
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  opacity: 0;
+  -webkit-transform: translateY(1.25em);
+  -ms-transform: translateY(1.25em);
+  transform: translateY(1.25em);
+}
+
+@media only screen and (min-width:50em) {
+  .c0 {
+    width: 65%;
+  }
+}
+
+@media only screen and (max-width:49.9375em) {
+  .c0 {
+    width: 75%;
+    margin-top: 5.5em;
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+  }
+}
+
+@media only screen and (max-width:37.5em) {
+  .c0 {
+    width: 90%;
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    margin-top: 2.5em;
+    position: relative;
+    top: 2.5em;
+    left: 0;
+  }
+}
+
+<section
+  className="c0"
+/>
+`;
+
 exports[`SectionWrapper StyComp 
-        defaults:
+        accepts props:
+            justify
+            flexDirection
+     1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  margin-top: 5em;
+}
+
+<section
+  className="c0"
+/>
+`;
+
+exports[`SectionWrapper StyComp 
+        renders a <section> element with defaults:
             flex-direction:row;
             justify-content:space-between;
      1`] = `
