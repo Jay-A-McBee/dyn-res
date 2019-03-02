@@ -57,13 +57,13 @@ const StretchRow = styled(Row)`
 
 const ViewPort = styled(Row)`
   justify-content: space-between;
-  transition: transform .75s cubic-bezier(.1, .25, .75, 1) .15s;
+  transition: transform 1.25s cubic-bezier(.75, .25, .75, .95) .15s;
   position: absolute;
   top: auto;
   left: 0px;
 
   ${props => props.active && css`
-    transform: translateX(${props => props.active * (props.dimensions.width/-16)}em);
+    transform: translateX(${props => props.active * ((props.dimensions.width + 2)/-16)}em);
   `}
 `
 const View = styled.div`

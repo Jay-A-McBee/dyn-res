@@ -21,6 +21,7 @@ const Container = styled.div`
     justify-content: space-around;
     transition: all .75s ease-in-out;
     padding: 0 .5em;
+    border-right: 2px solid orange;
 
     ${props => props.active && `opacity: 1`}
 
