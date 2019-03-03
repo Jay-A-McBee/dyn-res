@@ -133,8 +133,8 @@ const ModalComponent = ({
     return (
         <>
         {ButtonComponent ? 
-            <ButtonComponent onClick={toggleModal} /> :
-            <ModalButton onClick={toggleModal}>{message}</ModalButton>
+            <ButtonComponent data-testid='modalTest' onClick={toggleModal} /> :
+            <ModalButton data-testid='modalTest' onClick={toggleModal}>{message}</ModalButton>
         }
         <ModalOverlay 
             id='modal' 

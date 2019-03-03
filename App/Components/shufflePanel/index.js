@@ -174,19 +174,19 @@ const carouselChildren = [
 
 }, {SPLT:[], HackReactor:[]}) 
 
-const WorkDescription = ({title, description, dates, href, selected, inView}) => {
+export const WorkDescription = ({title, description, dates, href, selected}) => {
   return (
     <WorkColumn justify={'space-around'}>
       {!href ? 
         <Title className='animate'>{title}</Title> :
-        <Title className='animate'>{title+' '}<WorkLink href={href} target="_blank">{selected}</WorkLink></Title>
+        <Title data-testid='title' className='animate'>{title+' '}<WorkLink data-testid='workLink' href={href} target="_blank">{selected}</WorkLink></Title>
       }
-      <Dates className='animate'>{dates}</Dates>
+      <Dates data-testid='dates' className='animate'>{dates}</Dates>
       <br />
       {Object.keys(description).map((key, i) => 
         <BulletItem className='animate' key={i}>
           <FontAwesomeIcon style={{color: 'rgb(237, 157, 85)'}} icon='chevron-right' size='1x' />
-          <ListItem>{description[key]}</ListItem>
+          <ListItem data-testid={key}>{description[key]}</ListItem>
         </BulletItem>
       )}
       {carouselChildren[selected] ?

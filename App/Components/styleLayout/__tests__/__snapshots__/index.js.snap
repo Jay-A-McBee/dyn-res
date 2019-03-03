@@ -190,24 +190,3 @@ exports[`SectionWrapper StyComp
   className="c0"
 />
 `;
-
-exports[`SectionWrapper StyComp accepts flexDirection and justify props 1`] = `
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
-  margin-top: 5em;
-}
-
-<section
-  className="c0"
-/>
-`;
