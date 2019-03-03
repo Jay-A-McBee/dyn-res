@@ -208,7 +208,6 @@ export const WorkDescription = ({title, description, dates, href, selected}) => 
   
 export const Experience = () => {
   const employers = Object.keys(work);
-  
   let[selected, selectWorkExperience] = useState(employers[0]);
   let[offset, updateOffset] = useState(0);
   let width = useWidthHook();
@@ -230,9 +229,10 @@ export const Experience = () => {
 
   return (
     <WorkContainer justify={'space-around'}>
-      <ListContainer className='animate'>
+      <ListContainer data-testid='tabs' className='animate'>
         {employers.map( (title, i) => (
           <WorkPlace
+            data-testid={title}
             className='animate'
             key={i}
             name={title} 

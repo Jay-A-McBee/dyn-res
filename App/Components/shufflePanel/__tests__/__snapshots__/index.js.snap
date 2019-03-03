@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Experience /> renders clickable tabs and associated description 1`] = `
+<div
+  class="animate sc-eHgmQL ILyXW"
+  data-testid="tabs"
+>
+  <div
+    class="animate sc-cvbbAY jnuCuz"
+    data-testid="ClickTripz"
+    name="ClickTripz"
+  >
+    ClickTripz
+  </div>
+  <div
+    class="animate sc-cvbbAY mBXEX"
+    data-testid="SPLT"
+    name="SPLT"
+  >
+    SPLT
+  </div>
+  <div
+    class="animate sc-cvbbAY mBXEX"
+    data-testid="HackReactor"
+    name="HackReactor"
+  >
+    HackReactor
+  </div>
+  <div
+    class="sc-jWBwVP ZEGqK"
+    offset="0"
+  />
+</div>
+`;
+
+exports[`<Experience /> renders clickable tabs and associated description 2`] = `
+<div
+  class="animate sc-eHgmQL ILyXW"
+  data-testid="tabs"
+>
+  <div
+    class="animate sc-cvbbAY mBXEX"
+    data-testid="ClickTripz"
+    name="ClickTripz"
+  >
+    ClickTripz
+  </div>
+  <div
+    class="animate sc-cvbbAY jnuCuz"
+    data-testid="SPLT"
+    name="SPLT"
+  >
+    SPLT
+  </div>
+  <div
+    class="animate sc-cvbbAY mBXEX"
+    data-testid="HackReactor"
+    name="HackReactor"
+  >
+    HackReactor
+  </div>
+  <div
+    class="sc-jWBwVP eYMUBu"
+    offset="1"
+  />
+</div>
+`;
+
+exports[`<Experience /> renders clickable tabs and associated description 3`] = `
+<div
+  class="animate sc-eHgmQL ILyXW"
+  data-testid="tabs"
+>
+  <div
+    class="animate sc-cvbbAY mBXEX"
+    data-testid="ClickTripz"
+    name="ClickTripz"
+  >
+    ClickTripz
+  </div>
+  <div
+    class="animate sc-cvbbAY mBXEX"
+    data-testid="SPLT"
+    name="SPLT"
+  >
+    SPLT
+  </div>
+  <div
+    class="animate sc-cvbbAY jnuCuz"
+    data-testid="HackReactor"
+    name="HackReactor"
+  >
+    HackReactor
+  </div>
+  <div
+    class="sc-jWBwVP fvGVdR"
+    offset="2"
+  />
+</div>
+`;

@@ -19,7 +19,7 @@ jest.mock('../../../Assets/pics/fairshareShell.png', () => '');
 jest.mock('../../../Assets/pics/journeymenShell.png', () => '');
 jest.mock('../../../Assets/pics/sentimentalistShell.png', () => '');
 
-describe('WorkDescription', () => {
+describe('<WorkDescription />', () => {
     it('accepts title, description, dates, href, selected props', () => {
         const {getByTestId} = render(
             <WorkDescription
@@ -51,4 +51,28 @@ describe('WorkDescription', () => {
         );
         expect(getByTestId('modalTest')).toBeTruthy();
     });
+});
+
+describe('<Experience />', () => {
+    it('renders clickable tabs and associated description', () => {
+        const {getByTestId, container, asFragment} = render(<Experience />);
+
+        const [
+          tab1,
+          tab2,
+          tab3
+        ] = [
+          getByTestId('ClickTripz'),
+          getByTestId('SPLT'),
+          getByTestId('HackReactor')
+        ];
+
+        fireEvent.click(tab1);
+        expect(getByTestId('tabs')).toMatchSnapshot();
+        fireEvent.click(tab2);
+        expect(getByTestId('tabs')).toMatchSnapshot();
+        fireEvent.click(tab3);
+        expect(getByTestId('tabs')).toMatchSnapshot();
+
+  });
 });
