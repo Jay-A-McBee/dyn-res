@@ -68,9 +68,9 @@ describe('<Experience />', async () => {
             tab2,
             tab3
         ] = [
-            getByTestId('ClickTripz'),
-            getByTestId('SPLT'),
-            getByTestId('HackReactor')
+            getByTestId('tab1'),
+            getByTestId('tab2'),
+            getByTestId('tab3')
         ];
 
         const fullDescription = getByTestId('fullDescription');

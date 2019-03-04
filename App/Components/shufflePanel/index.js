@@ -232,7 +232,7 @@ export const Experience = () => {
       <ListContainer data-testid='tabs' className='animate'>
         {employers.map( (title, i) => (
           <WorkPlace
-            data-testid={title}
+            data-testid={`tab${i + 1}`}
             className='animate'
             key={i}
             name={title} 
