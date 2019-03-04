@@ -11,6 +11,9 @@ jest.mock('../../../Assets/pics/spltscreen.png', () => '');
 jest.mock('../../../Assets/pics/fairshareShell.png', () => '');
 jest.mock('../../../Assets/pics/journeymenShell.png', () => '');
 jest.mock('../../../Assets/pics/sentimentalistShell.png', () => '');
+jest.mock('@fortawesome/react-fontawesome', () => ({
+    FontAwesomeIcon: () => (<div></div>)
+}));
 
 const description = {
     a: 'bar',

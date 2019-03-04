@@ -7,21 +7,21 @@ exports[`<Experience /> renders clickable tabs and associated description 1`] = 
 >
   <div
     class="animate sc-cvbbAY jnuCuz"
-    data-testid="ClickTripz"
+    data-testid="tab1"
     name="ClickTripz"
   >
     ClickTripz
   </div>
   <div
     class="animate sc-cvbbAY mBXEX"
-    data-testid="SPLT"
+    data-testid="tab2"
     name="SPLT"
   >
     SPLT
   </div>
   <div
     class="animate sc-cvbbAY mBXEX"
-    data-testid="HackReactor"
+    data-testid="tab3"
     name="HackReactor"
   >
     HackReactor
@@ -62,6 +62,7 @@ exports[`<Experience /> renders clickable tabs and associated description 2`] = 
   <div
     class="sc-gZMcBi animate sc-jDwBTQ DOFNs"
   >
+    <div />
     <p
       class="sc-gPEVay hWgLEq"
       data-testid="a"
@@ -72,6 +73,7 @@ exports[`<Experience /> renders clickable tabs and associated description 2`] = 
   <div
     class="sc-gZMcBi animate sc-jDwBTQ DOFNs"
   >
+    <div />
     <p
       class="sc-gPEVay hWgLEq"
       data-testid="b"
@@ -82,6 +84,7 @@ exports[`<Experience /> renders clickable tabs and associated description 2`] = 
   <div
     class="sc-gZMcBi animate sc-jDwBTQ DOFNs"
   >
+    <div />
     <p
       class="sc-gPEVay hWgLEq"
       data-testid="c"
@@ -99,21 +102,21 @@ exports[`<Experience /> renders clickable tabs and associated description 3`] = 
 >
   <div
     class="animate sc-cvbbAY mBXEX"
-    data-testid="ClickTripz"
+    data-testid="tab1"
     name="ClickTripz"
   >
     ClickTripz
   </div>
   <div
     class="animate sc-cvbbAY jnuCuz"
-    data-testid="SPLT"
+    data-testid="tab2"
     name="SPLT"
   >
     SPLT
   </div>
   <div
     class="animate sc-cvbbAY mBXEX"
-    data-testid="HackReactor"
+    data-testid="tab3"
     name="HackReactor"
   >
     HackReactor
@@ -154,6 +157,7 @@ exports[`<Experience /> renders clickable tabs and associated description 4`] = 
   <div
     class="sc-gZMcBi animate sc-jDwBTQ DOFNs"
   >
+    <div />
     <p
       class="sc-gPEVay hWgLEq"
       data-testid="a"
@@ -164,6 +168,7 @@ exports[`<Experience /> renders clickable tabs and associated description 4`] = 
   <div
     class="sc-gZMcBi animate sc-jDwBTQ DOFNs"
   >
+    <div />
     <p
       class="sc-gPEVay hWgLEq"
       data-testid="b"
@@ -174,6 +179,7 @@ exports[`<Experience /> renders clickable tabs and associated description 4`] = 
   <div
     class="sc-gZMcBi animate sc-jDwBTQ DOFNs"
   >
+    <div />
     <p
       class="sc-gPEVay hWgLEq"
       data-testid="c"
@@ -198,7 +204,9 @@ exports[`<Experience /> renders clickable tabs and associated description 4`] = 
       <button
         class="sc-bxivhb cwyHox"
         id="close"
-      />
+      >
+        <div />
+      </button>
       <div
         class="sc-jzJRlG dVwAfH"
       >
@@ -210,7 +218,9 @@ exports[`<Experience /> renders clickable tabs and associated description 4`] = 
           >
             <button
               class="sc-kgoBCf fEloWE"
-            />
+            >
+              <div />
+            </button>
           </div>
           <div
             class="sc-chPdSV eqlpFM"
@@ -289,7 +299,9 @@ exports[`<Experience /> renders clickable tabs and associated description 4`] = 
           >
             <button
               class="sc-kgoBCf fEloWE"
-            />
+            >
+              <div />
+            </button>
           </div>
         </div>
         <div
@@ -317,21 +329,21 @@ exports[`<Experience /> renders clickable tabs and associated description 5`] = 
 >
   <div
     class="animate sc-cvbbAY mBXEX"
-    data-testid="ClickTripz"
+    data-testid="tab1"
     name="ClickTripz"
   >
     ClickTripz
   </div>
   <div
     class="animate sc-cvbbAY mBXEX"
-    data-testid="SPLT"
+    data-testid="tab2"
     name="SPLT"
   >
     SPLT
   </div>
   <div
     class="animate sc-cvbbAY jnuCuz"
-    data-testid="HackReactor"
+    data-testid="tab3"
     name="HackReactor"
   >
     HackReactor
@@ -363,6 +375,7 @@ exports[`<Experience /> renders clickable tabs and associated description 6`] = 
   <div
     class="sc-gZMcBi animate sc-jDwBTQ DOFNs"
   >
+    <div />
     <p
       class="sc-gPEVay hWgLEq"
       data-testid="a"
@@ -373,6 +386,7 @@ exports[`<Experience /> renders clickable tabs and associated description 6`] = 
   <div
     class="sc-gZMcBi animate sc-jDwBTQ DOFNs"
   >
+    <div />
     <p
       class="sc-gPEVay hWgLEq"
       data-testid="b"
@@ -383,6 +397,7 @@ exports[`<Experience /> renders clickable tabs and associated description 6`] = 
   <div
     class="sc-gZMcBi animate sc-jDwBTQ DOFNs"
   >
+    <div />
     <p
       class="sc-gPEVay hWgLEq"
       data-testid="c"
@@ -407,7 +422,9 @@ exports[`<Experience /> renders clickable tabs and associated description 6`] = 
       <button
         class="sc-bxivhb cwyHox"
         id="close"
-      />
+      >
+        <div />
+      </button>
       <div
         class="sc-jzJRlG dVwAfH"
       >
@@ -419,7 +436,9 @@ exports[`<Experience /> renders clickable tabs and associated description 6`] = 
           >
             <button
               class="sc-kgoBCf fEloWE"
-            />
+            >
+              <div />
+            </button>
           </div>
           <div
             class="sc-chPdSV eqlpFM"
@@ -461,7 +480,9 @@ exports[`<Experience /> renders clickable tabs and associated description 6`] = 
                     class="sc-eNQAEJ ipKFzS"
                     href="https://github.com/AngryPulpGophers/fairshare"
                     target="_blank"
-                  />
+                  >
+                    <div />
+                  </a>
                 </div>
               </div>
               <div
@@ -498,7 +519,9 @@ exports[`<Experience /> renders clickable tabs and associated description 6`] = 
                     class="sc-eNQAEJ ipKFzS"
                     href="https://github.com/getJourneymen/Journeymen"
                     target="_blank"
-                  />
+                  >
+                    <div />
+                  </a>
                 </div>
               </div>
               <div
@@ -540,7 +563,9 @@ exports[`<Experience /> renders clickable tabs and associated description 6`] = 
           >
             <button
               class="sc-kgoBCf fEloWE"
-            />
+            >
+              <div />
+            </button>
           </div>
         </div>
         <div
