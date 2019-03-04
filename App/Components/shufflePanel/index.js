@@ -176,7 +176,7 @@ const carouselChildren = [
 
 export const WorkDescription = ({title, description, dates, href, selected}) => {
   return (
-    <WorkColumn justify={'space-around'}>
+    <WorkColumn data-testid='fullDescription' justify={'space-around'}>
       {!href ? 
         <Title className='animate'>{title}</Title> :
         <Title data-testid='title' className='animate'>{title+' '}<WorkLink data-testid='workLink' href={href} target="_blank">{selected}</WorkLink></Title>

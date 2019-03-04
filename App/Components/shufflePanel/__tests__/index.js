@@ -1,17 +1,10 @@
 import React from 'react';
+import "babel-polyfill";
 import {render, fireEvent, cleanup, waitForElement} from 'react-testing-library'
 import {
     WorkDescription,
     Experience              
 } from '../index';
-import {
-    mocks
-} from '../__mocks__';
-
-const {
-    description,
-    carouselChildren
-} = mocks;
 
 jest.mock('../../../Assets/pics/adminScreen.png', () => '');
 jest.mock('../../../Assets/pics/spltscreen.png', () => '');
@@ -19,8 +12,16 @@ jest.mock('../../../Assets/pics/fairshareShell.png', () => '');
 jest.mock('../../../Assets/pics/journeymenShell.png', () => '');
 jest.mock('../../../Assets/pics/sentimentalistShell.png', () => '');
 
+const description = {
+    a: 'bar',
+    b: 'baz',
+    c: 'foo'
+};
+
+afterEach(cleanup);
+
 describe('<WorkDescription />', () => {
-    it('accepts title, description, dates, href, selected props', () => {
+    test('accepts title, description, dates, href, selected props', () => {
         const {getByTestId} = render(
             <WorkDescription
                 title={'Foo'}
@@ -34,12 +35,12 @@ describe('<WorkDescription />', () => {
         expect(getByTestId('title').textContent).toBe('Foo clicktripz');
         expect(getByTestId('dates').textContent).toBe('March 2000 - Now');
         expect(getByTestId('workLink').textContent).toBe('clicktripz');
-        expect(getByTestId('a').textContent).toBe(description.a);
-        expect(getByTestId('b').textContent).toBe(description.b);
-        expect(getByTestId('c').textContent).toBe(description.c);
+        expect(getByTestId('a').textContent).toBe('bar');
+        expect(getByTestId('b').textContent).toBe('baz');
+        expect(getByTestId('c').textContent).toBe('foo');
     });
 
-    it('will conditionally render a modal when selected has carousel children els', () => {
+    test('will conditionally render a modal when selected has carousel children els', () => {
         const {getByTestId} = render(
             <WorkDescription
                 title={'Foo'}
@@ -53,26 +54,35 @@ describe('<WorkDescription />', () => {
     });
 });
 
-describe('<Experience />', () => {
-    it('renders clickable tabs and associated description', () => {
-        const {getByTestId, container, asFragment} = render(<Experience />);
+describe('<Experience />', async () => {
+
+    test('renders clickable tabs and associated description', async () => {
+        const {
+            getByTestId, 
+            container, 
+            getByText
+        } = render(<Experience />);
 
         const [
-          tab1,
-          tab2,
-          tab3
+            tab1,
+            tab2,
+            tab3
         ] = [
-          getByTestId('ClickTripz'),
-          getByTestId('SPLT'),
-          getByTestId('HackReactor')
+            getByTestId('ClickTripz'),
+            getByTestId('SPLT'),
+            getByTestId('HackReactor')
         ];
+
+        const fullDescription = getByTestId('fullDescription');
 
         fireEvent.click(tab1);
         expect(getByTestId('tabs')).toMatchSnapshot();
+        expect(fullDescription).toMatchSnapshot();
         fireEvent.click(tab2);
         expect(getByTestId('tabs')).toMatchSnapshot();
+        expect(fullDescription).toMatchSnapshot();
         fireEvent.click(tab3);
         expect(getByTestId('tabs')).toMatchSnapshot();
-
-  });
+        expect(fullDescription).toMatchSnapshot();
+    });
 });
