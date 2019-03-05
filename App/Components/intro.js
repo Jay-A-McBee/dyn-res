@@ -118,12 +118,12 @@ export const Intro = forwardRef(({inView, offset}, ref) => {
             <NarrowText 
               className='animate'
             >
-              I am software developer based in Seattle, Washington specializing in modern web technologies. From React to vanilla JS, I write clean, maintainable code that scales.
+              I am a software developer based in Seattle, Washington specializing in modern web technologies. From React to vanilla JS, I write clean, maintainable code that scales.
             </NarrowText>
             <NarrowText 
               className='animate'
             >
-              My goals are to keep learning, stay sharp and build cool stuff.
+              My goals are to keep learning, stay sharp and build useful tech.
             </NarrowText>
             <Link className='animate' target="_blank" href='mailto:jmcbee1@gmail.com'>Get in touch</Link>
         </PositionedWrapper>
