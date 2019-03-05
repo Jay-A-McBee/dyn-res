@@ -53,7 +53,7 @@ describe('<WorkDescription />', () => {
                 href={'https://foo.bar'}
             />
         );
-        expect(getByTestId('modalTest')).toBeTruthy();
+        expect(getByTestId('modalButton')).toBeTruthy();
     });
 });
 

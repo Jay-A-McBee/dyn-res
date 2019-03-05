@@ -189,7 +189,7 @@ exports[`<Experience /> renders clickable tabs and associated description 4`] = 
   </div>
   <button
     class="sc-htpNat fzxCZZ"
-    data-testid="modalTest"
+    data-testid="modalButton"
   >
     View Work
   </button>
@@ -407,7 +407,7 @@ exports[`<Experience /> renders clickable tabs and associated description 6`] = 
   </div>
   <button
     class="sc-htpNat fzxCZZ"
-    data-testid="modalTest"
+    data-testid="modalButton"
   >
     View Work
   </button>

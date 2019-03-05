@@ -67,24 +67,22 @@ const FlexRow = styled(Row)`
 
 export const About = forwardRef(({inView}, ref) => {
 
+  const jsLibs = [
+    'ES6+',
+    'html/css', 
+    'react', 
+    'react-native',
+    'css-in-js',
+    'jest',
+    'node',
+    'express'
+  ];
 
+  let aboutContainer = useRef(null);
 
-    const jsLibs = [
-        'JavaScript',
-        'HTML/CSS', 
-        'React', 
-        'React-Native',
-        'Redux', 
-        'Node.js',
-        'Express',
-        'Jest'
-    ];
+  let active = useVisibility(ref);
 
-    let aboutContainer = useRef(null);
-
-    let active = useVisibility(ref);
-
-    scrollImperativeHandle(aboutContainer, ref, 'about');
+  scrollImperativeHandle(aboutContainer, ref, 'about');
 
 	return (
     <ContentWrapper 
@@ -99,36 +97,36 @@ export const About = forwardRef(({inView}, ref) => {
         About
       </SectionHeader>
       <InnerContent justify={'space-evenly'}>
-          <Column justify={'space-evenly'}>
-              <TextBlock className='animate' padding>{bio}</TextBlock>
-              <TextBlock className='animate' padding>{aside}</TextBlock>
-              <InnerHeader className='animate'>Experienced with:</InnerHeader>
-              <FlexRow>
-                  <Column>
-                  {jsLibs.slice(0,jsLibs.length/2).map((lib, i) => 
-                      <LibBlock 
-                        className='animate' 
-                        key={i}
-                      >
-                      {lib}
-                      </LibBlock>
-                  )}
-                  </Column>
-                  <Column>
-                  {jsLibs.slice(jsLibs.length/2,jsLibs.length).map( (lib, i) => 
-                      <LibBlock 
-                        className='animate' 
-                        key={i}
-                      >
-                      {lib}
-                      </LibBlock>
-                  )}
-                  </Column>
-              </FlexRow>
-          </Column>
-          <FluidColumn justify={'center'}>
-              <Image className='animate' src={Me}/>
-          </FluidColumn>
+        <Column justify={'space-evenly'}>
+          <TextBlock className='animate' padding>{bio}</TextBlock>
+          <TextBlock className='animate' padding>{aside}</TextBlock>
+          <InnerHeader className='animate'>Experienced with:</InnerHeader>
+          <FlexRow>
+            <Column>
+              {jsLibs.slice(0,jsLibs.length/2).map((lib, i) => 
+                <LibBlock 
+                  className='animate' 
+                  key={i}
+                >
+                {lib}
+                </LibBlock>
+              )}
+            </Column>
+            <Column>
+              {jsLibs.slice(jsLibs.length/2).map( (lib, i) => 
+                <LibBlock 
+                  className='animate' 
+                  key={i}
+                >
+                {lib}
+                </LibBlock>
+              )}
+            </Column>
+          </FlexRow>
+        </Column>
+        <FluidColumn justify={'center'}>
+          <Image className='animate' src={Me}/>
+        </FluidColumn>
       </InnerContent>
     </ContentWrapper>
 	)
