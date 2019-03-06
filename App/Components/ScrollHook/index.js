@@ -1,7 +1,5 @@
 import React, {useState, useRef, useEffect, useLayoutEffect} from 'react';
 import io from 'intersection-observer';
-import throttle from 'lodash/throttle';
-
 
 export const useVisibility = (ref) => {
     let observer = useRef(); 
@@ -20,6 +18,11 @@ export const useVisibility = (ref) => {
     };
 
     useEffect(() => {
+        if(active){
+            observer.current = null;
+            return;
+        }
+
         if(!observer.current){
             observer.current = window.IntersectionObserver ?
                 new IntersectionObserver(setActive, config) :
@@ -29,6 +32,7 @@ export const useVisibility = (ref) => {
         if(ref.current){
             observer.current.observe(ref.current.container);
         }
+
     });
 
     return active;
