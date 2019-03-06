@@ -1,8 +1,8 @@
-import React, {useState, useRef, useEffect, useLayoutEffect} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import io from 'intersection-observer';
 
 export const useVisibility = (ref) => {
-    let observer = useRef(); 
+    let observer = useRef(null); 
     let [active, setViewState] = useState(false);
 
     const config = {
