@@ -19,7 +19,7 @@ const Reel = styled.div`
 
 const ChevronContainer = styled(Column)`
   justify-content: center;
-  width: 10%;
+  width: 5%;
   align-items: center;
   align-self: center;
   z-index: 25;

@@ -31,7 +31,7 @@ const Container = styled.div`
 
     ${Media.tablet`
         width: ${480/16}em;
-        justify-content: space-around;
+        justify-content: center;
     `}
 
     ${Media.phone`
@@ -45,23 +45,16 @@ const Container = styled.div`
 
 const heightBlock = window.innerHeight / 160;
 
-
-
 const DeviceImage = styled.img`
-  height: 100%;
-  width: 75%;
-  margin: auto;
-
+  height: 75vmin;
+  width: 75vmin;
   ${Media.tablet`
-    width: 65%;
-    height: 110%;
+    height: 50vmin;
+    width: 50vmin;
   `}
-
   ${Media.phone`
-    position: relative;
-    left: -.5em;
-    height: 65%;
-    width: 95%;
+    height: 70vmin;
+    width: 70vmin;
   `}
 `;
 
@@ -107,6 +100,7 @@ const TechDescription = styled.p`
 const BigColumn = styled(Column)`
     position: relative;
     top: -2.5em;
+    width: 20vmin;
 `	
 
 const Link = styled.a`
