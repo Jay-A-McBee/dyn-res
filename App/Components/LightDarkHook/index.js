@@ -2,10 +2,18 @@ import React, {useState} from 'react';
 import {theme} from '../globalStyles/theme';
 
 
-export const useTheme = (defaultTheme) => {
-    let [activeTheme, setTheme] = useState(defaultTheme);
+export const useTheme = () => {
+    let [activeTheme, setTheme] = useState('dark');
 
-    const changeTheme = val => setTheme(val);
+    const changeTheme = () => {
+        debugger
+        const toggle = {
+            light: 'dark',
+            dark: 'light'
+        }
+
+        setTheme(toggle[activeTheme]);
+    }
 
     return {
         changeTheme,
