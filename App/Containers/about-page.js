@@ -60,97 +60,98 @@ const AppWrapper = styled.div`
 
 export default function AboutMe(){
 
-  let aboutEl = useRef();
-  let workEl = useRef();
-  let projectEl = useRef();
-  let introEl = useRef();
-  let linksEl = useRef();
+    let aboutEl = useRef();
+    let workEl = useRef();
+    let projectEl = useRef();
+    let introEl = useRef();
+    let linksEl = useRef();
 
-  const scroll = (name, width) => {
-    let el = [
-      aboutEl,
-      workEl, 
-      projectEl
-    ].filter( ref => ref.current.id === name)[0];
-    
-    const {
-      offsetTop,
-    } = el.current.container;
-    
-    let startPositionY = window.pageYOffset;
-    let endPositionY = offsetTop;
-    
-    let duration = width > 500 ? 500 : 1500;
-    let startTime
-    let currentPositionY
-    
-    function animate(timestamp){
-        if(!startTime) startTime = timestamp;
+    const scroll = (name, width) => {
+        let el = [
+        aboutEl,
+        workEl, 
+        projectEl
+        ].filter( ref => ref.current.id === name)[0];
         
-        const defaultEasing = (t) => t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t;
+        const {
+        offsetTop,
+        } = el.current.container;
         
-        let progress = timestamp - startTime;
-        let deltaTop = endPositionY - startPositionY;
-        let changePercent = progress >= duration ? 1 : defaultEasing(progress/duration);
+        let startPositionY = window.pageYOffset;
+        let endPositionY = offsetTop;
         
-        currentPositionY = startPositionY + Math.ceil(deltaTop * changePercent);
+        let duration = width > 500 ? 500 : 1500;
+        let startTime
+        let currentPositionY
         
-        window.scroll({
-          left: 0,
-          top: currentPositionY,
-          behavior: 'smooth'
-        });
-        
-        if(changePercent < 1){
-            requestAnimationFrame(animate);
-        }else{
-            return;
+        function animate(timestamp){
+            if(!startTime) startTime = timestamp;
+            
+            const defaultEasing = (t) => t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t;
+            
+            let progress = timestamp - startTime;
+            let deltaTop = endPositionY - startPositionY;
+            let changePercent = progress >= duration ? 1 : defaultEasing(progress/duration);
+            
+            currentPositionY = startPositionY + Math.ceil(deltaTop * changePercent);
+            
+            window.scroll({
+            left: 0,
+            top: currentPositionY,
+            behavior: 'smooth'
+            });
+            
+            if(changePercent < 1){
+                requestAnimationFrame(animate);
+            }else{
+                return;
+            }
         }
-    }
+
     requestAnimationFrame(animate);
   }
 
-    const {
-      theme,
-      changeTheme
+    let {
+        theme,
+        changeTheme
     } = useTheme();
 
 
-  const btnStyles = {
-      height: '5em',
-      width: '10%',
-      position: 'relative',
-      top: '5em'
-  }
+    const btnStyles = {
+        height: '5em',
+        width: '10%',
+        position: 'relative',
+        top: '5em'
+    }
 
-  return(
-    <ThemeProvider theme={theme}>
-        <AppWrapper>
-            <GlobalStyle />
-            <Navigation 
-                scroll={scroll}
-            />
-            <SocialLinks 
-                ref={linksEl} 
-            />
-            <Column>
-                <button style={btnStyles} onClick={changeTheme}>light mode</button>
-                <Intro 
-                ref={introEl} 
+    return(
+        <ThemeProvider theme={theme}>
+            <AppWrapper>
+                <GlobalStyle />
+                <Navigation 
+                    scroll={scroll}
                 />
-                <About 
-                ref={aboutEl} 
+                <SocialLinks 
+                    ref={linksEl} 
                 />
-                <Work 
-                ref={workEl} 
-                />
-                <Projects 
-                ref={projectEl} 
-                /> 
-                <Farewell />
-                <Footer />
-            </Column>
-        </AppWrapper>
-    </ThemeProvider>
-  )
+                <Column>
+                    <button style={btnStyles} onClick={changeTheme}>light mode</button>
+                    <Intro 
+                        ref={introEl} 
+                    />
+                    <About 
+                        ref={aboutEl} 
+                    />
+                    <Work 
+                        ref={workEl} 
+                    />
+                    <Projects 
+                        ref={projectEl} 
+                    /> 
+                    <Farewell />
+                    <Footer />
+                </Column>
+            </AppWrapper>
+        </ThemeProvider>
+    )
 }

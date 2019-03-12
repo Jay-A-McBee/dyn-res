@@ -4,20 +4,11 @@ const teal = 'rgb(103, 206, 178)';
 const brown = 'rgba(114, 98, 99, .99)';
 const ltBrown = 'rgb(252, 219, 148)';
 const dkBrown = 'rgb(61, 45, 45)';
-const folder = `rgba(224, 210, 184, .9)`;
+const folder = 'rgba(224, 210, 184, .9)';
 const chalkboard = 'rgba(45, 38, 38, .99)';
 
-const base = {
-    orange: `${orange}`,
-    white:`${white}`,
-    teal:`${teal}`,
-    brown:`${brown}`,
-    ltBrown: `${ltBrown}`
-};
-
 export const theme = {
-    'dark':{
-        base,
+    dark:{
         sectionHeadings: `${white}`,
         highlight: `${orange}`,
         tabs: `${orange}`,
@@ -55,8 +46,7 @@ export const theme = {
         }
 
     },
-    'light':{
-        base,
+    light:{
         sectionHeadings: `${brown}`,
         highlight: `${teal}`,
         tabs: `${teal}`,
