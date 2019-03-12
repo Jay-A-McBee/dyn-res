@@ -68,7 +68,7 @@ const DeviceImage = styled.img`
 const ProjectName = styled.p`
     font-weight: 700;
     font-size: 1.65em;
-    color: rgb(237, 157, 85);
+    color: ${props => props.theme.modal.text};
 
     ${Media.tablet`
         position: relative;
@@ -87,6 +87,7 @@ const ProjectName = styled.p`
 `;
 
 const TechDescription = styled.p`
+  color: ${props => props.theme.modal.text};
   font-weight: 400;
   line-height: .15;
   ${Media.tablet`
@@ -110,6 +111,7 @@ const BigColumn = styled(Column)`
 `	
 
 const Link = styled.a`
+    color: ${props => props.theme.link};
     position: relative;
     top: .5em;
     ${Media.tablet`

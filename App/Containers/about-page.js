@@ -1,5 +1,5 @@
 import React, {useRef, useEffect, useState} from 'react';
-import styled from 'styled-components';
+import styled, {ThemeProvider} from 'styled-components';
 import {SocialLinks} from '../Components/SocialLinks';
 import {Intro} from '../Components/intro';
 import {About} from '../Components/about';
@@ -9,6 +9,7 @@ import {ProjectDescription} from './projdesc-page';
 import {Navigation} from '../Components/Nav';
 import {Footer} from '../Components/Footer';
 import {Farewell} from '../Components/Farewell';
+import {useTheme} from '../Components/LightDarkHook';
 import {
     SectionWrapper,
     Row,
@@ -53,12 +54,8 @@ library.add(
 
 const AppWrapper = styled.div`
   display: flex; 
-  flexDirection: column; 
-  justifyContent: space-between; 
-  width: 100%;
-  ${props => props.isLocked && `
-    position: fixed;
-  `}
+  flex-direction: column; 
+  justify-content: space-between; 
 `;
 
 export default function AboutMe(){
@@ -113,31 +110,47 @@ export default function AboutMe(){
     requestAnimationFrame(animate);
   }
 
+    const {
+      theme,
+      changeTheme
+    } = useTheme();
+
+
+  const btnStyles = {
+      height: '5em',
+      width: '10%',
+      position: 'relative',
+      top: '5em'
+  }
+
   return(
-    <AppWrapper>
-      <GlobalStyle />
-      <Navigation 
-        scroll={scroll}
-      />
-      <SocialLinks 
-        ref={linksEl} 
-      />
-      <Column>
-        <Intro 
-          ref={introEl} 
-        />
-        <About 
-          ref={aboutEl} 
-        />
-        <Work 
-          ref={workEl} 
-        />
-        <Projects 
-          ref={projectEl} 
-        /> 
-        <Farewell />
-        <Footer />
-      </Column>
-    </AppWrapper>
+    <ThemeProvider theme={theme}>
+        <AppWrapper>
+            <GlobalStyle />
+            <Navigation 
+                scroll={scroll}
+            />
+            <SocialLinks 
+                ref={linksEl} 
+            />
+            <Column>
+                <button style={btnStyles} onClick={changeTheme}>light mode</button>
+                <Intro 
+                ref={introEl} 
+                />
+                <About 
+                ref={aboutEl} 
+                />
+                <Work 
+                ref={workEl} 
+                />
+                <Projects 
+                ref={projectEl} 
+                /> 
+                <Farewell />
+                <Footer />
+            </Column>
+        </AppWrapper>
+    </ThemeProvider>
   )
 }

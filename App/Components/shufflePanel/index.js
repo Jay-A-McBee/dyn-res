@@ -52,7 +52,7 @@ const WorkPlace = styled.div`
   height: 1.5em;
   transition: all 0.5s ease-in-out;
   padding: .5em 0;
-  color: rgb(237, 157, 85);
+  color: ${props => props.theme.tabs};
   font-size: 1.5em;
   font-weight: 700;
   background-color: ${props => props.selected ? 'rgba(209, 209, 214, .2)' : 'inherit'};
@@ -75,7 +75,7 @@ const Highlight = styled.div`
     left: 0;
     bottom: -.1em;
     transform: translateX(0);
-    background-color: rgb(237, 157, 85);
+    background-color: ${props => props.theme.highlight};
 
     ${props => props.offset && css`
       transform: translateX(${100 * props.offset}%);
@@ -86,7 +86,7 @@ const Title = styled.p`
   font-size: 2em;
   font-weight: 700;
   margin: .5em 0;
-  color:  rgb(255, 251, 242);
+  color: ${props => props.theme.title};
 
   ${Media.phone`
     font-size: 1.25em;
@@ -94,19 +94,20 @@ const Title = styled.p`
 `;
 
 const Dates = styled.p`
+  color: ${props => props.theme.dates};
   font-size: 1.5em;
   font-weight: 400;
   margin: 0 0 0.5em 0;
 
   ${Media.phone`
     font-size: 1.25em;
-    `}
+`}
 `;
 
 const WorkLink = styled.a`
   text-decoration: none;
   transition: all .25s ease-in-out;
-  color: rgb(237, 157, 85);
+  color: ${props => props.theme.highlight};
   font-weight: 700
 
   :hover{

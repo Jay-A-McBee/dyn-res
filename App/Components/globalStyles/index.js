@@ -10,8 +10,8 @@ export const GlobalStyle = createGlobalStyle`
 
     body{
         font-family: 'Roboto', courier;
-        color: rgb(252, 219, 148);
-        background-color: rgba(114, 98, 99, .99);
+        color: ${props => props.theme.text};
+        background-color: ${props => props.theme.bckg};
         margin:0; 
         padding:0;
         background-size: 100% 100%;

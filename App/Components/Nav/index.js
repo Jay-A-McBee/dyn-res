@@ -25,7 +25,7 @@ const NavButton = styled.div`
     position: relative;
     right: 5%;
     padding: 2.5% .5% 2.5% 0;
-    color: rgb(255, 251, 242);
+    color: ${props => props.theme.nav.static};
     transition: all .25s ease-in-out;
     background-color: transparent;
     border: none;
@@ -33,7 +33,7 @@ const NavButton = styled.div`
     cursor: pointer;
 
     :hover{
-        color: rgb(237,157,85);
+        color: ${props => props.theme.nav.hover};
     }
     animation: ${fadeInAndUp} .5s ease-in-out;
     animation-fill-mode: forwards;
@@ -58,7 +58,7 @@ const StyledNav = styled.nav`
     `}
 
     ${props => props.fix && css`
-        background-color: rgb(114, 98, 99);
+        background-color: ${props => props.theme.bckg};
         box-shadow: 0 2.5px 5px rgba(10, 10, 10, .4);
     `}
 `;
