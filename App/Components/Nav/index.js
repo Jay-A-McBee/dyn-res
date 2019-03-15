@@ -138,7 +138,7 @@ export const Navigation = ({scroll, cb}) => {
             subscribe();
         }
         location.current = pageYOffset >= 0 ? pageYOffset : 0;
-    },[navStyles])
+    },[navStyles, handler.current])
 
     const iconStyles = {
         float: 'right',
