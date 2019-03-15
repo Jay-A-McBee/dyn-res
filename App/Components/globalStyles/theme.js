@@ -47,6 +47,10 @@ export const theme = {
         toggle: {
             bckg: `${teal}`,
             slide: `${orange}`
+        },
+        farewell: {
+            envelope: `${white}`,
+            border: `${orange}`
         }
 
     },
@@ -89,6 +93,10 @@ export const theme = {
         toggle: {
             bckg: `${orange}`,
             slide: `${teal}`
+        },
+        farewell: {
+            envelope: `${orange}`,
+            border: `${teal}`
         }
     }
 };

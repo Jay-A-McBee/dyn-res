@@ -18,7 +18,7 @@ const BizCard = styled.div`
     top: -2em;
     justify-content: space-around;
     align-self: center;
-    border: 2.5px solid rgb(237, 157, 85);
+    border: 2.5px solid ${props => props.theme.farewell.border};
     border-radius: .25em;
     margin: .5em auto;
     width: 80%;
@@ -29,7 +29,7 @@ const BizCard = styled.div`
 `;
 
 const Bye = styled.h3`
-    color: rgb(237, 157, 85);
+    color: ${props => props.theme.farewell.border};
     align-self: center;
     ${Media.phone`
         font-size: .85em;
@@ -38,7 +38,7 @@ const Bye = styled.h3`
 
 const Link = styled.a`
     padding: 1.15em;
-    color: rgb(255, 250, 239);
+    color: ${props => props.theme.farewell.envelope};
     transition: all .25s ease-in-out;
     ${Media.phone`
       padding: .75em;

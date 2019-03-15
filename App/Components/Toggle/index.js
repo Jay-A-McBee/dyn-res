@@ -14,6 +14,7 @@ const ToggleTrack = styled.div`
     height: 1.5em;
     width: 2.75em;
     border-radius: 2.5em;
+    transition: background-color .5s cubic-bezier(.075, .085, .095, .85);
     background-color: ${props => props.theme.toggle.bckg};
 
     ${Media.phone`
@@ -29,7 +30,7 @@ const Slide = styled.div`
     background-color: ${props => props.theme.toggle.slide};
     border-radius: 4em; 
     border: .5px solid rgba(114, 98, 99, .99);
-    transition: transform .5s cubic-bezier(.075, .085, .095, .85);
+    transition: all .5s cubic-bezier(.075, .085, .095, .85);
     transform: translateX(${props => 1.375 * props.offset}em);
 `;
 

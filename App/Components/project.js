@@ -137,7 +137,7 @@ const MobileFolder = styled.div`
     padding: 2em;
     height: 11em;
     width: 16em;
-    border: 2.5px solid rgb(237, 157, 85);
+    border: 2.5px solid ${props => props.theme.farewell.border};
     margin-bottom: .75em;
     border-radius: 2.5px;
     transition: all .5s ease-in-out;
@@ -150,7 +150,7 @@ const MobileFolderTab = styled.div`
     height: 1.5em;
     margin: 0;
     width: 5em;
-    border-top: 2.5px solid rgb(237, 157, 85);
+    border-top: 2.5px solid ${props => props.theme.farewell.border};
     border-radius: 3em;
 `;
 

@@ -19,10 +19,10 @@ const fadeInAndUp = keyframes`
 const NavButton = styled.div`
     display: flex;
     background-color: inherit;
-    border: .075em solid rgb(237, 157, 85);
+    border: .075em solid ${props => props.theme.highlight};
     border-radius: .5em;
     height: 2.5em;
-    color: rgba(103, 206, 178, .99);
+    color: ${props => props.theme.link};
     justify-content: center;
     align-items: center;
     align-self: center;
@@ -35,15 +35,10 @@ const NavButton = styled.div`
     cursor: pointer;
 
     :hover{
-        color: rgb(237,157,85);
+        color: ${props => props.theme.highlight};
     }
     animation: ${fadeInAndUp} .5s ease-in-out;
     animation-fill-mode: forwards;
-    
-    ${props => props.withBorder && css`
-        border: .5px solid rgba(179, 248, 218)
-    `}
-
 `;
 
 const StyledNav = styled.nav`
@@ -61,7 +56,7 @@ const StyledNav = styled.nav`
     `}
 
     ${props => props.fix && css`
-        background-color: rgb(114, 98, 99);
+        background-color: ${props => props.theme.bckg};
         box-shadow: 0 2.5px 5px rgba(10, 10, 10, .4);
     `}
 `;
@@ -70,7 +65,7 @@ const MenuBody = styled.div`
     display: flex;
     flex-direction: column;
     align-self: flex-end;
-    background-color: rgba(114, 98, 99, .99);
+    background-color: ${props => props.theme.bckg};
     height: 100vh;
     width: 65%;
     z-index: 110;
