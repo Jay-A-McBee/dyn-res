@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import styled, {ThemeProvider} from 'styled-components';
 import {Media} from '../Media';
 import { projectDescriptions } from '../../Assets/shortDescription';
@@ -6,6 +6,7 @@ import { projectDescriptions } from '../../Assets/shortDescription';
 const ToggleTrack = styled.div`
     align-self: center;
     position: relative;
+    cursor: pointer;
     left: 2em;
     display: flex;
     z-index: 100;
@@ -24,27 +25,31 @@ const ToggleTrack = styled.div`
 
 const Slide = styled.div`
     position: absolute;
-    left: 0;
-    height: 1.5em;
-    width: 1.375em;
+    left: .05em;
+    top: .1em;
+    height: 1.35em;
+    width: 1.37em;
     background-color: ${props => props.theme.toggle.slide};
+    box-shadow: ${props => props.active ? `0px 1px 10px white` : `0px 0px transparent`};
+    border: .25px solid black;
     border-radius: 4em; 
-    border: .5px solid rgba(114, 98, 99, .99);
     transition: all .5s cubic-bezier(.075, .085, .095, .85);
-    transform: translateX(${props => 1.375 * props.offset}em);
-`;
-
-const HiddenCheckbox = styled.input`
-    opacity: 0;
-    cursor: pointer;
-    height: 1.5em;
-    width: 1.75em;
-    border-radius: 4em; 
+    transform: translateX(${props => 1.25 * props.offset}em);
 `;
 
 export const LightDarkToggle = ({cb}) => {
     const [offset, setOffset] = useState(0);
+    const [active, setActive] = useState(false);
 
+    const handler = useRef(null);
+    const lastPosition = useRef(0);
+
+    useEffect(() => {
+        if(active && lastPosition.current !== offset){
+            lastPosition.current = offset;
+            setActive(!active);
+        }
+    },[active, lastPosition.current, offset])
 
     const toggle = () => {
         if(offset === 0 ){
@@ -52,23 +57,28 @@ export const LightDarkToggle = ({cb}) => {
         }else{
             setOffset(0);
         }
+        handler.current.unsubscribe();
         cb(offset);
+    };
+
+    const subscribe = () => {
+        window.addEventListener('mouseup', toggle);
+        return {
+            unsubscribe: () => window.removeEventListener('mouseup', toggle)
+        }
+    }
+
+    const pulse = () => {
+        handler.current = subscribe();
+        setActive(!active);
     };
 
     return (
         <>
-            <ToggleTrack>
-                <HiddenCheckbox 
-                    type='checkbox'
-                    onChange={toggle} 
-                    checked={offset === 1} 
-                />
-                <HiddenCheckbox
-                    type='checkbox'
-                    onChange={toggle} 
-                    checked={offset === -1} 
-                />
-                <Slide offset={offset} />
+            <ToggleTrack
+                onMouseDown={pulse}
+            >
+                <Slide active={active} offset={offset} />
             </ToggleTrack>
         </>
     )

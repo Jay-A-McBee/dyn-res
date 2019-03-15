@@ -29,7 +29,7 @@ export const useVisibility = (ref) => {
         if(ref.current){
             observer.current.observe(ref.current.container);
         }
-    });
+    },[ref.current, observer.current]);
 
     return active;
 }
