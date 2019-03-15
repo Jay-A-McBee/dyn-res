@@ -12,7 +12,7 @@ const Foot = styled.div`
     align-self: flex-end;
     width: 100%;
     height: 5em;
-    background-color: rgb(61, 45, 45);
+    background-color: ${props => props.theme.footer.bckg};
 `;
 
 const Link = styled.a`

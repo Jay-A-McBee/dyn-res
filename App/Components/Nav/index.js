@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import styled, {css, keyframes} from 'styled-components';
 import throttle from 'lodash/throttle';
 import {MobileNav} from './mobileNav';
+import {LightDarkToggle} from '../Toggle';
 import {Media, useWidthHook} from '../Media';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
@@ -20,12 +21,10 @@ const fadeInAndUp = keyframes`
 const NavButton = styled.div`
     font-weight: 700; 
     font-size: 1.5em; 
-    float: right; 
     text-align: center;
-    position: relative;
-    right: 5%;
+    align-self: center;
     padding: 2.5% .5% 2.5% 0;
-    color: rgb(255, 251, 242);
+    color: ${props => props.theme.nav.static};
     transition: all .25s ease-in-out;
     background-color: transparent;
     border: none;
@@ -33,7 +32,7 @@ const NavButton = styled.div`
     cursor: pointer;
 
     :hover{
-        color: rgb(237,157,85);
+        color: ${props => props.theme.nav.hover};
     }
     animation: ${fadeInAndUp} .5s ease-in-out;
     animation-fill-mode: forwards;
@@ -58,21 +57,30 @@ const StyledNav = styled.nav`
     `}
 
     ${props => props.fix && css`
-        background-color: rgb(114, 98, 99);
+        background-color: ${props => props.theme.bckg};
         box-shadow: 0 2.5px 5px rgba(10, 10, 10, .4);
     `}
 `;
 
-const NavButtonContainer = styled.div`
+const Container = styled.div`
     display: flex;
-    position: relative;
-    align-items: center;
-    height: 75px;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
 `;
 
-export const Navigation = ({scroll}) => {
+const NavButtonContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    left: -3.5em;
+    width: 30%;
+    height: 75px;
+`;
+
+export const Navigation = ({scroll, cb}) => {
     
     let[navStyles, updateNavStyle] = useState({fix:false, hide:false});
     let[isOpen, toggleOpen] = useState(false);
@@ -148,16 +156,19 @@ export const Navigation = ({scroll}) => {
 
     return width > 800 ? (
         <StyledNav {...navStyles}>
-            <NavButtonContainer>
-                {navLinks.map( title => (
-                    <NavButton 
-                        name={title.match(/\<(\w+) \/\>/)[1].toLowerCase()} 
-                        key={title} 
-                        onClick={scrollToSection}
-                    >{title}
-                    </NavButton>
-                ))}
-            </NavButtonContainer>
+            <Container>
+                <LightDarkToggle cb={cb} />
+                <NavButtonContainer>
+                    {navLinks.map( title => (
+                        <NavButton 
+                            name={title.match(/\<(\w+) \/\>/)[1].toLowerCase()} 
+                            key={title} 
+                            onClick={scrollToSection}
+                        >{title}
+                        </NavButton>
+                    ))}
+                </NavButtonContainer>
+            </Container>
         </StyledNav>
     ) : (
         <MobileNav 
@@ -165,6 +176,7 @@ export const Navigation = ({scroll}) => {
             toggle={toggle}
             scroll={scroll}
             navStyles={navStyles} 
+            lightDarkSwitch={() => <LightDarkToggle cb={cb} />}
         />
     )
 }

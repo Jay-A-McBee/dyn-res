@@ -1,5 +1,5 @@
 import React, {useRef, useEffect, useState} from 'react';
-import styled from 'styled-components';
+import styled, {ThemeProvider} from 'styled-components';
 import {SocialLinks} from '../Components/SocialLinks';
 import {Intro} from '../Components/intro';
 import {About} from '../Components/about';
@@ -9,6 +9,8 @@ import {ProjectDescription} from './projdesc-page';
 import {Navigation} from '../Components/Nav';
 import {Footer} from '../Components/Footer';
 import {Farewell} from '../Components/Farewell';
+import {LightDarkToggle} from '../Components/Toggle';
+import {useTheme} from '../Components/LightDarkHook';
 import {
     SectionWrapper,
     Row,
@@ -53,91 +55,104 @@ library.add(
 
 const AppWrapper = styled.div`
   display: flex; 
-  flexDirection: column; 
-  justifyContent: space-between; 
-  width: 100%;
-  ${props => props.isLocked && `
-    position: fixed;
-  `}
+  flex-direction: column; 
+  justify-content: space-between; 
 `;
 
 export default function AboutMe(){
 
-  let aboutEl = useRef();
-  let workEl = useRef();
-  let projectEl = useRef();
-  let introEl = useRef();
-  let linksEl = useRef();
+    let aboutEl = useRef();
+    let workEl = useRef();
+    let projectEl = useRef();
+    let introEl = useRef();
+    let linksEl = useRef();
 
-  const scroll = (name, width) => {
-    let el = [
-      aboutEl,
-      workEl, 
-      projectEl
-    ].filter( ref => ref.current.id === name)[0];
-    
-    const {
-      offsetTop,
-    } = el.current.container;
-    
-    let startPositionY = window.pageYOffset;
-    let endPositionY = offsetTop;
-    
-    let duration = width > 500 ? 500 : 1500;
-    let startTime
-    let currentPositionY
-    
-    function animate(timestamp){
-        if(!startTime) startTime = timestamp;
+    const scroll = (name, width) => {
+        let el = [
+        aboutEl,
+        workEl, 
+        projectEl
+        ].filter( ref => ref.current.id === name)[0];
         
-        const defaultEasing = (t) => t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t;
+        const {
+        offsetTop,
+        } = el.current.container;
         
-        let progress = timestamp - startTime;
-        let deltaTop = endPositionY - startPositionY;
-        let changePercent = progress >= duration ? 1 : defaultEasing(progress/duration);
+        let startPositionY = window.pageYOffset;
+        let endPositionY = offsetTop;
         
-        currentPositionY = startPositionY + Math.ceil(deltaTop * changePercent);
+        let duration = width > 500 ? 500 : 1500;
+        let startTime
+        let currentPositionY
         
-        window.scroll({
-          left: 0,
-          top: currentPositionY,
-          behavior: 'smooth'
-        });
-        
-        if(changePercent < 1){
-            requestAnimationFrame(animate);
-        }else{
-            return;
+        function animate(timestamp){
+            if(!startTime) startTime = timestamp;
+            
+            const defaultEasing = (t) => t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t;
+            
+            let progress = timestamp - startTime;
+            let deltaTop = endPositionY - startPositionY;
+            let changePercent = progress >= duration ? 1 : defaultEasing(progress/duration);
+            
+            currentPositionY = startPositionY + Math.ceil(deltaTop * changePercent);
+            
+            window.scroll({
+            left: 0,
+            top: currentPositionY,
+            behavior: 'smooth'
+            });
+            
+            if(changePercent < 1){
+                requestAnimationFrame(animate);
+            }else{
+                return;
+            }
         }
-    }
-    requestAnimationFrame(animate);
-  }
 
-  return(
-    <AppWrapper>
-      <GlobalStyle />
-      <Navigation 
-        scroll={scroll}
-      />
-      <SocialLinks 
-        ref={linksEl} 
-      />
-      <Column>
-        <Intro 
-          ref={introEl} 
-        />
-        <About 
-          ref={aboutEl} 
-        />
-        <Work 
-          ref={workEl} 
-        />
-        <Projects 
-          ref={projectEl} 
-        /> 
-        <Farewell />
-        <Footer />
-      </Column>
-    </AppWrapper>
-  )
+        requestAnimationFrame(animate);
+    };
+
+    let {
+        theme,
+        changeTheme
+    } = useTheme();
+
+
+    const btnStyles = {
+        height: '5em',
+        width: '10%',
+        position: 'relative',
+        top: '5em'
+    };
+
+    return(
+        <ThemeProvider theme={theme}>
+            <AppWrapper>
+                <GlobalStyle />
+                <Navigation 
+                    cb={changeTheme}
+                    scroll={scroll}
+                />
+                <SocialLinks 
+                    ref={linksEl} 
+                />
+                <Column>
+                    <Intro 
+                        ref={introEl} 
+                    />
+                    <About 
+                        ref={aboutEl} 
+                    />
+                    <Work 
+                        ref={workEl} 
+                    />
+                    <Projects 
+                        ref={projectEl} 
+                    /> 
+                    <Farewell />
+                    <Footer />
+                </Column>
+            </AppWrapper>
+        </ThemeProvider>
+    )
 }
