@@ -43,6 +43,10 @@ export const theme = {
         },
         footer: {
             bckg: `${dkBrown}`
+        },
+        toggle: {
+            bckg: `${teal}`,
+            slide: `${orange}`
         }
 
     },
@@ -81,6 +85,10 @@ export const theme = {
         },
         footer: {
             bckg: `${ltBrown}`
+        },
+        toggle: {
+            bckg: `${orange}`,
+            slide: `${teal}`
         }
     }
 };

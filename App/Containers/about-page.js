@@ -9,6 +9,7 @@ import {ProjectDescription} from './projdesc-page';
 import {Navigation} from '../Components/Nav';
 import {Footer} from '../Components/Footer';
 import {Farewell} from '../Components/Farewell';
+import {LightDarkToggle} from '../Components/Toggle';
 import {useTheme} from '../Components/LightDarkHook';
 import {
     SectionWrapper,
@@ -108,8 +109,8 @@ export default function AboutMe(){
             }
         }
 
-    requestAnimationFrame(animate);
-  }
+        requestAnimationFrame(animate);
+    };
 
     let {
         theme,
@@ -122,7 +123,7 @@ export default function AboutMe(){
         width: '10%',
         position: 'relative',
         top: '5em'
-    }
+    };
 
     return(
         <ThemeProvider theme={theme}>
@@ -135,7 +136,7 @@ export default function AboutMe(){
                     ref={linksEl} 
                 />
                 <Column>
-                    <button style={btnStyles} onClick={changeTheme}>light mode</button>
+                    <LightDarkToggle cb={changeTheme} />
                     <Intro 
                         ref={introEl} 
                     />

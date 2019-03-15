@@ -6,7 +6,6 @@ export const useTheme = () => {
     let [activeTheme, setTheme] = useState('dark');
 
     const changeTheme = () => {
-        debugger
         const toggle = {
             light: 'dark',
             dark: 'light'
