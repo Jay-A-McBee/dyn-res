@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import styled, {ThemeProvider} from 'styled-components';
+import {Media} from '../Media';
 import { projectDescriptions } from '../../Assets/shortDescription';
 
 const ToggleTrack = styled.div`
+    align-self: center;
     position: relative;
-    top: 2em;
     left: 2em;
     display: flex;
     z-index: 100;
@@ -14,6 +15,10 @@ const ToggleTrack = styled.div`
     width: 2.75em;
     border-radius: 2.5em;
     background-color: ${props => props.theme.toggle.bckg};
+
+    ${Media.phone`
+        left: 1em;
+    `}
 `;
 
 const Slide = styled.div`

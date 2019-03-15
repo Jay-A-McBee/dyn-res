@@ -121,9 +121,16 @@ const Button = styled.button`
     left: .5em;
     border: none;
     color: inherit;
-    padding: 1.75em;
-    
-`
+    padding: 1.75em; 
+`;
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 75px;
+`;
        
 const iconStyles = {
     float: 'right',
@@ -145,7 +152,13 @@ const CloseButton = ({onClick}) => (
     </Button>
 );
 
-export const MobileNav = ({scroll, isOpen, toggle, navStyles, width}) => {
+export const MobileNav = ({
+    scroll, 
+    isOpen, 
+    toggle, 
+    navStyles,
+    lightDarkSwitch
+}) => {
     const scrollToSection = (name) => {
         scroll(name, 400);
     };
@@ -164,9 +177,14 @@ export const MobileNav = ({scroll, isOpen, toggle, navStyles, width}) => {
         toggle(!isOpen);
     };
 
+   
+
     return (
         <StyledNav {...navStyles}>
-            <ButtonComponent onClick={toggleMenu} />
+            <Container>
+                {lightDarkSwitch()}
+                <ButtonComponent onClick={toggleMenu} />
+            </Container>
             <ModalOverlay
                 animation={{horizontal: true, slideIn: true}}
                 height={'100vh'}

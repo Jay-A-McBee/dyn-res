@@ -130,13 +130,13 @@ export default function AboutMe(){
             <AppWrapper>
                 <GlobalStyle />
                 <Navigation 
+                    cb={changeTheme}
                     scroll={scroll}
                 />
                 <SocialLinks 
                     ref={linksEl} 
                 />
                 <Column>
-                    <LightDarkToggle cb={changeTheme} />
                     <Intro 
                         ref={introEl} 
                     />
