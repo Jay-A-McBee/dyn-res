@@ -34,7 +34,7 @@ const Slide = styled.div`
     border: .25px solid black;
     border-radius: 4em; 
     transition: all .5s cubic-bezier(.075, .085, .095, .85);
-    transform: translateX(${props => 1.25 * props.offset}em);
+    transform: translateX(${props => 1.24 * props.offset}em);
 `;
 
 export const LightDarkToggle = ({cb}) => {
