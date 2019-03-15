@@ -22,16 +22,14 @@ export const useVisibility = (ref) => {
     };
 
     useEffect(() => {
-        if(!active && !observer.current){
+        if(!active && !observer.current && ref.current){
             observer.current = window.IntersectionObserver ?
                 new IntersectionObserver(setActive, config) :
                 io(setActive, config);
+
+            observer.current.observe(ref.current.container);
         }else if(active){
             stopObserving();
-        }
-
-        if(ref.current){
-            observer.current.observe(ref.current.container);
         }
     },[active, ref.current, observer.current]);
 
