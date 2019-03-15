@@ -35,13 +35,15 @@ const Slide = styled.div`
     border-radius: 4em; 
     transition: all .5s cubic-bezier(.075, .085, .095, .85);
     transform: translateX(${props => 1.24 * props.offset}em);
+    ${Media.phone`
+        top: .03em;
+    `}
 `;
 
 export const LightDarkToggle = ({cb}) => {
     const [offset, setOffset] = useState(0);
     const [active, setActive] = useState(false);
 
-    const handler = useRef(null);
     const lastPosition = useRef(0);
 
     useEffect(() => {
@@ -51,25 +53,18 @@ export const LightDarkToggle = ({cb}) => {
         }
     },[active, lastPosition.current, offset])
 
-    const toggle = () => {
+    const toggle = (ev) => {
+        ev.preventDefault()
         if(offset === 0 ){
             setOffset(1);
         }else{
             setOffset(0);
         }
-        handler.current.unsubscribe();
         cb(offset);
     };
 
-    const subscribe = () => {
-        window.addEventListener('mouseup', toggle);
-        return {
-            unsubscribe: () => window.removeEventListener('mouseup', toggle)
-        }
-    }
-
-    const pulse = () => {
-        handler.current = subscribe();
+    const pulse = (ev) => {
+        ev.preventDefault()
         setActive(!active);
     };
 
@@ -77,6 +72,9 @@ export const LightDarkToggle = ({cb}) => {
         <>
             <ToggleTrack
                 onMouseDown={pulse}
+                onMouseUp={toggle}
+                onTouchStart={pulse}
+                onTouchEnd={toggle}
             >
                 <Slide active={active} offset={offset} />
             </ToggleTrack>
