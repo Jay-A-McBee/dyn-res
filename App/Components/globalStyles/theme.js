@@ -26,6 +26,7 @@ export const theme = {
         icon: `${orange}`,
         description: `${orange}`,
         link: `${teal}`,
+        filter: 'sepia(100%)',
         nav: {
             static: `${white}`,
             hover: `${orange}`
@@ -75,6 +76,7 @@ export const theme = {
         icon: `${teal}`,
         description: `${dkBrown}`,
         link: `${orange}`,
+        filter: 'none',
         bckg: `${white}`,
         socialLinks: {
             static: `${brown}`,
