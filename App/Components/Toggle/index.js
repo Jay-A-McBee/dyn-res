@@ -4,15 +4,14 @@ import {Media} from '../Media';
 import { projectDescriptions } from '../../Assets/shortDescription';
 
 const ToggleTrack = styled.div`
+    display: flex;
+    flex-direction: column;
     align-self: center;
+    justify-content: space-around;
     position: relative;
     cursor: pointer;
     left: 2em;
-    display: flex;
-    z-index: 100;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 1.5em;
+    height: 1.4em;
     width: 2.75em;
     border-radius: 2.5em;
     transition: background-color .5s cubic-bezier(.075, .085, .095, .85);
@@ -24,20 +23,16 @@ const ToggleTrack = styled.div`
 `;
 
 const Slide = styled.div`
-    position: absolute;
+    position: relative;
     left: .05em;
-    top: .1em;
-    height: 1.35em;
+    height: 1.25em;
     width: 1.37em;
     background-color: ${props => props.theme.toggle.slide};
     box-shadow: ${props => props.active ? `0px 1px 10px white` : `0px 0px transparent`};
-    border: .25px solid black;
+    border: .5px solid ${props => props.theme.bckg};
     border-radius: 4em; 
     transition: all .5s cubic-bezier(.075, .085, .095, .85);
-    transform: translateX(${props => 1.24 * props.offset}em);
-    ${Media.phone`
-        top: .03em;
-    `}
+    transform: translateX(${props => 1.2 * props.offset}em);
 `;
 
 export const LightDarkToggle = ({cb}) => {
