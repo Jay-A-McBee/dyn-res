@@ -232,9 +232,8 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
         {children.map((child, i) => (
           <Circle 
             key={i}
-            name={i} 
             selected={i === active} 
-            onClick={selectSpecific} 
+            onClick={() => selectSpecific(i)} 
           />
         ))}
       </Reel>
