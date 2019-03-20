@@ -55,15 +55,24 @@ const StretchRow = styled(Row)`
   justify-content: space-around;
 `;
 
+const handleOffset = ({active, numItems, dimensions}) => {
+    debugger
+    if(active >= 0 && active <= numItems){
+        return `${active * ((dimensions.width + 2)/-16)}em`;
+    }else{
+        return `${active * -1}px`;
+    }
+}
+
 const ViewPort = styled(Row)`
   justify-content: space-between;
-  transition: transform 1s cubic-bezier(.1,.9,.95,.99) .15s;
+  transition: transform .75s cubic-bezier(0,1,.8,.9) .15s;
   position: absolute;
   top: auto;
   left: 0px;
 
   ${props => props.active && css`
-    transform: translateX(${props => props.active * ((props.dimensions.width + 2)/-16)}em);
+    transform: translateX(${props => handleOffset(props)});
   `}
 `
 const View = styled.div`
@@ -100,14 +109,54 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
     let [active, updateActive] = useState(0);
     let width = useWidthHook();
 
+    let dragging = useRef(false);
+    let startX = useRef(0);
+    let callback = useRef(null);
+    let handlers = useRef(null);
+
+    const animate = (cb) => (...args) => {
+        requestAnimationFrame(() => cb(...args));
+    };
+
+    const subscribe = (event, fn) => {
+        callback.current = fn
+        window.addEventListener(event, callback.current);
+
+        return {
+            unsubscribe: () => window.removeEventListener(event, callback.current)
+        }
+    }
+
+    const handleMouseDown = (ev) => {
+        if(!startX.current){
+            startX.current = ev.clientX;
+        }
+        dragging.current = true;
+        handlers.current = subscribe('mousemove', updatePosition);
+    };
+
+    function updatePosition(ev){
+        const offset = ev.clientX  - startX.current;
+        startX.current = offset;
+    }
+
+    const handleMouseUp = (ev) => {
+        ev.persist();
+        handlers.current.unsubscribe();
+        dragging.current = false;
+        triggerDrag(ev);
+    };
+
+    function triggerDrag(ev){
+        const dragDistance = startX.current - ev.clientX;
+        dragging.current = false;
+        updateActive(dragDistance);
+    };
+
     const resetActive = () => {
         if(!children[active]){
             updateActive(0);
         }
-    };
-
-    const animate = (cb) => (i = null) => {
-        requestAnimationFrame(() => cb(i));
     };
 
     const selectNext = animate(() => {
@@ -132,13 +181,13 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
         resetActive();
     },[children.length]);
     
-    const selectSpecific = animate((i) => {
+    const selectByIndex = animate((i) => {
         updateActive(i);
     });
 
     const projectImages = slideImages ? slideImages.map( (imgObj, index) => ({
         index,
-        handleClick: selectSpecific,
+        handleClick: selectByIndex,
         styles: reelCard,
         ...imgObj
     })) : null;
@@ -179,7 +228,13 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
           />
         </ChevronContainer>
         <View dimensions={getDimensions(width)}>
-            <ViewPort dimensions={getDimensions(width)} active={active}>
+            <ViewPort 
+                dimensions={getDimensions(width)} 
+                active={active} 
+                numItems={children.length}
+                onMouseDown={handleMouseDown}
+                onMouseUp={handleMouseUp}
+            >
               {children}
             </ViewPort> 
         </View> 
@@ -202,7 +257,7 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
           <Circle 
             key={i}
             selected={i === active} 
-            onClick={() => selectSpecific(i)}
+            onClick={() => selectByIndex(i)}
           />
         ))}
       </Reel>
@@ -217,7 +272,12 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
           />
         </ChevronContainer>
         <View dimensions={getDimensions(width)}>
-            <ViewPort dimensions={getDimensions(width)} active={active}>
+            <ViewPort 
+                dimensions={getDimensions(width)} 
+                active={active} 
+                numItems={children.length}
+                onTouchStart={handleMouseDown}
+            >
                 {children}
             </ViewPort> 
         </View> 
@@ -233,7 +293,7 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
           <Circle 
             key={i}
             selected={i === active} 
-            onClick={() => selectSpecific(i)} 
+            onClick={() => selectByIndex(i)} 
           />
         ))}
       </Reel>
