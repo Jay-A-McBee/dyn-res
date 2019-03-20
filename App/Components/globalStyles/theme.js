@@ -27,6 +27,7 @@ export const theme = {
         description: `${orange}`,
         link: `${teal}`,
         filter: 'sepia(100%)',
+        chevron: `${ltBrown}`,
         nav: {
             static: `${white}`,
             hover: `${orange}`
@@ -64,7 +65,7 @@ export const theme = {
         modal: {
             btnModal: `${teal}`,
             text: `${teal}`,
-            bckg: `${white}`
+            bckg: `${white}`,
         },
         greet: `${brown}`,
         nav: {
@@ -77,6 +78,7 @@ export const theme = {
         description: `${dkBrown}`,
         link: `${orange}`,
         filter: 'none',
+        chevron: `${dkBrown}`,
         bckg: `${white}`,
         socialLinks: {
             static: `${brown}`,

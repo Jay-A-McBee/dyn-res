@@ -26,13 +26,13 @@ const Slide = styled.div`
     position: relative;
     left: .05em;
     height: 1.25em;
-    width: 1.37em;
+    width: 1.35em;
     background-color: ${props => props.theme.toggle.slide};
     box-shadow: ${props => props.active ? `0px 1px 10px white` : `0px 0px transparent`};
     border: .5px solid ${props => props.theme.bckg};
     border-radius: 4em; 
     transition: all .5s cubic-bezier(.075, .085, .095, .85);
-    transform: translateX(${props => 1.2 * props.offset}em);
+    transform: translateX(${props => 1.25 * props.offset}em);
 `;
 
 export const LightDarkToggle = ({cb}) => {
