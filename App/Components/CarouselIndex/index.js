@@ -60,13 +60,13 @@ const handleOffset = ({active, numItems, dimensions}) => {
     if(active >= 0 && active <= numItems){
         return `${active * ((dimensions.width + 2)/-16)}em`;
     }else{
-        return `${active * -1}px`;
+        return `${active > 0 ? (active + 2)/16: (active-2)/16}em`;
     }
 }
 
 const ViewPort = styled(Row)`
   justify-content: space-between;
-  transition: transform .75s cubic-bezier(0,1,.8,.9) .15s;
+  transition: transform .75s cubic-bezier(0,1,.9,.95);
   position: absolute;
   top: auto;
   left: 0px;
@@ -107,11 +107,13 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
 
 
     let [active, updateActive] = useState(0);
+    let [left, updateLeft] = useState(0);
     let width = useWidthHook();
 
+    let viewRef = useRef(null);
+    let dimensions = useRef(null);
     let dragging = useRef(false);
     let startX = useRef(0);
-    let callback = useRef(null);
     let handlers = useRef(null);
 
     const animate = (cb) => (...args) => {
@@ -119,38 +121,47 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
     };
 
     const subscribe = (event, fn) => {
-        callback.current = fn
-        window.addEventListener(event, callback.current);
-
+        window.addEventListener(event, fn);
         return {
-            unsubscribe: () => window.removeEventListener(event, callback.current)
+            unsubscribe: () => window.removeEventListener(event, fn)
         }
     }
 
-    const handleMouseDown = (ev) => {
-        if(!startX.current){
-            startX.current = ev.clientX;
-        }
-        dragging.current = true;
-        handlers.current = subscribe('mousemove', updatePosition);
+    const onMouseMove = (ev) => {
+        debugger
+        const diff = ev.clientX - startX.current;
+        updateLeft(diff);
     };
 
-    function updatePosition(ev){
-        const offset = ev.clientX  - startX.current;
-        startX.current = offset;
-    }
+    const handleMouseDown = (ev) => {
+        startX.current = ev.clientX;
+        dragging.current = true;
+        handlers.current = subscribe('mousemove', onMouseMove);
+    };
 
     const handleMouseUp = (ev) => {
         ev.persist();
         handlers.current.unsubscribe();
-        dragging.current = false;
-        triggerDrag(ev);
+        if(dragging.current){
+            dragging.current = false;
+            const threshold = .3;
+            if (left < dimensions.current.width * threshold * -1){
+                updateLeft(dimensions.current.width * -1);
+            } else if(left > dimensions.current.width * threshold) {
+                updateLeft(dimensions.current.width);
+            }else{
+                updateLeft(0);
+            }
+        }
     };
 
-    function triggerDrag(ev){
-        const dragDistance = startX.current - ev.clientX;
-        dragging.current = false;
-        updateActive(dragDistance);
+    useEffect(() => {
+        requestAnimationFrame(updatePosition);
+        return () => handlers.current.unsubscribe()
+    },[left])
+
+    function updatePosition(){
+        updateActive(left);
     };
 
     const resetActive = () => {
@@ -196,10 +207,13 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
 
     const getDimensions = (width) => {
 
-        const makeDimensions = (height, width) => ({
-            height, 
-            width
-        });
+        const makeDimensions = (height, width) => {
+            dimensions.current = {
+                height, 
+                width
+            }
+            return dimensions.current;
+        };
 
         if(width > 800){
             return makeDimensions(500, 716);
@@ -229,6 +243,7 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
         </ChevronContainer>
         <View dimensions={getDimensions(width)}>
             <ViewPort 
+                ref={viewRef}
                 dimensions={getDimensions(width)} 
                 active={active} 
                 numItems={children.length}
@@ -277,6 +292,8 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
                 active={active} 
                 numItems={children.length}
                 onTouchStart={handleMouseDown}
+                onMouseDown={handleMouseDown}
+                onMouseUp={handleMouseUp}
             >
                 {children}
             </ViewPort> 
