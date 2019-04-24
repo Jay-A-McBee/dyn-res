@@ -46,6 +46,7 @@ const TechItem = styled.small`
 `;
 
 const Folder = styled.div`
+    color: ${props => props.theme.folder};
     position: relative;
     margin: 2.5em;
     height: 15em;
@@ -60,7 +61,7 @@ const FolderBack = styled.div`
     margin: 0;
     border-radius: 2.5px;
     border: 1px solid rgb(237, 157, 85);
-    background-color: rgba(224, 210, 184, .9);
+    background-color: ${props => props.theme.folder};
     transition: all .5s ease-in-out;
 
     ${Folder}:hover & {
@@ -75,8 +76,8 @@ const FolderFront = styled.div`
     margin: 0;
     position: absolute;
     transition: all .25s ease-in;
-    color: rgb(237, 157, 85);
-    background-color: rgba(224, 210, 184, .9);
+    color: ${props => props.theme.icon};
+    background-color: ${props => props.theme.folder};
     border-radius: 2.5px;
     display: flex;
     justify-content: flex-end;
@@ -96,7 +97,7 @@ const FolderTab = styled.div`
     position: absolute;
     top: -.55em;
     transition: all .5s ease-in;
-    background-color: rgba(224, 210, 184, .9);
+    background-color: ${props => props.theme.folder};
     ${Folder}:hover & {
         transform: translate3d(1em, -.2em, .25em) skew(-7deg);
     }
@@ -114,7 +115,7 @@ const Paper = styled.div`
     border-radius: 2.5px;
     top: -.1em;
     background-color: white;
-    color: rgb(237, 157, 85);
+    color: ${props => props.theme.description};
     transition: all .5s ease-in .25s;
     padding: 2em;
 
@@ -136,7 +137,7 @@ const MobileFolder = styled.div`
     padding: 2em;
     height: 11em;
     width: 16em;
-    border: 2.5px solid rgb(237, 157, 85);
+    border: 2.5px solid ${props => props.theme.farewell.border};
     margin-bottom: .75em;
     border-radius: 2.5px;
     transition: all .5s ease-in-out;
@@ -149,11 +150,13 @@ const MobileFolderTab = styled.div`
     height: 1.5em;
     margin: 0;
     width: 5em;
-    border-top: 2.5px solid rgb(237, 157, 85);
+    border-top: 2.5px solid ${props => props.theme.farewell.border};
     border-radius: 3em;
 `;
 
-const Link = styled.a``;
+const Link = styled.a`
+    color: ${props => props.theme.link}
+`;
 
 const Description = ({title, role, tasks, link}) => {
     return (

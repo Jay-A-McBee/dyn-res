@@ -34,7 +34,7 @@ const inAndUp = props => css`
 const Image = styled.img`
   height: 22.5em;
   transition: all .25s ease-in-out;
-  filter: sepia(100%);
+  filter: ${props => props.theme.filter};
   margin-top: 2.5em;
   ${inAndUp}
 

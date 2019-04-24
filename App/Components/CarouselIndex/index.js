@@ -57,7 +57,7 @@ const StretchRow = styled(Row)`
 
 const ViewPort = styled(Row)`
   justify-content: space-between;
-  transition: transform 1.25s cubic-bezier(.75, .25, .75, .95) .15s;
+  transition: transform 1s cubic-bezier(.1,.9,.95,.99) .15s;
   position: absolute;
   top: auto;
   left: 0px;
@@ -82,6 +82,7 @@ const Button = styled.button`
   border: none;
   background-color: inherit;
   cursor: pointer;
+  color: ${props => props.theme.chevron}
 `;
 
 const RotateIcon = ({handleClick, size, iconName}) => (
@@ -89,7 +90,6 @@ const RotateIcon = ({handleClick, size, iconName}) => (
     <FontAwesomeIcon 
       icon={iconName}
       size={size}
-      color='#fcdb94'
     />
   </Button>
 );
@@ -97,65 +97,69 @@ const RotateIcon = ({handleClick, size, iconName}) => (
 export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], slideImages}) => {
 
 
-  let [active, updateActive] = useState(0);
-  let width = useWidthHook();
+    let [active, updateActive] = useState(0);
+    let width = useWidthHook();
 
-  const resetActive = () => {
-    if(!children[active]){
-      updateActive(0);
-    }
-  }
+    const resetActive = () => {
+        if(!children[active]){
+            updateActive(0);
+        }
+    };
 
-  const selectNext = (e) => {
-    const next = ++active;
-    if(next < children.length){
-      updateActive(next);
-    }else{
-      updateActive(0);
-    }
-  }
+    const animate = (cb) => (i = null) => {
+        requestAnimationFrame(() => cb(i));
+    };
 
-  const selectPrevious = (e) => {
-    const previous = --active;
-    if(previous >= 0){
-      updateActive(previous);
-    }else{
-      updateActive(children.length - 1);
-    }
-  }
-
-  useEffect(() => {
-    resetActive();
-  },[children.length])
-  
-  const selectSpecific = (e) => {
-    updateActive(parseInt(e.nativeEvent.target.getAttribute('name'),10));
-  }
-
-  const projectImages = slideImages ? slideImages.map( (imgObj, index) => ({
-    index,
-    handleClick: selectSpecific,
-    styles: reelCard,
-    ...imgObj
-  })) : null;
-
-  let view = useRef(null);
-
-  const getDimensions = (width) => {
-
-    const makeDimensions = (height, width) => ({
-      height, 
-      width
+    const selectNext = animate(() => {
+        const next = ++active;
+        if(next < children.length){
+            updateActive(next);
+        }else{
+            updateActive(0);
+        }
     });
 
-    if(width > 800){
-      return makeDimensions(500, 716);
-    }else if(width < 800 && width > 500){
-      return makeDimensions(320, 496);
-    }else{
-      return makeDimensions(450, 296);
-    }
-  };
+    const selectPrevious = animate(() => {
+        const previous = --active;
+        if(previous >= 0){
+            updateActive(previous);
+        }else{
+            updateActive(children.length - 1);
+        }
+    });
+
+    useEffect(() => {
+        resetActive();
+    },[children.length]);
+    
+    const selectSpecific = animate((i) => {
+        updateActive(i);
+    });
+
+    const projectImages = slideImages ? slideImages.map( (imgObj, index) => ({
+        index,
+        handleClick: selectSpecific,
+        styles: reelCard,
+        ...imgObj
+    })) : null;
+
+    let view = useRef(null);
+
+    const getDimensions = (width) => {
+
+        const makeDimensions = (height, width) => ({
+            height, 
+            width
+        });
+
+        if(width > 800){
+            return makeDimensions(500, 716);
+        }else if(width < 800 && width > 500){
+            return makeDimensions(320, 496);
+        }else{
+            return makeDimensions(450, 296);
+        }
+    };
 
   return width > 800 ? (
     <Container>
@@ -197,9 +201,8 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
         {children.map( (props, i) => (
           <Circle 
             key={i}
-            name={i} 
             selected={i === active} 
-            onClick={selectSpecific}
+            onClick={() => selectSpecific(i)}
           />
         ))}
       </Reel>
@@ -229,9 +232,8 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
         {children.map((child, i) => (
           <Circle 
             key={i}
-            name={i} 
             selected={i === active} 
-            onClick={selectSpecific} 
+            onClick={() => selectSpecific(i)} 
           />
         ))}
       </Reel>

@@ -26,8 +26,9 @@ const Link = styled.a`
     display: flex;
     justify-content: center;
     padding: 1.15em;
-    color: rgb(255, 250, 239);
-    border: .5px solid rgb(255, 250, 239);
+    background-color: ${props => props.theme.btnContact.bckg};
+    color: ${props => props.theme.btnContact.text};
+    border: .5px solid ${props => props.theme.btnContact.border};
     transition: all .25s ease-in-out;
     position: relative;
     top: 1.75em;
@@ -47,7 +48,7 @@ const Link = styled.a`
 
 
     :hover {
-        color: rgb(237, 157, 85);
+        color: ${props => props.theme.btnContact.hover};
         border-color: rgb(237, 157, 85);
     }
 `
@@ -77,12 +78,12 @@ const NarrowText = styled(TextBlock)`
     `}
 `;
 
-export const Intro = forwardRef(({inView, offset}, ref) => {
+const Greeting = styled.span`
+    font-size: .25em;
+    color: ${props => props.theme.greet}
+`;
 
-    const greetStyles = {
-        fontSize: '.25em',
-        color: 'rgba(255, 241, 239, .99)'
-    }
+export const Intro = forwardRef(({inView, offset}, ref) => {
 
     let width = useWidthHook();
 
@@ -106,7 +107,7 @@ export const Intro = forwardRef(({inView, offset}, ref) => {
               size={'2.5em'}
               spread
             >
-              <span style={{...greetStyles}}>Hi - my name is</span> Austin McBee.
+              <Greeting>Hi - my name is</Greeting> Austin McBee.
             </Headline>
             <Headline 
               className='animate'

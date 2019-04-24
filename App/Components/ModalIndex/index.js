@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import styled, {css, keyframes} from 'styled-components';
 import {Media} from '../Media';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -7,7 +7,7 @@ const ModalBody = styled.div`
     position: relative;
     margin: auto;
     padding: 0;
-    background-color: rgba(45, 38, 38, .99);
+    background-color: ${props => props.theme.modal.bckg};
     border: 1px solid #888;
     max-width: 70%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
@@ -77,10 +77,10 @@ const ModalButton = styled.button`
     padding: 1em;
     font-size: 1.25em;
     font-weight: 700;
-    color: rgb(255, 250, 239);
+    color: inherit;
     border: .5px solid rgb(237, 157, 85);
     transition: all .25s ease-in-out;
-    background-color: rgb(237, 157, 85);
+    background-color: ${props => props.theme.modal.btnModal};
     border-radius: .25em;
 
     :hover {
@@ -107,6 +107,14 @@ const ModalComponent = ({
 }) => {
     
     let[isOpen, toggle] = useState(false);
+    let handler = useRef(null);
+
+    useEffect(() => {
+        if(isOpen){
+            const escapeKey = subscribe();
+            return () => escapeKey.unsubscribe();
+        }
+    },[isOpen])
 
     const toggleModal = () => {
         const body = document.querySelector('body');
@@ -121,14 +129,27 @@ const ModalComponent = ({
     };
 
 
-    const closeModal = ({nativeEvent}) => {
+    const closeModal = (ev) => {
         if(
-            nativeEvent.target.id === 'modal' || 
-            nativeEvent.target.id === 'close'
+            ev.target.id === 'modal' || 
+            ev.target.id === 'close' ||
+            ev.keyCode === 27
         ){
             toggleModal();
         }
     };
+
+    function subscribe(){
+
+        handler.current = closeModal;
+
+        window.addEventListener('keyup', handler.current);
+
+        return {
+            unsubscribe: () => window.removeEventListener('keyup', handler.current)
+        }
+        
+    }
 
     return (
         <>

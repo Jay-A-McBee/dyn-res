@@ -15,7 +15,7 @@ const VerticalLine = styled.div`
     width: .5em;
     height: ${props => props.height || '10em'};
     color: rgb(255, 251, 242);
-    border-right: ${.75/16}em solid rgba(226, 229, 232, 0.64);
+    border-right: ${.75/16}em solid ${props => props.theme.socialLinks.static};
     transition: all .25s ease-in-out;
     opacity: 0;
     transform: translateY(${20/16}em);
@@ -35,7 +35,7 @@ const VerticalLine = styled.div`
 
 const Link = styled.a`
     display: block;
-    color: rgb(255, 251, 242);
+    color: ${props => props.theme.socialLinks.static};
     transition: all .25s ease-in-out;
     opacity: 0;
     transform: translateY(${20/16}em);
@@ -48,7 +48,7 @@ const Link = styled.a`
     `}
 
     :hover {
-        color: rgb(237,157,85);
+        color: ${props => props.theme.socialLinks.hover};
     }
 `;
 

@@ -18,7 +18,7 @@ export const inAndUp = props => css`
 
 export const SectionHeader = styled.h3`
     font-weight: ${props => props.heavy ? 700:400};
-    color: ${props => props.highlight ? 'rgb(255, 251, 242)' : 'rgb(237, 157, 85)'};
+    color: ${props => props.theme.sectionHeadings};
     text-decoration: ${props => props.underline ? 'underline' : 'none'};
     font-size: 5em;
     margin-bottom: 0;
@@ -33,6 +33,7 @@ export const SectionHeader = styled.h3`
 `;
 
 export const Headline = styled(SectionHeader)`
+    color:${props => props.theme.headline};
     line-height: .85;
     font-size: 6em;
     padding: 0;

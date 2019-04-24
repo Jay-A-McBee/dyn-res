@@ -8,8 +8,10 @@ export const useVisibility = (ref) => {
     const config = {
         root: null,
         rootMargin: '0px',
-        threshold: .25
+        threshold: .10
     };
+
+    const stopObserving = () => observer.current.unobserve(ref.current.container);
 
     const setActive = (entries) => {
         entries.forEach(entry => {
@@ -18,22 +20,16 @@ export const useVisibility = (ref) => {
     };
 
     useEffect(() => {
-        if(active){
-            observer.current = null;
-            return;
-        }
-
-        if(!observer.current){
+        if(!active && !observer.current && ref.current){
             observer.current = window.IntersectionObserver ?
                 new IntersectionObserver(setActive, config) :
                 io(setActive, config);
-        }
 
-        if(ref.current){
             observer.current.observe(ref.current.container);
+        }else if(active){
+            stopObserving();
         }
-
-    });
+    },[active, ref.current, observer.current]);
 
     return active;
 }

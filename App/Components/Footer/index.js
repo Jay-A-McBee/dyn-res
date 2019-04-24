@@ -12,12 +12,12 @@ const Foot = styled.div`
     align-self: flex-end;
     width: 100%;
     height: 5em;
-    background-color: rgb(61, 45, 45);
+    background-color: ${props => props.theme.footer.bckg};
 `;
 
 const Link = styled.a`
     display: block;
-    color: rgb(255, 251, 242);
+    color: ${props => props.theme.socialLinks.static};
     margin-right: .75em;
 
     ${props => props.marginBottom && css`
@@ -25,7 +25,7 @@ const Link = styled.a`
     `}
 
     :hover {
-        color: rgb(237,157,85);
+        color: ${props => props.theme.socialLinks.hover};
     }
 `;
 
