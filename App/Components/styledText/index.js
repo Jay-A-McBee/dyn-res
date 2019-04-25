@@ -51,7 +51,7 @@ export const Headline = styled(SectionHeader)`
 export const InnerHeader = styled.p`
     font-size: 1.5em;
     font-weight: 400;
-    color: rgb(255, 251, 242);
+    color: ${props => props.theme.title};
     text-decoration: ${props => props.underline ? 'underline' : 'none'};
     transition: all .25s ease-in-out;
     ${props => inAndUp(props)}

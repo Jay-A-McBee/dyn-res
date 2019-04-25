@@ -46,6 +46,7 @@ const ListContainer = styled.div`
 `;
 
 const WorkPlace = styled.div`
+  cursor: pointer;
   text-align: center;
   line-height: 1.5;
   flex: 1;

@@ -21,12 +21,11 @@ const Container = styled.div`
     justify-content: space-around;
     transition: all .75s ease-in-out;
     padding: 0 .5em;
-    border-right: 2px solid orange;
 
     ${props => props.active && `opacity: 1`}
 
     ${Media.desktop`
-        width: ${700/16}em;
+        width: ${705/16}em;
     `}
 
     ${Media.tablet`
@@ -60,7 +59,7 @@ const DeviceImage = styled.img`
 
 const ProjectName = styled.p`
     font-weight: 700;
-    font-size: 1.65em;
+    font-size: 1.5em;
     color: ${props => props.theme.modal.text};
 
     ${Media.tablet`
