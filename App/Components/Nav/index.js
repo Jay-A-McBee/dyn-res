@@ -19,7 +19,7 @@ const fadeInAndUp = keyframes`
 `;
 
 const NavButton = styled.div`
-    font-weight: 700; 
+    font-weight: 400; 
     font-size: 1.5em; 
     text-align: center;
     align-self: center;
@@ -76,7 +76,7 @@ const NavButtonContainer = styled.div`
     justify-content: space-between;
     position: relative;
     left: -3.5em;
-    width: 30%;
+    width: 32.5%;
     height: 75px;
 `;
 
@@ -148,7 +148,7 @@ export const Navigation = ({scroll, cb}) => {
         fontWeight: '100'
     };
 
-    const navLinks = ['<About />', '<Work />', '<Projects />'];
+    const navLinks = ['<About/>', '<Work/>', '<Projects/>'];
 
     const ButtonComponent = ({onClick}) => (
         <FontAwesomeIcon onClick={onClick} style={{...iconStyles}} size='2x' icon='bars' />
@@ -161,7 +161,7 @@ export const Navigation = ({scroll, cb}) => {
                 <NavButtonContainer>
                     {navLinks.map( title => (
                         <NavButton 
-                            name={title.match(/\<(\w+) \/\>/)[1].toLowerCase()} 
+                            name={title.match(/(\w+)/)[1].toLowerCase()} 
                             key={title} 
                             onClick={scrollToSection}
                         >{title}

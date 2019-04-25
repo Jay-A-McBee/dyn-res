@@ -36,7 +36,7 @@ projectDescriptions.fairshare = {
 	tasks:[
 		'React/Redux',
 		'Node.js/Express',
-	  	'OAuth 2.0'
+	  'OAuth 2.0'
    	],
 	link: 'https://github.com/AngryPulpGophers/fairshare'
 };
@@ -47,7 +47,7 @@ projectDescriptions.journeymen ={
 	tasks:[
 		'Node.js/Express',
 		'PostgreSQL',
-		'Passport OAuth 2.0'
+		'OAuth 2.0'
 	],
 	link: 'https://github.com/getJourneymen/Journeymen'
 };
@@ -102,11 +102,23 @@ projectDescriptions.sandbox = {
 	tasks:[
 		'React', 
 		'Redux Saga',
-	  	'bluebird coroutine'
+	  'bluebird coroutine'
 	],
 	link: 'https://github.com/Jay-A-McBee/yield-contacts',
 	icon: ['fab', 'node']
 };
+
+projectDescriptions.dbBoiler = {
+	title: 'DB Boiler',
+	role: 'REST server and SQL database boilerplate - soup\'s on!',
+	tasks:[
+		'node',
+		'express',
+		'sequelize'
+	],
+	link: 'https://github.com/Jay-A-McBee/NES_boilerplate',
+	icon: ['fab', 'node']
+}
 
 export const work = {
     ClickTripz: {

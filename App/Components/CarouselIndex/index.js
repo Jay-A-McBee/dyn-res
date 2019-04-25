@@ -19,7 +19,7 @@ const Reel = styled.div`
 
 const ChevronContainer = styled(Column)`
   justify-content: center;
-  width: 10%;
+  width: 5%;
   align-items: center;
   align-self: center;
   z-index: 25;
@@ -55,24 +55,15 @@ const StretchRow = styled(Row)`
   justify-content: space-around;
 `;
 
-const handleOffset = ({active, numItems, dimensions}) => {
-    debugger
-    if(active >= 0 && active <= numItems){
-        return `${active * ((dimensions.width + 2)/-16)}em`;
-    }else{
-        return `${active > 0 ? (active + 2)/16: (active-2)/16}em`;
-    }
-}
-
 const ViewPort = styled(Row)`
   justify-content: space-between;
-  transition: transform .75s cubic-bezier(0,1,.9,.95);
+  transition: transform 1s cubic-bezier(.1,.9,.95,.99) .15s;
   position: absolute;
   top: auto;
   left: 0px;
 
   ${props => props.active && css`
-    transform: translateX(${props => handleOffset(props)});
+    transform: translateX(${props => props.active * ((props.dimensions.width + 2.5)/-16)}em);
   `}
 `
 const View = styled.div`
@@ -107,67 +98,16 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
 
 
     let [active, updateActive] = useState(0);
-    let [left, updateLeft] = useState(0);
     let width = useWidthHook();
-
-    let viewRef = useRef(null);
-    let dimensions = useRef(null);
-    let dragging = useRef(false);
-    let startX = useRef(0);
-    let handlers = useRef(null);
-
-    const animate = (cb) => (...args) => {
-        requestAnimationFrame(() => cb(...args));
-    };
-
-    const subscribe = (event, fn) => {
-        window.addEventListener(event, fn);
-        return {
-            unsubscribe: () => window.removeEventListener(event, fn)
-        }
-    }
-
-    const onMouseMove = (ev) => {
-        debugger
-        const diff = ev.clientX - startX.current;
-        updateLeft(diff);
-    };
-
-    const handleMouseDown = (ev) => {
-        startX.current = ev.clientX;
-        dragging.current = true;
-        handlers.current = subscribe('mousemove', onMouseMove);
-    };
-
-    const handleMouseUp = (ev) => {
-        ev.persist();
-        handlers.current.unsubscribe();
-        if(dragging.current){
-            dragging.current = false;
-            const threshold = .3;
-            if (left < dimensions.current.width * threshold * -1){
-                updateLeft(dimensions.current.width * -1);
-            } else if(left > dimensions.current.width * threshold) {
-                updateLeft(dimensions.current.width);
-            }else{
-                updateLeft(0);
-            }
-        }
-    };
-
-    useEffect(() => {
-        requestAnimationFrame(updatePosition);
-        return () => handlers.current.unsubscribe()
-    },[left])
-
-    function updatePosition(){
-        updateActive(left);
-    };
 
     const resetActive = () => {
         if(!children[active]){
             updateActive(0);
         }
+    };
+
+    const animate = (cb) => (i = null) => {
+        requestAnimationFrame(() => cb(i));
     };
 
     const selectNext = animate(() => {
@@ -192,13 +132,13 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
         resetActive();
     },[children.length]);
     
-    const selectByIndex = animate((i) => {
+    const selectSpecific = animate((i) => {
         updateActive(i);
     });
 
     const projectImages = slideImages ? slideImages.map( (imgObj, index) => ({
         index,
-        handleClick: selectByIndex,
+        handleClick: selectSpecific,
         styles: reelCard,
         ...imgObj
     })) : null;
@@ -207,16 +147,13 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
 
     const getDimensions = (width) => {
 
-        const makeDimensions = (height, width) => {
-            dimensions.current = {
-                height, 
-                width
-            }
-            return dimensions.current;
-        };
+        const makeDimensions = (height, width) => ({
+            height, 
+            width
+        });
 
         if(width > 800){
-            return makeDimensions(500, 716);
+            return makeDimensions(500, 720);
         }else if(width < 800 && width > 500){
             return makeDimensions(320, 496);
         }else{
@@ -242,14 +179,7 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
           />
         </ChevronContainer>
         <View dimensions={getDimensions(width)}>
-            <ViewPort 
-                ref={viewRef}
-                dimensions={getDimensions(width)} 
-                active={active} 
-                numItems={children.length}
-                onMouseDown={handleMouseDown}
-                onMouseUp={handleMouseUp}
-            >
+            <ViewPort dimensions={getDimensions(width)} active={active}>
               {children}
             </ViewPort> 
         </View> 
@@ -272,7 +202,7 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
           <Circle 
             key={i}
             selected={i === active} 
-            onClick={() => selectByIndex(i)}
+            onClick={() => selectSpecific(i)}
           />
         ))}
       </Reel>
@@ -287,14 +217,7 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
           />
         </ChevronContainer>
         <View dimensions={getDimensions(width)}>
-            <ViewPort 
-                dimensions={getDimensions(width)} 
-                active={active} 
-                numItems={children.length}
-                onTouchStart={handleMouseDown}
-                onMouseDown={handleMouseDown}
-                onMouseUp={handleMouseUp}
-            >
+            <ViewPort dimensions={getDimensions(width)} active={active}>
                 {children}
             </ViewPort> 
         </View> 
@@ -310,7 +233,7 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
           <Circle 
             key={i}
             selected={i === active} 
-            onClick={() => selectByIndex(i)} 
+            onClick={() => selectSpecific(i)} 
           />
         ))}
       </Reel>

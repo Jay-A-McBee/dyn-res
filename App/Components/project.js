@@ -196,7 +196,8 @@ const {
     slide,
     portfolio,
     vue,
-    sandbox
+    sandbox,
+    dbBoiler
 } = projectDescriptions;
 
 export const ProjectSection = forwardRef(({inView}, ref) => {
@@ -217,7 +218,7 @@ export const ProjectSection = forwardRef(({inView}, ref) => {
             <SectionHeader className='animate' highlight>Projects</SectionHeader>
             <br />
             <WrapRow justify={'flex-start'}>
-            {[slide, portfolio, vue, sandbox].map((props, i) =>  width > 800 ? 
+            {[slide, portfolio, vue, sandbox, dbBoiler].map((props, i) =>  width > 800 ? 
                 <FullFolder key={i} className='animate' {...props}/> :
                 <div key={i}>
                     <MobileFolderTab className='animate'/>
