@@ -17,43 +17,43 @@ const fadeIn = keyframes`
 
 const Container = styled.div`
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     transition: all .75s ease-in-out;
-    padding: 0 .5em;
 
     ${props => props.active && `opacity: 1`}
 
     ${Media.desktop`
-        width: ${705/16}em;
+        width: ${700/16}em;
+        max-width: ${700/16}em;
     `}
 
     ${Media.tablet`
         width: ${480/16}em;
-        justify-content: center;
+        max-width: ${480/16}em;
     `}
-
+    
     ${Media.phone`
-        display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
         height: ${420/16}em;
         width: ${280/16}em;
+        max-width: ${280/16}em;
     `}
 `;
 
 const heightBlock = window.innerHeight / 160;
 
 const DeviceImage = styled.img`
-  height: 75vmin;
-  width: 75vmin;
+  height: 55vmin;
+  width: 55vmin;
+
   ${Media.tablet`
-    height: 50vmin;
-    width: 50vmin;
+    height: 40vmin;
+    width: 40vmin;
   `}
+
   ${Media.phone`
-    height: 70vmin;
-    width: 70vmin;
+    height: 60vmin;
+    width: 60vmin;
   `}
 `;
 
@@ -63,18 +63,11 @@ const ProjectName = styled.p`
     color: ${props => props.theme.modal.text};
 
     ${Media.tablet`
-        position: relative;
-        top: 1em;
-        margin-bottom: .5em;
-        font-size: 1.5em;
+        font-size: 1.25em;
     `}
 
     ${Media.phone`
-        position: relative;
-        top: 1em;
-        left: .5em;
-        margin-bottom: .5em;
-        font-size: 1.5em;
+        font-size: 1.15em;
     `}
 `;
 
@@ -84,23 +77,21 @@ const TechDescription = styled.p`
   line-height: .15;
   ${Media.tablet`
     font-size: .95em;
-    position: relative;
-    top: 1.75em;
     line-height: .25;
   `}
   ${Media.phone`
     font-size: .95em;
-    position: relative;
-    top: 1.75em;
-    left: .75em;
     line-height: .25;
   `}
 `;
 
 const BigColumn = styled(Column)`
-    position: relative;
-    top: -2.5em;
-    width: 20vmin;
+    align-items: flex-start;
+    ${Media.phone`
+        position: relative;
+        left: .5em;
+        top: -1.75em;
+  `}
 `	
 
 const Link = styled.a`
@@ -108,16 +99,15 @@ const Link = styled.a`
     position: relative;
     top: .5em;
     ${Media.tablet`
-    top: 1.75em;
-  `}
-  ${Media.phone`
-    font-size: .95em;
-    left: .65em;
-    top: 1.75em;
-    line-height: .25;
-  `}
+        top: -.25em;
+    `}
+    ${Media.phone`
+        top: -.25em;
+        font-size: .95em;
+        line-height: .25;
+    `}
 `;
-const ProjectInfo = ({title, role, desc, tasks, photo, func, prop, link, current, active}) => {
+const ProjectInfo = ({title,tasks, photo, link, active}) => {
 	return(
     <Container active={active || false}>
       <DeviceImage src={photo} />

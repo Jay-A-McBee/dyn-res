@@ -63,7 +63,7 @@ const ViewPort = styled(Row)`
   left: 0px;
 
   ${props => props.active && css`
-    transform: translateX(${props => props.active * ((props.dimensions.width + 2.5)/-16)}em);
+    transform: translateX(${props => props.active * (props.dimensions.width/-16)}em);
   `}
 `
 const View = styled.div`
@@ -153,11 +153,11 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
         });
 
         if(width > 800){
-            return makeDimensions(500, 720);
+            return makeDimensions(500, 700);
         }else if(width < 800 && width > 500){
-            return makeDimensions(320, 496);
+            return makeDimensions(320, 480);
         }else{
-            return makeDimensions(450, 296);
+            return makeDimensions(450, 280);
         }
     };
 
