@@ -111,7 +111,7 @@ export const Intro = forwardRef(({inView, offset}, ref) => {
             </Headline>
             <Headline 
               className='animate'
-              size={'2.50em'}
+              size={'2.30em'}
               heavy
             >
               I work on the web.
