@@ -40,8 +40,6 @@ const Container = styled.div`
     `}
 `;
 
-const heightBlock = window.innerHeight / 160;
-
 const DeviceImage = styled.img`
   height: 55vmin;
   width: 55vmin;
@@ -52,8 +50,9 @@ const DeviceImage = styled.img`
   `}
 
   ${Media.phone`
-    height: 60vmin;
-    width: 60vmin;
+    margin: auto;
+    height: 70vmin;
+    width: 70vmin;
   `}
 `;
 
@@ -89,7 +88,7 @@ const BigColumn = styled(Column)`
     align-items: flex-start;
     ${Media.phone`
         position: relative;
-        left: .5em;
+        left: 1em;
         top: -1.75em;
   `}
 `	

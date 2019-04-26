@@ -17,7 +17,7 @@ export const inAndUp = props => css`
 `;
 
 export const SectionHeader = styled.h3`
-    font-weight: ${props => props.heavy ? 700:400};
+    font-weight: ${props => props.heavy ? 700:200};
     color: ${props => props.theme.sectionHeadings};
     text-decoration: ${props => props.underline ? 'underline' : 'none'};
     font-size: 5em;
