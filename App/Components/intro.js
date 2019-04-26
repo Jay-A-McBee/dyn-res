@@ -54,7 +54,7 @@ const Link = styled.a`
 `
 const PositionedWrapper = styled(ContentWrapper)`
   position: relative;
-  top: 2.5em;
+  top: 4em;
   margin-bottom: 7.5em;
 
   ${Media.tablet`
@@ -97,7 +97,7 @@ export const Intro = forwardRef(({inView, offset}, ref) => {
         <PositionedWrapper 
             ref={introContainer}
             alignSelf={'flex-start'} 
-            offset={ width > 800 ? `left: 10em;` : null}
+            offset={ width > 800 ? `left: 12.5em;` : null}
             padding={'2.5em 0'}
             justify={'space-around'}
             active={active}
@@ -111,7 +111,7 @@ export const Intro = forwardRef(({inView, offset}, ref) => {
             </Headline>
             <Headline 
               className='animate'
-              size={'2.30em'}
+              size={'2.50em'}
               heavy
             >
               I work on the web.
