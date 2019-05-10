@@ -30,13 +30,13 @@ const Slide = styled.div`
     border: .5px solid ${props => props.theme.bckg};
     border-radius: 4em; 
     transition: all .5s cubic-bezier(.075, .085, .095, .85);
-    transform: translate(${props => 1.25 * props.offset}em, -.9em);
+    transform: translate(${props => 1.2 * props.offset}em, -.92em);
 `;
 
 const BckgWrapper = styled.div`
     display: flex; 
     position: relative; 
-    transform: translateY(3.85px);
+    transform: translateY(3.95px);
     justify-content: space-evenly; 
 `;
 
