@@ -47,7 +47,7 @@ export const theme = {
             bckg: `${dkBrown}`
         },
         toggle: {
-            bckg: `${teal}`,
+            bckg: `${white}`,
             slide: `${orange}`
         },
         farewell: {
@@ -95,7 +95,7 @@ export const theme = {
             bckg: `${ltBrown}`
         },
         toggle: {
-            bckg: `${orange}`,
+            bckg: `${brown}`,
             slide: `${teal}`
         },
         farewell: {

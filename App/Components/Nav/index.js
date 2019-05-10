@@ -157,7 +157,7 @@ export const Navigation = ({scroll, cb}) => {
     return width > 800 ? (
         <StyledNav {...navStyles}>
             <Container>
-                <LightDarkToggle cb={cb} />
+                <LightDarkToggle cb={cb} icons={[['fa', 'moon'],['fa', 'sun']]} />
                 <NavButtonContainer>
                     {navLinks.map( title => (
                         <NavButton 
@@ -176,7 +176,7 @@ export const Navigation = ({scroll, cb}) => {
             toggle={toggle}
             scroll={scroll}
             navStyles={navStyles} 
-            lightDarkSwitch={() => <LightDarkToggle cb={cb} />}
+            lightDarkSwitch={() => <LightDarkToggle cb={cb} icons={[['fa', 'moon'],['fa', 'sun']]} />}
         />
     )
 }

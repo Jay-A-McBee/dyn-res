@@ -32,7 +32,9 @@ import {
   faBars, 
   faTimes,
   faEnvelope,
-  faArrowLeft
+  faArrowLeft,
+  faSun,
+  faMoon
 } from '@fortawesome/free-solid-svg-icons'
 
 import {library} from '@fortawesome/fontawesome-svg-core'
@@ -49,7 +51,9 @@ library.add(
   faBars, 
   faTimes,
   faEnvelope,
-  faArrowLeft
+  faArrowLeft,
+  faSun,
+  faMoon
 );
 
 
