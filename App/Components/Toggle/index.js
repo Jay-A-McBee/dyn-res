@@ -33,6 +33,13 @@ const Slide = styled.div`
     transform: translate(${props => 1.25 * props.offset}em, -.9em);
 `;
 
+const BckgWrapper = styled.div`
+    display: flex; 
+    position: relative; 
+    transform: translateY(3.85px);
+    justify-content: space-evenly; 
+`;
+
 export const LightDarkToggle = ({cb, icons:[currIcon, altIcon]}) => {
     const [offset, setOffset] = useState(0);
     const [active, setActive] = useState(false);
@@ -70,10 +77,10 @@ export const LightDarkToggle = ({cb, icons:[currIcon, altIcon]}) => {
                 onTouchEnd={toggle}
             >
                 {currIcon && altIcon && 
-                    <div style={{display: 'flex', justifyContent: 'space-evenly', position: 'relative', top: '3.85px'}}>
+                    <BckgWrapper>
                         <FontAwesomeIcon style={{'color': 'rgb(237,157,85)'}} icon={currIcon} />
                         <FontAwesomeIcon style={{'color': 'rgb(103, 206, 178)'}} icon={altIcon} />
-                    </div>
+                    </BckgWrapper>
                 }
                 <Slide active={active} offset={offset} />
             </ToggleTrack>
