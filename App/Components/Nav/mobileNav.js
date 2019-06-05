@@ -42,7 +42,6 @@ const NavButton = styled.div`
 `;
 
 const StyledNav = styled.nav`
-    padding-right: 10%;
     height: 75px;
     width: 100%;
     z-index: 10;

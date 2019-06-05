@@ -9,43 +9,32 @@ const ToggleTrack = styled.div`
     position: relative;
     cursor: pointer;
     left: 2em;
-    height: 1.55em;
-    width: 2.85em;
+    height: 1.4em;
+    width: 2.9em;
     border-radius: 2.5em;
     transition: background-color .5s cubic-bezier(.075, .085, .095, .85);
     border: 1.5px solid rgb(232, 237, 244);
     background-color: ${props => props.theme.toggle.bckg};
-
-    ${Media.phone`
-        width: 2.9em;
-        left: .75em;
-        border: 2px solid rgb(232, 237, 244);
-    `}
 `;
 
 const Slide = styled.div`
     position: relative;
     left: .04em;
-    height: 1.35em;
-    width: 1.4em;
+    height: 1.25em;
+    width: 1.25em;
     background-color: ${props => props.theme.toggle.slide};
     box-shadow: ${props => props.active ? `0px 1px 10px white` : `0px 0px transparent`};
     border: .75px solid ${props => props.theme.bckg};
     border-radius: 4em; 
     transition: all .5s cubic-bezier(.075, .8, .2, .8);
-    transform: translate(${props => 1.3 * props.offset}em, -.95em);
-    ${Media.phone`
-        height: 1.3em;
-        width: 1.3em;
-        transform: translate(${props => 1.35 * props.offset}em, -.9em);
-    `}
+    transform: translate(${props => 1.475 * props.offset}em, -.975em);
 `;
 
 const BckgWrapper = styled.div`
     display: flex; 
-    position: relative; 
-    transform: translateY(3.95px);
     justify-content: space-evenly; 
+    position: relative; 
+    transform: translateY(2.75px);
 `;
 
 export const LightDarkToggle = ({cb, icons:[currIcon, altIcon]}) => {
