@@ -10,7 +10,7 @@ const ToggleTrack = styled.div`
     cursor: pointer;
     left: 2em;
     height: 1.4em;
-    width: 2.9em;
+    width: 3em;
     border-radius: 2.5em;
     transition: background-color .5s cubic-bezier(.075, .085, .095, .85);
     border: 1.5px solid rgb(232, 237, 244);
@@ -20,14 +20,19 @@ const ToggleTrack = styled.div`
 const Slide = styled.div`
     position: relative;
     left: .04em;
-    height: 1.25em;
-    width: 1.25em;
+    height: 1.2em;
+    width: 1.275em;
     background-color: ${props => props.theme.toggle.slide};
     box-shadow: ${props => props.active ? `0px 1px 10px white` : `0px 0px transparent`};
     border: .75px solid ${props => props.theme.bckg};
     border-radius: 4em; 
     transition: all .5s cubic-bezier(.075, .8, .2, .8);
-    transform: translate(${props => 1.475 * props.offset}em, -.975em);
+    transform: translate(${props => 1.6 * props.offset}em, -.975em);
+    ${Media.phone`
+        height: 1.15em;
+        transform: translate(${props => 1.5 * props.offset}em, -.925em);
+    `}
+    
 `;
 
 const BckgWrapper = styled.div`
