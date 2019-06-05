@@ -9,28 +9,32 @@ const ToggleTrack = styled.div`
     position: relative;
     cursor: pointer;
     left: 2em;
-    height: 1.4em;
-    width: 3em;
+    height: 22.5px;
+    width: 45px;
     border-radius: 2.5em;
     transition: background-color .5s cubic-bezier(.075, .085, .095, .85);
     border: 1.5px solid rgb(232, 237, 244);
     background-color: ${props => props.theme.toggle.bckg};
+    ${Media.phone`
+        left: 1.5em;
+    `}
 `;
 
 const Slide = styled.div`
     position: relative;
     left: .04em;
-    height: 1.2em;
-    width: 1.275em;
+    height: 20px;
+    width: 20.5px;
     background-color: ${props => props.theme.toggle.slide};
     box-shadow: ${props => props.active ? `0px 1px 10px white` : `0px 0px transparent`};
     border: .75px solid ${props => props.theme.bckg};
-    border-radius: 4em; 
+    border-radius: 50%; 
     transition: all .5s cubic-bezier(.075, .8, .2, .8);
-    transform: translate(${props => 1.5 * props.offset}em, -.95em);
+    transform: translate(${props => 22 * props.offset}px, -.975em);
     ${Media.phone`
-        height: 1.15em;
-        transform: translate(${props => 1.5 * props.offset}em, -.925em);
+        height: 18.5px;
+        width: 18.5px
+        transform: translate(${props => 22.5 * props.offset}px, -.9em);
     `}
     
 `;
