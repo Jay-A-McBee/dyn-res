@@ -43,7 +43,6 @@ const NavButton = styled.div`
 `;
 
 const StyledNav = styled.nav`
-    padding-right: 10%;
     height: 75px;
     width: 100%;
     z-index: 10;
@@ -75,8 +74,8 @@ const NavButtonContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     position: relative;
-    left: -3.5em;
-    width: 32.5%;
+    left: -5em;
+    width: 28.5%;
     height: 75px;
 `;
 
@@ -104,6 +103,7 @@ export const Navigation = ({scroll, cb}) => {
         const name = event.target.getAttribute('name');
         scroll(name, width);
     };
+
 
     const respondToScroll = () => {
         const currentPos = window.pageYOffset;
