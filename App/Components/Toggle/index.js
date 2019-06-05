@@ -30,7 +30,7 @@ const Slide = styled.div`
     border: .75px solid ${props => props.theme.bckg};
     border-radius: 50%; 
     transition: all .5s cubic-bezier(.075, .8, .2, .8);
-    transform: translate(${props => 23.5 * props.offset}px, -.9em);
+    transform: translate(${props => 23.5 * props.offset}px, -.975em);
     ${Media.phone`
         transform: translate(${props => 23.5 * props.offset}px, -.95em);
     `}
