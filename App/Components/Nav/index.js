@@ -81,7 +81,7 @@ const NavButtonContainer = styled.div`
 
 export const Navigation = ({scroll, cb}) => {
     
-    let[navStyles, updateNavStyle] = useState({fix:false, hide:false});
+    let[navStyles, updateNavStyle] = useState({});
     let[isOpen, toggleOpen] = useState(false);
     let handler = useRef();
     let location = useRef(pageYOffset);
@@ -111,9 +111,9 @@ export const Navigation = ({scroll, cb}) => {
 
         if(!isOpen){
             if(currentPos > 0 && currentPos < 100){
-                updateNavStyle({...navStyles, fix:true});
+                updateNavStyle({hide: false, fix:true});
             }else if(movingDown){
-                updateNavStyle({...navStyles, hide:true, fix:true});
+                updateNavStyle({hide:true, fix:true});
             }else if(!movingDown && currentPos > 50){
                 updateNavStyle({fix: true, hide: false});
             }else{
@@ -124,7 +124,7 @@ export const Navigation = ({scroll, cb}) => {
     };
 
     const subscribe = () => {
-        handler.current = throttle(respondToScroll, 250, {leading: true, trailing: true});
+        handler.current = throttle(respondToScroll, 500, {leading: true, trailing: true});
         window.addEventListener('scroll', handler.current);
     };
 
@@ -137,8 +137,11 @@ export const Navigation = ({scroll, cb}) => {
         if(!handler.current){
             subscribe();
         }
+    }, [])
+
+    useEffect(() => {
         location.current = pageYOffset >= 0 ? pageYOffset : 0;
-    },[navStyles, handler.current])
+    },[navStyles])
 
     const iconStyles = {
         float: 'right',
@@ -153,6 +156,7 @@ export const Navigation = ({scroll, cb}) => {
     const ButtonComponent = ({onClick}) => (
         <FontAwesomeIcon onClick={onClick} style={{...iconStyles}} size='2x' icon='bars' />
     );
+
 
     return width > 800 ? (
         <StyledNav {...navStyles}>
