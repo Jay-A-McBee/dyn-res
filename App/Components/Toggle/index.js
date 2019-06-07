@@ -90,4 +90,4 @@ export const LightDarkToggle = ({cb, icons:[currIcon, altIcon]}) => {
             </ToggleTrack>
         </>
     )
-}
+};

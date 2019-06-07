@@ -1,22 +1,10 @@
 import React, {useState, useEffect, useRef} from 'react';
-import styled, {css, keyframes} from 'styled-components';
+import styled, {css} from 'styled-components';
 import throttle from 'lodash/throttle';
 import {MobileNav} from './mobileNav';
 import {LightDarkToggle} from '../Toggle';
 import {Media, useWidthHook} from '../Media';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-
-const fadeInAndUp = keyframes`
-    from {
-        opacity: 0;
-        transform: translateY(${20/16}em);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-`;
 
 const NavButton = styled.div`
     font-weight: 400; 
@@ -34,8 +22,6 @@ const NavButton = styled.div`
     :hover{
         color: ${props => props.theme.nav.hover};
     }
-    animation: ${fadeInAndUp} .5s ease-in-out;
-    animation-fill-mode: forwards;
     
     ${props => props.withBorder && css`
         border: .5px solid rgba(179, 248, 218)
@@ -65,7 +51,6 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    position: relative;
     width: 100%;
 `;
 
@@ -81,11 +66,12 @@ const NavButtonContainer = styled.div`
 
 export const Navigation = ({scroll, cb}) => {
     
-    let[navStyles, updateNavStyle] = useState({});
-    let[isOpen, toggleOpen] = useState(false);
+    const [navStyles, updateNavStyle] = useState({});
+    const [isOpen, toggleOpen] = useState(false);
     let handler = useRef();
+    let styles = useRef({});
     let location = useRef(pageYOffset);
-    let width = useWidthHook();
+    const width = useWidthHook();
 
     const toggle = () => {
         const body = document.querySelector('body');
@@ -108,15 +94,22 @@ export const Navigation = ({scroll, cb}) => {
     const respondToScroll = () => {
         const currentPos = window.pageYOffset;
         const movingDown = currentPos > location.current;
+        const needsUpdate = (updatedFix, updatedHide) => {
+            if(styles.current.fix !== updatedFix || styles.current.hide !== updatedHide){
+                return true;
+            }else{
+                location.current = currentPos >= 0 ? currentPos : 0;
+            }
+        }
 
         if(!isOpen){
-            if(currentPos > 0 && currentPos < 100){
+            if(currentPos > 0 && currentPos < 100 && needsUpdate(true, false)){
                 updateNavStyle({hide: false, fix:true});
-            }else if(movingDown){
+            }else if(movingDown && needsUpdate(true, true)){
                 updateNavStyle({hide:true, fix:true});
-            }else if(!movingDown && currentPos > 50){
+            }else if(!movingDown && currentPos > 50 && needsUpdate(true, false)){
                 updateNavStyle({fix: true, hide: false});
-            }else{
+            }else if(currentPos >= 0 && currentPos < 50 && needsUpdate(false, false)){
                 location.current = 0;
                 updateNavStyle({hide:false, fix:false});
             }
@@ -140,6 +133,7 @@ export const Navigation = ({scroll, cb}) => {
     }, [])
 
     useEffect(() => {
+        styles.current = navStyles;
         location.current = pageYOffset >= 0 ? pageYOffset : 0;
     },[navStyles])
 
@@ -156,7 +150,6 @@ export const Navigation = ({scroll, cb}) => {
     const ButtonComponent = ({onClick}) => (
         <FontAwesomeIcon onClick={onClick} style={{...iconStyles}} size='2x' icon='bars' />
     );
-
 
     return width > 800 ? (
         <StyledNav {...navStyles}>
