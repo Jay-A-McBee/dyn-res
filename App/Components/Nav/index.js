@@ -66,7 +66,8 @@ const NavButtonContainer = styled.div`
 
 export const Navigation = ({scroll, cb}) => {
     
-    const [navStyles, updateNavStyle] = useState({});
+    const [hide, setHide] = useState(false);
+    const [fix, setFix] = useState(false);
     const [isOpen, toggleOpen] = useState(false);
     let handler = useRef();
     let styles = useRef({});
@@ -94,24 +95,21 @@ export const Navigation = ({scroll, cb}) => {
     const respondToScroll = () => {
         const currentPos = window.pageYOffset;
         const movingDown = currentPos > location.current;
-        const needsUpdate = (updatedFix, updatedHide) => {
-            if(styles.current.fix !== updatedFix || styles.current.hide !== updatedHide){
-                return true;
-            }else{
-                location.current = currentPos >= 0 ? currentPos : 0;
-            }
-        }
+        location.current = currentPos;
 
         if(!isOpen){
-            if(currentPos > 0 && currentPos < 100 && needsUpdate(true, false)){
-                updateNavStyle({hide: false, fix:true});
-            }else if(movingDown && needsUpdate(true, true)){
-                updateNavStyle({hide:true, fix:true});
-            }else if(!movingDown && currentPos > 50 && needsUpdate(true, false)){
-                updateNavStyle({fix: true, hide: false});
-            }else if(currentPos >= 0 && currentPos < 50 && needsUpdate(false, false)){
-                location.current = 0;
-                updateNavStyle({hide:false, fix:false});
+            if(currentPos > 0 && currentPos < 100){
+                setHide(false);
+                setFix(true);
+            }else if(movingDown){
+                setHide(true);
+                setFix(true);
+            }else if(!movingDown && currentPos > 50){
+                setHide(false);
+                setFix(true);
+            }else if(currentPos >= 0 && currentPos < 50){
+                setHide(false);
+                setFix(false);
             }
         }
     };
@@ -132,11 +130,6 @@ export const Navigation = ({scroll, cb}) => {
         }
     }, [])
 
-    useEffect(() => {
-        styles.current = navStyles;
-        location.current = pageYOffset >= 0 ? pageYOffset : 0;
-    },[navStyles])
-
     const iconStyles = {
         float: 'right',
         position: 'relative',
@@ -152,7 +145,7 @@ export const Navigation = ({scroll, cb}) => {
     );
 
     return width > 800 ? (
-        <StyledNav {...navStyles}>
+        <StyledNav hide={hide} fix={fix}>
             <Container>
                 <LightDarkToggle cb={cb} icons={[['fa', 'moon'],['fa', 'sun']]} />
                 <NavButtonContainer>
@@ -172,7 +165,10 @@ export const Navigation = ({scroll, cb}) => {
             isOpen={isOpen}
             toggle={toggle}
             scroll={scroll}
-            navStyles={navStyles} 
+            navStyles={{
+                hide,
+                fix
+            }} 
             lightDarkSwitch={() => <LightDarkToggle cb={cb} icons={[['fa', 'moon'],['fa', 'sun']]} />}
         />
     )
