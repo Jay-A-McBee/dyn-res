@@ -70,7 +70,6 @@ export const Navigation = ({scroll, cb}) => {
     const [fix, setFix] = useState(false);
     const [isOpen, toggleOpen] = useState(false);
     let handler = useRef();
-    let styles = useRef({});
     let location = useRef(pageYOffset);
     const width = useWidthHook();
 
@@ -108,6 +107,7 @@ export const Navigation = ({scroll, cb}) => {
                 setHide(false);
                 setFix(true);
             }else if(currentPos >= 0 && currentPos < 50){
+                location.current = 0;
                 setHide(false);
                 setFix(false);
             }
