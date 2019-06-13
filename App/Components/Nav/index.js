@@ -106,7 +106,7 @@ export const Navigation = ({scroll, cb}) => {
             }else if(!movingDown && currentPos > 50){
                 setHide(false);
                 setFix(true);
-            }else if(currentPos >= 0 && currentPos < 50){
+            }else if(currentPos <= 0 || currentPos < 50){
                 location.current = 0;
                 setHide(false);
                 setFix(false);
