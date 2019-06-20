@@ -83,7 +83,7 @@ const Greeting = styled.span`
     color: ${props => props.theme.greet}
 `;
 
-export const Intro = forwardRef(({inView, offset}, ref) => {
+export default forwardRef(({inView, offset}, ref) => {
 
     let width = useWidthHook();
 

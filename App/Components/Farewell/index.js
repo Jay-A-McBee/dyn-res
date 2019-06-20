@@ -52,7 +52,7 @@ const Link = styled.a`
 `
 
 
-export const Farewell = () => {
+export default () => {
     return (
         <ContentWrapper
             margin={'0'}

@@ -7,7 +7,7 @@ import journeysh from '../Assets/pics/journeymenShell.png';
 import sentish from '../Assets/pics/sentimentalistShell.png';
 import ProjectInfo from '../Components/projectinfo';
 
-export const ProjectDescription = ({closeDesc, active}) => {
+export default ({closeDesc, active}) => {
 
   const picTitleRef = [
     [fairsh,'fairshare'],

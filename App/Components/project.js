@@ -200,7 +200,7 @@ const {
     dbBoiler
 } = projectDescriptions;
 
-export const ProjectSection = forwardRef(({inView}, ref) => {
+export default forwardRef(({inView}, ref) => {
 
     let projectContainer = useRef(null);
 

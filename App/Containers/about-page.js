@@ -1,14 +1,7 @@
 import React, {useRef, useEffect, useState} from 'react';
 import styled, {ThemeProvider} from 'styled-components';
 import {SocialLinks} from '../Components/SocialLinks';
-import {Intro} from '../Components/intro';
-import {About} from '../Components/about';
-import {Work} from '../Components/experience';
-import {ProjectSection as Projects}  from '../Components/project';
-import {ProjectDescription} from './projdesc-page';
 import {Navigation} from '../Components/Nav';
-import {Footer} from '../Components/Footer';
-import {Farewell} from '../Components/Farewell';
 import {LightDarkToggle} from '../Components/Toggle';
 import {useTheme} from '../Components/LightDarkHook';
 import {
@@ -63,6 +56,14 @@ const AppWrapper = styled.div`
   justify-content: space-between; 
 `;
 
+import Intro from '../Components/intro';
+const About = React.lazy(() => import('../Components/about'));
+const Work = React.lazy(() => import('../Components/experience'));
+const Projects = React.lazy(() => import('../Components/project'));
+const ProjectDescription = React.lazy(() => import('./projdesc-page'));
+const Footer = React.lazy(() => import('../Components/Footer'));
+const Farewell = React.lazy(() => import('../Components/Farewell'));
+
 export default function AboutMe(){
 
     let aboutEl = useRef();
@@ -101,9 +102,9 @@ export default function AboutMe(){
             currentPositionY = startPositionY + Math.ceil(deltaTop * changePercent);
             
             window.scroll({
-            left: 0,
-            top: currentPositionY,
-            behavior: 'smooth'
+                left: 0,
+                top: currentPositionY,
+                behavior: 'smooth'
             });
             
             if(changePercent < 1){
@@ -141,20 +142,22 @@ export default function AboutMe(){
                     ref={linksEl} 
                 />
                 <Column>
-                    <Intro 
-                        ref={introEl} 
-                    />
-                    <About 
-                        ref={aboutEl} 
-                    />
-                    <Work 
-                        ref={workEl} 
-                    />
-                    <Projects 
-                        ref={projectEl} 
-                    /> 
-                    <Farewell />
-                    <Footer />
+                    <React.Suspense fallback={<p></p>}>
+                        <Intro 
+                            ref={introEl} 
+                        />
+                        <About 
+                            ref={aboutEl} 
+                        />
+                        <Work 
+                            ref={workEl} 
+                        />
+                        <Projects 
+                            ref={projectEl} 
+                        /> 
+                        <Farewell />
+                        <Footer />
+                    </React.Suspense>
                 </Column>
             </AppWrapper>
         </ThemeProvider>

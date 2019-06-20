@@ -29,7 +29,7 @@ const Link = styled.a`
     }
 `;
 
-export const Footer = () => {
+export default () => {
     let width = useWidthHook();
     
     return(

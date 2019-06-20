@@ -24,7 +24,7 @@ const PositionedWrapper = styled(ContentWrapper)`
   position: relative;
   top: 7.5em;
 `
-export const Work = forwardRef(({workDescriptions, inView}, ref) => {
+export default forwardRef(({workDescriptions, inView}, ref) => {
 
   let workContainer = useRef(null);
 

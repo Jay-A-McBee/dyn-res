@@ -65,7 +65,7 @@ const FlexRow = styled(Row)`
 `;
 
 
-export const About = forwardRef(({inView}, ref) => {
+export default forwardRef(({inView}, ref) => {
 
   const jsLibs = [
     'ES6+',
