@@ -121,33 +121,34 @@ projectDescriptions.dbBoiler = {
 }
 
 export const work = {
-    ClickTripz: {
-      title: 'Software Engineer @',
-      href: 'https://www.clicktripz.com',
-      dates: 'March 2017 - Present',
+    Formidable: {
+      title: 'Software Engineer',
+      href: 'https://formidable.com',
+      dates: 'July 2019',
       description: {
-        a: 'Write efficient and unobtrusive JS that extends CT propietary ad-tech framework (CTI)',
-        b: 'Work with S3 data storage and Riot.js to build out admin dashboard analytics tooling',
-        c: 'Provide direct support to client tech teams integrating CT software on high-traffic sites (~50k-100k uniques/week)'
+        a:'Utilize React.js, React Native, Node.js, GraphQL, and the extended JavaScript ecosystem to build web apps, mobile apps, cloud services, and open source software',
+        b:'Audit existing products, identify areas for improvement and select technologies best suited to advance the product',
+        c:'Help guide strategy, enact best practices to ensure a maintainable and sustainable product, and help the team level up along the way'
+      }
+    },
+    ClickTripz: {
+      title: 'Software Engineer',
+      href: 'https://www.clicktripz.com',
+      dates: 'March 2017 - June 2019',
+      description: {
+        a: 'Wrote efficient and unobtrusive JS that extended the CT propietary ad-tech framework (CTI)',
+        b: 'Worked with S3 data storage and Riot.js to build out admin dashboard analytics tooling',
+        c: 'Provided direct support to client tech teams integrating CT software on high-traffic sites (~50k-100k uniques/week)'
       }
     },
     SPLT: {
-      title: 'Software Engineer @',
+      title: 'Software Engineer',
       href: 'https://www.splt.io',
       dates: 'Sept 2016 - April 2017',
       description: {
         a:'Contributed to multiple products including an enterprise-first carpooling mobile app, an accompanying analytics dashboard, and a non-emergency medical transport dispatch portal',
         b:'Worked extensively with React and React-Native to create a reusable component library',
         c:'Integrated multiple third-party APIs including PayPal, Stripe, Google Geolocate and Edmund\'s',
-      }
-    },
-    HackReactor: {
-      title: 'Software Engineering Student',
-      dates: 'March 2016 - June 2016',
-      description: {
-        a:'Completed a rigourous class schedule combining computer science fundamentals with modern software development best practices',
-        b:'Worked with a modern JS stack including frontend and backend frameworks',
-        c:'Produced three full-stack JS applications as part of a four person team that included a bill-splitting app, a local musician directory and a sentiment analysis app',
       }
     }
   }

@@ -74,13 +74,13 @@ export default function AboutMe(){
 
     const scroll = (name, width) => {
         let el = [
-        aboutEl,
-        workEl, 
-        projectEl
+            aboutEl,
+            workEl, 
+            projectEl
         ].filter( ref => ref.current.id === name)[0];
         
         const {
-        offsetTop,
+            offsetTop,
         } = el.current.container;
         
         let startPositionY = window.pageYOffset;
@@ -142,7 +142,7 @@ export default function AboutMe(){
                     ref={linksEl} 
                 />
                 <Column>
-                    <React.Suspense fallback={<p></p>}>
+                    <React.Suspense fallback={''}>
                         <Intro 
                             ref={introEl} 
                         />

@@ -110,7 +110,6 @@ const WorkLink = styled.a`
   transition: all .25s ease-in-out;
   color: ${props => props.theme.highlight};
   font-weight: 700
-
   :hover{
     text-decoration: underline;
   }
@@ -143,9 +142,6 @@ const WorkColumn = styled(Column)`
 const pictureMap = [
   ['admin', adminScreen],
   ['splt', spltScreen],
-  ['fairshare', fairshareScreen],
-  ['journeymen', journeymenScreen],
-  ['sentimentalist', sentimentalistScreen]
 ].reduce( (acc, [title, picture]) => {
   acc[title] = picture;
   return acc;
@@ -157,31 +153,20 @@ const {
 } = makeDescObj(pictureMap, projectDescriptions);
 
 const carouselChildren = [
-  'admin', 
-  'splt', 
-  'fairshare', 
-  'journeymen', 
-  'sentimentalist'
-  ].reduce( (acc, description, i) => {
-  
-  const descriptionComponent = <ProjectInfo key={i} {...descriptions[description]}/>;
-  
-  if(/admin|splt/.test(description)){
+    'admin', 
+    'splt'
+].reduce( (acc, description, i) => {
+    const descriptionComponent = <ProjectInfo key={i} {...descriptions[description]}/>;
     acc.SPLT.push(descriptionComponent);
-  }else{
-    acc.HackReactor.push(descriptionComponent);
-  };
-
-  return acc;
-
-}, {SPLT:[], HackReactor:[]}) 
+    return acc;
+}, {SPLT:[]}) 
 
 export const WorkDescription = ({title, description, dates, href, selected}) => {
   return (
     <WorkColumn data-testid='fullDescription' justify={'space-around'}>
       {!href ? 
         <Title className='animate'>{title}</Title> :
-        <Title data-testid='title' className='animate'>{title+' '}<WorkLink data-testid='workLink' href={href} target="_blank">{selected}</WorkLink></Title>
+        <Title data-testid='title' className='animate'>{`${title} @ `}<WorkLink data-testid='workLink' href={href} target="_blank">{selected}</WorkLink></Title>
       }
       <Dates data-testid='dates' className='animate'>{dates}</Dates>
       <br />
