@@ -79,7 +79,10 @@ const NarrowText = styled(TextBlock)`
 `;
 
 const Greeting = styled.span`
-    font-size: .25em;
+    font-size: 1.5rem;
+    ${Media.phone`
+      font-size: .75rem;
+    `}
     color: ${props => props.theme.greet}
 `;
 
@@ -98,13 +101,13 @@ export default forwardRef(({inView, offset}, ref) => {
             ref={introContainer}
             alignSelf={'flex-start'} 
             offset={ width > 800 ? `left: 12.5em;` : null}
-            padding={'2.5em 0'}
+            padding={'2.5rem 0'}
             justify={'space-around'}
             active={active}
         >
             <Headline 
               className='animate'
-              size={'2.5em'}
+              size={'2rem'}
               spread
             >
               <Greeting>Hi - my name is</Greeting> Austin McBee.
