@@ -3,7 +3,7 @@ import {
   bio,
   aside
 } from '../Assets/bio'
-import Me from '../Assets/pics/me.jpg'
+import Me from '../Assets/pics/headshot.jpg'
 import {
   ContentWrapper,
   InnerContent,
@@ -33,18 +33,22 @@ const inAndUp = props => css`
 
 const Image = styled.img`
   height: 22.5em;
+  border: .15rem solid ${props => props.theme.highlight};
   transition: all .25s ease-in-out;
   filter: ${props => props.theme.filter};
   margin-top: 2.5em;
+  border-radius: .15rem;
   ${inAndUp}
 
   :hover{
+    transform: translateY(-.25rem);
     filter: none;
+    box-shadow: 0 1.5rem 1.5rem rgba(45, 38, 38, .99);
   }
 
   ${Media.phone`
-    height: ${350/16}em;
-    width: ${300/16}em;
+    height: ${310/16}rem;
+    max-width: 95%;
   `}
 `
 

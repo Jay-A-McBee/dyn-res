@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
 
 
     body{
-        font-family: 'Roboto', courier;
+        font-family: 'Roboto', serif;
         color: ${props => props.theme.text};
         background-color: ${props => props.theme.bckg};
         margin:0; 
