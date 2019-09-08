@@ -67,6 +67,7 @@ const Image = styled.img`
   ${Media.phone`
     height: ${310 / 16}rem;
     max-width: 95%;
+    margin: auto;
   `}
 `;
 

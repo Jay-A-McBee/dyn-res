@@ -3,7 +3,7 @@ import React from 'react';
 export const useProgressiveImage = ({ src }) => {
   const [loadedSrc, setLoadedSrc] = React.useState(null);
   React.useEffect(() => {
-    const cachedSrc = localStorage.getItem(src);
+    const cachedSrc = sessionStorage.getItem(src);
     if (!cachedSrc && !loadedSrc) {
       const picture = new Image();
       picture.src = src;
@@ -11,7 +11,7 @@ export const useProgressiveImage = ({ src }) => {
         .decode()
         .then(() => {
           setTimeout(() => {
-            localStorage.setItem(src, src);
+            sessionStorage.setItem(src, src);
             setLoadedSrc(src);
           }, 2500);
         })
