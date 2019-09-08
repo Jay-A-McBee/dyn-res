@@ -115,6 +115,7 @@ export const FluidColumn = styled.div`
   ${Media.phone`
     flex-direction: row;
     justify-content: center;
+    min-width: 100%;
   `}
 `;
 
