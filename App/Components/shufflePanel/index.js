@@ -1,26 +1,19 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import ModalComponent from '../ModalIndex';
-import {CarouselComponent} from '../CarouselIndex';
-import styled, {css} from 'styled-components';
+import { CarouselComponent } from '../CarouselIndex';
+import styled, { css } from 'styled-components';
 import adminScreen from '../../Assets/pics/adminScreen.png';
 import spltScreen from '../../Assets/pics/spltscreen.png';
 import fairshareScreen from '../../Assets/pics/fairshareShell.png';
 import journeymenScreen from '../../Assets/pics/journeymenShell.png';
 import sentimentalistScreen from '../../Assets/pics/sentimentalistShell.png';
-import {projectDescriptions, work} from '../../Assets/shortDescription';
-import {makeDescObj} from '../../helpers';
+import { projectDescriptions, work } from '../../Assets/shortDescription';
+import { makeDescObj } from '../../helpers';
 import ProjectInfo from '../projectinfo';
-import {useWidthHook, Media} from '../Media';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {
-  FluidColumn, 
-  Row, 
-  Column
-} from '../styleLayout';
-import {
-    inAndUp
-} from '../styledText';
-
+import { useWidthHook, Media } from '../Media';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FluidColumn, Row, Column } from '../styleLayout';
+import { inAndUp } from '../styledText';
 
 const WorkContainer = styled(Column)`
   width: 80%;
@@ -33,7 +26,7 @@ const WorkContainer = styled(Column)`
     position: relative;
     top: .5em;
   `}
-`
+`;
 
 const ListContainer = styled.div`
   display: flex;
@@ -42,7 +35,7 @@ const ListContainer = styled.div`
   justify-content: space-between;
   border-bottom: 1.5px solid rgba(10, 10, 10, 0.3);
   margin-right: 0;
-  top: -.5em;
+  top: -0.5em;
 `;
 
 const WorkPlace = styled.div`
@@ -52,33 +45,36 @@ const WorkPlace = styled.div`
   flex: 1;
   height: 1.5em;
   transition: all 0.5s ease-in-out;
-  padding: .5em 0;
+  padding: 0.5em 0;
   color: ${props => props.theme.tabs};
   font-size: 1.5em;
   font-weight: 700;
-  background-color: ${props => props.selected ? 'rgba(209, 209, 214, .2)' : 'inherit'};
-  :hover{
-    background-color: rgba(209, 209, 214, .2);
+  background-color: ${props =>
+    props.selected ? 'rgba(209, 209, 214, .2)' : 'inherit'};
+  :hover {
+    background-color: rgba(209, 209, 214, 0.2);
   }
 
   ${Media.phone`
     flex: 1;
     font-size: 1em;
   `}
-`
+`;
 
 const Highlight = styled.div`
-    width: ${100.06/3}%;
-    height: .2em;
-    position: absolute;
-    transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-    top: auto;
-    left: 0;
-    bottom: -.1em;
-    transform: translateX(0);
-    background-color: ${props => props.theme.highlight};
+  width: ${100.06 / 3}%;
+  height: 0.2em;
+  position: absolute;
+  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  top: auto;
+  left: 0;
+  bottom: -0.1em;
+  transform: translateX(0);
+  background-color: ${props => props.theme.highlight};
 
-    ${props => props.offset && css`
+  ${props =>
+    props.offset &&
+    css`
       transform: translateX(${100 * props.offset}%);
     `}
 `;
@@ -86,7 +82,7 @@ const Highlight = styled.div`
 const Title = styled.p`
   font-size: 2em;
   font-weight: 700;
-  margin: .5em 0;
+  margin: 0.5em 0;
   color: ${props => props.theme.title};
 
   ${Media.phone`
@@ -107,10 +103,10 @@ const Dates = styled.p`
 
 const WorkLink = styled.a`
   text-decoration: none;
-  transition: all .25s ease-in-out;
+  transition: all 0.25s ease-in-out;
   color: ${props => props.theme.highlight};
   font-weight: 700
-  :hover{
+  :hover {
     text-decoration: underline;
   }
 `;
@@ -122,10 +118,10 @@ const BulletItem = styled(Row)`
 
 const ListItem = styled.p`
   margin-bottom: 1em;
-  position:relative;
+  position: relative;
   width: 85%;
   left: 1em;
-  top: -.1em;
+  top: -0.1em;
 
   ${Media.phone`
     font-size: .95em;
@@ -139,67 +135,85 @@ const WorkColumn = styled(Column)`
   `}
 `;
 
-const pictureMap = [
-  ['admin', adminScreen],
-  ['splt', spltScreen],
-].reduce( (acc, [title, picture]) => {
-  acc[title] = picture;
-  return acc;
-},{});
+const pictureMap = [['admin', adminScreen], ['splt', spltScreen]].reduce(
+  (acc, [title, picture]) => {
+    acc[title] = picture;
+    return acc;
+  },
+  {}
+);
 
-const {
-  images,
-  descriptions
-} = makeDescObj(pictureMap, projectDescriptions);
+const { images, descriptions } = makeDescObj(pictureMap, projectDescriptions);
 
-const carouselChildren = [
-    'admin', 
-    'splt'
-].reduce( (acc, description, i) => {
-    const descriptionComponent = <ProjectInfo key={i} {...descriptions[description]}/>;
+const carouselChildren = ['admin', 'splt'].reduce(
+  (acc, description, i) => {
+    const descriptionComponent = (
+      <ProjectInfo key={i} {...descriptions[description]} />
+    );
     acc.SPLT.push(descriptionComponent);
     return acc;
-}, {SPLT:[]}) 
+  },
+  { SPLT: [] }
+);
 
-export const WorkDescription = ({title, description, dates, href, selected}) => {
+export const WorkDescription = ({
+  title,
+  description,
+  dates,
+  href,
+  selected
+}) => {
   return (
-    <WorkColumn data-testid='fullDescription' justify={'space-around'}>
-      {!href ? 
-        <Title className='animate'>{title}</Title> :
-        <Title data-testid='title' className='animate'>{`${title} @ `}<WorkLink data-testid='workLink' href={href} target="_blank">{selected}</WorkLink></Title>
-      }
-      <Dates data-testid='dates' className='animate'>{dates}</Dates>
+    <WorkColumn data-testid="fullDescription" justify={'space-around'}>
+      {!href ? (
+        <Title className="animate">{title}</Title>
+      ) : (
+        <Title data-testid="title" className="animate">
+          {`${title} @ `}
+          <WorkLink data-testid="workLink" href={href} target="_blank">
+            {selected}
+          </WorkLink>
+        </Title>
+      )}
+      <Dates data-testid="dates" className="animate">
+        {dates}
+      </Dates>
       <br />
-      {Object.keys(description).map((key, i) => 
-        <BulletItem className='animate' key={i}>
-          <FontAwesomeIcon style={{color: 'rgb(237, 157, 85)'}} icon='chevron-right' size='1x' />
+      {Object.keys(description).map((key, i) => (
+        <BulletItem className="animate" key={i}>
+          <FontAwesomeIcon
+            style={{ color: 'rgb(237, 157, 85)' }}
+            icon="chevron-right"
+            size="1x"
+          />
           <ListItem data-testid={key}>{description[key]}</ListItem>
         </BulletItem>
-      )}
-      {carouselChildren[selected] ?
+      ))}
+      {carouselChildren[selected] ? (
         <ModalComponent
-          child={(open) => (
+          child={open => (
             <CarouselComponent
               open={open}
-              slideImages={null} 
-              children={carouselChildren[selected]} 
+              slideImages={null}
+              children={carouselChildren[selected]}
             />
           )}
           id={selected}
-          message={"View Work"}
-          animation={{vertical: true, slideDown: true}}
-        /> : null}
+          message={'View Work'}
+          animation={{ vertical: true, slideDown: true }}
+        />
+      ) : null}
     </WorkColumn>
-  )
-}
-  
+  );
+};
+
 export const Experience = () => {
   const employers = Object.keys(work);
-  let[selected, selectWorkExperience] = useState(employers[0]);
-  let[offset, updateOffset] = useState(0);
+  let [selected, selectWorkExperience] = useState(employers[0]);
+  let [offset, updateOffset] = useState(0);
   let width = useWidthHook();
 
-  const updateSelected = (e) => {
+  const updateSelected = e => {
     e.preventDefault();
 
     const title = e.nativeEvent.target.getAttribute('name');
@@ -207,30 +221,28 @@ export const Experience = () => {
 
     updateOffset(next);
     selectWorkExperience(title);
-  }
+  };
 
-  let {
-    title,
-    description
-  } = work[selected];
+  let { title, description } = work[selected];
 
   return (
     <WorkContainer justify={'space-around'}>
-      <ListContainer data-testid='tabs' className='animate'>
-        {employers.map( (title, i) => (
+      <ListContainer data-testid="tabs" className="animate">
+        {employers.map((title, i) => (
           <WorkPlace
             data-testid={`tab${i + 1}`}
-            className='animate'
+            className="animate"
             key={i}
-            name={title} 
-            onClick={updateSelected} 
+            name={title}
+            onClick={updateSelected}
             selected={selected === title}
-          >{title}
+          >
+            {title}
           </WorkPlace>
         ))}
         <Highlight offset={offset} />
       </ListContainer>
-      <WorkDescription selected={selected}  {...work[selected]}/>
+      <WorkDescription selected={selected} {...work[selected]} />
     </WorkContainer>
-  )
-}
+  );
+};

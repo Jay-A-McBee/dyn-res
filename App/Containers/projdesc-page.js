@@ -1,40 +1,43 @@
 import React from 'react';
 import ModalComponent from '../Components/ModalIndex';
-import {makeDescObj} from '../helpers';
-import {projectDescriptions} from '../Assets/shortDescription';
+import { makeDescObj } from '../helpers';
+import { projectDescriptions } from '../Assets/shortDescription';
 import fairsh from '../Assets/pics/fairshareShell.png';
 import journeysh from '../Assets/pics/journeymenShell.png';
 import sentish from '../Assets/pics/sentimentalistShell.png';
 import ProjectInfo from '../Components/projectinfo';
 
-export default ({closeDesc, active}) => {
-
+export default ({ closeDesc, active }) => {
   const picTitleRef = [
-    [fairsh,'fairshare'],
-    [journeysh,'journeymen'],
-    [sentish,'sentimentalist'],
+    [fairsh, 'fairshare'],
+    [journeysh, 'journeymen'],
+    [sentish, 'sentimentalist']
   ];
-    
-  const { 
-    fairshare, 
-    jmen, 
-    sentiment, 
-    kitkat, 
-    electric, 
-    sandBox 
+
+  const {
+    fairshare,
+    jmen,
+    sentiment,
+    kitkat,
+    electric,
+    sandBox
   } = descriptions;
 
-  const allDescriptions = makeDescObj(
-    picTitleRef, 
-    closeDesc, 
-    [fairshare, jmen, sentiment, kitkat, electric, sandBox]
-  );
+  const allDescriptions = makeDescObj(picTitleRef, closeDesc, [
+    fairshare,
+    jmen,
+    sentiment,
+    kitkat,
+    electric,
+    sandBox
+  ]);
 
-  const selectProject = () => allDescriptions[active] ? (
-    <ProjectInfo key={'img'} {...allDescriptions[active]} />
-  ) : null;        
+  const selectProject = () =>
+    allDescriptions[active] ? (
+      <ProjectInfo key={'img'} {...allDescriptions[active]} />
+    ) : null;
 
-  return(
+  return (
     <div>
       <Modal
         open={!!active}
@@ -44,5 +47,5 @@ export default ({closeDesc, active}) => {
         id={active}
       />
     </div>
-  )
-}
+  );
+};

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --verbose",
     "start:dev": "webpack-dev-server",
-    "build": "webpack --config webpack.config.prod.js"
+    "build": "webpack --config webpack.config.prod.js",
+    "lint": "eslint src/**/*.js src/**/*.jsx"
   },
   "author": "j.a.m",
   "license": "ISC",
@@ -42,10 +43,15 @@
     "babel-register": "6.26.0",
     "compression-webpack-plugin": "^2.0.0",
     "css-loader": "1.0.1",
+    "eslint": "^6.3.0",
+    "eslint-config-prettier": "^6.2.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
     "file-loader": "2.0.0",
     "html-webpack-plugin": "3.2.0",
     "jest": "^24.1.0",
     "jest-styled-components": "^6.3.1",
+    "prettier": "^1.18.2",
     "react-test-renderer": "^16.8.3",
     "react-testing-library": "^6.0.0",
     "style-loader": "0.23.1",

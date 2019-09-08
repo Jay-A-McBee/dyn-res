@@ -1,12 +1,8 @@
-import React, {useState, useEffect, useRef} from 'react';
-import styled, {css, keyframes} from 'styled-components';
-import ProjectImage from '../projectDesc';
-import {useWidthHook} from '../Media';
+import React, { useState, useEffect, useRef } from 'react';
+import styled, { css, keyframes } from 'styled-components';
+import { useWidthHook } from '../Media';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  Column, 
-  Row
-} from '../styleLayout';
+import { Column, Row } from '../styleLayout';
 import { Media } from '../Media';
 
 const Reel = styled.div`
@@ -30,13 +26,15 @@ const ChevronContainer = styled(Column)`
 
 const Circle = styled.div`
   border-radius: 50%;
-  height: ${15/16}em;
-  width: ${15/16}em;
+  height: ${15 / 16}em;
+  width: ${15 / 16}em;
   background: rgba(114, 98, 99, 0.75);
-  margin-right: .75em;
-  ${props => props.selected && css`
-    background-color: rgba(114, 98, 99, 1);
-  `}
+  margin-right: 0.75em;
+  ${props =>
+    props.selected &&
+    css`
+      background-color: rgba(114, 98, 99, 1);
+    `}
 `;
 
 const DarkColumn = styled(Column)`
@@ -57,20 +55,24 @@ const StretchRow = styled(Row)`
 
 const ViewPort = styled(Row)`
   justify-content: space-between;
-  transition: transform 1s cubic-bezier(.1,.9,.95,.99) .15s;
+  transition: transform 1s cubic-bezier(0.1, 0.9, 0.95, 0.99) 0.15s;
   position: absolute;
   top: auto;
   left: 0px;
 
-  ${props => props.active && css`
-    transform: translateX(${props => props.active * (props.dimensions.width/-16)}em);
-  `}
-`
+  ${props =>
+    props.active &&
+    css`
+      transform: translateX(
+        ${props => props.active * (props.dimensions.width / -16)}em
+      );
+    `}
+`;
 const View = styled.div`
   position: relative;
   align-self: center;
-  width: ${props => props.dimensions.width/16}em
-  height: ${props => props.dimensions.height/16}em;
+  width: ${props => props.dimensions.width / 16}em
+  height: ${props => props.dimensions.height / 16}em;
   overflow: hidden;
 `;
 
@@ -82,95 +84,85 @@ const Button = styled.button`
   border: none;
   background-color: inherit;
   cursor: pointer;
-  color: ${props => props.theme.chevron}
+  color: ${props => props.theme.chevron};
 `;
 
-const RotateIcon = ({handleClick, size, iconName}) => (
+const RotateIcon = ({ handleClick, size, iconName }) => (
   <Button onClick={handleClick}>
-    <FontAwesomeIcon 
-      icon={iconName}
-      size={size}
-    />
+    <FontAwesomeIcon icon={iconName} size={size} />
   </Button>
 );
 
-export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], slideImages}) => {
+export const CarouselComponent = ({
+  children = ['0', '1', '2', '3', '4', '5'],
+  slideImages
+}) => {
+  let [active, updateActive] = useState(0);
+  let width = useWidthHook();
 
+  const resetActive = () => {
+    if (!children[active]) {
+      updateActive(0);
+    }
+  };
 
-    let [active, updateActive] = useState(0);
-    let width = useWidthHook();
+  const animate = cb => (i = null) => {
+    requestAnimationFrame(() => cb(i));
+  };
 
-    const resetActive = () => {
-        if(!children[active]){
-            updateActive(0);
-        }
-    };
+  const selectNext = animate(() => {
+    const next = ++active;
+    if (next < children.length) {
+      updateActive(next);
+    } else {
+      updateActive(0);
+    }
+  });
 
-    const animate = (cb) => (i = null) => {
-        requestAnimationFrame(() => cb(i));
-    };
+  const selectPrevious = animate(() => {
+    const previous = --active;
+    if (previous >= 0) {
+      updateActive(previous);
+    } else {
+      updateActive(children.length - 1);
+    }
+  });
 
-    const selectNext = animate(() => {
-        const next = ++active;
-        if(next < children.length){
-            updateActive(next);
-        }else{
-            updateActive(0);
-        }
+  useEffect(() => {
+    resetActive();
+  }, [children.length]);
+
+  const selectSpecific = animate(i => {
+    updateActive(i);
+  });
+
+  let view = useRef(null);
+
+  const getDimensions = width => {
+    const makeDimensions = (height, width) => ({
+      height,
+      width
     });
 
-    const selectPrevious = animate(() => {
-        const previous = --active;
-        if(previous >= 0){
-            updateActive(previous);
-        }else{
-            updateActive(children.length - 1);
-        }
-    });
-
-    useEffect(() => {
-        resetActive();
-    },[children.length]);
-    
-    const selectSpecific = animate((i) => {
-        updateActive(i);
-    });
-
-    const projectImages = slideImages ? slideImages.map( (imgObj, index) => ({
-        index,
-        handleClick: selectSpecific,
-        styles: reelCard,
-        ...imgObj
-    })) : null;
-
-    let view = useRef(null);
-
-    const getDimensions = (width) => {
-
-        const makeDimensions = (height, width) => ({
-            height, 
-            width
-        });
-
-        if(width > 800){
-            return makeDimensions(500, 700);
-        }else if(width < 800 && width > 500){
-            return makeDimensions(320, 480);
-        }else{
-            return makeDimensions(450, 280);
-        }
-    };
+    if (width > 800) {
+      return makeDimensions(500, 700);
+    } else if (width < 800 && width > 500) {
+      return makeDimensions(320, 480);
+    } else {
+      return makeDimensions(450, 280);
+    }
+  };
 
   return width > 800 ? (
     <Container>
       <StretchRow justify={'space-between'}>
-        <ChevronContainer 
-            justify={'center'}
-            align={`
+        <ChevronContainer
+          justify={'center'}
+          align={`
                 position: absolute;
                 left: 1em;
             `}
-            ref={comp => view.current = comp}
+          ref={comp => (view.current = comp)}
         >
           <RotateIcon
             handleClick={selectPrevious}
@@ -179,13 +171,13 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
           />
         </ChevronContainer>
         <View dimensions={getDimensions(width)}>
-            <ViewPort dimensions={getDimensions(width)} active={active}>
-              {children}
-            </ViewPort> 
-        </View> 
-        <ChevronContainer 
-            justify={'center'}
-            align={`
+          <ViewPort dimensions={getDimensions(width)} active={active}>
+            {children}
+          </ViewPort>
+        </View>
+        <ChevronContainer
+          justify={'center'}
+          align={`
                 position: absolute;
                 right: 1em;
             `}
@@ -198,10 +190,10 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
         </ChevronContainer>
       </StretchRow>
       <Reel>
-        {children.map( (props, i) => (
-          <Circle 
+        {children.map((props, i) => (
+          <Circle
             key={i}
-            selected={i === active} 
+            selected={i === active}
             onClick={() => selectSpecific(i)}
           />
         ))}
@@ -211,32 +203,26 @@ export const CarouselComponent = ({children = ['0', '1', '2', '3', '4', '5'], sl
     <DarkColumn>
       <StretchRow justify={'center'}>
         <ChevronContainer justify={'center'}>
-          <RotateIcon
-            handleClick={selectPrevious}
-            iconName={'chevron-left'}
-          />
+          <RotateIcon handleClick={selectPrevious} iconName={'chevron-left'} />
         </ChevronContainer>
         <View dimensions={getDimensions(width)}>
-            <ViewPort dimensions={getDimensions(width)} active={active}>
-                {children}
-            </ViewPort> 
-        </View> 
+          <ViewPort dimensions={getDimensions(width)} active={active}>
+            {children}
+          </ViewPort>
+        </View>
         <ChevronContainer justify={'center'}>
-          <RotateIcon
-            handleClick={selectNext}
-            iconName={'chevron-right'}
-          />
+          <RotateIcon handleClick={selectNext} iconName={'chevron-right'} />
         </ChevronContainer>
       </StretchRow>
       <Reel>
         {children.map((child, i) => (
-          <Circle 
+          <Circle
             key={i}
-            selected={i === active} 
-            onClick={() => selectSpecific(i)} 
+            selected={i === active}
+            onClick={() => selectSpecific(i)}
           />
         ))}
       </Reel>
     </DarkColumn>
-  )
+  );
 };

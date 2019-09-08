@@ -1,15 +1,11 @@
-import React, {useRef, forwardRef} from 'react';
-import {Experience} from './shufflePanel';
+import React, { useRef, forwardRef } from 'react';
+import { Experience } from './shufflePanel';
 import styled from 'styled-components';
-import {scrollImperativeHandle} from './Handles';
-import {useVisibility} from './ScrollHook';
-import {
-  ContentWrapper
-} from './styleLayout';
+import { scrollImperativeHandle } from './Handles';
+import { useVisibility } from './ScrollHook';
+import { ContentWrapper } from './styleLayout';
 
-import {
-  SectionHeader
-} from './styledText'
+import { SectionHeader } from './styledText';
 
 const workContainer = {
   display: 'flex',
@@ -19,20 +15,18 @@ const workContainer = {
   margin: 'auto'
 };
 
-
 const PositionedWrapper = styled(ContentWrapper)`
   position: relative;
   top: 7.5em;
-`
-export default forwardRef(({workDescriptions, inView}, ref) => {
-
+`;
+export default forwardRef(({ workDescriptions, inView }, ref) => {
   let workContainer = useRef(null);
 
   scrollImperativeHandle(workContainer, ref, 'work');
 
   let active = useVisibility(ref);
 
-  return(
+  return (
     <ContentWrapper
       ref={workContainer}
       justify={'center'}
@@ -40,16 +34,11 @@ export default forwardRef(({workDescriptions, inView}, ref) => {
       margin={'10em'}
       active={active}
     >
-      <SectionHeader 
-        className='animate' 
-        highlight
-      >
-      Work
+      <SectionHeader className="animate" highlight>
+        Work
       </SectionHeader>
       <br />
-      <Experience
-        workDesc={workDescriptions}
-      />
-    </ContentWrapper>  
-  )
+      <Experience workDesc={workDescriptions} />
+    </ContentWrapper>
+  );
 });
