@@ -12,7 +12,8 @@ self.addEventListener('install', function(event) {
         '/6.bundle.js',
         '/36deb8949e99886edb7b3a827fbcc0ec.png',
         '/4a86c0f65974b5f8c30611754b30cdd1.png',
-        '/aa8d3b7e4caef1dd9962b910ab47b02a.jpg'
+        '/aa8d3b7e4caef1dd9962b910ab47b02a.jpg',
+        '/favicon.ico'
       ]);
     })
   );
@@ -42,7 +43,8 @@ self.addEventListener('fetch', function(event) {
               '/6.bundle.js',
               '/36deb8949e99886edb7b3a827fbcc0ec.png',
               '/4a86c0f65974b5f8c30611754b30cdd1.png',
-              '/aa8d3b7e4caef1dd9962b910ab47b02a.jpg'
+              '/aa8d3b7e4caef1dd9962b910ab47b02a.jpg',
+              '/favicon.ico'
             ];
             if (matches.some(url => event.request.url.indexOf(url) !== -1)) {
               let responseClone = response.clone();
