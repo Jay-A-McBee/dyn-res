@@ -49,7 +49,7 @@ self.addEventListener('fetch', function(event) {
               /\/favicon.ico$/
             ];
 
-            if (matches.some(regex => regex.test(event.request.url)) {
+            if (matches.some(regex => regex.test(event.request.url))) {
               let responseClone = response.clone();
               caches.open('v1').then(function(cache) {
                 cache.put(event.request, responseClone);
