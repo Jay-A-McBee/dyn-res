@@ -63,9 +63,7 @@ self.addEventListener('fetch', function(event) {
       }
     })
   );
-  event.waitUntil(
-    update(event.request);
-  )
+  event.waitUntil(update(event.request));
 });
 
 function update(request) {
