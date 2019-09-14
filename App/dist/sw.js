@@ -63,4 +63,20 @@ self.addEventListener('fetch', function(event) {
       }
     })
   );
+  event.waitUntil(
+    update(event.request);
+  )
 });
+
+function update(request) {
+  return caches
+    .open('v1')
+    .then(cache => {
+      return fetch(request).then(resp => {
+        return cache.put(request, resp);
+      });
+    })
+    .catch(e => {
+      console.log('error updating the cache');
+    });
+}
