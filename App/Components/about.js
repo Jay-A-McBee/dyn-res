@@ -12,7 +12,6 @@ import {
 import { SectionHeader, InnerHeader, TextBlock } from './styledText';
 import { useVisibility } from './ScrollHook';
 import { scrollImperativeHandle } from './Handles';
-import { useProgressiveImage } from '../Hooks';
 import { Media } from './Media';
 
 const fadeIn = keyframes`
@@ -104,8 +103,6 @@ export default forwardRef(({ inView }, ref) => {
 
   scrollImperativeHandle(aboutContainer, ref, 'about');
 
-  const src = useProgressiveImage({ src: Me });
-
   return (
     <ContentWrapper
       ref={aboutContainer}
@@ -146,11 +143,7 @@ export default forwardRef(({ inView }, ref) => {
           minHeight={'min-height: 22.5rem'}
           justify={'space-around'}
         >
-          {src ? (
-            <Image className="animate" src={src} />
-          ) : (
-            <Loader>Loading</Loader>
-          )}
+          <Image className="animate" src={Me} />
         </FluidColumn>
       </InnerContent>
     </ContentWrapper>

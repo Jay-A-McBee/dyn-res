@@ -3,7 +3,6 @@ import styled, { css, keyframes } from 'styled-components';
 import { Media } from './Media';
 import { Column } from './styleLayout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useProgressiveImage } from '../Hooks';
 
 const fadeIn = keyframes`
 
@@ -133,10 +132,9 @@ const Loader = styled.div`
 `;
 
 const ProjectInfo = ({ title, tasks, photo, link, active }) => {
-  const src = useProgressiveImage({ src: photo });
   return (
     <Container active={active || false}>
-      {src ? <DeviceImage src={src} loaded={src} /> : <Loader>LOADING</Loader>}
+      <DeviceImage src={photo} loaded={photo} />
       <BigColumn justify={'center'}>
         <ProjectName>{title}</ProjectName>
         {tasks.map((task, idx) => (
