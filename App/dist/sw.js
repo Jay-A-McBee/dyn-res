@@ -9,6 +9,7 @@ self.addEventListener('install', function(event) {
         '/3.bundle.js',
         '/4.bundle.js',
         '/5.bundle.js',
+        '/6.bundle.js',
         '/36deb8949e99886edb7b3a827fbcc0ec.png',
         '/4a86c0f65974b5f8c30611754b30cdd1.png',
         '/aa8d3b7e4caef1dd9962b910ab47b02a.jpg'
@@ -38,6 +39,7 @@ self.addEventListener('fetch', function(event) {
               '/3.bundle.js',
               '/4.bundle.js',
               '/5.bundle.js',
+              '/6.bundle.js',
               '/36deb8949e99886edb7b3a827fbcc0ec.png',
               '/4a86c0f65974b5f8c30611754b30cdd1.png',
               '/aa8d3b7e4caef1dd9962b910ab47b02a.jpg'
