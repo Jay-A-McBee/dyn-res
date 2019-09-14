@@ -2,6 +2,8 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('v1').then(function(cache) {
       return cache.addAll([
+        '/index.html',
+        '/bundle.js',
         '/0.bundle.js',
         '/1.bundle.js',
         '/2.bundle.js',
@@ -30,6 +32,8 @@ self.addEventListener('fetch', function(event) {
             // we need to save clone to put one copy in cache
             // and serve second one
             const matches = [
+              '/index.html',
+              '/bundle.js',
               '/0.bundle.js',
               '/1.bundle.js',
               '/2.bundle.js',
