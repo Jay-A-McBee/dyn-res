@@ -88,13 +88,13 @@ const FlexRow = styled(Row)`
 export default forwardRef(({ inView }, ref) => {
   const jsLibs = [
     'ES6+',
-    'html/css',
-    'react',
-    'react-native',
+    'Typescript',
+    'React',
+    'React-Native',
     'css-in-js',
-    'jest',
-    'node',
-    'express'
+    'Jest',
+    'Node',
+    'Express'
   ];
 
   let aboutContainer = useRef(null);
