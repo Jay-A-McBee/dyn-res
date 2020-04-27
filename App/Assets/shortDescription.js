@@ -120,6 +120,18 @@ projectDescriptions.dbBoiler = {
 	icon: ['fab', 'node']
 }
 
+projectDescriptions.rnTweetEmbed = {
+  title: 'rn-tweet-embed',
+  role: 'a simple tweet embed component',
+  tasks:[
+    'React-Native',
+    'Java',
+    'Objective-C'
+  ],
+  link: 'https://github.com/Jay-A-McBee/rn-tweet-embed',
+  icon: ['fab', 'android']
+}
+
 export const work = {
     Formidable: {
       title: 'Software Engineer',

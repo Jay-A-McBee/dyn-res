@@ -181,7 +181,7 @@ const FullFolder = ({ inView, icon, ...rest }) => {
   );
 };
 
-const { slide, portfolio, vue, sandbox, dbBoiler } = projectDescriptions;
+const { slide, portfolio, vue, sandbox, dbBoiler, rnTweetEmbed } = projectDescriptions;
 
 export default forwardRef(({ inView }, ref) => {
   let projectContainer = useRef(null);
@@ -202,7 +202,7 @@ export default forwardRef(({ inView }, ref) => {
       </SectionHeader>
       <br />
       <WrapRow justify={'flex-start'}>
-        {[slide, portfolio, vue, sandbox, dbBoiler].map((props, i) =>
+        {[slide, portfolio, vue, sandbox, dbBoiler, rnTweetEmbed].map((props, i) =>
           width > 800 ? (
             <FullFolder key={i} className="animate" {...props} />
           ) : (

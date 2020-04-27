@@ -13,7 +13,8 @@ import {
   faGoogle,
   faReact,
   faVuejs,
-  faNode
+  faNode,
+  faAndroid,
 } from '@fortawesome/free-brands-svg-icons';
 import {
   faChevronLeft,
@@ -42,7 +43,8 @@ library.add(
   faEnvelope,
   faArrowLeft,
   faSun,
-  faMoon
+  faMoon,
+  faAndroid
 );
 
 const AppWrapper = styled.div`
