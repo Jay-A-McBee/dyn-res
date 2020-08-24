@@ -27,12 +27,12 @@ const compress = new compressionPlugin({
 const minify = new MinifyPlugin();
 const analyze = new BundleAnalyzerPlugin();
 
-const BUILD_DIR = path.resolve(__dirname, "App/dist");
-const APP_DIR = path.resolve(__dirname, "App");
+const BUILD_DIR = path.resolve(__dirname, "src/dist");
+const SRC_DIR = path.resolve(__dirname, "src");
 
 module.exports = {
   mode: "production",
-  entry: APP_DIR + "/root.js",
+  entry: SRC_DIR + "/root.js",
   output: {
     path: BUILD_DIR,
     filename: "bundle.js"
@@ -40,24 +40,18 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js?$/,
+        test: /\.js(x)?$/,
         loader: "babel-loader",
         exclude: /node_modules/,
         query: {
-          presets: ["@babel/preset-env", "@babel/preset-react"],
-          plugins: ["@babel/plugin-proposal-object-rest-spread"]
+          presets: ["@babel/preset-env", "@babel/preset-react"]
         }
       },
       {
-        test: /\.css$/,
-        loader: "style-loader!css-loader"
-      },
-      {
-        // images
-        test: /\.(ico|jpe?g|png|gif)$/,
-        loader: "file-loader"
+        test: /\.scss$/,
+        use: ["style-loader", "css-loader", "sass-loader"]
       }
     ]
   },
-  plugins: [HtmlWebpackPluginConfig, nodeEnv, minify, compress]
+  plugins: [HtmlWebpackPluginConfig, nodeEnv, minify, compress, analyze]
 };
