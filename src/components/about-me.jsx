@@ -13,19 +13,19 @@ const Link = ({ children, ...rest }) => <a {...rest}>{children}</a>;
 const linkProps = [
   {
     href: "https://github.com/Jay-A-McBee",
-    ariaLabel: "Link to Jay McBee's Github profile",
+    "aria-label": "Link to Jay McBee's Github profile",
     target: "_blank",
     icon: faGithub
   },
   {
     href: "https://www.linkedin.com/in/jayaustinmcbee/",
-    ariaLabel: "Link to Jay McBee's LinkedIn profile.",
+    "aria-label": "Link to Jay McBee's LinkedIn profile.",
     target: "_blank",
     icon: faLinkedin
   },
   {
     href: "mailto:jmcbee1@gmail.com",
-    ariaLabel: "Link to send Jay McBee an email",
+    "aria-label": "Link to send Jay McBee an email",
     icon: faGoogle
   }
 ];
