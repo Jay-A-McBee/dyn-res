@@ -53,5 +53,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [HtmlWebpackPluginConfig, nodeEnv, minify, compress, analyze]
+  plugins: [HtmlWebpackPluginConfig, nodeEnv, minify, compress]
 };
