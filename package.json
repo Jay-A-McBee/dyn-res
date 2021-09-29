@@ -16,7 +16,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.7.1",
     "@fortawesome/free-solid-svg-icons": "^5.7.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
-    "i": "^0.3.6",
+    "i": "^0.3.7",
     "intersection-observer": "^0.5.1",
     "lodash": "^4.17.11",
     "node-uuid": "1.4.8",
