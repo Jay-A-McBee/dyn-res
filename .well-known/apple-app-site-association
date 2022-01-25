@@ -2,10 +2,14 @@
     "applinks": {
         "apps": [],
         "details": [
-            {
-                "appID": "org.reactjs.native.example.Example",
-                "paths": [ "/oauth"]
-            }
+          {
+            "appIDs": ["org.reactjs.native.example.Example"],
+            "components": [ 
+              {
+                "/": "/oauth"
+              }
+            ]
+          }
         ]
     }
 }
