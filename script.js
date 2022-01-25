@@ -8,7 +8,7 @@ const makeWellKnownDir = () => {
 const writeAssociationFile = () => {
   const contents = fs.readFileSync(path.resolve(__dirname, './.well-known/apple-app-site-association'))
 
-  fs.writeFileSync(path.resolve(__dirname, './src/dist/.well-known/apple-app-site-association'), contents)
+  fs.writeFileSync(path.resolve(__dirname, './src/dist/.well-known/apple-app-site-association.json'), contents)
 }
 
 makeWellKnownDir()
