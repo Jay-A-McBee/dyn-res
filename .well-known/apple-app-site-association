@@ -3,7 +3,7 @@
         "apps": [],
         "details": [
           {
-            "appIDs": ["org.reactjs.native.example.Example"],
+            "appIDs": ["6XKL8V843P.org.react.native.app.auth"],
             "components": [ 
               {
                 "/": "/oauth"
