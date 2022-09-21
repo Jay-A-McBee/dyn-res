@@ -1,0 +1,1 @@
+export { renderText } from './text';
