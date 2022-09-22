@@ -1,0 +1,40 @@
+{
+  "projects": [
+    {
+      "type": "project",
+      "title": "react-native-tweet-embed",
+      "url": "https://github.com/Jay-A-McBee/react-native-tweet-embed",
+      "background": "",
+      "body": [
+        {"type": "text", "content": "This little lib was inspired by some client work I did. The twitter SDK was a little chonky and we only really needed this one feature. A simple React-Native component that consumes a tweet id and renders an embedded tweet. I added some native modules for data fetching just for fun 🎉🎉🎉."}
+      ]
+    },
+    {
+      "type": "project",
+      "title": "pngfun",
+      "url": "https://github.com/Jay-A-McBee/pngfun",
+      "background": "",
+      "body": [
+        {"type": "text", "content": "A useless (but fun) lib that can read and parse png files into their respective 'chunks'. If you ever find yourself needing to hide a secret message in a png file (a fairly common occurence, right?), this lib is for you."}
+      ]
+    },
+    {
+      "type": "project",
+      "title": "chipwich",
+      "url": "https://github.com/Jay-A-McBee/chipwich",
+      "background": "",
+      "body": [
+        {"type": "text", "content": "A chip8 emulator that can run local and remote games in normal and developer mode. Want to play 'snake' on your laptop? This lib has got you covered."}
+      ]
+    },
+    {
+      "type": "project",
+      "title": "Resume site",
+      "url": "https://github.com/Jay-A-McBee/dyn-res",
+      "background": "",
+      "body": [
+        {"type": "text", "content": "The site you are currently scrolling. Some might say, 'Why build such a simple site with Next.js?'. To which I would reply, 'BIG blog plans so piss off.'"}
+      ]
+    }
+  ]
+}

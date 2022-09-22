@@ -4,7 +4,7 @@ import GlobalStyle from '../components/globalstyles'
 
 const theme: DefaultTheme = {
   colors: {
-    background: 'rgba(60, 60, 75, .9)',
+    background: 'rgb(61, 63, 71)',
     primary: 'rgba(54, 58, 64, .5)',
     secondary: 'rgba(54, 58, 64, .5)',
   },

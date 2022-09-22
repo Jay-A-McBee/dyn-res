@@ -1,4 +1,4 @@
-import { TextNode, TextElements } from '@localTypes/text';
+import { TextNode, TextElements } from './types';
 import {ReactNode} from 'react';
 import { StyledComponent, DefaultTheme } from 'styled-components';
 

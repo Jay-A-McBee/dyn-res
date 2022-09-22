@@ -1,0 +1,39 @@
+{
+  "work": [
+    {
+      "name": "Formidable",
+      "url": "https://formidable.com/",
+      "position": "Senior Software Engineer",
+      "activeDates": "2019 - present",
+      "body": [
+        {
+          "type": "p",
+          "text": "TODO"
+        }
+      ]
+    }, 
+    {
+      "name": "Clicktripz",
+      "url": "https://www.clicktripz.com/",
+      "position": "Software Engineer",
+      "activeDates": "2017 - 2019",
+      "body": [
+        {
+          "type": "p",
+          "text": "TODO"
+        }
+      ]
+    }, 
+    {
+      "name": "SPLT - Splitting Fares inc.",
+      "url": "https://www.crunchbase.com/organization/splitting-fares--splt-",
+      "position": "Software Engineer",
+      "activeDates": "2016 - 2017",
+      "body": [
+        {
+          "type": "p",
+          "text": "TODO"
+        }
+      ]
+    }]
+}

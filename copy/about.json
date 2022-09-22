@@ -1,0 +1,8 @@
+{
+  "title": {"type": "text", "text": "About"},
+  "body": [
+    {"type": "text", "text": "Hi! My name is Austin McBee - I'm a software engineer from Seattle, Washington. I spend most of my working hours developing modern and performant web apps for clients working at scale. The wins are usually small and hard-fought, but my 'code scissors' are very sharp and nothing makes me happier than pruning and simplifying an unweildy code base. I'm curious about code, deep bugs and confusing/inconsistent program behaviour."},
+    {"type": "text", "text": "I'm a JS dev, but, given the choice, I'd choose TS. Lang features that have made it into the standard like optional chaining are great, but there's nothing like the confidence that comes with static types. It takes a disciplined team, a penchant for rigor and maybe a little more time initially, but, when done thoughtfully, the outcome is sound and maintainable."},
+    {"type": "text", "text": "My day job is in a langauge that allows anything, so on hobby projects I reach for something a little less permissive - Rust 🦀. My side projects are far from web dev stuff - low-level byte manipulation, CLI utilities and silly games. Like a lot of folks that code in Rust, I'd say my knowledge and skills are a WIP. I still square-off with the compiler occasionally, but now I appreciate the strictness. More than anything it has influenced how I write and think about JS programs in a good way."}
+  ]
+}

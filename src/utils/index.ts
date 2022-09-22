@@ -1,1 +1,0 @@
-export { renderText } from './text';

@@ -1,17 +1,23 @@
-import Link from 'next/link'
-import { Container, Main, Title, Description } from '../components/sharedstyles'
+import React from 'react';
+import { GetStaticProps } from 'next'
+import { readFile } from 'fs/promises';
+import path from 'path';
 
-export default function About() {
-  return (
-    <Container>
-      <Main>
-        <Title>About Page</Title>
-        <Description>
-          <Link href="/">
-            <a>&larr; Go Back</a>
-          </Link>
-        </Description>
-      </Main>
-    </Container>
-  )
+import { AboutLayout } from '@components';
+
+const AboutPage = ({ aboutData }) => {
+  
+  return <AboutLayout content={aboutData} />;
+}
+
+export default AboutPage;
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const aboutData = await readFile(path.join(process.cwd(), 'copy/about.json'), 'utf-8');
+
+  return {
+    props: {
+      aboutData: JSON.parse(aboutData)
+    }
+  }
 }
