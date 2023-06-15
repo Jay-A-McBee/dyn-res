@@ -1,0 +1,55 @@
+$section-margin: 10px 0;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+
+  & > p, a {
+    font-size: 12px;
+    margin: 0;
+  }
+}
+
+.sectionContainer {
+  margin: $section-margin;
+  font-size: 1rem;
+
+  h3 {
+    margin: 0;
+  }
+
+  p {
+    margin: 0 0 5px 0;
+  }
+
+  li {
+    list-style: square;
+  }
+
+  ul {
+    margin: 0 0 10px 0;
+  }
+}
+
+.experienceContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.workExperienceContainer {
+  margin-top: 15px;
+
+  display: flex;
+  justify-content: space-between;
+}

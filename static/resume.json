@@ -1,0 +1,162 @@
+{
+  "sections": {
+    "header": {
+      "title": "Jay Austin McBee",
+      "contact": {
+        "location": "Seattle, Washington",
+        "phoneNumber": "210.239.2924",
+        "email": "jmcbee1@gmail.com"
+      },
+      "links": [
+        {
+          "display": "linkedin.com/in/jayaustinmcbee",
+          "href": "https://www.linkedin.com/in/jayaustinmcbee/"
+        }, 
+        {
+          "display": "jmcbee.dev",
+          "href": "https://jmcbee.dev/"
+        }
+      ]
+    },
+    "skills": {
+      "sectionHeader": "Technical Skills",
+      "body": [
+        {
+          "title": "Strong",
+          "summary": [
+            "Typescript/Javascript", 
+            "React/React-Native and extended ecosystem", 
+            "Next.js"
+          ]
+        },
+        {
+          "title": "Experienced",
+          "summary": [
+            "Node", 
+            "Express", 
+            "GraphQL"
+          ]
+        },
+        {
+          "title": "Side Projects",
+          "summary": [
+            "Rust"
+          ]
+        }
+      ]
+    },
+    "recentProjects": {
+      "sectionHeader": "Recent Projects",
+      "body": [
+        {
+          "title": "Celebrity Athleisure Company",
+          "type": "E-Commerce Application",
+          "role": "Front End",
+          "summary": [
+            "Replatformed legacy Cold Fusion application to Next.js",
+            "Unified two codebases through an extensive whitelabel configuration",
+            "Owned large scale features crucial to user on-boarding and conversion"
+          ]
+        },
+        {
+          "title": "Fortune 500 Video Game company",
+          "type": "Cart and Checkout Application",
+          "role": "Full Stack",
+          "summary": [
+            "Built a standalone cart and checkout Next.js application",
+            "Implemented Cypress E2E testing and automation scripts to generate API responses",
+            "Integrated backend services and the Adobe Magento API into the middle-tier GraphQL layer"
+          ]
+        },
+        {
+          "title": "Fortune 500 Office Supply company",
+          "type": "Platform Team",
+          "role": "Full Stack",
+          "summary": [
+            "Replatformed legacy multi-page Electrode application to a Next.js SPA",
+            "Made major contributions to a sophisticated build and Webpack configuration",
+            "Owned local development setup and automation"
+          ]
+        },
+        {
+          "title": "Opendorse",
+          "type": "React Native Application",
+          "role": "Front End",
+          "link": "https://opendorse.com/",
+          "summary": [
+            "Built v1 of the Opendorse React Native application with Typescript",
+            "Integrated multiple social media publishing and authentication APIs including Twitter, Facebook and Instagram",
+            "Upskilled the client dev team who were  new to React Native"
+          ]
+        },
+        {
+          "title": "Chipwich",
+          "type": "Chip 8 emulator (hobby project)",
+          "role": "Full Stack",
+          "link": "https://github.com/Jay-A-McBee/chipwich",
+          "summary": [
+            "A chip8 emulator built with Rust",
+            "Built a CLI capable of loading local and remote chip8 games",
+            "Integrated the SDL2 crate for audio, keyboard and graphics access"
+          ]
+        }
+      ]
+    },
+    "experience": {
+      "sectionHeader": "Work Experience",
+      "body": [
+        {
+          "title": "Formidable",
+          "type": "Senior Software Engineer",
+          "location": "Remote",
+          "dates": "2019 - present",
+          "summary": [
+            "Senior consultant specializing in front end application architecture",
+            "Embed with client teams to build, plan and architect modern web applications",
+            "Maintain and contribute to internal OSS libs"
+          ]
+        },
+        {
+          "title": "Clicktripz",
+          "type": "Software Engineer",
+          "location": "Remote",
+          "dates": "2017 - 2019",
+          "summary": [
+            "Integrations engineer responsible for building and maintaining custom marketing scripts",
+            "Worked directly with client dev teams to integrate CT software on high-traffic travel web sites",
+            "Led development on internal React applications"
+          ]
+        },
+        {
+          "title": "Splitting Fares Inc.",
+          "type": "Software Engineer",
+          "location": "Detroit, Michigan",
+          "dates": "2016 - 2017",
+          "summary": [
+            "Lead front-end developer on a React Native carpooling application",
+            "Built a ride cost estimate web application that integrated the Lyft API",
+            "Built a non-emergency medical transport dispatch web portal that integrated the Lyft API"
+          ]
+        }
+      ]
+    },
+    "education": {
+      "sectionHeader": "Education",
+      "body": [
+        {
+          "name": "Hack Reactor",
+          "location": "Austin, Texas",
+          "description": "Advanced Software Engineering Immersive",
+          "dates": "2016"
+        },
+        {
+          "name": "Austin College",
+          "location": "Sherman, Texas",
+          "description": "B.A. English/French",
+          "dates": "2003 - 2007"
+        }
+      ]
+    }
+
+  }
+}
