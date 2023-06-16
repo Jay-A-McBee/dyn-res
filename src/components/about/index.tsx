@@ -28,6 +28,7 @@ const About = () => {
           height={250}
           src={headshot}
           className={styles.image}
+          priority
         />
         <h2>Austin McBee</h2>
         <p>Software Engineer | System Tinkerer</p>
