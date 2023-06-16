@@ -1,10 +1,11 @@
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import headshot from "../../../public/headshot.webp";
+
 import styles from "./about.module.scss";
 import { CircleChevronDownIcon, GithubIcon, LinkedInIcon } from "../icons";
 import EmailIcon from "../icons/email";
 import Resume from "../resume";
+import headshot from "../../../public/headshot.webp";
 
 const About = () => {
   const [clickedScroll, setClickedScroll] = useState(false);

@@ -1,10 +1,8 @@
-import Image from "next/image";
-
-import resume from "../../../static/resume.json";
-import projectJson from "../../../static/projects.json";
 import styles from "./resume.module.scss";
 import Copy from "@/utils/copy";
 import { GithubIcon, RustLogoIcon, ReactNativeIcon } from "../icons";
+import resume from "../../../static/resume.json";
+import projectJson from "../../../static/projects.json";
 
 const iconMap: Record<
   string,
