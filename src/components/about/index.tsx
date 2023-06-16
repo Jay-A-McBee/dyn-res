@@ -33,13 +33,25 @@ const About = () => {
         <h2>Austin McBee</h2>
         <p>Software Engineer | System Tinkerer</p>
         <div className={styles.iconContainer}>
-          <a target="_blank" href="https://github.com/Jay-A-McBee">
+          <a
+            target="_blank"
+            aria-label="Github profile link"
+            href="https://github.com/Jay-A-McBee"
+          >
             <GithubIcon height={25} width={25} />
           </a>
-          <a target="_blank" href="https://www.linkedin.com/in/jayaustinmcbee/">
+          <a
+            target="_blank"
+            aria-label="Linkedin profile link"
+            href="https://www.linkedin.com/in/jayaustinmcbee/"
+          >
             <LinkedInIcon height={25} width={25} />
           </a>
-          <a target="_blank" href="mailto:jmcbee1@gmail.com">
+          <a
+            target="_blank"
+            aria-label="Jay Austin McBee email link"
+            href="mailto:jmcbee1@gmail.com"
+          >
             <EmailIcon height={25} width={25} />
           </a>
         </div>
@@ -48,7 +60,7 @@ const About = () => {
             !clickedScroll ? styles.scrollButtonAnimation : ""
           }`}
         >
-          <button onClick={handleClick}>
+          <button aria-label="scroll down button" onClick={handleClick}>
             <CircleChevronDownIcon height={75} width={75} />
           </button>
         </div>
