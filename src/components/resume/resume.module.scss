@@ -29,7 +29,7 @@ $section-margin: 10px 0;
 .contentContainer {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin: 20px 0;
   justify-content: space-between;
 
   svg {
@@ -42,8 +42,9 @@ $section-margin: 10px 0;
     margin: 0;
   }
   
-  p.description {
+  b {
     color: $tertiary-dark;
+    margin-bottom: 5px;
   }
   
   li {
@@ -59,7 +60,6 @@ $section-margin: 10px 0;
   @media (min-width: 800px) {
     flex-direction: row;
     font-size: 16px;
-    padding-right: 20px;
 
     p {
       font-size: 1rem;

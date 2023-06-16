@@ -144,7 +144,7 @@ const SideProjects = () => (
                   <LangIcon height={25} width={25} />
                 </div>
               </div>
-              <p className={styles.description}>{description}</p>
+              <b>{description}</b>
               <ul>
                 {summary.map((line) => (
                   <li key={line}>
