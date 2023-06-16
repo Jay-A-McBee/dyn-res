@@ -149,7 +149,11 @@ const SideProjects = () => (
                 ))}
               </ul>
               <div className={`${styles.iconContainer} ${styles.desktopOnly}`}>
-                <a target="_blank" href={repoHref}>
+                <a
+                  target="_blank"
+                  aria-label={`${title} github repo link`}
+                  href={repoHref}
+                >
                   <GithubIcon height={50} width={50} />
                 </a>
                 <LangIcon height={55} width={55} />
