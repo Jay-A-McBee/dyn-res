@@ -22,7 +22,6 @@
   justify-content: center;
   align-items: center;
   gap: 22px;
-  margin-top: 20px;
 
   a {
     flex: 1;
@@ -37,8 +36,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   position: relative;
+  padding-top: 80px;
 
   height: 100vh;
 
@@ -51,12 +50,12 @@
 
   p {
     color: $secondary-dark;
+    margin-bottom: 20px;
   }
   
   @media (min-width: 800px) {
-    p {
-      margin-bottom: 20px;
-    }
+    padding-top: 0;
+    justify-content: center;
   }
 }
 
@@ -77,9 +76,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  bottom: 30px;
   padding-bottom: 10px;
+  margin-top: 20px;
 
 
   button {
@@ -121,15 +119,6 @@
     background-repeat: no-repeat;
     background-attachment: local, local, scroll, scroll;
     background-size: 100% 45px, 100% 45px, 100% 15px, 100% 15px;
-  }
-}
-
-.emojiContainer {
-  display: flex;
-  justify-content: space-evenly;
-  
-  span {
-    font-size: 42px;
   }
 }
 
