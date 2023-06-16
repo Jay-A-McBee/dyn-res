@@ -1,6 +1,6 @@
 {
   "description": [
-    "I'm Austin McBee - a senior software engineer in Seattle, Washington. I have extensive experience building both web and native applications using modern Javascript front end and back end frameworks. I am currently working as a consultant at {link, Formidable, https://formidable.com/}, but I have prior experience working at product companies.",
+    "I'm <highlight>Austin McBee<highlight> - a senior software engineer in Seattle, Washington. I have extensive experience building both web and native applications using modern Javascript front end and back end frameworks. I am currently working as a consultant at {link, Formidable, https://formidable.com/}, but I have prior experience working at product companies.",
     "Javascript is where I am most comfortable, but if given the choice I prefer JS's stricter sibling - Typescript. Moving errors from runtime to compile time will keep your hair from prematurely turning grey as a JS dev.",
     "In my free time, I dabble in system engineering and tinker with the Rust programming language - I've had a blast learning and working with Rust over the last couple years. Thinking about memory and low-level details has made me a better Javascript developer.",
     "When not hacking, you can probably find me walking my dog, Mr. Puff, around Lincoln Park in West Seattle."

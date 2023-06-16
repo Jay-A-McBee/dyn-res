@@ -1,45 +1,65 @@
 import { useMemo } from "react";
-
-type MappedLink = Record<string, { display: string; link: string }>;
+import styles from "./copy.module.scss";
 
 const LINK_REGEX = /{link, (.*), (.*)}/gm;
+const HIGHLIGHT_REGEX = /<highlight>(.*)<highlight>/;
+const HIGHLIGHT_REGEX_GLOBAL = new RegExp(HIGHLIGHT_REGEX, "g");
 
-const Copy = ({ val }: { val: string }) => {
+const Copy = ({ text, nested }: { text: string; nested?: boolean }) => {
   const mappedCopy = useMemo(() => {
-    const matches = val.match(LINK_REGEX);
-    if (matches) {
-      return matches.reduce<JSX.Element[]>((acc, m, idx) => {
+    const linkMatches = text.match(LINK_REGEX);
+    const highlightMatches = text.match(HIGHLIGHT_REGEX_GLOBAL);
+
+    if (nested && !linkMatches && !highlightMatches) {
+      return text;
+    }
+
+    if (linkMatches) {
+      return linkMatches.reduce<JSX.Element[]>((acc, m, idx) => {
         const [_, display, link] = m.substring(1, m.length - 1).split(",");
 
-        const [start, end] = val.split(m);
+        const [start, end] = text.split(m);
 
-        if (idx === 0) {
-          acc.push(
+        acc.push(
+          <p key={start}>
+            {highlightMatches ? <Copy text={start} nested /> : start}
+            <a key={display} target="_blank" href={link}>
+              {display}
+            </a>
+            {highlightMatches ? <Copy text={end} nested /> : end}
+          </p>
+        );
+
+        return acc;
+      }, []);
+    } else if (highlightMatches) {
+      return highlightMatches.reduce<JSX.Element[]>((acc, m, idx) => {
+        const [, matchedText] = m.match(HIGHLIGHT_REGEX) ?? [];
+
+        const [start, end] = text.split(m);
+
+        acc.push(
+          nested ? (
+            <span key={start}>
+              <Copy key={start} text={start} nested />
+              <span className={styles.textHighlight}>{matchedText}</span>
+              <Copy text={end} nested />
+            </span>
+          ) : (
             <p key={start}>
-              {start}
-              <a key={display} target="_blank" href={link}>
-                {display}
-              </a>
-              {end}
+              <Copy text={start} nested />
+              <span className={styles.textHighlight}>{matchedText}</span>
+              <Copy text={end} nested />
             </p>
-          );
-        } else {
-          acc.push(
-            <p key={end}>
-              <a key={display} target="_blank" href={link}>
-                {display}
-              </a>
-              {end}
-            </p>
-          );
-        }
+          )
+        );
 
         return acc;
       }, []);
     }
 
-    return <p>{val}</p>;
-  }, [val]);
+    return <p key={text}>{text}</p>;
+  }, [text, nested]);
 
   return <>{mappedCopy}</>;
 };

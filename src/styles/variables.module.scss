@@ -1,5 +1,9 @@
 $primary-light: #A49393;
-$primary-dark: #67595E;
+$primary-dark: #433D3E;
+$primary-darker: darken($primary-dark, 10%);
 $secondary-light: #EED6D3;
-$secondary-dark: #E8B4B8;
+$secondary-dark: #FFD6D9;
+$tertiary-light: #FD8E44;
+$tertiary-dark: darken($tertiary-light, 30%);
+$background: #edeff2;
  

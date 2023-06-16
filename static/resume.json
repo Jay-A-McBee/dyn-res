@@ -11,10 +11,6 @@
         {
           "display": "linkedin.com/in/jayaustinmcbee",
           "href": "https://www.linkedin.com/in/jayaustinmcbee/"
-        }, 
-        {
-          "display": "jmcbee.dev",
-          "href": "https://jmcbee.dev/"
         }
       ]
     },
@@ -26,19 +22,22 @@
           "summary": [
             "Typescript/Javascript", 
             "React/React-Native and extended ecosystem", 
-            "Next.js"
+            "Next.js",
+            "Jest",
+            "Cypress"
           ]
         },
         {
           "title": "Experienced",
           "summary": [
             "Node", 
-            "Express", 
+            "Express",
+            "REST",
             "GraphQL"
           ]
         },
         {
-          "title": "Side Projects",
+          "title": "On the side",
           "summary": [
             "Rust"
           ]
@@ -46,7 +45,7 @@
       ]
     },
     "recentProjects": {
-      "sectionHeader": "Recent Projects",
+      "sectionHeader": "Recent Work Projects",
       "body": [
         {
           "title": "Celebrity Athleisure Company",
@@ -130,7 +129,7 @@
         {
           "title": "Splitting Fares Inc.",
           "type": "Software Engineer",
-          "location": "Detroit, Michigan",
+          "location": "Detroit, MI",
           "dates": "2016 - 2017",
           "summary": [
             "Lead front-end developer on a React Native carpooling application",

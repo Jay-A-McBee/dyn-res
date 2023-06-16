@@ -1,14 +1,19 @@
+@import "../../styles/variables.module.scss";
+
 $section-margin: 10px 0;
 
 .container {
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
+
+  h2 {
+    color: $tertiary-dark;
+  }
 }
 
 .infoContainer {
@@ -21,24 +26,132 @@ $section-margin: 10px 0;
   }
 }
 
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  justify-content: space-between;
+
+  svg {
+    fill: $tertiary-dark;
+    margin-right: 10px;
+  }
+
+  p {
+    font-size: 12px;
+    margin: 0;
+  }
+  
+  p.description {
+    color: $tertiary-dark;
+  }
+  
+  li {
+    list-style: square;
+  }
+  
+  img {
+    border-radius: 8px;
+    align-self: center;
+    max-width: 98%;
+  }
+  
+  @media (min-width: 800px) {
+    flex-direction: row;
+    font-size: 16px;
+    padding-right: 20px;
+
+    p {
+      font-size: 1rem;
+    }
+
+    .projectInfo {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .iconContainer {
+      margin-top: auto;
+    }
+
+    img {
+      align-self: start;
+    }
+
+  }
+}
+
 .sectionContainer {
   margin: $section-margin;
-  font-size: 1rem;
+  font-size: .72rem;
 
   h3 {
+    font-weight: 300;
     margin: 0;
+  }
+
+  .sep {
+    padding: 0 2px;
   }
 
   p {
     margin: 0 0 5px 0;
+
+    b {
+      color: $tertiary-dark;
+    }
+  }
+
+  i {
+    font-weight: 300;
+  }
+
+  p.skills {
+    font-weight: 300;
+  }
+
+  p.highlight {
+    color: $tertiary-dark;
   }
 
   li {
+    font-weight: 300;
     list-style: square;
   }
 
   ul {
     margin: 0 0 10px 0;
+  }
+
+  @media (min-width: 800px) {
+    font-size: 1rem;
+
+    .sep {
+      padding: 0 5px;
+    }
+  }
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+
+  h3 {
+    font-weight: 400;
+    color: $tertiary-dark;
+    margin-bottom: 5px;
+  }
+
+  @media (min-width: 800px) {
+    .iconContainer {
+      display: none;
+    }
+  }
+}
+
+.desktopOnly {
+  @media (max-width: 800px) {
+    display: none;
   }
 }
 

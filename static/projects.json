@@ -1,0 +1,55 @@
+{
+  "projects": [
+    {
+      "title": "Tree",
+      "repoHref": "https://github.com/Jay-A-McBee/small-axe",
+      "lang": "rust",
+      "description": "*nix tree command written in Rust.",
+      "img": {
+        "src": "/tree.webp",
+        "alt": "Tree terminal output image",
+        "height": 200,
+        "width": 242
+      },
+      "summary": [
+        "Supports most command flags and will eventually support all and more.",
+        "Extensive integration test suite using {link, trycmd, https://docs.rs/trycmd/latest/trycmd/} crate.",
+        "[WIP] - Windows support"
+      ]
+    },
+    {
+      "title": "react-native-tweet-embed",
+      "repoHref": "https://github.com/Jay-A-McBee/react-native-tweet-embed",
+      "lang": "react-native",
+      "description": "Embed a specific tweet in a React Native View.",
+      "img": {
+        "src": "/tweet_embed.gif",
+        "alt": "chipwich CLI image",
+        "height": 250,
+        "width": 125
+      },
+      "summary": [
+        "Published npm package.",
+        "Lightweight and focused alternative for apps that don't need all the functionality of the Twitter SDK.",
+        "[WIP] - support the new React Native architecture."
+      ]
+    },
+    {
+      "title": "Chipwich",
+      "repoHref": "https://github.com/Jay-A-McBee/chipwich",
+      "lang": "rust",
+      "description": "A chip8 emulator written in Rust.",
+      "img": {
+        "src": "/chipwich.gif",
+        "alt": "chipwich CLI image",
+        "height": 200,
+        "width": 400
+      },
+      "summary": [
+        "CLI that will load and play local and remote chip8 games.",
+        "Integrates the {link, sdl2, https://docs.rs/sdl2/latest/sdl2/} crate for low level keyboard, sound and display access.",
+        "[WIP] - more polished debug output."
+      ]
+    }
+  ]
+}

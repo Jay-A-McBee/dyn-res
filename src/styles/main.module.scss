@@ -29,13 +29,21 @@
   }
 }
 
+.linkContainerOuter {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .linkContainer {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  background: $primary-darker;
 
   svg {
-    max-width: 100px;
+    fill: currentColor;
+    max-width: 50px;
     height: auto;
   }
 
@@ -51,8 +59,6 @@
   }
 
   @media (min-width: 800px) {
-    width: 100%;
-    max-width: 100%;
-    padding: 10px 0px;
+    padding: 0 60px;
   }
 }
