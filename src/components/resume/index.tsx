@@ -1,3 +1,5 @@
+import { ForwardedRef, forwardRef } from "react";
+
 import styles from "./resume.module.scss";
 import Copy from "@/utils/copy";
 import { GithubIcon, RustLogoIcon, ReactNativeIcon } from "../icons";
@@ -177,13 +179,16 @@ const SideProjects = () => (
   </div>
 );
 
-export default function Resume() {
+export default forwardRef(function Resume(
+  _props,
+  ref: ForwardedRef<HTMLDivElement>
+) {
   return (
-    <div className={styles.container}>
+    <div ref={ref} className={styles.container}>
       <Skills />
       <RecentProjects />
       <WorkExperience />
       <SideProjects />
     </div>
   );
-}
+});

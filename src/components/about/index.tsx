@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 
 import styles from "./about.module.scss";
@@ -10,14 +10,16 @@ import headshot from "../../../public/headshot.webp";
 const About = () => {
   const [clickedScroll, setClickedScroll] = useState(false);
 
+  const resumeContainerRef = useRef<HTMLDivElement>(null);
+
   const handleClick = () => {
     setClickedScroll(true);
 
-    window.scrollTo({
-      left: 0,
-      top: window.innerHeight,
-      behavior: "smooth",
-    });
+    if (resumeContainerRef.current) {
+      resumeContainerRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
@@ -67,7 +69,7 @@ const About = () => {
         </div>
       </div>
       <div className={styles.rightPanel}>
-        <Resume />
+        <Resume ref={resumeContainerRef} />
       </div>
     </div>
   );
