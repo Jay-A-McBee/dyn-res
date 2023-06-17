@@ -12,6 +12,7 @@
         "width": 242
       },
       "summary": [
+        "1.5 ± 0.05 times faster than unix 'tree' on a 10,000 entity directory 🚀🚀🚀",
         "Supports most command flags and will eventually support all and more",
         "Extensive integration test suite using {link, trycmd, https://docs.rs/trycmd/latest/trycmd/} crate",
         "[WIP] - Windows support"
