@@ -7,25 +7,6 @@ $section-margin: 10px 0;
   flex-direction: column;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-
-  h2 {
-    color: $tertiary-dark;
-  }
-}
-
-.infoContainer {
-  display: flex;
-  flex-direction: column;
-
-  & > p, a {
-    font-size: 12px;
-    margin: 0;
-  }
-}
-
 .contentContainer {
   display: flex;
   flex-direction: column;
@@ -41,13 +22,20 @@ $section-margin: 10px 0;
     font-size: 12px;
     margin: 0;
   }
+
+  p.bold {
+    font-weight: 700;
+    color: $tertiary-dark;
+  }
   
-  b {
+  span.bold {
+    font-weight: 700;
     color: $tertiary-dark;
     margin-bottom: 5px;
   }
   
   li {
+    font-weight: 300;
     list-style: square;
   }
   
@@ -85,25 +73,32 @@ $section-margin: 10px 0;
   margin: $section-margin;
   font-size: .72rem;
 
+  a {
+    font-weight: 700;
+    color: $primary-darker;
+  }
+
   h3 {
-    font-weight: 300;
+    font-weight: 400;
     margin: 0;
   }
 
   .sep {
-    padding: 0 2px;
+    margin: 0 2px;
   }
 
   p {
     margin: 0 0 5px 0;
 
-    b {
+    span.bold {
+      font-weight: 700;
       color: $tertiary-dark;
     }
   }
 
-  i {
-    font-weight: 300;
+  span.italicize {
+    font-style: italic;
+    font-weight: 400;
   }
 
   p.skills {
@@ -115,6 +110,7 @@ $section-margin: 10px 0;
   }
 
   li {
+    margin-bottom: 5px;
     font-weight: 300;
     list-style: square;
   }
@@ -127,7 +123,7 @@ $section-margin: 10px 0;
     font-size: 1rem;
 
     .sep {
-      padding: 0 5px;
+      margin: 0 5px;
     }
   }
 }
@@ -137,7 +133,7 @@ $section-margin: 10px 0;
   justify-content: space-between;
 
   h3 {
-    font-weight: bold;
+    font-weight: 700;
     color: $tertiary-dark;
     margin-bottom: 5px;
   }
@@ -153,11 +149,6 @@ $section-margin: 10px 0;
   @media (max-width: 800px) {
     display: none;
   }
-}
-
-.experienceContainer {
-  display: flex;
-  justify-content: space-between;
 }
 
 .workExperienceContainer {

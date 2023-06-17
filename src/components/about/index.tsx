@@ -64,7 +64,7 @@ const About = () => {
           }`}
         >
           <button aria-label="scroll down button" onClick={handleClick}>
-            <CircleChevronDownIcon height={75} width={75} />
+            <CircleChevronDownIcon height={50} width={50} />
           </button>
         </div>
       </div>

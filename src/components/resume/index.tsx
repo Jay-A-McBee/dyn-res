@@ -51,11 +51,11 @@ const WorkExperience = () => (
         <span key={title}>
           <div className={styles.workExperienceContainer}>
             <p>
-              <b>{title}</b>
-              <b className={styles.sep}>|</b>
-              <i>{type}</i>
-              <b className={styles.sep}>|</b>
-              <i>{location}</i>
+              <span className={styles.bold}>{title}</span>
+              <span className={`${styles.bold} ${styles.sep}`}>|</span>
+              <span className={styles.italicize}>{type}</span>
+              <span className={`${styles.bold} ${styles.sep}`}>|</span>
+              <span className={styles.italicize}>{location}</span>
             </p>
             <p className={styles.highlight}>{dates}</p>
           </div>
@@ -74,7 +74,7 @@ const ProjectLink = ({ link }: { link?: string }) => {
   if (link) {
     return (
       <>
-        <b className={styles.sep}>|</b>
+        <span className={`${styles.bold} ${styles.sep}`}>|</span>
         <a target="_blank" href={link}>
           {link}
         </a>
@@ -92,12 +92,13 @@ const RecentProjects = () => (
     {recentProjects.body.map(({ title, type, role, link, summary }) => (
       <span key={title}>
         <p key={title}>
-          <b>{title}</b>
-          <b className={styles.sep}>|</b> <i>{role}</i>{" "}
+          <span className={styles.bold}>{title}</span>
+          <span className={`${styles.bold} ${styles.sep}`}>|</span>{" "}
+          <span className={styles.italicize}>{role}</span>{" "}
           <ProjectLink link={link} />
         </p>
         <p>
-          <b>{type}</b>
+          <span className={styles.bold}>{type}</span>
         </p>
         <ul>
           {summary.map((line) => (
@@ -115,7 +116,7 @@ const Skills = () => (
     <hr />
     {skills.body.map(({ title, summary }) => (
       <p className={styles.skills} key={title}>
-        <b>{title} |</b> {summary.join(", ")}
+        <span className={styles.bold}>{title} |</span> {summary.join(", ")}
       </p>
     ))}
   </div>
@@ -144,7 +145,7 @@ const SideProjects = () => (
                   <LangIcon height={25} width={25} />
                 </div>
               </div>
-              <b>{description}</b>
+              <p className={styles.bold}>{description}</p>
               <ul>
                 {summary.map((line) => (
                   <li key={line}>
