@@ -48,6 +48,16 @@
       "sectionHeader": "Recent Work Projects",
       "body": [
         {
+          "title": "Prominent Quick Service Restaurant",
+          "type": "Internal/Franchisee-facing Applications",
+          "role": "Front End",
+          "summary": [
+            "Converted the internal POS (point of sale) and KDS (kitchen display system) applications to Typescript",
+            "Made extensive use of Zod schemas and type inference to limit static type drift and maintenance",
+            "Built multiple excel-like bulk editing features into the franchisee-facing restaurant configuration application"
+          ]
+        },
+        {
           "title": "Celebrity Athleisure Company",
           "type": "E-Commerce Application",
           "role": "Front End",
@@ -58,7 +68,7 @@
           ]
         },
         {
-          "title": "Fortune 500 Video Game company",
+          "title": "Fortune 500 Video Game Company",
           "type": "Cart and Checkout Application",
           "role": "Full Stack",
           "summary": [
@@ -68,7 +78,7 @@
           ]
         },
         {
-          "title": "Fortune 500 Office Supply company",
+          "title": "Fortune 500 Office Supply Company",
           "type": "Platform Team",
           "role": "Full Stack",
           "summary": [
@@ -78,7 +88,7 @@
           ]
         },
         {
-          "title": "Opendorse",
+          "title": "NIL Marketplace Company",
           "type": "React Native Application",
           "role": "Front End",
           "link": "https://opendorse.com/",
@@ -86,17 +96,6 @@
             "Built v1 of the Opendorse React Native application with Typescript",
             "Integrated multiple social media publishing and authentication APIs including Twitter, Facebook and Instagram",
             "Upskilled the client dev team who were  new to React Native"
-          ]
-        },
-        {
-          "title": "Chipwich",
-          "type": "Chip 8 emulator (hobby project)",
-          "role": "Full Stack",
-          "link": "https://github.com/Jay-A-McBee/chipwich",
-          "summary": [
-            "A chip8 emulator built with Rust",
-            "Built a CLI capable of loading local and remote chip8 games",
-            "Integrated the SDL2 crate for audio, keyboard and graphics access"
           ]
         }
       ]
