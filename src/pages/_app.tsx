@@ -5,7 +5,7 @@ import "../styles/global.css";
 import Head from "next/head";
 
 const roboto = Roboto({
-  weight: ["100", "300", "400"],
+  weight: ["100", "300", "400", "500"],
   subsets: ["latin"],
 });
 
