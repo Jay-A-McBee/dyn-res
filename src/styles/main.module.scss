@@ -1,9 +1,9 @@
 .container {
-  max-width: 2150px;
+  max-width: 2180px;
   margin: auto;
   
 
-  @media (min-width: 2150px) {
+  @media (min-width: 2180px) {
     border-right:  1px solid black;
   }
 }

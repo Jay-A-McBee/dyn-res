@@ -40,9 +40,10 @@ $section-margin: 10px 0;
   }
   
   img {
-    border-radius: 8px;
     align-self: center;
-    max-width: 98%;
+    border-radius: 8px;
+    max-inline-size: 98%;
+    object-fit: cover;
   }
   
   @media (min-width: 800px) {

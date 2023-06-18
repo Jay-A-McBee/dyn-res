@@ -27,9 +27,10 @@ const About = () => {
       <div className={styles.leftPanel}>
         <Image
           alt="Image of Austin McBee"
-          width={250}
-          height={250}
-          src={headshot}
+          width={256}
+          height={256}
+          sizes="(max-width: 800px) 50vw, 25vw"
+          src="/headshot.webp"
           className={styles.image}
           priority
         />

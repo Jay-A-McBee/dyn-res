@@ -1,4 +1,5 @@
 import { ForwardedRef, forwardRef } from "react";
+import Image from "next/image";
 
 import styles from "./resume.module.scss";
 import Copy from "@/utils/copy";
@@ -126,57 +127,61 @@ const SideProjects = () => (
   <div className={styles.sectionContainer}>
     <h3>Side Projects</h3>
     <hr />
-    {projects.map(({ title, repoHref, lang, description, summary, img }) => {
-      const LangIcon = iconMap[lang];
-      return (
-        <span key={title}>
-          <div className={styles.contentContainer}>
-            <div className={styles.projectInfo}>
-              <div className={styles.titleContainer}>
-                <h3>{title}</h3>
-                <div className={styles.iconContainer}>
+    {projects.map(
+      ({
+        title,
+        repoHref,
+        lang,
+        description,
+        summary,
+        img: { alt, ...rest },
+      }) => {
+        const LangIcon = iconMap[lang];
+        return (
+          <span key={title}>
+            <div className={styles.contentContainer}>
+              <div className={styles.projectInfo}>
+                <div className={styles.titleContainer}>
+                  <h3>{title}</h3>
+                  <div className={styles.iconContainer}>
+                    <a
+                      aria-label={`${title} github repo link`}
+                      target="_blank"
+                      href={repoHref}
+                    >
+                      <GithubIcon height={25} width={25} />
+                    </a>
+                    <LangIcon height={25} width={25} />
+                  </div>
+                </div>
+                <p className={styles.bold}>{description}</p>
+                <ul>
+                  {summary.map((line) => (
+                    <li key={line}>
+                      <Copy text={line} />
+                    </li>
+                  ))}
+                </ul>
+                <div
+                  className={`${styles.iconContainer} ${styles.desktopOnly}`}
+                >
                   <a
-                    aria-label={`${title} github repo link`}
                     target="_blank"
+                    aria-label={`${title} github repo link`}
                     href={repoHref}
                   >
-                    <GithubIcon height={25} width={25} />
+                    <GithubIcon height={50} width={50} />
                   </a>
-                  <LangIcon height={25} width={25} />
+                  <LangIcon height={55} width={55} />
                 </div>
               </div>
-              <p className={styles.bold}>{description}</p>
-              <ul>
-                {summary.map((line) => (
-                  <li key={line}>
-                    <Copy text={line} />
-                  </li>
-                ))}
-              </ul>
-              <div className={`${styles.iconContainer} ${styles.desktopOnly}`}>
-                <a
-                  target="_blank"
-                  aria-label={`${title} github repo link`}
-                  href={repoHref}
-                >
-                  <GithubIcon height={50} width={50} />
-                </a>
-                <LangIcon height={55} width={55} />
-              </div>
+              <Image alt={alt} loading="lazy" {...rest} />
             </div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              alt={img.alt}
-              src={img.src}
-              height={img.height}
-              width={img.width}
-              loading="lazy"
-            />
-          </div>
-          <hr />
-        </span>
-      );
-    })}
+            <hr />
+          </span>
+        );
+      }
+    )}
   </div>
 );
 
