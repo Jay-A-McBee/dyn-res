@@ -175,7 +175,8 @@ const SideProjects = () => (
                   <LangIcon height={55} width={55} />
                 </div>
               </div>
-              <Image alt={alt} loading="lazy" {...rest} />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt={alt} loading="lazy" {...rest} />
             </div>
             <hr />
           </span>
