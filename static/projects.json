@@ -27,7 +27,6 @@
       "img": {
         "src": "/tweet_embed.gif",
         "alt": "chipwich CLI image",
-        "sizes":"(max-width: 800px) 125px, 125px",
         "height": 250,
         "width": 125
       },
@@ -45,7 +44,6 @@
       "img": {
         "src": "/chipwich.gif",
         "alt": "chipwich CLI image",
-        "sizes":"(max-width: 800px) 400px, 400px",
         "height": 200,
         "width": 400
       },
