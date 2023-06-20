@@ -7,11 +7,27 @@ $section-margin: 10px 0;
   flex-direction: column;
 }
 
+.imgContainer {
+  flex: 1;
+  display: flex;
+  background: linear-gradient(to bottom right, $tertiary-light, $tertiary-dark);
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  padding: 4px;
+  
+  & > img {
+    border-radius: 4px;
+    max-inline-size: 98%;
+  }
+}
+
 .contentContainer {
+  flex: 1 1 415px;
   display: flex;
   flex-direction: column;
+  gap: 20px;
   margin: 20px 0;
-  justify-content: space-between;
 
   svg {
     fill: $tertiary-dark;
@@ -39,22 +55,16 @@ $section-margin: 10px 0;
     list-style: square;
   }
   
-  img {
-    align-self: center;
-    border-radius: 8px;
-    max-inline-size: 98%;
-    object-fit: cover;
-  }
-  
   @media (min-width: 800px) {
+    flex: 1 1 315px;
     flex-direction: row;
-    font-size: 16px;
 
     p {
       font-size: 1rem;
     }
 
     .projectInfo {
+      flex: 1;
       display: flex;
       flex-direction: column;
     }
@@ -62,17 +72,18 @@ $section-margin: 10px 0;
     .iconContainer {
       margin-top: auto;
     }
-
-    img {
-      align-self: start;
-    }
-
   }
 }
 
 .sectionContainer {
+  display: flex;
+  flex-direction: column;
   margin: $section-margin;
   font-size: .72rem;
+
+  hr {
+    width: 100%;
+  }
 
   a {
     font-weight: 700;

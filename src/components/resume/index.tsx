@@ -1,4 +1,4 @@
-import { ForwardedRef, forwardRef } from "react";
+import { ForwardedRef, forwardRef, Fragment } from "react";
 import Image from "next/image";
 
 import styles from "./resume.module.scss";
@@ -49,7 +49,7 @@ const WorkExperience = () => (
     <hr />
     {experience.body.map(({ title, type, dates, summary, location }) => {
       return (
-        <span key={title}>
+        <Fragment key={title}>
           <div className={styles.workExperienceContainer}>
             <p>
               <span className={styles.bold}>{title}</span>
@@ -65,7 +65,7 @@ const WorkExperience = () => (
               <li key={line}>{line}</li>
             ))}
           </ul>
-        </span>
+        </Fragment>
       );
     })}
   </div>
@@ -91,7 +91,7 @@ const RecentProjects = () => (
     <h3>{recentProjects.sectionHeader}</h3>
     <hr />
     {recentProjects.body.map(({ title, type, role, link, summary }) => (
-      <span key={title}>
+      <Fragment key={title}>
         <p key={title}>
           <span className={styles.bold}>{title}</span>
           <span className={`${styles.bold} ${styles.sep}`}>|</span>{" "}
@@ -106,7 +106,7 @@ const RecentProjects = () => (
             <li key={line}>{line}</li>
           ))}
         </ul>
-      </span>
+      </Fragment>
     ))}
   </div>
 );
@@ -138,7 +138,7 @@ const SideProjects = () => (
       }) => {
         const LangIcon = iconMap[lang];
         return (
-          <span key={title}>
+          <Fragment key={title}>
             <div className={styles.contentContainer}>
               <div className={styles.projectInfo}>
                 <div className={styles.titleContainer}>
@@ -175,11 +175,13 @@ const SideProjects = () => (
                   <LangIcon height={55} width={55} />
                 </div>
               </div>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt={alt} loading="lazy" {...rest} />
+              <div className={styles.imgContainer}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img alt={alt} loading="lazy" {...rest} />
+              </div>
             </div>
             <hr />
-          </span>
+          </Fragment>
         );
       }
     )}
