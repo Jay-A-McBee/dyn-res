@@ -44,7 +44,10 @@ const { projects } = projectJson;
 // );
 
 const WorkExperience = () => (
-  <div className={styles.sectionContainer}>
+  <section
+    aria-label="Work experience section"
+    className={styles.sectionContainer}
+  >
     <h3>{experience.sectionHeader}</h3>
     <hr />
     {experience.body.map(({ title, type, dates, summary, location }) => {
@@ -68,7 +71,7 @@ const WorkExperience = () => (
         </Fragment>
       );
     })}
-  </div>
+  </section>
 );
 
 const ProjectLink = ({ link }: { link?: string }) => {
@@ -87,7 +90,10 @@ const ProjectLink = ({ link }: { link?: string }) => {
 };
 
 const RecentProjects = () => (
-  <div className={styles.sectionContainer}>
+  <section
+    aria-label="Recent projects section"
+    className={styles.sectionContainer}
+  >
     <h3>{recentProjects.sectionHeader}</h3>
     <hr />
     {recentProjects.body.map(({ title, type, role, link, summary }) => (
@@ -108,11 +114,11 @@ const RecentProjects = () => (
         </ul>
       </Fragment>
     ))}
-  </div>
+  </section>
 );
 
 const Skills = () => (
-  <div className={styles.sectionContainer}>
+  <section aria-label="Skills section" className={styles.sectionContainer}>
     <h3>{skills.sectionHeader}</h3>
     <hr />
     {skills.body.map(({ title, summary }) => (
@@ -120,11 +126,14 @@ const Skills = () => (
         <span className={styles.bold}>{title} |</span> {summary.join(", ")}
       </p>
     ))}
-  </div>
+  </section>
 );
 
 const SideProjects = () => (
-  <div className={styles.sectionContainer}>
+  <section
+    aria-label="Side projects section"
+    className={styles.sectionContainer}
+  >
     <h3>Side Projects</h3>
     <hr />
     {projects.map(
@@ -185,7 +194,7 @@ const SideProjects = () => (
         );
       }
     )}
-  </div>
+  </section>
 );
 
 export default forwardRef(function Resume(
@@ -193,11 +202,11 @@ export default forwardRef(function Resume(
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
-    <div ref={ref} className={styles.container}>
+    <main ref={ref} className={styles.container}>
       <Skills />
       <RecentProjects />
       <WorkExperience />
       <SideProjects />
-    </div>
+    </main>
   );
 });
