@@ -104,10 +104,21 @@
       "sectionHeader": "Work Experience",
       "body": [
         {
+          "title": "Hy-Vee inc.",
+          "type": "Senior Software Engineer",
+          "location": "Remote",
+          "dates": "2023 - present",
+          "summary": [
+            "Senior engineer marketing ops team",
+            "Led API development for new loyalty initiative (~1,000,000 sign-ups in 30 days)",
+            "Creating new culinary API - GQL, Postgres, Redis"
+          ]
+        },
+        {
           "title": "Formidable",
           "type": "Senior Software Engineer",
           "location": "Remote",
-          "dates": "2019 - present",
+          "dates": "2019 - 2023",
           "summary": [
             "Senior consultant specializing in front end application architecture",
             "Embed with client teams to build, plan and architect modern web applications",
